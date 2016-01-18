@@ -1,0 +1,85 @@
+@import "./mixin/flex.scss";
+@import "./var.scss";
+
+//$row-height: 1.3rem;
+
+#member {
+  padding: 0 .1rem;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  #member-group {
+    height: $row-height;
+    overflow: hidden;
+    #member-1 {
+      width: 1.3rem;
+      height: $row-height;
+      line-height: 1.75;
+      text-align: center;
+      font-size: .28rem;
+      padding-top: .2rem;
+      float: left;
+      #member-1-name {
+        vertical-align: middle;
+        color: #999999;
+      }
+      #member-1-num {
+        vertical-align: middle;
+        color: #9ed7ff;
+      }
+    }
+    #member-2 {
+      width: 5.7rem;
+      height: $row-height;
+      line-height: $row-height;
+      float: left;
+      #member-2-owner {
+        position: relative;
+        width: 1rem;
+        -webkit-border-radius: 100%;
+        border-radius: 100%;
+        float: left;
+        img {
+          width: .7rem;
+          height: .7rem;
+          -webkit-border-radius: 100%;
+          border-radius: 100%;
+        }
+        #member-2-owner-tag {
+          position: absolute;
+          bottom: .26rem;
+          right: .1rem;
+          line-height: .35rem;
+          padding: 0 .1rem;
+          background-color: #ffb541;
+          color: #FFFFFF;
+          -webkit-border-radius: .2rem;
+          border-radius: .2rem;
+          font-size: .2rem;
+        }
+      }
+      #member-2-member-group {
+        line-height: $row-height * 0.86;
+        .member-2-member {
+          width: .5rem;
+          -webkit-border-radius: 100%;
+          border-radius: 100%;
+          display: inline-block;
+          padding: 0 .08rem;
+          img {
+            width: .5rem;
+            height: .5rem;
+            -webkit-border-radius: 100%;
+            border-radius: 100%;;
+          }
+        }
+      }
+    }
+    #member-3 {
+      float: right;
+      @include flexCenter;
+      img {
+        height: .4rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@import "./mixin/flex.scss";
+@import "./var.scss";
+
+#activity {
+  padding: 0 .1rem;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  font-size: .28rem;
+  #activity-group {
+    //height: $row-height;
+    overflow: hidden;
+    #activity-1 {
+      width: 1.3rem;
+      height: $row-height;
+      line-height: 1.75;
+      text-align: center;
+
+      padding-top: .2rem;
+      float: left;
+      #activity-1-name {
+        vertical-align: middle;
+        color: #999999;
+      }
+      #activity-1-num {
+        vertical-align: middle;
+        color: #9ed7ff;
+      }
+    }
+    #activity-2 {
+      float: left;
+      width: calc(100% - 1.3rem);
+      padding-top: .7rem;
+      .activity-2-label {
+        span {
+          display: inline-block;
+          font-size: .25rem;
+          color: #2fa4f6;
+          background-color: #f6f6f8;
+          border-radius: .5rem;
+          padding: .1rem .2rem;
+          margin-bottom: .3rem;
+        }
+      }
+      .activity-more {
+        text-align: right;
+        padding-right: .1rem;
+        img {
+          height: .4rem;
+          transform: rotate(90DEG);
+        }
+      }
+    }
+  }
+}

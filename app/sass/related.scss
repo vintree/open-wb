@@ -1,0 +1,65 @@
+@import "./mixin/flex.scss";
+@import "./var.scss";
+
+#related {
+  font-size: .28rem;
+  padding-left: .1rem;
+  background-color: #FFFFFF;
+  overflow: hidden;
+  #related-1-group {
+    line-height: 1rem;
+    #related-1-label {
+      display: inline-block;
+      width: 1.3rem;
+      float: left;
+      color: #999999;
+      text-align: center;
+    }
+    #related-1-name {
+      font-size: .25rem;
+      display: inline-block;
+      width: calc(100% - 1.3rem);
+      color: #474747;
+      border-bottom: $border;
+    }
+  }
+  #related-2-group {
+    padding-top: .2rem;
+    #related-2-1 {
+      width: 1.3rem;
+      height: $row-height;
+      line-height: 1.75;
+      text-align: center;
+      font-size: .28rem;
+      float: left;
+      #related-2-name {
+        vertical-align: middle;
+        color: #999999;
+      }
+      #related-2-num {
+        vertical-align: middle;
+        color: #9ed7ff;
+      }
+    }
+    #related-2-2 {
+      display: inline-block;
+      width: calc(100% - 1.3rem);
+      text-align: center;
+      .related-2-2-unit {
+        width: 25%;
+        height: 2rem;
+        display: inline-block;
+        .related-2-2-img {
+          img {
+            width: 1.2rem;
+          }
+        }
+        .related-2-2-name {
+          line-height: 1.9;
+          color: #474747;
+          font-size: .25rem;
+        }
+      }
+    }
+  }
+}
