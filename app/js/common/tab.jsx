@@ -39,13 +39,13 @@ export default class Tab extends React.Component {
                         <div className={'tab-tx ' + this.state.tabActive[2]} role={this.state.details}>详情</div>
                     </div>
                 </div>
-                <div id={this.state.newest} className={'fansGroup-tab-md ' + this.state.tabActive[0]}>
+                <div id={this.state.newest} className={'tab-md ' + this.state.tabActive[0]}>
                     <Newest></Newest>
                 </div>
-                <div id={this.state.hot} className={'fansGroup-tab-md ' + this.state.tabActive[1]}>
+                <div id={this.state.hot} className={'tab-md ' + this.state.tabActive[1]}>
                     <Hot></Hot>
                 </div>
-                <div id={this.state.details} className={'fansGroup-tab-md ' + this.state.tabActive[2]}>
+                <div id={this.state.details} className={'tab-md ' + this.state.tabActive[2]}>
                     <section id="fansGroup-member" className="gap">
                         <Member></Member>
                     </section>

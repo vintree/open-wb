@@ -21,9 +21,13 @@
     }
 }
 
-.fansGroup-tab-md {
+.tab-md {
     display: none;
     &.active {
         display: block;
     }
 }
+
+// .tab-content {
+//     padding: 0 .2rem;
+// }

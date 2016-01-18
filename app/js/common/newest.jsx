@@ -46,8 +46,8 @@ export default class Newest extends React.Component {
                                 </div>
                             </div>
                         </div>
-                        <div>
-
+                        <div className="newest-thead">
+                            虽然没有明确具体坐标，但现场很好找，因为很远就能看到马路边上一团火。“车身已经是一片火海，看不清车型和车牌了。”水枪从着火汽车正前方左右两侧进行灭火，30分钟后终于完全扑灭，而此时......
                         </div>
                     </div>
                 </div>
