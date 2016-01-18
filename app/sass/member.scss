@@ -1,8 +1,5 @@
 @import "./mixin/flex.scss";
 @import "./var.scss";
-
-//$row-height: 1.3rem;
-
 #member {
     padding: 0 .2rem;
     background-color: #FFFFFF;
@@ -76,7 +73,6 @@
         }
         #member-3 {
             float: right;
-            // @include flexCenter;
             #member-3-img {
                 height: $row-height;
                 line-height: $row-height * .8;

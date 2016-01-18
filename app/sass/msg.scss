@@ -1,0 +1,35 @@
+@import "./mixin/flex.scss";
+@import "./mixin/ellipsis.scss";
+@import "./var.scss";
+
+#msg {
+    padding: 0 .2rem;
+    background-color: #FFFFFF;
+    #msg-group {
+        font-size: .3rem;
+        line-height: 1rem;
+        overflow: hidden;
+        #msg-label-group {
+            float: left;
+            width: 20%;
+            text-align: left;
+            .msg-label {
+                font-size: 110%;
+                color: #999999;
+            }
+        }
+        #msg-tx-group {
+            float: right;
+            width: 80%;
+            text-align: right;
+            .msg-tx {
+                border-bottom: $border;
+                color: #474747;
+                @include ellipsis1;
+                &:last-child {
+                    border: none;
+                }
+            }
+        }
+    }
+}

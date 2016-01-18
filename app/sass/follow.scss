@@ -1,0 +1,56 @@
+@import "./mixin/flex.scss";
+@import "./var.scss";
+
+#follow {
+    padding: 0 .2rem;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    #follow-group {
+        height: $row-height;
+        overflow: hidden;
+        #follow-1 {
+            width: 1.3rem;
+            height: $row-height;
+            line-height: 1.75;
+            text-align: center;
+            font-size: .28rem;
+            padding-top: .2rem;
+            float: left;
+            #follow-1-name {
+                vertical-align: middle;
+                color: #999999;
+            }
+            #follow-1-num {
+                vertical-align: middle;
+                color: #9ed7ff;
+            }
+        }
+        #follow-2 {
+            width: 5.5rem;
+            height: $row-height;
+            // line-height: $row-height;
+            float: left;
+            .follow-2-img {
+                float: left;
+                height: $row-height;
+                line-height: $row-height;
+                width: .78rem;
+                text-align: center;
+                img {
+                    width: 90%;
+                }
+            }
+        }
+        #follow-3 {
+            float: right;
+            #follow-3-img {
+                height: $row-height;
+                line-height: $row-height * .8;
+                img {
+                    height: .4rem;
+                }
+            }
+
+        }
+    }
+}

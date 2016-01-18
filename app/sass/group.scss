@@ -1,0 +1,61 @@
+@import "./mixin/flex.scss";
+@import "./mixin/ellipsis.scss";
+@import "./var.scss";
+
+#group {
+    padding: 0 .2rem;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    #group-group {
+        overflow: hidden;
+        padding-bottom: .4rem;
+        #group-1 {
+            width: 1.3rem;
+            height: $row-height;
+            line-height: 1.75;
+            text-align: center;
+            font-size: .28rem;
+            padding-top: .2rem;
+            float: left;
+            #group-1-name {
+                vertical-align: middle;
+                color: #999999;
+            }
+            #group-1-num {
+                vertical-align: middle;
+                color: #9ed7ff;
+            }
+        }
+        #group-2 {
+            width: 5.5rem;
+            float: left;
+            padding-top: .25rem;
+            .group-2-unit {
+                float: left;
+                width: 1.1rem;
+                text-align: center;
+                .group-2-img {
+                    line-height: $row-height * .8;
+                    img {
+                        width: 80%;
+                    }
+                }
+                .group-2-name {
+                    font-size: .15rem;
+                    @include ellipsis1;
+                }
+            }
+        }
+        #group-3 {
+            float: right;
+            #group-3-img {
+                height: $row-height;
+                line-height: $row-height * .8;
+                img {
+                    height: .4rem;
+                }
+            }
+
+        }
+    }
+}

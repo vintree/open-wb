@@ -1,20 +1,17 @@
 //require('../../sass/base.scss');
-require('../../sass/fansGroup.scss');
+require('../../sass/user.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import autoFont from '../temp/autoFont.js';
 import addScript from '../temp/addScript.js';
 import Head from '../temp/head.js';
 
-
 import UserMsg from '../common/userMsg.jsx';
 import Tab from "../common/tab.jsx";
-import Member from "../common/member.jsx";
-import Tag from "../common/tag.jsx";
-import Related from "../common/related.jsx";
+import Follow from "../common/follow.jsx";
+import Group from "../common/group.jsx";
 import Activity from "../common/activity.jsx";
-import Photo from "../common/photo.jsx";
-
+import Msg from "../common/msg.jsx";
 autoFont.init();
 
 class User extends React.Component {
@@ -48,7 +45,18 @@ class User extends React.Component {
 
                 </section>
                 <section id="user-personage">
-                    
+                    <section className="gap">
+                        <Follow></Follow>
+                    </section>
+                    <section className="gap">
+                        <Group></Group>
+                    </section>
+                    <section className="gap">
+                        <Activity></Activity>
+                    </section>
+                    <section className="gap">
+                        <Msg></Msg>
+                    </section>
                 </section>
             </div>
         )
