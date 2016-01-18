@@ -2,53 +2,53 @@
 @import "./var.scss";
 
 #tag {
-  padding: 0 .1rem;
-  background-color: #FFFFFF;
-  overflow: hidden;
-  font-size: .28rem;
-  #tag-group {
-    height: $row-height;
+    padding: 0 .1rem;
+    background-color: #FFFFFF;
     overflow: hidden;
-    #tag-1 {
-      width: 1.3rem;
-      height: $row-height;
-      line-height: 1.75;
-      text-align: center;
-      padding-top: .2rem;
-      float: left;
-      #tag-1-name {
-        vertical-align: middle;
-        color: #999999;
-      }
-      #tag-1-num {
-        vertical-align: middle;
-        color: #9ed7ff;
-      }
+    font-size: .28rem;
+    #tag-group {
+        height: $row-height;
+        overflow: hidden;
+        #tag-1 {
+            width: 1.3rem;
+            height: $row-height;
+            line-height: 1.75;
+            text-align: center;
+            padding-top: .2rem;
+            float: left;
+            #tag-1-name {
+                vertical-align: middle;
+                color: #999999;
+            }
+            #tag-1-num {
+                vertical-align: middle;
+                color: #9ed7ff;
+            }
+        }
+        #tag-2 {
+            height: $row-height;
+            @include flexColumn;
+            font-size: .2rem;
+            color: #FFFFFF;
+            .tag-2-group {
+                flex: 1;
+                line-height: $row-height * .52;
+                span {
+                    padding: .1rem .2rem;
+                    -webkit-border-radius: .3rem;
+                    border-radius: .3rem;
+                    margin-left: .2rem;
+                    &:first-child {
+                        margin: 0;
+                    }
+                }
+                .tag-2-group-sysTag {
+                    background-color: #ffb541;
+                }
+                .tag-2-group-customTag {
+                    background-color: #a8e1ff;
+                }
+            }
+        }
     }
-    #tag-2 {
-      height: $row-height;
-      @include flexColumn;
-      font-size: .2rem;
-      color: #FFFFFF;
-      .tag-2-group {
-        flex: 1;
-        line-height: $row-height * .52;
-        span {
-          padding: .1rem .2rem;
-          -webkit-border-radius: .3rem;
-          border-radius: .3rem;
-          margin-left: .2rem;
-          &:first-child {
-            margin: 0;
-          }
-        }
-        .tag-2-group-sysTag {
-          background-color: #ffb541;
-        }
-        .tag-2-group-customTag {
-          background-color: #a8e1ff;
-        }
-      }
-    }
-  }
 }

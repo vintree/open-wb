@@ -1,29 +1,29 @@
 @import "./mixin/flex.scss";
 #tab {
-  line-height: .9rem;
-  background-color: #FFFFFF;
-  font-size: .35rem;
-  box-shadow: 0 1px 2px #aeaeae;
-  #tab-group {
-    width: 70%;
-    margin: auto;
-    @include flexRow;
-    .tab-tx {
-      text-align: center;
-      flex: 1;
-      color: #999999;
-      height: .8rem;
-      &.active {
-        color: #474747;
-        border-bottom: .08rem solid #2fa4f6;
-      }
+    line-height: .9rem;
+    background-color: #FFFFFF;
+    font-size: .35rem;
+    box-shadow: 0 1px 2px #aeaeae;
+    #tab-group {
+        width: 70%;
+        margin: auto;
+        @include flexRow;
+        .tab-tx {
+            text-align: center;
+            flex: 1;
+            color: #999999;
+            height: .8rem;
+            &.active {
+                color: #474747;
+                border-bottom: .08rem solid #2fa4f6;
+            }
+        }
     }
-  }
 }
 
 .fansGroup-tab-md {
-  display: none;
-  &.active {
-    display: block;
-  }
+    display: none;
+    &.active {
+        display: block;
+    }
 }

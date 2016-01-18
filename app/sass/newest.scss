@@ -2,78 +2,77 @@
 $headHeight: 1.2rem;
 
 #newest {
-  padding: 0 .1rem;
-  background-color: #FFFFFF;
-  #newest-group {
-    .newest-unit {
-      font-size: .3rem;
-      color: #999999;
-      padding-top: .2rem;
-      .newest-head {
-        height: $headHeight;
-        overflow: hidden;
-        .newest-imgUser {
-          float: left;
-          width: 13%;
-          img {
-            width: .8rem;
-            border-radius: 100%;
-          }
+    padding: 0 .1rem;
+    background-color: #FFFFFF;
+    #newest-group {
+        .newest-unit {
+            font-size: .3rem;
+            color: #999999;
+            padding-top: .2rem;
+            .newest-head {
+                height: $headHeight;
+                overflow: hidden;
+                .newest-imgUser {
+                    float: left;
+                    width: 13%;
+                    img {
+                        width: .8rem;
+                        border-radius: 100%;
+                    }
+                }
+                .newest-msg {
+                    float: left;
+                    width: 57%;
+                    .newest-msg-pp {
+                        padding-top: .1rem;
+                        .newest-name {
+                            float: left;
+                            margin-right: .1rem;
+                        }
+                        .newest-tag {
+                            font-size: 80%;
+                            margin-right: .1rem;
+                            padding-right: .1rem;
+                            border-right: 1px solid #999999;
+                            &:last-child {
+                                border: none;
+                            }
+                        }
+                    }
+                    .newest-msg-dt {
+                        padding-top: .1rem;
+                        font-size: 80%;
+                    }
+                }
+                .newest-source {
+                    float: left;
+                    width: 30%;
+                    font-size: 80%;
+                    padding-top: .15rem;
+                    .newest-source-1 {
+                        float: left;
+                        text-align: right;
+                        width: 75%;
+                        .newest-source-1-1 {
+                            @include ellipsis1;
+                        }
+                        .newest-source-1-2 {
+                            @include ellipsis1;
+                            color: #2fa4f6;
+                            padding-top: .15rem;
+                        }
+                    }
+                    .newest-source-2 {
+                        float: left;
+                        text-align: right;
+                        width: 25%;
+                        img {
+                            width: .4rem;
+                            border-radius: 100%;
+                        }
+                    }
+                }
+            }
         }
-        .newest-msg {
-          float: left;
-          width: 57%;
-          .newest-msg-pp {
-            padding-top: .1rem;
-            .newest-name {
-              float: left;
-              margin-right: .1rem;
-            }
-            .newest-tag {
-              font-size: 80%;
-              margin-right: .1rem;
-              padding-right: .1rem;
-              border-right: 1px solid #999999;
-              &:last-child {
-                border: none;
-              }
-            }
-          }
-          .newest-msg-dt {
-            padding-top: .1rem;
-            font-size: 80%;
-          }
-        }
-        .newest-source {
-          float: left;
-          width: 30%;
-          font-size: 80%;
-          padding-top: .15rem;
-          .newest-source-1 {
-            float: left;
-            text-align: right;
-            width: 75%;
-            .newest-source-1-1 {
-              @include ellipsis1;
-            }
-            .newest-source-1-2 {
-              @include ellipsis1;
-              color: #2fa4f6;
-              padding-top: .15rem;
-            }
-          }
-          .newest-source-2 {
-            float: left;
-            text-align: right;
-            width: 25%;
-            img {
-              width: .4rem;
-              border-radius: 100%;
-            }
-          }
-        }
-      }
     }
-
-  }
 }

@@ -2,87 +2,87 @@
 @import "./mixin/ellipsis.scss";
 
 #userMsg {
-  position: relative;
-  top: 0;
-  left: 0;
-  height: 5rem;
-  color: #FFFFFF;
-  overflow: hidden;
-  #userMsg-kbImg {
-    position: absolute;
-    top: -6%;
-    left: -3%;
-    width: 106%;
-    height: 112%;
-  }
-  #userMsg-head-group {
-      position: relative;
-      #userMsg-head {
-        height: .7rem;
-        overflow: hidden;
-        .userMsg-ease {
-          width: 0.8rem;
-          line-height: .6rem;
-          text-align: center;
-          height: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 5rem;
+    color: #FFFFFF;
+    overflow: hidden;
+    #userMsg-kbImg {
+        position: absolute;
+        top: -6%;
+        left: -3%;
+        width: 106%;
+        height: 112%;
+    }
+    #userMsg-head-group {
+        position: relative;
+        #userMsg-head {
+            height: .7rem;
+            overflow: hidden;
+            .userMsg-ease {
+                width: 0.8rem;
+                line-height: .6rem;
+                text-align: center;
+                height: 100%;
 
+            }
+            #userMsg-fallback {
+                float: left;
+                img {
+                    width: 0.3rem;
+                }
+            }
+            #userMsg-share {
+                float: right;
+                img {
+                    width: 0.42rem;
+                }
+            }
         }
-        #userMsg-fallback {
-          float: left;
-          img {
-            width: 0.3rem;
-          }
+        #userMsg-headImg {
+            margin: 0 auto 0.2rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            border: .05rem solid #FFFFFF;
+            -webkit-border-radius: 100%;
+            border-radius: 100%;
+            img {
+                width: 100%;
+                height: 100%;
+                -webkit-border-radius: 100%;
+                border-radius: 100%;
+            }
         }
-        #userMsg-share {
-          float: right;
-          img {
-            width: 0.42rem;
-          }
+        #userMsg-name {
+            margin-bottom: 0.15rem;
+            text-align: center;
+            font-size: .4rem;
         }
-      }
-      #userMsg-headImg {
-        margin: 0 auto 0.2rem;
-        width: 1.5rem;
-        height: 1.5rem;
-        border: .05rem solid #FFFFFF;
-        -webkit-border-radius: 100%;
-        border-radius: 100%;
-        img {
-          width: 100%;
-          height: 100%;
-          -webkit-border-radius: 100%;
-          border-radius: 100%;
+        #userMsg-info {
+            width: 2.8rem;
+            height: .6rem;
+            line-height: .6rem;
+            -webkit-border-radius: 2rem;
+            border-radius: 2rem;
+            margin: 0 auto 0.3rem;
+            font-size: .3rem;
+            border: .03rem solid #FFFFFF;
+            @include flexRow;
+            .userMsg-info-group {
+                flex: 1;
+                text-align: center;
+                &:first-child {
+                    border-right: 1px solid #FFFFFF;
+                }
+            }
         }
-      }
-      #userMsg-name {
-        margin-bottom: 0.15rem;
-        text-align: center;
-        font-size: .4rem;
-      }
-      #userMsg-info {
-        width: 2.8rem;
-        height: .6rem;
-        line-height: .6rem;
-        -webkit-border-radius: 2rem;
-        border-radius: 2rem;
-        margin: 0 auto 0.3rem;
-        font-size: .3rem;
-        border: .03rem solid #FFFFFF;
-        @include flexRow;
-        .userMsg-info-group {
-          flex: 1;
-          text-align: center;
-          &:first-child {
-            border-right: 1px solid #FFFFFF;
-          }
+        #userMsg-des {
+            width: 90%;
+            text-align: center;
+            margin: auto;
+            font-size: .27rem;
+            @include ellipsis1;
         }
-      }
-      #userMsg-des {
-        width: 90%;
-        text-align: center;
-        margin: auto;
-        font-size: .27rem;
-        @include ellipsis1;
-      }
-  }
+    }
 }
