@@ -28,7 +28,7 @@
             }
         }
         #member-2 {
-            width: 5.7rem;
+            width: 5.5rem;
             height: $row-height;
             line-height: $row-height;
             float: left;
@@ -64,7 +64,7 @@
                     -webkit-border-radius: 100%;
                     border-radius: 100%;
                     display: inline-block;
-                    padding: 0 .08rem;
+                    padding: 0 .05rem;
                     img {
                         width: .5rem;
                         height: .5rem;
@@ -76,10 +76,15 @@
         }
         #member-3 {
             float: right;
-            @include flexCenter;
-            img {
-                height: .4rem;
+            // @include flexCenter;
+            #member-3-img {
+                height: $row-height;
+                line-height: $row-height * .8;
+                img {
+                    height: .4rem;
+                }
             }
+
         }
     }
 }

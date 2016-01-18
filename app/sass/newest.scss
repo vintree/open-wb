@@ -1,4 +1,6 @@
 @import "./mixin/ellipsis.scss";
+@import "./mixin/flex.scss";
+@import "./var.scss";
 $headHeight: 1.2rem;
 
 #newest {
@@ -9,6 +11,11 @@ $headHeight: 1.2rem;
             font-size: .4rem;
             color: #999999;
             padding-top: .2rem;
+            padding-bottom: .4rem;
+            border-bottom: 2px solid #f6f6f8;
+            &:last-child {
+                border-bottom: none;
+            }
             .newest-head {
                 height: $headHeight;
                 overflow: hidden;
@@ -73,10 +80,32 @@ $headHeight: 1.2rem;
                     }
                 }
             }
-            .newest-thead {
-                font-size: 90%;
-                color: #474747;
-                line-height: 1.7;
+            .newest-body {
+                .newest-tx {
+                    font-size: 90%;
+                    color: #474747;
+                    line-height: 1.7;
+                    padding-bottom: .1rem;
+                }
+                .newest-model1 {
+                    img {
+                        width: 100%;
+                    }
+                }
+                .newest-model2 {
+                    @include flexRow;
+                    .newest-img {
+                        flex: 1;
+                        padding-right: .1rem;
+                        &:last-child {
+                            padding: 0;
+                        }
+                        img {
+                            width: 100%;
+                        }
+                    }
+
+                }
             }
         }
     }

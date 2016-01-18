@@ -30,7 +30,7 @@ export default class Member extends React.Component {
                         </div>
                     </div>
                     <div id="member-3">
-                        <div>
+                        <div id="member-3-img">
                             <img src="../img/right@1.png" />
                         </div>
                     </div>

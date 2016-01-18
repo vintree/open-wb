@@ -4,11 +4,9 @@
     height: 1000px;
 }
 
-#fansGroup-tab {
-}
-
-#fansGroup-member {
-}
-
-#fansGroup-tag {
+.fansGroup-md {
+    display: none;
+    &.active {
+        display: block;
+    }
 }
