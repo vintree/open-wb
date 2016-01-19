@@ -1,23 +1,24 @@
 @import "./mixin/ellipsis.scss";
 @import "./mixin/flex.scss";
 @import "./var.scss";
+
 $headHeight: 1.2rem;
 
 #newest {
-    padding: 0 .2rem;
-    background-color: #FFFFFF;
     #newest-group {
         .newest-unit {
             font-size: .4rem;
             color: #999999;
             padding-top: .2rem;
-            padding-bottom: .4rem;
             border-bottom: 2px solid #f6f6f8;
+            margin-top: $base-gap;
+            background-color: #FFFFFF;
             &:last-child {
                 border-bottom: none;
             }
             .newest-head {
                 height: $headHeight;
+                padding: 0 .2rem;
                 overflow: hidden;
                 .newest-imgUser {
                     float: left;
@@ -81,6 +82,7 @@ $headHeight: 1.2rem;
                 }
             }
             .newest-body {
+                padding: 0 .2rem;
                 .newest-tx {
                     font-size: 90%;
                     color: #474747;
@@ -105,6 +107,39 @@ $headHeight: 1.2rem;
                         }
                     }
 
+                }
+            }
+            .newest-foot {
+                .newest-place {
+                    padding: 0 .2rem;
+                    margin: .2rem 0;
+                    font-size: .35rem;
+                    img {
+                        width: .25rem;
+                        margin-right: .1rem;
+                    }
+                }
+                .newest-tfoot {
+                    border-top: $border;
+                    border-bottom: $border;
+                    font-size: .35rem;
+                    .newest-tfoot-content {
+                        @include flexRow;
+                        padding: .3rem 0;
+                        .newest-foot-1 {
+                            flex: 1;
+                            text-align: center;
+                            border-right: $border;
+                            &:last-child {
+                                border-right: none;
+                            }
+                            img {
+                                width: .35rem;
+                                margin-right: .1rem;
+                            }
+                        }
+                    }
+                    
                 }
             }
         }

@@ -73,7 +73,7 @@ class FansGroup extends React.Component {
                     <Newest></Newest>
                 </section>
                 <section id="fansGroup-hot" className="fansGroup-md">
-                    <Hot></Hot>
+                    <Newest></Newest>
                 </section>
                 <section id="fansGroup-details" className="fansGroup-md">
                     <Details></Details>

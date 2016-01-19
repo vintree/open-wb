@@ -35,11 +35,11 @@ webpackJsonp([1],{
 
 	var _tab2 = _interopRequireDefault(_tab);
 
-	var _follow = __webpack_require__(197);
+	var _follow = __webpack_require__(196);
 
 	var _follow2 = _interopRequireDefault(_follow);
 
-	var _group = __webpack_require__(202);
+	var _group = __webpack_require__(199);
 
 	var _group2 = _interopRequireDefault(_group);
 
@@ -47,7 +47,7 @@ webpackJsonp([1],{
 
 	var _activity2 = _interopRequireDefault(_activity);
 
-	var _msg = __webpack_require__(205);
+	var _msg = __webpack_require__(202);
 
 	var _msg2 = _interopRequireDefault(_msg);
 
@@ -60,7 +60,7 @@ webpackJsonp([1],{
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	//require('../../sass/base.scss');
-	__webpack_require__(200);
+	__webpack_require__(205);
 
 	_autoFont2.default.init();
 
@@ -138,7 +138,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 197:
+/***/ 196:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -165,7 +165,7 @@ webpackJsonp([1],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(198);
+	__webpack_require__(197);
 
 	var Follow = (function (_React$Component) {
 	    _inherits(Follow, _React$Component);
@@ -264,13 +264,13 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 198:
+/***/ 197:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(199);
+	var content = __webpack_require__(198);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(168)(content, {});
@@ -291,7 +291,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 199:
+/***/ 198:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(167)();
@@ -306,49 +306,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 200:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(201);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(168)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./user.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./user.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 201:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(167)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "*::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0.5); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n#user-content {\n  background-color: #f6f6f8;\n  height: 1000px; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 202:
+/***/ 199:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -375,7 +333,7 @@ webpackJsonp([1],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(203);
+	__webpack_require__(200);
 
 	var Group = (function (_React$Component) {
 	    _inherits(Group, _React$Component);
@@ -504,13 +462,13 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 203:
+/***/ 200:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(204);
+	var content = __webpack_require__(201);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(168)(content, {});
@@ -531,7 +489,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 204:
+/***/ 201:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(167)();
@@ -546,7 +504,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 205:
+/***/ 202:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -573,7 +531,7 @@ webpackJsonp([1],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(206);
+	__webpack_require__(203);
 
 	var Msg = (function (_React$Component) {
 	    _inherits(Msg, _React$Component);
@@ -666,13 +624,13 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 206:
+/***/ 203:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(207);
+	var content = __webpack_require__(204);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(168)(content, {});
@@ -693,7 +651,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 207:
+/***/ 204:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(167)();
@@ -702,6 +660,48 @@ webpackJsonp([1],{
 
 	// module
 	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    弹性布局\n*/\n/*\n    文字省略\n*/\n#msg {\n  padding: 0 .2rem;\n  background-color: #FFFFFF; }\n  #msg #msg-group {\n    font-size: .3rem;\n    line-height: 1rem;\n    overflow: hidden; }\n    #msg #msg-group #msg-label-group {\n      float: left;\n      width: 20%;\n      text-align: left; }\n      #msg #msg-group #msg-label-group .msg-label {\n        font-size: 110%;\n        color: #999999; }\n    #msg #msg-group #msg-tx-group {\n      float: right;\n      width: 80%;\n      text-align: right; }\n      #msg #msg-group #msg-tx-group .msg-tx {\n        border-bottom: 1px solid #f6f6f8;\n        color: #474747;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis; }\n        #msg #msg-group #msg-tx-group .msg-tx:last-child {\n          border: none; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 205:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(206);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(168)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./user.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./user.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 206:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(167)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "*::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0.5); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n#user-content {\n  background-color: #f6f6f8;\n  height: 1000px; }\n", ""]);
 
 	// exports
 

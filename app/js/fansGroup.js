@@ -146,7 +146,7 @@ webpackJsonp([0],{
 	                _react2.default.createElement(
 	                    'section',
 	                    { id: 'fansGroup-hot', className: 'fansGroup-md' },
-	                    _react2.default.createElement(_hot2.default, null)
+	                    _react2.default.createElement(_newest2.default, null)
 	                ),
 	                _react2.default.createElement(
 	                    'section',
@@ -1046,8 +1046,62 @@ webpackJsonp([0],{
 	    return Newest_body_2;
 	})(_react2.default.Component);
 
-	var Newest = (function (_React$Component5) {
-	    _inherits(Newest, _React$Component5);
+	var Newest_foot = (function (_React$Component5) {
+	    _inherits(Newest_foot, _React$Component5);
+
+	    function Newest_foot() {
+	        _classCallCheck(this, Newest_foot);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Newest_foot).apply(this, arguments));
+	    }
+
+	    _createClass(Newest_foot, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { className: 'newest-foot' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'newest-place' },
+	                    _react2.default.createElement('img', { src: '../img/map@3x.png' }),
+	                    '北京市丰台区六里桥北八一制片厂'
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'newest-tfoot' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'newest-tfoot-content' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'newest-foot-1' },
+	                            _react2.default.createElement('img', { src: '../img/collect.png' }),
+	                            '20'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'newest-foot-1' },
+	                            _react2.default.createElement('img', { src: '../img/good.png' }),
+	                            '18'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'newest-foot-1' },
+	                            _react2.default.createElement('img', { src: '../img/review.png' }),
+	                            '120 +'
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return Newest_foot;
+	})(_react2.default.Component);
+
+	var Newest = (function (_React$Component6) {
+	    _inherits(Newest, _React$Component6);
 
 	    function Newest() {
 	        _classCallCheck(this, Newest);
@@ -1066,15 +1120,17 @@ webpackJsonp([0],{
 	                    { id: 'newest-group' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'newest-unit' },
+	                        { className: 'newest-unit gap' },
 	                        _react2.default.createElement(Newest_head, null),
-	                        _react2.default.createElement(Newest_body_1, null)
+	                        _react2.default.createElement(Newest_body_1, null),
+	                        _react2.default.createElement(Newest_foot, null)
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'newest-unit' },
+	                        { className: 'newest-unit gap' },
 	                        _react2.default.createElement(Newest_head, null),
-	                        _react2.default.createElement(Newest_body_2, null)
+	                        _react2.default.createElement(Newest_body_2, null),
+	                        _react2.default.createElement(Newest_foot, null)
 	                    )
 	                )
 	            );
@@ -1123,7 +1179,7 @@ webpackJsonp([0],{
 
 
 	// module
-	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    文字省略\n*/\n/*\n    弹性布局\n*/\n#newest {\n  padding: 0 .2rem;\n  background-color: #FFFFFF; }\n  #newest #newest-group .newest-unit {\n    font-size: .4rem;\n    color: #999999;\n    padding-top: .2rem;\n    padding-bottom: .4rem;\n    border-bottom: 2px solid #f6f6f8; }\n    #newest #newest-group .newest-unit:last-child {\n      border-bottom: none; }\n    #newest #newest-group .newest-unit .newest-head {\n      height: 1.2rem;\n      overflow: hidden; }\n      #newest #newest-group .newest-unit .newest-head .newest-imgUser {\n        float: left;\n        width: 13%; }\n        #newest #newest-group .newest-unit .newest-head .newest-imgUser img {\n          width: .8rem;\n          border-radius: 100%; }\n      #newest #newest-group .newest-unit .newest-head .newest-msg {\n        float: left;\n        width: 57%; }\n        #newest #newest-group .newest-unit .newest-head .newest-msg .newest-msg-pp {\n          padding-top: .1rem; }\n          #newest #newest-group .newest-unit .newest-head .newest-msg .newest-msg-pp .newest-name {\n            float: left;\n            margin-right: .1rem; }\n          #newest #newest-group .newest-unit .newest-head .newest-msg .newest-msg-pp .newest-tag {\n            font-size: 60%;\n            margin-right: .1rem;\n            padding-right: .1rem;\n            border-right: 1px solid #999999; }\n            #newest #newest-group .newest-unit .newest-head .newest-msg .newest-msg-pp .newest-tag:last-child {\n              border: none; }\n        #newest #newest-group .newest-unit .newest-head .newest-msg .newest-msg-dt {\n          padding-top: .1rem;\n          font-size: 60%; }\n      #newest #newest-group .newest-unit .newest-head .newest-source {\n        float: left;\n        width: 30%;\n        font-size: 60%;\n        padding-top: .15rem; }\n        #newest #newest-group .newest-unit .newest-head .newest-source .newest-source-1 {\n          float: left;\n          text-align: right;\n          width: 75%; }\n          #newest #newest-group .newest-unit .newest-head .newest-source .newest-source-1 .newest-source-1-1 {\n            overflow: hidden;\n            white-space: nowrap;\n            text-overflow: ellipsis; }\n          #newest #newest-group .newest-unit .newest-head .newest-source .newest-source-1 .newest-source-1-2 {\n            overflow: hidden;\n            white-space: nowrap;\n            text-overflow: ellipsis;\n            color: #2fa4f6;\n            padding-top: .15rem; }\n        #newest #newest-group .newest-unit .newest-head .newest-source .newest-source-2 {\n          float: left;\n          text-align: right;\n          width: 25%; }\n          #newest #newest-group .newest-unit .newest-head .newest-source .newest-source-2 img {\n            width: .4rem;\n            border-radius: 100%; }\n    #newest #newest-group .newest-unit .newest-body .newest-tx {\n      font-size: 90%;\n      color: #474747;\n      line-height: 1.7;\n      padding-bottom: .1rem; }\n    #newest #newest-group .newest-unit .newest-body .newest-model1 img {\n      width: 100%; }\n    #newest #newest-group .newest-unit .newest-body .newest-model2 {\n      display: -webkit-box;\n      display: -moz-box;\n      display: -ms-flexbox;\n      display: -webkit-flex;\n      display: flex;\n      flex-flow: row; }\n      #newest #newest-group .newest-unit .newest-body .newest-model2 .newest-img {\n        flex: 1;\n        padding-right: .1rem; }\n        #newest #newest-group .newest-unit .newest-body .newest-model2 .newest-img:last-child {\n          padding: 0; }\n        #newest #newest-group .newest-unit .newest-body .newest-model2 .newest-img img {\n          width: 100%; }\n", ""]);
+	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    文字省略\n*/\n/*\n    弹性布局\n*/\n#newest #newest-group .newest-unit {\n  font-size: .4rem;\n  color: #999999;\n  padding-top: .2rem;\n  border-bottom: 2px solid #f6f6f8;\n  margin-top: 0.2rem;\n  background-color: #FFFFFF; }\n  #newest #newest-group .newest-unit:last-child {\n    border-bottom: none; }\n  #newest #newest-group .newest-unit .newest-head {\n    height: 1.2rem;\n    padding: 0 .2rem;\n    overflow: hidden; }\n    #newest #newest-group .newest-unit .newest-head .newest-imgUser {\n      float: left;\n      width: 13%; }\n      #newest #newest-group .newest-unit .newest-head .newest-imgUser img {\n        width: .8rem;\n        border-radius: 100%; }\n    #newest #newest-group .newest-unit .newest-head .newest-msg {\n      float: left;\n      width: 57%; }\n      #newest #newest-group .newest-unit .newest-head .newest-msg .newest-msg-pp {\n        padding-top: .1rem; }\n        #newest #newest-group .newest-unit .newest-head .newest-msg .newest-msg-pp .newest-name {\n          float: left;\n          margin-right: .1rem; }\n        #newest #newest-group .newest-unit .newest-head .newest-msg .newest-msg-pp .newest-tag {\n          font-size: 60%;\n          margin-right: .1rem;\n          padding-right: .1rem;\n          border-right: 1px solid #999999; }\n          #newest #newest-group .newest-unit .newest-head .newest-msg .newest-msg-pp .newest-tag:last-child {\n            border: none; }\n      #newest #newest-group .newest-unit .newest-head .newest-msg .newest-msg-dt {\n        padding-top: .1rem;\n        font-size: 60%; }\n    #newest #newest-group .newest-unit .newest-head .newest-source {\n      float: left;\n      width: 30%;\n      font-size: 60%;\n      padding-top: .15rem; }\n      #newest #newest-group .newest-unit .newest-head .newest-source .newest-source-1 {\n        float: left;\n        text-align: right;\n        width: 75%; }\n        #newest #newest-group .newest-unit .newest-head .newest-source .newest-source-1 .newest-source-1-1 {\n          overflow: hidden;\n          white-space: nowrap;\n          text-overflow: ellipsis; }\n        #newest #newest-group .newest-unit .newest-head .newest-source .newest-source-1 .newest-source-1-2 {\n          overflow: hidden;\n          white-space: nowrap;\n          text-overflow: ellipsis;\n          color: #2fa4f6;\n          padding-top: .15rem; }\n      #newest #newest-group .newest-unit .newest-head .newest-source .newest-source-2 {\n        float: left;\n        text-align: right;\n        width: 25%; }\n        #newest #newest-group .newest-unit .newest-head .newest-source .newest-source-2 img {\n          width: .4rem;\n          border-radius: 100%; }\n  #newest #newest-group .newest-unit .newest-body {\n    padding: 0 .2rem; }\n    #newest #newest-group .newest-unit .newest-body .newest-tx {\n      font-size: 90%;\n      color: #474747;\n      line-height: 1.7;\n      padding-bottom: .1rem; }\n    #newest #newest-group .newest-unit .newest-body .newest-model1 img {\n      width: 100%; }\n    #newest #newest-group .newest-unit .newest-body .newest-model2 {\n      display: -webkit-box;\n      display: -moz-box;\n      display: -ms-flexbox;\n      display: -webkit-flex;\n      display: flex;\n      flex-flow: row; }\n      #newest #newest-group .newest-unit .newest-body .newest-model2 .newest-img {\n        flex: 1;\n        padding-right: .1rem; }\n        #newest #newest-group .newest-unit .newest-body .newest-model2 .newest-img:last-child {\n          padding: 0; }\n        #newest #newest-group .newest-unit .newest-body .newest-model2 .newest-img img {\n          width: 100%; }\n  #newest #newest-group .newest-unit .newest-foot .newest-place {\n    padding: 0 .2rem;\n    margin: .2rem 0;\n    font-size: .35rem; }\n    #newest #newest-group .newest-unit .newest-foot .newest-place img {\n      width: .25rem;\n      margin-right: .1rem; }\n  #newest #newest-group .newest-unit .newest-foot .newest-tfoot {\n    border-top: 1px solid #f6f6f8;\n    border-bottom: 1px solid #f6f6f8;\n    font-size: .35rem; }\n    #newest #newest-group .newest-unit .newest-foot .newest-tfoot .newest-tfoot-content {\n      display: -webkit-box;\n      display: -moz-box;\n      display: -ms-flexbox;\n      display: -webkit-flex;\n      display: flex;\n      flex-flow: row;\n      padding: .3rem 0; }\n      #newest #newest-group .newest-unit .newest-foot .newest-tfoot .newest-tfoot-content .newest-foot-1 {\n        flex: 1;\n        text-align: center;\n        border-right: 1px solid #f6f6f8; }\n        #newest #newest-group .newest-unit .newest-foot .newest-tfoot .newest-tfoot-content .newest-foot-1:last-child {\n          border-right: none; }\n        #newest #newest-group .newest-unit .newest-foot .newest-tfoot .newest-tfoot-content .newest-foot-1 img {\n          width: .35rem;\n          margin-right: .1rem; }\n", ""]);
 
 	// exports
 

@@ -79,6 +79,35 @@ class Newest_body_2 extends React.Component {
     }
 }
 
+class Newest_foot extends React.Component {
+    render() {
+        return (
+            <div className="newest-foot">
+                <div className="newest-place">
+                    <img src="../img/map@3x.png"></img>
+                    北京市丰台区六里桥北八一制片厂
+                </div>
+                <div className="newest-tfoot">
+                    <div className="newest-tfoot-content">
+                        <div className="newest-foot-1">
+                            <img src="../img/collect.png"></img>
+                            20
+                        </div>
+                        <div className="newest-foot-1">
+                            <img src="../img/good.png"></img>
+                            18
+                        </div>
+                        <div className="newest-foot-1">
+                            <img src="../img/review.png"></img>
+                            120 +
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
 export default class Newest extends React.Component {
     constructor() {
         super();
@@ -87,13 +116,15 @@ export default class Newest extends React.Component {
         return (
             <div id="newest">
                 <div id="newest-group">
-                    <div className="newest-unit">
+                    <div className="newest-unit gap">
                         <Newest_head></Newest_head>
                         <Newest_body_1></Newest_body_1>
+                        <Newest_foot></Newest_foot>
                     </div>
-                    <div className="newest-unit">
+                    <div className="newest-unit gap">
                         <Newest_head></Newest_head>
                         <Newest_body_2></Newest_body_2>
+                        <Newest_foot></Newest_foot>
                     </div>
                 </div>
             </div>
