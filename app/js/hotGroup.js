@@ -3,7 +3,7 @@ webpackJsonp([1],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -19,6 +19,18 @@ webpackJsonp([1],{
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
+	var _autoFont = __webpack_require__(160);
+
+	var _autoFont2 = _interopRequireDefault(_autoFont);
+
+	var _addScript = __webpack_require__(162);
+
+	var _addScript2 = _interopRequireDefault(_addScript);
+
+	var _head = __webpack_require__(163);
+
+	var _head2 = _interopRequireDefault(_head);
+
 	var _groupTab = __webpack_require__(196);
 
 	var _groupTab2 = _interopRequireDefault(_groupTab);
@@ -33,39 +45,39 @@ webpackJsonp([1],{
 
 	__webpack_require__(208);
 
-	var ListGroup = (function (_React$Component) {
-	    _inherits(ListGroup, _React$Component);
+	_autoFont2.default.init();
 
-	    function ListGroup() {
-	        _classCallCheck(this, ListGroup);
+	var HotGroup = (function (_React$Component) {
+	    _inherits(HotGroup, _React$Component);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(ListGroup).call(this));
+	    function HotGroup() {
+	        _classCallCheck(this, HotGroup);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(HotGroup).call(this));
 	    }
 
-	    _createClass(ListGroup, [{
-	        key: "render",
+	    _createClass(HotGroup, [{
+	        key: 'render',
 	        value: function render() {
-	            return React.createElement(
-	                "div",
+	            return _react2.default.createElement(
+	                'div',
 	                null,
-	                React.createElement(
-	                    "section",
-	                    { id: "hotGroup-head" },
-	                    React.createElement(_groupTab2.default, null)
-	                )
+	                _react2.default.createElement(_groupTab2.default, null)
 	            );
 	        }
 	    }]);
 
-	    return ListGroup;
-	})(React.Component);
+	    return HotGroup;
+	})(_react2.default.Component);
+
+	_reactDom2.default.render(_react2.default.createElement(HotGroup, { name: 'Nate' }), document.getElementById('hotGroup-content'));
 
 /***/ },
 
 /***/ 196:
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -77,6 +89,10 @@ webpackJsonp([1],{
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _jquery = __webpack_require__(159);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -87,89 +103,89 @@ webpackJsonp([1],{
 
 	__webpack_require__(210);
 
-	var groupTab = (function (_React$component) {
-	    _inherits(groupTab, _React$component);
+	var GroupTab = (function (_React$Component) {
+	    _inherits(GroupTab, _React$Component);
 
-	    function groupTab() {
-	        _classCallCheck(this, groupTab);
+	    function GroupTab(props) {
+	        _classCallCheck(this, GroupTab);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(groupTab).call(this));
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(GroupTab).call(this));
 	    }
 
-	    _createClass(groupTab, [{
-	        key: "render",
+	    _createClass(GroupTab, [{
+	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
-	                "div",
-	                { id: "groupTab" },
+	                'div',
+	                { id: 'groupTab' },
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "groupTab-unit" },
-	                    "最新"
+	                    'div',
+	                    { className: 'groupTab-unit' },
+	                    '最新'
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "groupTab-unit" },
-	                    "最火"
+	                    'div',
+	                    { className: 'groupTab-unit' },
+	                    '最火'
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "groupTab-unit" },
-	                    "投资"
+	                    'div',
+	                    { className: 'groupTab-unit' },
+	                    '投资'
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "groupTab-unit" },
-	                    "媒体人"
+	                    'div',
+	                    { className: 'groupTab-unit' },
+	                    '媒体人'
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "groupTab-unit" },
-	                    "职业"
+	                    'div',
+	                    { className: 'groupTab-unit' },
+	                    '职业'
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "groupTab-unit" },
-	                    "空间"
+	                    'div',
+	                    { className: 'groupTab-unit' },
+	                    '空间'
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "groupTab-unit" },
-	                    "运动"
+	                    'div',
+	                    { className: 'groupTab-unit' },
+	                    '运动'
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "groupTab-unit" },
-	                    "美容"
+	                    'div',
+	                    { className: 'groupTab-unit' },
+	                    '美容'
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "groupTab-unit" },
-	                    "职业"
+	                    'div',
+	                    { className: 'groupTab-unit' },
+	                    '职业'
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "groupTab-unit" },
-	                    "空间"
+	                    'div',
+	                    { className: 'groupTab-unit' },
+	                    '空间'
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "groupTab-unit" },
-	                    "职业"
+	                    'div',
+	                    { className: 'groupTab-unit' },
+	                    '职业'
 	                ),
 	                _react2.default.createElement(
-	                    "div",
-	                    { className: "groupTab-unit" },
-	                    "空间"
+	                    'div',
+	                    { className: 'groupTab-unit' },
+	                    '空间'
 	                )
 	            );
 	        }
 	    }]);
 
-	    return groupTab;
-	})(_react2.default.component);
+	    return GroupTab;
+	})(_react2.default.Component);
 
-	exports.default = groupTab;
+	exports.default = GroupTab;
 
 /***/ },
 
@@ -208,7 +224,7 @@ webpackJsonp([1],{
 
 
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, "*::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0.5); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n", ""]);
 
 	// exports
 
@@ -250,7 +266,7 @@ webpackJsonp([1],{
 
 
 	// module
-	exports.push([module.id, "#groupTab {\n  padding: 0 .2rem;\n  overflow-y: hidden;\n  overflow: scroll; }\n  #groupTab .groupTab-unit {\n    float: left; }\n", ""]);
+	exports.push([module.id, "#groupTab {\n  padding: 0 .2rem;\n  overflow-y: hidden;\n  overflow: scroll;\n  font-size: .2rem; }\n  #groupTab .groupTab-unit {\n    float: left; }\n", ""]);
 
 	// exports
 

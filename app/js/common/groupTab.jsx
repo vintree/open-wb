@@ -1,8 +1,9 @@
 require('../../sass/groupTab.scss');
-import React from "react";
+import React from 'react';
+import $ from 'jquery';
 
-export default class groupTab extends React.component {
-    constructor() {
+export default class GroupTab extends React.Component {
+    constructor(props) {
         super();
     }
     render() {

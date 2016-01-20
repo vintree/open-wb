@@ -1,23 +1,29 @@
 require('../../sass/hotGroup.scss');
-import react from "react";
-import reactRom from "react-dom";
-import $ from 'jquery';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import $ from "jquery";
+
+
+import autoFont from '../temp/autoFont.js';
+import addScript from '../temp/addScript.js';
+import Head from '../temp/head.js';
 
 
 import GroupTab from "../common/groupTab.jsx";
 
+autoFont.init();
 
-class ListGroup extends React.Component {
+class HotGroup extends React.Component {
     constructor() {
         super();
     }
     render() {
         return (
             <div>
-                <section id='hotGroup-head'>
-                    <GroupTab></GroupTab>
-                </section>
+                <GroupTab></GroupTab>
             </div>
         )
     }
 }
+
+ReactDOM.render(<HotGroup name="Nate" />, document.getElementById('hotGroup-content'));
