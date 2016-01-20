@@ -17,7 +17,8 @@ var SwigWebpackPlugin = require('swig-webpack-plugin');
 module.exports = {
     entry: {
         fansGroup: './app/js/jsx/fansGroup.jsx',
-        user: './app/js/jsx/user.jsx'
+        user: './app/js/jsx/user.jsx',
+        hotGroup: './app/js/jsx/hotGroup.jsx'
     },
     output: {
         publicPath: "http://127.0.0.1:9090/static/dist/",
