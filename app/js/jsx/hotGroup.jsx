@@ -1,10 +1,10 @@
-require('../sass/hotGroup.scss');
+require('../../sass/hotGroup.scss');
 import react from "react";
 import reactRom from "react-dom";
 import $ from 'jquery';
 
 
-import GroupsTab from "../common/groupsTab.jsx";
+import GroupTab from "../common/groupTab.jsx";
 
 
 class ListGroup extends React.Component {

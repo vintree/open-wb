@@ -1,13 +1,12 @@
-require('../sass/groupTab.scss');
-import react from "react";
-import reactRom from "react-dom";
+require('../../sass/groupTab.scss');
+import React from "react";
 
 export default class groupTab extends React.component {
-    construct() {
+    constructor() {
         super();
     }
     render() {
-        retrun (
+        return (
             <div id="groupTab">
                 <div className="groupTab-unit">最新</div>
                 <div className="groupTab-unit">最火</div>
