@@ -15,6 +15,10 @@ webpackJsonp([1],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _jquery = __webpack_require__(159);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
 	var _autoFont = __webpack_require__(160);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
@@ -51,6 +55,10 @@ webpackJsonp([1],{
 
 	var _msg2 = _interopRequireDefault(_msg);
 
+	var _newest = __webpack_require__(187);
+
+	var _newest2 = _interopRequireDefault(_newest);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -59,7 +67,6 @@ webpackJsonp([1],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	//require('../../sass/base.scss');
 	__webpack_require__(205);
 
 	_autoFont2.default.init();
@@ -76,19 +83,29 @@ webpackJsonp([1],{
 	            tab: [{
 	                name: '动态',
 	                codeName: 'user-dynamic',
-	                active: ''
+	                active: 'active'
 	            }, {
 	                name: '个人',
 	                codeName: 'user-personage',
-	                active: 'active'
+	                active: ''
 	            }]
 	        };
 	        return _this;
 	    }
 
 	    _createClass(User, [{
+	        key: 'toggleTab',
+	        value: function toggleTab(e) {
+	            var node = e.target;
+	            var role = node.attributes.role.value;
+	            (0, _jquery2.default)(node).addClass('active').siblings().removeClass('active');
+	            (0, _jquery2.default)('#' + role).addClass('active').siblings().removeClass('active');
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -99,13 +116,19 @@ webpackJsonp([1],{
 	                ),
 	                _react2.default.createElement(
 	                    'section',
-	                    { id: 'user-tab', className: '' },
+	                    { id: 'user-tab', onClick: function onClick(e) {
+	                            _this2.toggleTab(e);
+	                        } },
 	                    _react2.default.createElement(_tab2.default, { data: this.state.tab })
 	                ),
-	                _react2.default.createElement('section', { id: 'user-dynamic', className: '' }),
 	                _react2.default.createElement(
 	                    'section',
-	                    { id: 'user-personage' },
+	                    { id: 'user-dynamic', className: 'user-md active' },
+	                    _react2.default.createElement(_newest2.default, null)
+	                ),
+	                _react2.default.createElement(
+	                    'section',
+	                    { id: 'user-personage', className: 'user-md' },
 	                    _react2.default.createElement(
 	                        'section',
 	                        { className: 'gap' },
@@ -701,7 +724,7 @@ webpackJsonp([1],{
 
 
 	// module
-	exports.push([module.id, "*::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0.5); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n#user-content {\n  background-color: #f6f6f8;\n  height: 1000px; }\n", ""]);
+	exports.push([module.id, "*::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0.5); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n#user-content {\n  background-color: #f6f6f8;\n  height: 1000px; }\n  #user-content .user-md {\n    display: none; }\n    #user-content .user-md.active {\n      display: block; }\n", ""]);
 
 	// exports
 

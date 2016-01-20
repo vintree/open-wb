@@ -87,15 +87,17 @@ $headHeight: 1.2rem;
                     font-size: 90%;
                     color: #474747;
                     line-height: 1.7;
-                    padding-bottom: .1rem;
+                    @include ellipsis3;
                 }
                 .newest-model1 {
+                    margin-top: .2rem;
                     img {
                         width: 100%;
                     }
                 }
                 .newest-model2 {
                     @include flexRow;
+                    margin-top: .2rem;
                     .newest-img {
                         flex: 1;
                         padding-right: .1rem;
@@ -113,7 +115,7 @@ $headHeight: 1.2rem;
                 .newest-place {
                     padding: 0 .2rem;
                     margin: .2rem 0;
-                    font-size: .35rem;
+                    font-size: .3rem;
                     img {
                         width: .25rem;
                         margin-right: .1rem;
@@ -122,10 +124,10 @@ $headHeight: 1.2rem;
                 .newest-tfoot {
                     border-top: $border;
                     border-bottom: $border;
-                    font-size: .35rem;
+                    font-size: .3rem;
                     .newest-tfoot-content {
                         @include flexRow;
-                        padding: .3rem 0;
+                        padding: .25rem 0;
                         .newest-foot-1 {
                             flex: 1;
                             text-align: center;
@@ -134,12 +136,12 @@ $headHeight: 1.2rem;
                                 border-right: none;
                             }
                             img {
-                                width: .35rem;
+                                width: .3rem;
                                 margin-right: .1rem;
                             }
                         }
                     }
-                    
+
                 }
             }
         }
