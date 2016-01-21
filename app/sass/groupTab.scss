@@ -18,13 +18,20 @@
         border-bottom: 2px solid #e2e2e2;
     }
     #groupTab-center {
-        // margin: 0 .2rem;
-        overflow-y: hidden;
-        overflow: scroll;
+        height: 1.1rem;
+        overflow: hidden;
+        #groupTab-overflow {
+            overflow-y: hidden;
+            overflow-x: auto;
+            -webkit-overflow-scrolling:touch;
+            height: 1.5rem;
+        }
         .groupTab-unit {
             display: inline-block;
             padding: 0 .15rem;
             border-bottom: 2px solid #e2e2e2;
+            height: 1rem;
+            line-height: 1rem;
             &.active {
                 color: #2fa4f6;
                 border-bottom: 2px solid #2fa4f6;

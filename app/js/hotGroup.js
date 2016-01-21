@@ -35,7 +35,7 @@ webpackJsonp([1],{
 
 	var _groupTab2 = _interopRequireDefault(_groupTab);
 
-	var _groupList = __webpack_require__(212);
+	var _groupList = __webpack_require__(199);
 
 	var _groupList2 = _interopRequireDefault(_groupList);
 
@@ -47,7 +47,7 @@ webpackJsonp([1],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(199);
+	__webpack_require__(202);
 
 	_autoFont2.default.init();
 
@@ -138,63 +138,67 @@ webpackJsonp([1],{
 	                    { id: 'groupTab-center' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'groupTab-unit active' },
-	                        '最新'
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupTab-unit' },
-	                        '最火'
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupTab-unit' },
-	                        '投资'
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupTab-unit' },
-	                        '媒体人'
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupTab-unit' },
-	                        '职业'
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupTab-unit' },
-	                        '空间'
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupTab-unit' },
-	                        '运动'
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupTab-unit' },
-	                        '美容'
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupTab-unit' },
-	                        '职业'
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupTab-unit' },
-	                        '空间'
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupTab-unit' },
-	                        '职业'
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupTab-unit' },
-	                        '空间'
+	                        { id: 'groupTab-overflow' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupTab-unit active' },
+	                            '最新'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupTab-unit' },
+	                            '最火'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupTab-unit' },
+	                            '投资'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupTab-unit' },
+	                            '媒体人'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupTab-unit' },
+	                            '职业'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupTab-unit' },
+	                            '空间'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupTab-unit' },
+	                            '运动'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupTab-unit' },
+	                            '美容'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupTab-unit' },
+	                            '职业'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupTab-unit' },
+	                            '空间'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupTab-unit' },
+	                            '职业'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupTab-unit' },
+	                            '空间'
+	                        )
 	                    )
 	                )
 	            );
@@ -243,7 +247,7 @@ webpackJsonp([1],{
 
 
 	// module
-	exports.push([module.id, "#groupTab {\n  font-size: .35rem;\n  height: 1rem;\n  line-height: 1rem;\n  white-space: nowrap;\n  background-color: #ffffff;\n  color: #666666; }\n  #groupTab #groupTab-left {\n    float: left;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-right {\n    float: right;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-center {\n    overflow-y: hidden;\n    overflow: scroll; }\n    #groupTab #groupTab-center .groupTab-unit {\n      display: inline-block;\n      padding: 0 .15rem;\n      border-bottom: 2px solid #e2e2e2; }\n      #groupTab #groupTab-center .groupTab-unit.active {\n        color: #2fa4f6;\n        border-bottom: 2px solid #2fa4f6; }\n", ""]);
+	exports.push([module.id, "#groupTab {\n  font-size: .35rem;\n  height: 1rem;\n  line-height: 1rem;\n  white-space: nowrap;\n  background-color: #ffffff;\n  color: #666666; }\n  #groupTab #groupTab-left {\n    float: left;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-right {\n    float: right;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-center {\n    height: 1.1rem;\n    overflow: hidden; }\n    #groupTab #groupTab-center #groupTab-overflow {\n      overflow-y: hidden;\n      overflow-x: auto;\n      -webkit-overflow-scrolling: touch;\n      height: 1.5rem; }\n    #groupTab #groupTab-center .groupTab-unit {\n      display: inline-block;\n      padding: 0 .15rem;\n      border-bottom: 2px solid #e2e2e2;\n      height: 1rem;\n      line-height: 1rem; }\n      #groupTab #groupTab-center .groupTab-unit.active {\n        color: #2fa4f6;\n        border-bottom: 2px solid #2fa4f6; }\n", ""]);
 
 	// exports
 
@@ -251,48 +255,6 @@ webpackJsonp([1],{
 /***/ },
 
 /***/ 199:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(200);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(168)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./hotGroup.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./hotGroup.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 200:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(167)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "*::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0.5); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n#hotGroup-content {\n  background-color: #f6f6f8;\n  height: 1000px; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 212:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -319,7 +281,7 @@ webpackJsonp([1],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(213);
+	__webpack_require__(200);
 
 	var GroupList = (function (_React$Component) {
 	    _inherits(GroupList, _React$Component);
@@ -525,13 +487,13 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 213:
+/***/ 200:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(214);
+	var content = __webpack_require__(201);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(168)(content, {});
@@ -552,7 +514,7 @@ webpackJsonp([1],{
 
 /***/ },
 
-/***/ 214:
+/***/ 201:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(167)();
@@ -560,7 +522,49 @@ webpackJsonp([1],{
 
 
 	// module
-	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    文字省略\n*/\n#groupList {\n  padding: 0 .2rem;\n  font-size: .35rem; }\n  #groupList .groupList-unit {\n    margin-top: .2rem;\n    padding: .2rem;\n    border: 1px solid #e2e2e2;\n    border-radius: .2rem;\n    overflow: hidden;\n    background-color: #ffffff; }\n    #groupList .groupList-unit .groupList-head {\n      overflow: hidden;\n      margin-bottom: .2rem; }\n      #groupList .groupList-unit .groupList-head .groupList-img {\n        width: 1.4rem;\n        height: 1.4rem;\n        margin-right: .2rem;\n        border-radius: 100%;\n        float: left; }\n        #groupList .groupList-unit .groupList-head .groupList-img img {\n          width: 100%;\n          height: 100%;\n          border: 100%; }\n      #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo {\n        line-height: .5rem; }\n        #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo .groupList-name {\n          display: inline-block;\n          padding-right: .2rem;\n          color: #474747; }\n        #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo .groupList-tag {\n          position: relative;\n          top: -.05rem;\n          font-size: 70%;\n          background-color: #ffb541;\n          padding: .06rem .1rem;\n          border-radius: .2rem;\n          color: #ffffff; }\n      #groupList .groupList-unit .groupList-head .groupList-msg .groupList-info {\n        display: -webkit-box;\n        text-overflow: -o-ellipsis-lastline;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        -webkit-line-clamp: 2;\n        -webkit-box-orient: vertical;\n        font-size: 90%;\n        line-height: 1.45;\n        color: #666666; }\n    #groupList .groupList-unit .groupList-px {\n      position: relative;\n      margin-left: .7rem;\n      border-bottom: 1px solid #e2e2e2; }\n      #groupList .groupList-unit .groupList-px .groupList-radius {\n        position: absolute;\n        top: -.04rem;\n        left: 0;\n        width: .12rem;\n        height: .12rem;\n        border-radius: 100%;\n        background-color: #e2e2e2; }\n    #groupList .groupList-unit .groupList-body {\n      font-size: 80%;\n      margin-top: .2rem;\n      height: .5rem;\n      line-height: .5rem;\n      overflow: hidden; }\n      #groupList .groupList-unit .groupList-body .groupList-num {\n        float: left;\n        width: 1.5rem;\n        padding-right: .2rem;\n        color: #999999; }\n      #groupList .groupList-unit .groupList-body .groupList-member {\n        float: left;\n        width: 3.5rem;\n        color: #666666;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis; }\n      #groupList .groupList-unit .groupList-body .groupList-join {\n        float: right;\n        padding: 0 .2rem;\n        background-color: #a8e1ff;\n        color: #ffffff;\n        border-radius: .3rem; }\n", ""]);
+	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    文字省略\n*/\n#groupList {\n  padding: 0 .2rem;\n  font-size: .35rem; }\n  #groupList .groupList-unit {\n    margin-top: .2rem;\n    padding: .2rem;\n    border: 1px solid #e2e2e2;\n    border-radius: .2rem;\n    overflow: hidden;\n    background-color: #ffffff; }\n    #groupList .groupList-unit .groupList-head {\n      overflow: hidden;\n      margin-bottom: .2rem; }\n      #groupList .groupList-unit .groupList-head .groupList-img {\n        width: 1.4rem;\n        height: 1.4rem;\n        margin-right: .2rem;\n        border-radius: 100%;\n        float: left; }\n        #groupList .groupList-unit .groupList-head .groupList-img img {\n          width: 100%;\n          height: 100%;\n          border: 100%; }\n      #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo {\n        line-height: .5rem; }\n        #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo .groupList-name {\n          display: inline-block;\n          padding-right: .2rem;\n          color: #474747; }\n        #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo .groupList-tag {\n          position: relative;\n          top: -.05rem;\n          font-size: 70%;\n          background-color: #ffb541;\n          padding: .06rem .1rem;\n          border-radius: .2rem;\n          color: #ffffff; }\n      #groupList .groupList-unit .groupList-head .groupList-msg .groupList-info {\n        display: -webkit-box;\n        text-overflow: -o-ellipsis-lastline;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        -webkit-line-clamp: 2;\n        -webkit-box-orient: vertical;\n        font-size: 90%;\n        line-height: 1.45;\n        color: #666666; }\n    #groupList .groupList-unit .groupList-px {\n      position: relative;\n      margin-left: .7rem;\n      border-bottom: 1px solid #e2e2e2; }\n      #groupList .groupList-unit .groupList-px .groupList-radius {\n        position: absolute;\n        top: -.04rem;\n        left: 0;\n        width: .12rem;\n        height: .12rem;\n        border-radius: 100%;\n        background-color: #e2e2e2; }\n    #groupList .groupList-unit .groupList-body {\n      font-size: 80%;\n      margin-top: .2rem;\n      height: .5rem;\n      line-height: .5rem;\n      overflow: hidden; }\n      #groupList .groupList-unit .groupList-body .groupList-num {\n        float: left;\n        width: 1.5rem;\n        padding-right: .2rem;\n        color: #999999; }\n      #groupList .groupList-unit .groupList-body .groupList-member {\n        float: left;\n        width: 3.5rem;\n        color: #2fa4f6;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis; }\n      #groupList .groupList-unit .groupList-body .groupList-join {\n        float: right;\n        padding: 0 .2rem;\n        background-color: #a8e1ff;\n        color: #ffffff;\n        border-radius: .3rem; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 202:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(203);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(168)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./hotGroup.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./hotGroup.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 203:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(167)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "*::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0.5); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n#hotGroup-content {\n  background-color: #f6f6f8;\n  height: 1000px; }\n", ""]);
 
 	// exports
 
