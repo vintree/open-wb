@@ -1,0 +1,95 @@
+@import "./mixin/ellipsis.scss";
+
+#groupList {
+    padding: 0 .2rem;
+    font-size: .35rem;
+    .groupList-unit {
+    	margin-top: .2rem;
+    	padding: .2rem;
+    	border: 1px solid #e2e2e2;
+    	border-radius: .2rem;
+    	overflow: hidden;
+    	background-color: #ffffff;
+    	.groupList-head {
+    		overflow: hidden;
+    		margin-bottom: .2rem;
+    		.groupList-img {
+    			width: 1.4rem;
+    			height: 1.4rem;
+    			margin-right: .2rem;
+    			border-radius: 100%;
+    			float: left;
+    			img {
+    				width: 100%;
+    				height: 100%;
+    				border: 100%;
+    			}
+    		}
+    		.groupList-msg {
+    			.groupList-mainInfo {
+    				line-height: .5rem;
+    				.groupList-name {
+    					display: inline-block;
+    					padding-right: .2rem;
+    					color: #474747;
+    				}
+    				.groupList-tag {
+    					position: relative;
+    					top: -.05rem;
+    					font-size: 70%;
+    					background-color: #ffb541;
+    					padding: .06rem .1rem;
+    					border-radius: .2rem;
+    					color: #ffffff;
+    				}
+    			}
+    			.groupList-info {
+    				@include ellipsis2;
+    				font-size: 90%;
+    				line-height: 1.45;
+    				color: #666666;
+    			}
+    		}
+    	}
+    	.groupList-px {
+    		position: relative;
+    		margin-left: .7rem;
+    		border-bottom: 1px solid #e2e2e2;
+    		.groupList-radius {
+				position: absolute;
+			    top: -.04rem;
+			    left: 0;
+			    width: .12rem;
+			    height: .12rem;
+			    border-radius: 100%;
+			    background-color: #e2e2e2;
+    		}
+    	}
+    	.groupList-body {
+    		font-size: 80%;
+    		margin-top: .2rem;
+    		height: .5rem;
+    		line-height: .5rem;
+    		overflow: hidden;
+    		.groupList-num {
+    			float: left;
+    			width: 1.5rem;
+    			padding-right: .2rem;
+    			color: #999999;
+    		}
+    		.groupList-member {
+    			float: left;
+    			width: 3.5rem;
+    			color: #666666;
+    			@include ellipsis1;
+    		}
+    		.groupList-join {
+    			float: right;
+    			padding: 0 .2rem;
+    			background-color: #a8e1ff;
+    			color: #ffffff;
+    			border-radius: .3rem;
+    		}
+    	}
+    }
+}

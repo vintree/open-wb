@@ -10,6 +10,7 @@ import Head from '../temp/head.js';
 
 
 import GroupTab from "../common/groupTab.jsx";
+import GroupList from "../common/groupList.jsx";
 
 autoFont.init();
 
@@ -20,7 +21,13 @@ class HotGroup extends React.Component {
     render() {
         return (
             <div>
-                <GroupTab></GroupTab>
+                <section>
+                    <GroupTab></GroupTab>
+                </section>
+                <section>
+                    <GroupList></GroupList>
+                </section>
+                
             </div>
         )
     }

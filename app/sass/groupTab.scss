@@ -1,10 +1,34 @@
 #groupTab {
-    padding: 0 .2rem;
-    overflow-y: hidden;
-    overflow: scroll;
-    font-size: .2rem;
-    .groupTab-unit {
+    font-size: .35rem;
+    height: 1rem;
+    line-height: 1rem;
+    white-space: nowrap;
+    background-color: #ffffff;
+    color: #666666;
+    #groupTab-left {
         float: left;
-
+        height: 1rem;
+        width: .2rem;
+        border-bottom: 2px solid #e2e2e2;
+    }
+    #groupTab-right {
+        float: right;
+        height: 1rem;
+        width: .2rem;
+        border-bottom: 2px solid #e2e2e2;
+    }
+    #groupTab-center {
+        // margin: 0 .2rem;
+        overflow-y: hidden;
+        overflow: scroll;
+        .groupTab-unit {
+            display: inline-block;
+            padding: 0 .15rem;
+            border-bottom: 2px solid #e2e2e2;
+            &.active {
+                color: #2fa4f6;
+                border-bottom: 2px solid #2fa4f6;
+            }
+        }
     }
 }
