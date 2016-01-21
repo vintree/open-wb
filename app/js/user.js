@@ -74,10 +74,10 @@ webpackJsonp([2],{
 	var User = (function (_React$Component) {
 	    _inherits(User, _React$Component);
 
-	    function User() {
+	    function User(props) {
 	        _classCallCheck(this, User);
 
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(User).call(this));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(User).call(this, props));
 
 	        _this.state = {
 	            tab: [{
@@ -94,18 +94,27 @@ webpackJsonp([2],{
 	    }
 
 	    _createClass(User, [{
-	        key: 'toggleTab',
-	        value: function toggleTab(e) {
-	            var node = e.target;
-	            var role = node.attributes.role.value;
-	            (0, _jquery2.default)(node).addClass('active').siblings().removeClass('active');
-	            (0, _jquery2.default)('#' + role).addClass('active').siblings().removeClass('active');
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            document.getElementById('user-tab').onclick = function (e) {
+	                var node = _reactDom2.default.findDOMNode(e.target);
+	                var tab = _this2.state.tab;
+	                var ix = Number(node.getAttribute('data-ix'));
+	                for (var i = 0, l = tab.length; i < l; i++) {
+	                    if (i === ix) {
+	                        tab[i].active = 'active';
+	                    } else {
+	                        tab[i].active = '';
+	                    }
+	                }
+	                _this2.setState({ tab: tab });
+	            };
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
-
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -116,19 +125,17 @@ webpackJsonp([2],{
 	                ),
 	                _react2.default.createElement(
 	                    'section',
-	                    { id: 'user-tab', onClick: function onClick(e) {
-	                            _this2.toggleTab(e);
-	                        } },
+	                    { id: 'user-tab' },
 	                    _react2.default.createElement(_tab2.default, { data: this.state.tab })
 	                ),
 	                _react2.default.createElement(
 	                    'section',
-	                    { id: 'user-dynamic', className: 'user-md active' },
+	                    { id: 'user-dynamic', className: 'user-md ' + this.state.tab[0].active },
 	                    _react2.default.createElement(_newest2.default, null)
 	                ),
 	                _react2.default.createElement(
 	                    'section',
-	                    { id: 'user-personage', className: 'user-md' },
+	                    { id: 'user-personage', className: 'user-md ' + this.state.tab[1].active },
 	                    _react2.default.createElement(
 	                        'section',
 	                        { className: 'gap' },
@@ -393,19 +400,21 @@ webpackJsonp([2],{
 	        key: 'render',
 	        value: function render() {
 	            var tab = this.state.data;
-	            var tabNode = tab.map(function (_tab) {
+	            var tabNode = tab.map(function (_tab, ix) {
 	                return _react2.default.createElement(
 	                    'div',
-	                    { className: 'tab-tx ' + _tab.active, role: _tab.codeName, key: _tab.codeName },
+	                    { className: 'tab-tx ' + _tab.active, role: _tab.codeName, key: _tab.codeName, 'data-ix': ix },
 	                    _tab.name
 	                );
 	            });
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'tab', className: 'gap' },
+	                _react2.default.createElement('div', { id: 'tab-left' }),
+	                _react2.default.createElement('div', { id: 'tab-right' }),
 	                _react2.default.createElement(
 	                    'div',
-	                    { id: 'tab-group' },
+	                    { id: 'tab-center' },
 	                    tabNode
 	                )
 	            );
@@ -454,7 +463,7 @@ webpackJsonp([2],{
 
 
 	// module
-	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    弹性布局\n*/\n#tab {\n  line-height: .9rem;\n  background-color: #FFFFFF;\n  font-size: .35rem;\n  box-shadow: 0 1px 2px #aeaeae; }\n  #tab #tab-group {\n    width: 70%;\n    margin: auto;\n    display: -webkit-box;\n    display: -moz-box;\n    display: -ms-flexbox;\n    display: -webkit-flex;\n    display: flex;\n    flex-flow: row; }\n    #tab #tab-group .tab-tx {\n      text-align: center;\n      flex: 1;\n      color: #999999;\n      height: .8rem; }\n      #tab #tab-group .tab-tx.active {\n        color: #474747;\n        border-bottom: .08rem solid #2fa4f6; }\n\n.tab-md {\n  display: none; }\n  .tab-md.active {\n    display: block; }\n", ""]);
+	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    弹性布局\n*/\n#tab {\n  line-height: 1rem;\n  background-color: #FFFFFF;\n  font-size: .35rem; }\n  #tab #tab-left {\n    width: 15%;\n    height: 1rem;\n    float: left;\n    border-bottom: .05rem solid #aeaeae; }\n  #tab #tab-right {\n    float: right;\n    width: 15%;\n    height: 1rem;\n    border-bottom: .05rem solid #aeaeae; }\n  #tab #tab-center {\n    width: 70%;\n    margin: auto;\n    display: -webkit-box;\n    display: -moz-box;\n    display: -ms-flexbox;\n    display: -webkit-flex;\n    display: flex;\n    flex-flow: row; }\n    #tab #tab-center .tab-tx {\n      text-align: center;\n      flex: 1;\n      color: #999999;\n      height: 1rem;\n      border-bottom: .05rem solid #aeaeae; }\n      #tab #tab-center .tab-tx.active {\n        color: #474747;\n        border-bottom: .05rem solid #2fa4f6; }\n\n.tab-md {\n  display: none; }\n  .tab-md.active {\n    display: block; }\n", ""]);
 
 	// exports
 
@@ -1517,7 +1526,7 @@ webpackJsonp([2],{
 
 
 	// module
-	exports.push([module.id, "*::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box; }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0.5); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n#user-content {\n  background-color: #f6f6f8;\n  height: 1000px; }\n  #user-content .user-md {\n    display: none; }\n    #user-content .user-md.active {\n      display: block; }\n", ""]);
+	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n#user-content {\n  background-color: #f6f6f8;\n  height: 1000px; }\n  #user-content .user-md {\n    display: none; }\n    #user-content .user-md.active {\n      display: block; }\n", ""]);
 
 	// exports
 

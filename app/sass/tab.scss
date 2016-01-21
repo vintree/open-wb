@@ -1,10 +1,21 @@
 @import "./mixin/flex.scss";
 #tab {
-    line-height: .9rem;
+    line-height: 1rem;
     background-color: #FFFFFF;
     font-size: .35rem;
-    box-shadow: 0 1px 2px #aeaeae;
-    #tab-group {
+    #tab-left {
+        width: 15%;
+        height: 1rem;
+        float: left;
+        border-bottom: .05rem solid #aeaeae;
+    }
+    #tab-right {
+        float: right;
+        width: 15%;
+        height: 1rem;
+        border-bottom: .05rem solid #aeaeae;
+    }
+    #tab-center {
         width: 70%;
         margin: auto;
         @include flexRow;
@@ -12,10 +23,11 @@
             text-align: center;
             flex: 1;
             color: #999999;
-            height: .8rem;
+            height: 1rem;
+            border-bottom: .05rem solid #aeaeae;
             &.active {
                 color: #474747;
-                border-bottom: .08rem solid #2fa4f6;
+                border-bottom: .05rem solid #2fa4f6;
             }
         }
     }

@@ -1,4 +1,3 @@
-//require('../../sass/base.scss');
 require('../../sass/fansGroup.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -49,15 +48,20 @@ class FansGroup extends React.Component {
         };
     }
 
-    toggleTab(e) {
-        const node = e.target;
-        const role = node.attributes.role.value;
-        $(node).addClass('active')
-            .siblings()
-            .removeClass('active');
-        $('#' + role).addClass('active')
-            .siblings()
-            .removeClass('active');
+    componentDidMount() {
+        document.getElementById('fansGroup-tab').onclick = (e) => {
+            const node = e.target || e.srcElement;
+            const tab = this.state.tab;
+            const ix = Number(node.getAttribute('data-ix'));
+            for(var i = 0, l = tab.length; i < l; i++) {
+                if(i === ix) {
+                    tab[i].active = 'active';
+                } else {
+                    tab[i].active = '';
+                }
+            }
+            this.setState({tab: tab});
+        }
     }
 
     render() {
@@ -66,16 +70,16 @@ class FansGroup extends React.Component {
                 <section id='fansGroup-head'>
                     <UserMsg name="Nate"></UserMsg>
                 </section>
-                <section id="fansGroup-tab" onClick={e => {this.toggleTab(e)}}>
+                <section id="fansGroup-tab">
                     <Tab data={this.state.tab}></Tab>
                 </section>
-                <section id="fansGroup-newest" className="fansGroup-md active">
+                <section id="fansGroup-newest" className={'fansGroup-md ' + this.state.tab[0].active}>
                     <Newest></Newest>
                 </section>
-                <section id="fansGroup-hot" className="fansGroup-md">
+                <section id="fansGroup-hot" className={'fansGroup-md ' + this.state.tab[1].active}>
                     <Newest></Newest>
                 </section>
-                <section id="fansGroup-details" className="fansGroup-md">
+                <section id="fansGroup-details" className={'fansGroup-md ' + this.state.tab[2].active}>
                     <Details></Details>
                 </section>
             </div>

@@ -20,8 +20,8 @@ import Newest from "../common/newest.jsx";
 autoFont.init();
 
 class User extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             tab: [
                 {
@@ -38,15 +38,20 @@ class User extends React.Component {
         };
     }
 
-    toggleTab(e) {
-        const node = e.target;
-        const role = node.attributes.role.value;
-        $(node).addClass('active')
-            .siblings()
-            .removeClass('active');
-        $('#' + role).addClass('active')
-            .siblings()
-            .removeClass('active');
+    componentDidMount() {
+        document.getElementById('user-tab').onclick = (e) =>  {
+            const node = ReactDOM.findDOMNode(e.target);
+            const tab = this.state.tab;
+            const ix = Number(node.getAttribute('data-ix'));
+            for(var i = 0, l = tab.length; i < l; i++) {
+                if(i === ix) {
+                    tab[i].active = 'active';
+                } else {
+                    tab[i].active = '';
+                }
+            }
+            this.setState({tab: tab});
+        }
     }
 
     render() {
@@ -55,13 +60,13 @@ class User extends React.Component {
                 <section id='user-head'>
                     <UserMsg name="Nate"></UserMsg>
                 </section>
-                <section id="user-tab" onClick={e => {this.toggleTab(e)}}>
+                <section id="user-tab">
                     <Tab data={this.state.tab}></Tab>
                 </section>
-                <section id="user-dynamic" className="user-md active">
+                <section id="user-dynamic" className={'user-md ' + this.state.tab[0].active}>
                     <Newest></Newest>
                 </section>
-                <section id="user-personage" className="user-md">
+                <section id="user-personage" className={'user-md ' + this.state.tab[1].active}>
                     <section className="gap">
                         <Follow></Follow>
                     </section>
