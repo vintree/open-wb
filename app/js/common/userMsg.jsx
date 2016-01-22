@@ -49,7 +49,7 @@ export default class UserMsg extends React.Component {
                 <div id="userMsg-head-group">
                     <div id="userMsg-head">
                         <div id="userMsg-fallback" className="userMsg-ease">
-                            <img src="../img/fallback@1x.png" />
+                            <img id="userMsg-fallbackImg" src="../img/fallback@1x.png" />
                         </div>
                         <div id="userMsg-share" className="userMsg-ease">
                             <img src="../img/share@1x.png" />

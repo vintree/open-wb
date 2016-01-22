@@ -59,6 +59,10 @@ webpackJsonp([0],{
 
 	var _photo2 = _interopRequireDefault(_photo);
 
+	var _nav = __webpack_require__(215);
+
+	var _nav2 = _interopRequireDefault(_nav);
+
 	var _newest = __webpack_require__(187);
 
 	var _newest2 = _interopRequireDefault(_newest);
@@ -115,7 +119,7 @@ webpackJsonp([0],{
 	            var _this2 = this;
 
 	            document.getElementById('fansGroup-tab').onclick = function (e) {
-	                var node = e.target || e.srcElement;
+	                var node = _reactDom2.default.findDOMNode(e.target);
 	                var tab = _this2.state.tab;
 	                var ix = Number(node.getAttribute('data-ix'));
 	                for (var i = 0, l = tab.length; i < l; i++) {
@@ -127,6 +131,22 @@ webpackJsonp([0],{
 	                }
 	                _this2.setState({ tab: tab });
 	            };
+
+	            document.getElementById('fansGroup-head').onclick = function (e) {
+	                var node = _reactDom2.default.findDOMNode(e.target);
+	                if (node.id === 'userMsg-fallback' || node.parentNode.id === 'userMsg-fallback') {
+
+	                    document.querySelector('#nav').classList.add('active');
+	                    document.querySelector('.base-body').classList.add('active');
+
+	                    if (node.classList.contains('active')) {} else {
+	                        // node.classList.add('active');
+	                        // console.log(document.querySelector('.base-nav'));
+	                        // document.querySelector('#nav').classList.add('active');
+	                        // document.querySelector('.base-body').classList.add('active');
+	                    }
+	                }
+	            };
 	        }
 	    }, {
 	        key: 'render',
@@ -135,29 +155,38 @@ webpackJsonp([0],{
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    'section',
-	                    { id: 'fansGroup-head' },
-	                    _react2.default.createElement(_userMsg2.default, { name: 'Nate' })
+	                    'div',
+	                    { className: 'base-nav' },
+	                    _react2.default.createElement(_nav2.default, null)
 	                ),
 	                _react2.default.createElement(
-	                    'section',
-	                    { id: 'fansGroup-tab' },
-	                    _react2.default.createElement(_tab2.default, { data: this.state.tab })
-	                ),
-	                _react2.default.createElement(
-	                    'section',
-	                    { id: 'fansGroup-newest', className: 'fansGroup-md ' + this.state.tab[0].active },
-	                    _react2.default.createElement(_newest2.default, null)
-	                ),
-	                _react2.default.createElement(
-	                    'section',
-	                    { id: 'fansGroup-hot', className: 'fansGroup-md ' + this.state.tab[1].active },
-	                    _react2.default.createElement(_newest2.default, null)
-	                ),
-	                _react2.default.createElement(
-	                    'section',
-	                    { id: 'fansGroup-details', className: 'fansGroup-md ' + this.state.tab[2].active },
-	                    _react2.default.createElement(_details2.default, null)
+	                    'div',
+	                    { className: 'base-body' },
+	                    _react2.default.createElement(
+	                        'section',
+	                        { id: 'fansGroup-head' },
+	                        _react2.default.createElement(_userMsg2.default, { name: 'Nate' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'section',
+	                        { id: 'fansGroup-tab' },
+	                        _react2.default.createElement(_tab2.default, { data: this.state.tab })
+	                    ),
+	                    _react2.default.createElement(
+	                        'section',
+	                        { id: 'fansGroup-newest', className: 'fansGroup-md ' + this.state.tab[0].active },
+	                        _react2.default.createElement(_newest2.default, null)
+	                    ),
+	                    _react2.default.createElement(
+	                        'section',
+	                        { id: 'fansGroup-hot', className: 'fansGroup-md ' + this.state.tab[1].active },
+	                        _react2.default.createElement(_newest2.default, null)
+	                    ),
+	                    _react2.default.createElement(
+	                        'section',
+	                        { id: 'fansGroup-details', className: 'fansGroup-md ' + this.state.tab[2].active },
+	                        _react2.default.createElement(_details2.default, null)
+	                    )
 	                )
 	            );
 	        }
@@ -266,7 +295,7 @@ webpackJsonp([0],{
 	                        _react2.default.createElement(
 	                            'div',
 	                            { id: 'userMsg-fallback', className: 'userMsg-ease' },
-	                            _react2.default.createElement('img', { src: '../img/fallback@1x.png' })
+	                            _react2.default.createElement('img', { id: 'userMsg-fallbackImg', src: '../img/fallback@1x.png' })
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
@@ -1929,7 +1958,197 @@ webpackJsonp([0],{
 
 
 	// module
-	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n#fansGroup-content {\n  background-color: #f6f6f8;\n  height: 1000px; }\n\n.fansGroup-md {\n  display: none; }\n  .fansGroup-md.active {\n    display: block; }\n", ""]);
+	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\n#fansGroup-content {\n  background-color: #f6f6f8;\n  height: 1000px; }\n\n.fansGroup-md {\n  display: none; }\n  .fansGroup-md.active {\n    display: block; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 215:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	__webpack_require__(216);
+
+	var nav = (function (_React$Component) {
+	    _inherits(nav, _React$Component);
+
+	    function nav(props) {
+	        _classCallCheck(this, nav);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(nav).call(this));
+	    }
+
+	    _createClass(nav, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            document.getElementById('nav-hide').onclick = function (e) {
+	                document.querySelector('#nav').classList.remove('active');
+	                document.querySelector('.base-body').classList.remove('active');
+	            };
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { id: 'nav', className: 'nav' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { id: 'nav-group' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-unit active' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-img' },
+	                            _react2.default.createElement('img', { src: '../img/icon_nav/heart.png' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-name' },
+	                            '热门推荐'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-unit' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-img' },
+	                            _react2.default.createElement('img', { src: '../img/icon_nav/hot.png' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-name' },
+	                            '热门群组'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-unit' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-img' },
+	                            _react2.default.createElement('img', { src: '../img/icon_nav/talk.png' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-name' },
+	                            '话题'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-unit' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-img' },
+	                            _react2.default.createElement('img', { src: '../img/icon_nav/activity.png' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-name' },
+	                            '活动'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-unit' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-img' },
+	                            _react2.default.createElement('img', { src: '../img/icon_nav/me.png' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-name' },
+	                            '我的主页'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-unit' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-img' },
+	                            _react2.default.createElement('img', { src: '../img/icon_nav/self.png' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-name' },
+	                            '关于我们'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement('div', { id: 'nav-hide' })
+	            );
+	        }
+	    }]);
+
+	    return nav;
+	})(_react2.default.Component);
+
+	exports.default = nav;
+
+/***/ },
+
+/***/ 216:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(217);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(168)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 217:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(167)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#nav {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 99;\n  color: #ffffff;\n  font-size: .35rem; }\n  #nav #nav-group {\n    float: left;\n    width: 4rem;\n    height: 100%;\n    background-color: #1c2229;\n    padding: 2rem 0; }\n    #nav #nav-group .nav-unit {\n      padding: 0 .5rem;\n      line-height: 1.2rem;\n      margin-bottom: .2rem; }\n      #nav #nav-group .nav-unit .nav-img {\n        display: inline-block;\n        position: relative;\n        top: .08rem;\n        width: .5rem; }\n        #nav #nav-group .nav-unit .nav-img img {\n          width: 100%;\n          height: 100%; }\n      #nav #nav-group .nav-unit .nav-name {\n        display: inline-block;\n        margin-left: .2rem; }\n      #nav #nav-group .nav-unit.active {\n        background-color: #999999;\n        color: #3cafff; }\n  #nav #nav-hide {\n    float: left;\n    width: 3.5rem;\n    height: 100%;\n    display: inline-block; }\n\n.nav {\n  transition: transform .5s;\n  transform: translate3D(-100%, 0, 0); }\n  .nav.active {\n    transition: transform .5s;\n    transform: translate3D(0, 0, 0); }\n", ""]);
 
 	// exports
 
