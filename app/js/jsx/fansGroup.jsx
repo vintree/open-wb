@@ -1,6 +1,7 @@
 require('../../sass/fansGroup.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TapEvent from "react-tap-event-plugin";
 import $ from 'jquery';
 
 import autoFont from '../temp/autoFont.js';
@@ -52,19 +53,22 @@ class FansGroup extends React.Component {
     }
 
     componentDidMount() {
-        document.getElementById('fansGroup-tab').onclick = (e) => {
-            const node = ReactDOM.findDOMNode(e.target);
-            const tab = this.state.tab;
-            const ix = Number(node.getAttribute('data-ix'));
-            for(var i = 0, l = tab.length; i < l; i++) {
-                if(i === ix) {
-                    tab[i].active = 'active';
-                } else {
-                    tab[i].active = '';
-                }
-            }
-            this.setState({tab: tab});
-        }
+
+        TapEvent();
+
+        // document.getElementById('fansGroup-tab').onclick = (e) => {
+        //     const node = ReactDOM.findDOMNode(e.target);
+        //     const tab = this.state.tab;
+        //     const ix = Number(node.getAttribute('data-ix'));
+        //     for(var i = 0, l = tab.length; i < l; i++) {
+        //         if(i === ix) {
+        //             tab[i].active = 'active';
+        //         } else {
+        //             tab[i].active = '';
+        //         }
+        //     }
+        //     this.setState({tab: tab});
+        // }
 
         document.getElementById('fansGroup-head').onclick = (e) => {
             var node = ReactDOM.findDOMNode(e.target);
@@ -84,6 +88,14 @@ class FansGroup extends React.Component {
 
     }
 
+    touchTaps(e) {
+        alert('tap');
+    }
+
+    kkk(e) {
+        alert('click');
+    }
+
     render() {
         return (
             <div>
@@ -94,7 +106,7 @@ class FansGroup extends React.Component {
                     <section id='fansGroup-head'>
                         <UserMsg name="Nate"></UserMsg>
                     </section>
-                    <section id="fansGroup-tab">
+                    <section id="fansGroup-tab" onClick={e => {this.kkk(e)} } onTouchTap={e => {this.touchTaps(e)} }>
                         <Tab data={this.state.tab}></Tab>
                     </section>
                     <section id="fansGroup-newest" className={'fansGroup-md ' + this.state.tab[0].active}>

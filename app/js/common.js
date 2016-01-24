@@ -19680,7 +19680,11 @@
 
 
 /***/ },
-/* 159 */
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -28896,7 +28900,7 @@
 
 
 /***/ },
-/* 160 */
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -28906,7 +28910,7 @@
 	 autoFont.init(); //自动执行
 	 */
 
-	var userAgent = __webpack_require__(161);
+	var userAgent = __webpack_require__(165);
 	var autoFont = {
 	    init: function init() {
 	        var setFontSize = (function () {
@@ -28947,7 +28951,7 @@
 	module.exports = autoFont;
 
 /***/ },
-/* 161 */
+/* 165 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -28967,7 +28971,7 @@
 	module.exports = userAgent;
 
 /***/ },
-/* 162 */
+/* 166 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -28989,7 +28993,7 @@
 	module.exports = addScript;
 
 /***/ },
-/* 163 */
+/* 167 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -29053,10 +29057,10 @@
 	module.exports = Head;
 
 /***/ },
-/* 164 */,
-/* 165 */,
-/* 166 */,
-/* 167 */
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */
 /***/ function(module, exports) {
 
 	/*
@@ -29112,7 +29116,7 @@
 
 
 /***/ },
-/* 168 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*

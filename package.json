@@ -29,6 +29,7 @@
     "npm": "^3.5.2",
     "path": "^0.12.7",
     "react-hot-loader": "^1.3.0",
+    "react-tappable": "^0.8.0",
     "replace-webpack-plugin": "^0.1.2",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
