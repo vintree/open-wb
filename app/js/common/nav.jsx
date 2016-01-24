@@ -12,8 +12,11 @@
 
 require('../../sass/nav.scss');
 import React from 'react';
+import InjectTapEventPlugin from "react-tap-event-plugin";
 
 import Url from '../temp/url.js';
+
+InjectTapEventPlugin();
 
 export default class nav extends React.Component {
     constructor(props) {
@@ -76,10 +79,11 @@ export default class nav extends React.Component {
     }
 
     componentDidMount() {
-        document.getElementById('nav-hide').onclick = function(e) {
-            document.querySelector('#nav').classList.remove('active');
-            document.querySelector('.base-body').classList.remove('active');
-        }
+    }
+
+    tapHide(e) {
+        document.querySelector('#nav').classList.remove('active');
+        document.querySelector('.base-body').classList.remove('active');
     }
 
     render() {
@@ -99,7 +103,7 @@ export default class nav extends React.Component {
                 <div id="nav-group">
                     {navList}
                 </div>
-                <div id="nav-hide"></div>
+                <div id="nav-hide" onTouchTap={ e => {this.tapHide(e)} }></div>
             </div>
         )
     }

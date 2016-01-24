@@ -19,10 +19,6 @@ webpackJsonp([0],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _jquery = __webpack_require__(163);
-
-	var _jquery2 = _interopRequireDefault(_jquery);
-
 	var _autoFont = __webpack_require__(164);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
@@ -88,8 +84,10 @@ webpackJsonp([0],{
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	__webpack_require__(202);
+	// import $ from 'jquery';
 
 	_autoFont2.default.init();
+	(0, _reactTapEventPlugin2.default)();
 
 	var FansGroup = (function (_React$Component) {
 	    _inherits(FansGroup, _React$Component);
@@ -124,47 +122,30 @@ webpackJsonp([0],{
 	        }
 	    }, {
 	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-
-	            (0, _reactTapEventPlugin2.default)();
-
-	            // document.getElementById('fansGroup-tab').onclick = (e) => {
-	            //     const node = ReactDOM.findDOMNode(e.target);
-	            //     const tab = this.state.tab;
-	            //     const ix = Number(node.getAttribute('data-ix'));
-	            //     for(var i = 0, l = tab.length; i < l; i++) {
-	            //         if(i === ix) {
-	            //             tab[i].active = 'active';
-	            //         } else {
-	            //             tab[i].active = '';
-	            //         }
-	            //     }
-	            //     this.setState({tab: tab});
-	            // }
-
-	            document.getElementById('fansGroup-head').onclick = function (e) {
-	                var node = _reactDom2.default.findDOMNode(e.target);
-	                if (node.id === 'userMsg-fallback' || node.parentNode.id === 'userMsg-fallback') {
-	                    document.querySelector('#nav').classList.add('active');
-	                    document.querySelector('.base-body').classList.add('active');
-	                    if (node.classList.contains('active')) {} else {
-	                        // node.classList.add('active');
-	                        // console.log(document.querySelector('.base-nav'));
-	                        // document.querySelector('#nav').classList.add('active');
-	                        // document.querySelector('.base-body').classList.add('active');
-	                    }
+	        value: function componentDidMount() {}
+	    }, {
+	        key: 'tapTab',
+	        value: function tapTab(e) {
+	            var node = _reactDom2.default.findDOMNode(e.target);
+	            var tab = this.state.tab;
+	            var ix = Number(node.getAttribute('data-ix'));
+	            for (var i = 0, l = tab.length; i < l; i++) {
+	                if (i === ix) {
+	                    tab[i].active = 'active';
+	                } else {
+	                    tab[i].active = '';
 	                }
-	            };
+	            }
+	            this.setState({ tab: tab });
 	        }
 	    }, {
-	        key: 'touchTaps',
-	        value: function touchTaps(e) {
-	            alert('tap');
-	        }
-	    }, {
-	        key: 'kkk',
-	        value: function kkk(e) {
-	            alert('click');
+	        key: 'tapMemu',
+	        value: function tapMemu(e) {
+	            var node = _reactDom2.default.findDOMNode(e.target);
+	            if (node.id === 'userMsg-fallback' || node.parentNode.id === 'userMsg-fallback') {
+	                document.querySelector('#nav').classList.add('active');
+	                document.querySelector('.base-body').classList.add('active');
+	            }
 	        }
 	    }, {
 	        key: 'render',
@@ -184,15 +165,15 @@ webpackJsonp([0],{
 	                    { className: 'base-body' },
 	                    _react2.default.createElement(
 	                        'section',
-	                        { id: 'fansGroup-head' },
+	                        { id: 'fansGroup-head', onTouchTap: function onTouchTap(e) {
+	                                _this2.tapMemu(e);
+	                            } },
 	                        _react2.default.createElement(_userMsg2.default, { name: 'Nate' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'section',
-	                        { id: 'fansGroup-tab', onClick: function onClick(e) {
-	                                _this2.kkk(e);
-	                            }, onTouchTap: function onTouchTap(e) {
-	                                _this2.touchTaps(e);
+	                        { id: 'fansGroup-tab', onTouchTap: function onTouchTap(e) {
+	                                _this2.tapTab(e);
 	                            } },
 	                        _react2.default.createElement(_tab2.default, { data: this.state.tab })
 	                    ),
@@ -1653,6 +1634,10 @@ webpackJsonp([0],{
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _reactTapEventPlugin = __webpack_require__(159);
+
+	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
+
 	var _url = __webpack_require__(192);
 
 	var _url2 = _interopRequireDefault(_url);
@@ -1678,6 +1663,8 @@ webpackJsonp([0],{
 	*/
 
 	__webpack_require__(193);
+
+	(0, _reactTapEventPlugin2.default)();
 
 	var nav = (function (_React$Component) {
 	    _inherits(nav, _React$Component);
@@ -1761,15 +1748,18 @@ webpackJsonp([0],{
 	        }
 	    }, {
 	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            document.getElementById('nav-hide').onclick = function (e) {
-	                document.querySelector('#nav').classList.remove('active');
-	                document.querySelector('.base-body').classList.remove('active');
-	            };
+	        value: function componentDidMount() {}
+	    }, {
+	        key: 'tapHide',
+	        value: function tapHide(e) {
+	            document.querySelector('#nav').classList.remove('active');
+	            document.querySelector('.base-body').classList.remove('active');
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+
 	            var navList = this.state.nav.map(function (v) {
 	                return _react2.default.createElement(
 	                    'a',
@@ -1795,7 +1785,9 @@ webpackJsonp([0],{
 	                    { id: 'nav-group' },
 	                    navList
 	                ),
-	                _react2.default.createElement('div', { id: 'nav-hide' })
+	                _react2.default.createElement('div', { id: 'nav-hide', onTouchTap: function onTouchTap(e) {
+	                        _this2.tapHide(e);
+	                    } })
 	            );
 	        }
 	    }]);
