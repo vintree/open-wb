@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 
-
 import autoFont from '../temp/autoFont.js';
 import addScript from '../temp/addScript.js';
 import Head from '../temp/head.js';
@@ -21,10 +20,6 @@ import Nav from "../common/nav.jsx";
 import Newest from "../common/newest.jsx";
 import Hot from "../common/hot.jsx";
 import Details from "../common/details.jsx";
-
-
-
-
 
 autoFont.init();
 
