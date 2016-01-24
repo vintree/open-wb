@@ -21,22 +21,21 @@
             height: .7rem;
             overflow: hidden;
             .userMsg-ease {
-                width: 0.8rem;
+                width: 1rem;
                 line-height: .6rem;
                 text-align: center;
                 height: 100%;
-
             }
-            #userMsg-fallback {
+            #userMsg-left {
                 float: left;
                 img {
-                    width: 0.3rem;
+                    width: 0.55rem;
                 }
             }
-            #userMsg-share {
+            #userMsg-right {
                 float: right;
                 img {
-                    width: 0.42rem;
+                    width: 0.5rem;
                 }
             }
         }

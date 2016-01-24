@@ -74,7 +74,7 @@ class FansGroup extends React.Component {
 
     tapMemu(e) {
         const node = ReactDOM.findDOMNode(e.target);
-        if(node.id === 'userMsg-fallback' || node.parentNode.id === 'userMsg-fallback') {
+        if(node.className.indexOf('userMsg-Menu') !== -1 || node.parentNode.className.indexOf('userMsg-Menu') !== -1) {
             document.querySelector('#nav').classList.add('active');
             document.querySelector('.base-body').classList.add('active');
         }
