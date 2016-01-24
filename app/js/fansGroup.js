@@ -59,19 +59,19 @@ webpackJsonp([0],{
 
 	var _photo2 = _interopRequireDefault(_photo);
 
-	var _nav = __webpack_require__(215);
+	var _nav = __webpack_require__(187);
 
 	var _nav2 = _interopRequireDefault(_nav);
 
-	var _newest = __webpack_require__(187);
+	var _newest = __webpack_require__(190);
 
 	var _newest2 = _interopRequireDefault(_newest);
 
-	var _hot = __webpack_require__(190);
+	var _hot = __webpack_require__(193);
 
 	var _hot2 = _interopRequireDefault(_hot);
 
-	var _details = __webpack_require__(193);
+	var _details = __webpack_require__(196);
 
 	var _details2 = _interopRequireDefault(_details);
 
@@ -83,7 +83,7 @@ webpackJsonp([0],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(194);
+	__webpack_require__(197);
 
 	_autoFont2.default.init();
 
@@ -1361,6 +1361,196 @@ webpackJsonp([0],{
 
 	__webpack_require__(188);
 
+	var nav = (function (_React$Component) {
+	    _inherits(nav, _React$Component);
+
+	    function nav(props) {
+	        _classCallCheck(this, nav);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(nav).call(this));
+	    }
+
+	    _createClass(nav, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            document.getElementById('nav-hide').onclick = function (e) {
+	                document.querySelector('#nav').classList.remove('active');
+	                document.querySelector('.base-body').classList.remove('active');
+	            };
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'div',
+	                { id: 'nav', className: 'nav' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { id: 'nav-group' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-unit active' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-img' },
+	                            _react2.default.createElement('img', { src: '../img/icon_nav/heart.png' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-name' },
+	                            '热门推荐'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-unit' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-img' },
+	                            _react2.default.createElement('img', { src: '../img/icon_nav/hot.png' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-name' },
+	                            '热门群组'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-unit' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-img' },
+	                            _react2.default.createElement('img', { src: '../img/icon_nav/talk.png' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-name' },
+	                            '话题'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-unit' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-img' },
+	                            _react2.default.createElement('img', { src: '../img/icon_nav/activity.png' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-name' },
+	                            '活动'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-unit' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-img' },
+	                            _react2.default.createElement('img', { src: '../img/icon_nav/me.png' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-name' },
+	                            '我的主页'
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-unit' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-img' },
+	                            _react2.default.createElement('img', { src: '../img/icon_nav/self.png' })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'nav-name' },
+	                            '关于我们'
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement('div', { id: 'nav-hide' })
+	            );
+	        }
+	    }]);
+
+	    return nav;
+	})(_react2.default.Component);
+
+	exports.default = nav;
+
+/***/ },
+
+/***/ 188:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(189);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(168)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 189:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(167)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#nav {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 99;\n  color: #ffffff;\n  font-size: .35rem; }\n  #nav #nav-group {\n    float: left;\n    width: 4rem;\n    height: 100%;\n    background-color: #1c2229;\n    padding: 2rem 0; }\n    #nav #nav-group .nav-unit {\n      padding: 0 .5rem;\n      line-height: 1.2rem;\n      margin-bottom: .2rem; }\n      #nav #nav-group .nav-unit .nav-img {\n        display: inline-block;\n        position: relative;\n        top: .08rem;\n        width: .5rem; }\n        #nav #nav-group .nav-unit .nav-img img {\n          width: 100%;\n          height: 100%; }\n      #nav #nav-group .nav-unit .nav-name {\n        display: inline-block;\n        margin-left: .2rem; }\n      #nav #nav-group .nav-unit.active {\n        background-color: #999999;\n        color: #3cafff; }\n  #nav #nav-hide {\n    float: left;\n    width: 3.5rem;\n    height: 100%;\n    display: inline-block; }\n\n.nav {\n  transition: transform .5s;\n  transform: translate3D(-100%, 0, 0); }\n  .nav.active {\n    transition: transform .5s;\n    transform: translate3D(0, 0, 0); }\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 190:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	__webpack_require__(191);
+
 	//import $ from 'jquery';
 
 	var Newest_head = (function (_React$Component) {
@@ -1634,13 +1824,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 188:
+/***/ 191:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(189);
+	var content = __webpack_require__(192);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(168)(content, {});
@@ -1661,7 +1851,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 189:
+/***/ 192:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(167)();
@@ -1676,7 +1866,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 190:
+/***/ 193:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1699,7 +1889,7 @@ webpackJsonp([0],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(191);
+	__webpack_require__(194);
 
 	//import $ from 'jquery';
 
@@ -1784,13 +1974,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 191:
+/***/ 194:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(192);
+	var content = __webpack_require__(195);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(168)(content, {});
@@ -1811,7 +2001,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 192:
+/***/ 195:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(167)();
@@ -1826,7 +2016,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 193:
+/***/ 196:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -1923,13 +2113,13 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 194:
+/***/ 197:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(195);
+	var content = __webpack_require__(198);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(168)(content, {});
@@ -1950,7 +2140,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 195:
+/***/ 198:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(167)();
@@ -1959,196 +2149,6 @@ webpackJsonp([0],{
 
 	// module
 	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\n#fansGroup-content {\n  background-color: #f6f6f8;\n  height: 1000px; }\n\n.fansGroup-md {\n  display: none; }\n  .fansGroup-md.active {\n    display: block; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 215:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	__webpack_require__(216);
-
-	var nav = (function (_React$Component) {
-	    _inherits(nav, _React$Component);
-
-	    function nav(props) {
-	        _classCallCheck(this, nav);
-
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(nav).call(this));
-	    }
-
-	    _createClass(nav, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            document.getElementById('nav-hide').onclick = function (e) {
-	                document.querySelector('#nav').classList.remove('active');
-	                document.querySelector('.base-body').classList.remove('active');
-	            };
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                { id: 'nav', className: 'nav' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { id: 'nav-group' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'nav-unit active' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'nav-img' },
-	                            _react2.default.createElement('img', { src: '../img/icon_nav/heart.png' })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'nav-name' },
-	                            '热门推荐'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'nav-unit' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'nav-img' },
-	                            _react2.default.createElement('img', { src: '../img/icon_nav/hot.png' })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'nav-name' },
-	                            '热门群组'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'nav-unit' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'nav-img' },
-	                            _react2.default.createElement('img', { src: '../img/icon_nav/talk.png' })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'nav-name' },
-	                            '话题'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'nav-unit' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'nav-img' },
-	                            _react2.default.createElement('img', { src: '../img/icon_nav/activity.png' })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'nav-name' },
-	                            '活动'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'nav-unit' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'nav-img' },
-	                            _react2.default.createElement('img', { src: '../img/icon_nav/me.png' })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'nav-name' },
-	                            '我的主页'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'nav-unit' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'nav-img' },
-	                            _react2.default.createElement('img', { src: '../img/icon_nav/self.png' })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'nav-name' },
-	                            '关于我们'
-	                        )
-	                    )
-	                ),
-	                _react2.default.createElement('div', { id: 'nav-hide' })
-	            );
-	        }
-	    }]);
-
-	    return nav;
-	})(_react2.default.Component);
-
-	exports.default = nav;
-
-/***/ },
-
-/***/ 216:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(217);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(168)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 217:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(167)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#nav {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 99;\n  color: #ffffff;\n  font-size: .35rem; }\n  #nav #nav-group {\n    float: left;\n    width: 4rem;\n    height: 100%;\n    background-color: #1c2229;\n    padding: 2rem 0; }\n    #nav #nav-group .nav-unit {\n      padding: 0 .5rem;\n      line-height: 1.2rem;\n      margin-bottom: .2rem; }\n      #nav #nav-group .nav-unit .nav-img {\n        display: inline-block;\n        position: relative;\n        top: .08rem;\n        width: .5rem; }\n        #nav #nav-group .nav-unit .nav-img img {\n          width: 100%;\n          height: 100%; }\n      #nav #nav-group .nav-unit .nav-name {\n        display: inline-block;\n        margin-left: .2rem; }\n      #nav #nav-group .nav-unit.active {\n        background-color: #999999;\n        color: #3cafff; }\n  #nav #nav-hide {\n    float: left;\n    width: 3.5rem;\n    height: 100%;\n    display: inline-block; }\n\n.nav {\n  transition: transform .5s;\n  transform: translate3D(-100%, 0, 0); }\n  .nav.active {\n    transition: transform .5s;\n    transform: translate3D(0, 0, 0); }\n", ""]);
 
 	// exports
 
