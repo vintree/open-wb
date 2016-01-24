@@ -114,6 +114,11 @@ webpackJsonp([0],{
 	    }
 
 	    _createClass(FansGroup, [{
+	        key: 'initializeTouchEvents',
+	        value: function initializeTouchEvents() {
+	            return true;
+	        }
+	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            var _this2 = this;
@@ -135,10 +140,8 @@ webpackJsonp([0],{
 	            document.getElementById('fansGroup-head').onclick = function (e) {
 	                var node = _reactDom2.default.findDOMNode(e.target);
 	                if (node.id === 'userMsg-fallback' || node.parentNode.id === 'userMsg-fallback') {
-
 	                    document.querySelector('#nav').classList.add('active');
 	                    document.querySelector('.base-body').classList.add('active');
-
 	                    if (node.classList.contains('active')) {} else {
 	                        // node.classList.add('active');
 	                        // console.log(document.querySelector('.base-nav'));
@@ -1436,7 +1439,6 @@ webpackJsonp([0],{
 	                    } else {
 	                        o.active = '';
 	                    }
-	                    console.log(o);
 	                }
 	            } catch (err) {
 	                _didIteratorError = true;

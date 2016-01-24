@@ -18,7 +18,6 @@ import Url from '../temp/url.js';
 export default class nav extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             nav: [
                 {
@@ -55,6 +54,8 @@ export default class nav extends React.Component {
         }
     }
 
+    
+
     componentWillMount() {
         var flag = true;// 是否带有相关参数
         const navList = this.state.nav;
@@ -67,7 +68,6 @@ export default class nav extends React.Component {
             } else {
                 o.active = '';
             }
-            console.log(o);
         }
         if(flag) {
             navList[0].active = 'active';

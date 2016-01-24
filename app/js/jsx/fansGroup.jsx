@@ -47,6 +47,10 @@ class FansGroup extends React.Component {
         };
     }
 
+    initializeTouchEvents() {
+        return true;
+    }
+
     componentDidMount() {
         document.getElementById('fansGroup-tab').onclick = (e) => {
             const node = ReactDOM.findDOMNode(e.target);
@@ -65,11 +69,8 @@ class FansGroup extends React.Component {
         document.getElementById('fansGroup-head').onclick = (e) => {
             var node = ReactDOM.findDOMNode(e.target);
             if(node.id === 'userMsg-fallback' || node.parentNode.id === 'userMsg-fallback') {
-
-
                 document.querySelector('#nav').classList.add('active');
                 document.querySelector('.base-body').classList.add('active');
-
                 if(node.classList.contains('active')) {
                     
                 } else {
