@@ -53,18 +53,12 @@ export default class nav extends React.Component {
                 }
             ]
         }
-
-        // console.log(this);
-
     }
 
     componentWillMount() {
         var flag = true;// 是否带有相关参数
         const navList = this.state.nav;
         const tag = Url.getParams('nav');
-
-
-
         for(let o of navList) {
             if(o.img === tag) {
                 flag = false;
@@ -79,9 +73,6 @@ export default class nav extends React.Component {
             navList[0].active = 'active';
             navList[0].img += '_active';
         }
-
-
-        console.log(this);
     }
 
     componentDidMount() {
@@ -92,9 +83,6 @@ export default class nav extends React.Component {
     }
 
     render() {
-
-
-
         const navList = this.state.nav.map(function(v) {
             return (
                 <a className={'nav-unit ' + v.active} key={ v.img } href={ '?nav=' + v.img }>
@@ -116,42 +104,3 @@ export default class nav extends React.Component {
         )
     }
 }
-
-
-// <a className="nav-unit active">
-//                         <div className="nav-img">
-//                             <img src="../img/icon_nav/heart.png"></img>
-//                         </div>
-//                         <div className="nav-name">热门推荐</div>
-//                     </a>
-//                     <a className="nav-unit">
-//                         <div className="nav-img">
-//                             <img src="../img/icon_nav/hot.png"></img>
-//                         </div>
-//                         <div className="nav-name">热门群组</div>
-//                     </a>
-//                     <a className="nav-unit">
-//                         <div className="nav-img">
-//                             <img src="../img/icon_nav/talk.png"></img>
-//                         </div>
-//                         <div className="nav-name">话题</div>
-//                     </a>
-//                     <a className="nav-unit">
-//                         <div className="nav-img">
-//                             <img src="../img/icon_nav/activity.png"></img>
-//                         </div>
-//                         <div className="nav-name">活动</div>
-//                     </a>
-//                     <a className="nav-unit">
-//                         <div className="nav-img">
-//                             <img src="../img/icon_nav/me.png"></img>
-//                         </div>
-//                         <div className="nav-name">我的主页</div>
-//                     </a>
-//                     <a className="nav-unit">
-//                         <div className="nav-img">
-//                             <img src="../img/icon_nav/about.png"></img>
-//                         </div>
-//                         <div className="nav-name">关于我们</div>
-//                     </a>
-
