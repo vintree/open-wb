@@ -124,6 +124,15 @@ webpackJsonp([0],{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {}
 	    }, {
+	        key: 'tapMemu',
+	        value: function tapMemu(e) {
+	            var node = _reactDom2.default.findDOMNode(e.target);
+	            if (node.className.indexOf('userMsg-Menu') !== -1 || node.parentNode.className.indexOf('userMsg-Menu') !== -1) {
+	                document.querySelector('#nav').classList.add('active');
+	                document.querySelector('.base-body').classList.add('active');
+	            }
+	        }
+	    }, {
 	        key: 'tapTab',
 	        value: function tapTab(e) {
 	            var node = _reactDom2.default.findDOMNode(e.target);
@@ -137,15 +146,6 @@ webpackJsonp([0],{
 	                }
 	            }
 	            this.setState({ tab: tab });
-	        }
-	    }, {
-	        key: 'tapMemu',
-	        value: function tapMemu(e) {
-	            var node = _reactDom2.default.findDOMNode(e.target);
-	            if (node.className.indexOf('userMsg-Menu') !== -1 || node.parentNode.className.indexOf('userMsg-Menu') !== -1) {
-	                document.querySelector('#nav').classList.add('active');
-	                document.querySelector('.base-body').classList.add('active');
-	            }
 	        }
 	    }, {
 	        key: 'render',
@@ -1682,45 +1682,20 @@ webpackJsonp([0],{
 	            var flag = true; // 是否带有相关参数
 	            var navList = this.state.nav;
 	            var tag = _url2.default.getParams('nav');
-	            var _iteratorNormalCompletion = true;
-	            var _didIteratorError = false;
-	            var _iteratorError = undefined;
-
-	            try {
-	                for (var _iterator = navList[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-	                    var o = _step.value;
-
-	                    if (o.img === tag) {
-	                        flag = false;
-	                        o.active = 'active';
-	                        o.img += '_active';
-	                    } else {
-	                        o.active = '';
-	                    }
-	                }
-	            } catch (err) {
-	                _didIteratorError = true;
-	                _iteratorError = err;
-	            } finally {
-	                try {
-	                    if (!_iteratorNormalCompletion && _iterator.return) {
-	                        _iterator.return();
-	                    }
-	                } finally {
-	                    if (_didIteratorError) {
-	                        throw _iteratorError;
-	                    }
+	            for (var i = 0, l = navList.length; i < l; i++) {
+	                if (navList[i].img === tag) {
+	                    flag = false;
+	                    navList[i].active = 'active';
+	                    navList[i].img += '_active';
+	                } else {
+	                    navList[i].active = '';
 	                }
 	            }
-
 	            if (flag) {
 	                navList[0].active = 'active';
 	                navList[0].img += '_active';
 	            }
 	        }
-	    }, {
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {}
 	    }, {
 	        key: 'tapHide',
 	        value: function tapHide(e) {
@@ -1781,30 +1756,9 @@ webpackJsonp([0],{
 		var search = location.search;
 		if (search.indexOf('?') != -1) {
 			var str = search.substr(1).split('&');
-			var _iteratorNormalCompletion = true;
-			var _didIteratorError = false;
-			var _iteratorError = undefined;
-
-			try {
-				for (var _iterator = str[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-					var s = _step.value;
-
-					if (s.indexOf(key) != -1) {
-						return s.split('=')[1];
-					}
-				}
-			} catch (err) {
-				_didIteratorError = true;
-				_iteratorError = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion && _iterator.return) {
-						_iterator.return();
-					}
-				} finally {
-					if (_didIteratorError) {
-						throw _iteratorError;
-					}
+			for (var i = 0, l = str.length; i < l; i++) {
+				if (str[i].indexOf(key) !== -1) {
+					return str[i].split('=')[1];
 				}
 			}
 		}

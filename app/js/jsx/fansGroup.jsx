@@ -58,6 +58,14 @@ class FansGroup extends React.Component {
 
     }
 
+    tapMemu(e) {
+        const node = ReactDOM.findDOMNode(e.target);
+        if(node.className.indexOf('userMsg-Menu') !== -1 || node.parentNode.className.indexOf('userMsg-Menu') !== -1) {
+            document.querySelector('#nav').classList.add('active');
+            document.querySelector('.base-body').classList.add('active');
+        }
+    }
+
     tapTab(e) {
         const node = ReactDOM.findDOMNode(e.target);
         const tab = this.state.tab;
@@ -70,14 +78,6 @@ class FansGroup extends React.Component {
             }
         }
         this.setState({tab: tab});    
-    }
-
-    tapMemu(e) {
-        const node = ReactDOM.findDOMNode(e.target);
-        if(node.className.indexOf('userMsg-Menu') !== -1 || node.parentNode.className.indexOf('userMsg-Menu') !== -1) {
-            document.querySelector('#nav').classList.add('active');
-            document.querySelector('.base-body').classList.add('active');
-        }
     }
 
     render() {

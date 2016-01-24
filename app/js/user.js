@@ -19,6 +19,10 @@ webpackJsonp([2],{
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
+	var _reactTapEventPlugin = __webpack_require__(159);
+
+	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
+
 	var _autoFont = __webpack_require__(164);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
@@ -30,6 +34,10 @@ webpackJsonp([2],{
 	var _head = __webpack_require__(167);
 
 	var _head2 = _interopRequireDefault(_head);
+
+	var _nav = __webpack_require__(191);
+
+	var _nav2 = _interopRequireDefault(_nav);
 
 	var _userMsg = __webpack_require__(168);
 
@@ -70,6 +78,7 @@ webpackJsonp([2],{
 	__webpack_require__(221);
 
 	_autoFont2.default.init();
+	(0, _reactTapEventPlugin2.default)();
 
 	var User = (function (_React$Component) {
 	    _inherits(User, _React$Component);
@@ -94,67 +103,87 @@ webpackJsonp([2],{
 	    }
 
 	    _createClass(User, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            var _this2 = this;
-
-	            document.getElementById('user-tab').onclick = function (e) {
-	                var node = _reactDom2.default.findDOMNode(e.target);
-	                var tab = _this2.state.tab;
-	                var ix = Number(node.getAttribute('data-ix'));
-	                for (var i = 0, l = tab.length; i < l; i++) {
-	                    if (i === ix) {
-	                        tab[i].active = 'active';
-	                    } else {
-	                        tab[i].active = '';
-	                    }
+	        key: 'tapMemu',
+	        value: function tapMemu(e) {
+	            var node = _reactDom2.default.findDOMNode(e.target);
+	            if (node.className.indexOf('userMsg-Menu') !== -1 || node.parentNode.className.indexOf('userMsg-Menu') !== -1) {
+	                document.querySelector('#nav').classList.add('active');
+	                document.querySelector('.base-body').classList.add('active');
+	            }
+	        }
+	    }, {
+	        key: 'tapTab',
+	        value: function tapTab(e) {
+	            var node = _reactDom2.default.findDOMNode(e.target);
+	            var tab = this.state.tab;
+	            var ix = Number(node.getAttribute('data-ix'));
+	            for (var i = 0, l = tab.length; i < l; i++) {
+	                if (i === ix) {
+	                    tab[i].active = 'active';
+	                } else {
+	                    tab[i].active = '';
 	                }
-	                _this2.setState({ tab: tab });
-	            };
+	            }
+	            this.setState({ tab: tab });
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+
 	            return _react2.default.createElement(
 	                'div',
 	                null,
 	                _react2.default.createElement(
-	                    'section',
-	                    { id: 'user-head' },
-	                    _react2.default.createElement(_userMsg2.default, { name: 'Nate' })
+	                    'div',
+	                    { className: 'base-nav' },
+	                    _react2.default.createElement(_nav2.default, null)
 	                ),
 	                _react2.default.createElement(
-	                    'section',
-	                    { id: 'user-tab' },
-	                    _react2.default.createElement(_tab2.default, { data: this.state.tab })
-	                ),
-	                _react2.default.createElement(
-	                    'section',
-	                    { id: 'user-dynamic', className: 'user-md ' + this.state.tab[0].active },
-	                    _react2.default.createElement(_newest2.default, null)
-	                ),
-	                _react2.default.createElement(
-	                    'section',
-	                    { id: 'user-personage', className: 'user-md ' + this.state.tab[1].active },
+	                    'div',
+	                    { className: 'base-body' },
 	                    _react2.default.createElement(
 	                        'section',
-	                        { className: 'gap' },
-	                        _react2.default.createElement(_follow2.default, null)
+	                        { id: 'user-head', onTouchTap: function onTouchTap(e) {
+	                                _this2.tapMemu(e);
+	                            } },
+	                        _react2.default.createElement(_userMsg2.default, { name: 'Nate' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'section',
-	                        { className: 'gap' },
-	                        _react2.default.createElement(_group2.default, null)
+	                        { id: 'user-tab', onTouchTap: function onTouchTap(e) {
+	                                _this2.tapTab(e);
+	                            } },
+	                        _react2.default.createElement(_tab2.default, { data: this.state.tab })
 	                    ),
 	                    _react2.default.createElement(
 	                        'section',
-	                        { className: 'gap' },
-	                        _react2.default.createElement(_activity2.default, null)
+	                        { id: 'user-dynamic', className: 'user-md ' + this.state.tab[0].active },
+	                        _react2.default.createElement(_newest2.default, null)
 	                    ),
 	                    _react2.default.createElement(
 	                        'section',
-	                        { className: 'gap' },
-	                        _react2.default.createElement(_msg2.default, null)
+	                        { id: 'user-personage', className: 'user-md ' + this.state.tab[1].active },
+	                        _react2.default.createElement(
+	                            'section',
+	                            { className: 'gap' },
+	                            _react2.default.createElement(_follow2.default, null)
+	                        ),
+	                        _react2.default.createElement(
+	                            'section',
+	                            { className: 'gap' },
+	                            _react2.default.createElement(_group2.default, null)
+	                        ),
+	                        _react2.default.createElement(
+	                            'section',
+	                            { className: 'gap' },
+	                            _react2.default.createElement(_activity2.default, null)
+	                        ),
+	                        _react2.default.createElement(
+	                            'section',
+	                            { className: 'gap' },
+	                            _react2.default.createElement(_msg2.default, null)
+	                        )
 	                    )
 	                )
 	            );
@@ -165,6 +194,284 @@ webpackJsonp([2],{
 	})(_react2.default.Component);
 
 	_reactDom2.default.render(_react2.default.createElement(User, { name: 'Nate' }), document.getElementById('user-content'));
+
+/***/ },
+
+/***/ 159:
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = function injectTapEventPlugin () {
+	  __webpack_require__(31).injection.injectEventPluginsByName({
+	    "TapEventPlugin":       __webpack_require__(160)
+	  });
+	};
+
+
+/***/ },
+
+/***/ 160:
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014 Facebook, Inc.
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 * http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 *
+	 * @providesModule TapEventPlugin
+	 * @typechecks static-only
+	 */
+
+	"use strict";
+
+	var EventConstants = __webpack_require__(30);
+	var EventPluginUtils = __webpack_require__(33);
+	var EventPropagators = __webpack_require__(73);
+	var SyntheticUIEvent = __webpack_require__(87);
+	var TouchEventUtils = __webpack_require__(161);
+	var ViewportMetrics = __webpack_require__(38);
+
+	var keyOf = __webpack_require__(162);
+	var topLevelTypes = EventConstants.topLevelTypes;
+
+	var isStartish = EventPluginUtils.isStartish;
+	var isEndish = EventPluginUtils.isEndish;
+
+	var isTouch = function(topLevelType) {
+	  var touchTypes = [
+	    topLevelTypes.topTouchCancel,
+	    topLevelTypes.topTouchEnd,
+	    topLevelTypes.topTouchStart,
+	    topLevelTypes.topTouchMove
+	  ];
+	  return touchTypes.indexOf(topLevelType) >= 0;
+	}
+
+	/**
+	 * Number of pixels that are tolerated in between a `touchStart` and `touchEnd`
+	 * in order to still be considered a 'tap' event.
+	 */
+	var tapMoveThreshold = 10;
+	var ignoreMouseThreshold = 750;
+	var startCoords = {x: null, y: null};
+	var lastTouchEvent = null;
+
+	var Axis = {
+	  x: {page: 'pageX', client: 'clientX', envScroll: 'currentPageScrollLeft'},
+	  y: {page: 'pageY', client: 'clientY', envScroll: 'currentPageScrollTop'}
+	};
+
+	function getAxisCoordOfEvent(axis, nativeEvent) {
+	  var singleTouch = TouchEventUtils.extractSingleTouch(nativeEvent);
+	  if (singleTouch) {
+	    return singleTouch[axis.page];
+	  }
+	  return axis.page in nativeEvent ?
+	    nativeEvent[axis.page] :
+	    nativeEvent[axis.client] + ViewportMetrics[axis.envScroll];
+	}
+
+	function getDistance(coords, nativeEvent) {
+	  var pageX = getAxisCoordOfEvent(Axis.x, nativeEvent);
+	  var pageY = getAxisCoordOfEvent(Axis.y, nativeEvent);
+	  return Math.pow(
+	    Math.pow(pageX - coords.x, 2) + Math.pow(pageY - coords.y, 2),
+	    0.5
+	  );
+	}
+
+	var touchEvents = [
+	  topLevelTypes.topTouchStart,
+	  topLevelTypes.topTouchCancel,
+	  topLevelTypes.topTouchEnd,
+	  topLevelTypes.topTouchMove,
+	];
+
+	var dependencies = [
+	  topLevelTypes.topMouseDown,
+	  topLevelTypes.topMouseMove,
+	  topLevelTypes.topMouseUp,
+	].concat(touchEvents);
+
+	var eventTypes = {
+	  touchTap: {
+	    phasedRegistrationNames: {
+	      bubbled: keyOf({onTouchTap: null}),
+	      captured: keyOf({onTouchTapCapture: null})
+	    },
+	    dependencies: dependencies
+	  }
+	};
+
+	var now = (function() {
+	  if (Date.now) {
+	    return Date.now;
+	  } else {
+	    // IE8 support: http://stackoverflow.com/questions/9430357/please-explain-why-and-how-new-date-works-as-workaround-for-date-now-in
+	    return function () {
+	      return +new Date;
+	    }
+	  }
+	})();
+
+	var TapEventPlugin = {
+
+	  tapMoveThreshold: tapMoveThreshold,
+
+	  ignoreMouseThreshold: ignoreMouseThreshold,
+
+	  eventTypes: eventTypes,
+
+	  /**
+	   * @param {string} topLevelType Record from `EventConstants`.
+	   * @param {DOMEventTarget} topLevelTarget The listening component root node.
+	   * @param {string} topLevelTargetID ID of `topLevelTarget`.
+	   * @param {object} nativeEvent Native browser event.
+	   * @return {*} An accumulation of synthetic events.
+	   * @see {EventPluginHub.extractEvents}
+	   */
+	  extractEvents: function(
+	      topLevelType,
+	      topLevelTarget,
+	      topLevelTargetID,
+	      nativeEvent,
+	      nativeEventTarget) {
+
+	    if (isTouch(topLevelType)) {
+	      lastTouchEvent = now();
+	    } else {
+	      if (lastTouchEvent && (now() - lastTouchEvent) < ignoreMouseThreshold) {
+	        return null;
+	      }
+	    }
+
+	    if (!isStartish(topLevelType) && !isEndish(topLevelType)) {
+	      return null;
+	    }
+	    var event = null;
+	    var distance = getDistance(startCoords, nativeEvent);
+	    if (isEndish(topLevelType) && distance < tapMoveThreshold) {
+	      event = SyntheticUIEvent.getPooled(
+	        eventTypes.touchTap,
+	        topLevelTargetID,
+	        nativeEvent,
+	        nativeEventTarget
+	      );
+	    }
+	    if (isStartish(topLevelType)) {
+	      startCoords.x = getAxisCoordOfEvent(Axis.x, nativeEvent);
+	      startCoords.y = getAxisCoordOfEvent(Axis.y, nativeEvent);
+	    } else if (isEndish(topLevelType)) {
+	      startCoords.x = 0;
+	      startCoords.y = 0;
+	    }
+	    EventPropagators.accumulateTwoPhaseDispatches(event);
+	    return event;
+	  }
+
+	};
+
+	module.exports = TapEventPlugin;
+
+
+/***/ },
+
+/***/ 161:
+/***/ function(module, exports) {
+
+	/**
+	 * Copyright 2013-2014 Facebook, Inc.
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 * http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 *
+	 * @providesModule TouchEventUtils
+	 */
+
+	var TouchEventUtils = {
+	  /**
+	   * Utility function for common case of extracting out the primary touch from a
+	   * touch event.
+	   * - `touchEnd` events usually do not have the `touches` property.
+	   *   http://stackoverflow.com/questions/3666929/
+	   *   mobile-sarai-touchend-event-not-firing-when-last-touch-is-removed
+	   *
+	   * @param {Event} nativeEvent Native event that may or may not be a touch.
+	   * @return {TouchesObject?} an object with pageX and pageY or null.
+	   */
+	  extractSingleTouch: function(nativeEvent) {
+	    var touches = nativeEvent.touches;
+	    var changedTouches = nativeEvent.changedTouches;
+	    var hasTouches = touches && touches.length > 0;
+	    var hasChangedTouches = changedTouches && changedTouches.length > 0;
+
+	    return !hasTouches && hasChangedTouches ? changedTouches[0] :
+	           hasTouches ? touches[0] :
+	           nativeEvent;
+	  }
+	};
+
+	module.exports = TouchEventUtils;
+
+
+/***/ },
+
+/***/ 162:
+/***/ function(module, exports) {
+
+	/**
+	 * Copyright 2013-2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule keyOf
+	 */
+
+	/**
+	 * Allows extraction of a minified key. Let's the build system minify keys
+	 * without losing the ability to dynamically use key strings as values
+	 * themselves. Pass in an object with a single key/val pair and it will return
+	 * you the string key of that single record. Suppose you want to grab the
+	 * value for a key 'className' inside of an object. Key/val minification may
+	 * have aliased that key to be 'xa12'. keyOf({className: null}) will return
+	 * 'xa12' in that case. Resolve keys you want to use once at startup time, then
+	 * reuse those resolutions.
+	 */
+	"use strict";
+
+	var keyOf = function (oneKeyObj) {
+	  var key;
+	  for (key in oneKeyObj) {
+	    if (!oneKeyObj.hasOwnProperty(key)) {
+	      continue;
+	    }
+	    return key;
+	  }
+	  return null;
+	};
+
+	module.exports = keyOf;
 
 /***/ },
 
@@ -589,6 +896,225 @@ webpackJsonp([2],{
 
 	// module
 	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    弹性布局\n*/\n#activity {\n  padding: 0 .2rem;\n  background-color: #FFFFFF;\n  overflow: hidden;\n  font-size: .28rem; }\n  #activity #activity-group {\n    overflow: hidden; }\n    #activity #activity-group #activity-1 {\n      width: 1.3rem;\n      height: 1.3rem;\n      line-height: 1.75;\n      text-align: center;\n      padding-top: .2rem;\n      float: left; }\n      #activity #activity-group #activity-1 #activity-1-name {\n        vertical-align: middle;\n        color: #999999; }\n      #activity #activity-group #activity-1 #activity-1-num {\n        vertical-align: middle;\n        color: #9ed7ff; }\n    #activity #activity-group #activity-2 {\n      float: left;\n      width: calc(100% - 1.3rem);\n      padding-top: .7rem; }\n      #activity #activity-group #activity-2 .activity-2-label span {\n        display: inline-block;\n        font-size: .25rem;\n        color: #2fa4f6;\n        background-color: #f6f6f8;\n        border-radius: .5rem;\n        padding: .1rem .2rem;\n        margin-bottom: .3rem; }\n      #activity #activity-group #activity-2 .activity-more {\n        text-align: right;\n        padding-right: .1rem; }\n        #activity #activity-group #activity-2 .activity-more img {\n          height: .4rem;\n          transform: rotate(90DEG); }\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 191:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactTapEventPlugin = __webpack_require__(159);
+
+	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
+
+	var _url = __webpack_require__(192);
+
+	var _url2 = _interopRequireDefault(_url);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	/*
+	    AT:
+	        ABEL
+
+	    EQ:
+	        在URL中nav参数作为标识
+
+	    DT:
+	        2016-1-20
+
+	*/
+
+	__webpack_require__(193);
+
+	(0, _reactTapEventPlugin2.default)();
+
+	var nav = (function (_React$Component) {
+	    _inherits(nav, _React$Component);
+
+	    function nav(props) {
+	        _classCallCheck(this, nav);
+
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(nav).call(this, props));
+
+	        _this.state = {
+	            nav: [{
+	                name: '热门推荐',
+	                active: 'active',
+	                img: 'heart'
+	            }, {
+	                name: '热门群组',
+	                active: '',
+	                img: 'hot'
+	            }, {
+	                name: '话题',
+	                active: '',
+	                img: 'talk'
+	            }, {
+	                name: '活动',
+	                active: '',
+	                img: 'activity'
+	            }, {
+	                name: '我的主页',
+	                active: '',
+	                img: 'me'
+	            }, {
+	                name: '关于我们',
+	                active: '',
+	                img: 'about'
+	            }]
+	        };
+	        return _this;
+	    }
+
+	    _createClass(nav, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var flag = true; // 是否带有相关参数
+	            var navList = this.state.nav;
+	            var tag = _url2.default.getParams('nav');
+	            for (var i = 0, l = navList.length; i < l; i++) {
+	                if (navList[i].img === tag) {
+	                    flag = false;
+	                    navList[i].active = 'active';
+	                    navList[i].img += '_active';
+	                } else {
+	                    navList[i].active = '';
+	                }
+	            }
+	            if (flag) {
+	                navList[0].active = 'active';
+	                navList[0].img += '_active';
+	            }
+	        }
+	    }, {
+	        key: 'tapHide',
+	        value: function tapHide(e) {
+	            document.querySelector('#nav').classList.remove('active');
+	            document.querySelector('.base-body').classList.remove('active');
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this2 = this;
+
+	            var navList = this.state.nav.map(function (v) {
+	                return _react2.default.createElement(
+	                    'a',
+	                    { className: 'nav-unit ' + v.active, key: v.img, href: '?nav=' + v.img },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-img' },
+	                        _react2.default.createElement('img', { src: '../img/icon_nav/' + v.img + '.png' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'nav-name' },
+	                        v.name
+	                    )
+	                );
+	            });
+
+	            return _react2.default.createElement(
+	                'div',
+	                { id: 'nav', className: 'nav' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { id: 'nav-group' },
+	                    navList
+	                ),
+	                _react2.default.createElement('div', { id: 'nav-hide', onTouchTap: function onTouchTap(e) {
+	                        _this2.tapHide(e);
+	                    } })
+	            );
+	        }
+	    }]);
+
+	    return nav;
+	})(_react2.default.Component);
+
+	exports.default = nav;
+
+/***/ },
+
+/***/ 192:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var url = function url() {};
+	url.getParams = function (key) {
+		var search = location.search;
+		if (search.indexOf('?') != -1) {
+			var str = search.substr(1).split('&');
+			for (var i = 0, l = str.length; i < l; i++) {
+				if (str[i].indexOf(key) !== -1) {
+					return str[i].split('=')[1];
+				}
+			}
+		}
+	};
+
+	module.exports = url;
+
+/***/ },
+
+/***/ 193:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(194);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(172)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./nav.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 194:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(171)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#nav {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 99;\n  font-size: .35rem; }\n  #nav #nav-group {\n    float: left;\n    width: 4rem;\n    height: 100%;\n    background-color: #1c2229;\n    padding: 2rem 0; }\n    #nav #nav-group .nav-unit {\n      display: block;\n      padding: 0 .5rem;\n      line-height: 1.2rem;\n      margin-bottom: .2rem;\n      color: #ffffff; }\n      #nav #nav-group .nav-unit .nav-img {\n        display: inline-block;\n        position: relative;\n        top: .08rem;\n        width: .5rem; }\n        #nav #nav-group .nav-unit .nav-img img {\n          width: 100%;\n          height: 100%; }\n      #nav #nav-group .nav-unit .nav-name {\n        display: inline-block;\n        margin-left: .2rem; }\n      #nav #nav-group .nav-unit.active {\n        background-color: rgba(216, 239, 255, 0.12);\n        color: #3cafff; }\n  #nav #nav-hide {\n    float: left;\n    width: 3.5rem;\n    height: 100%;\n    display: inline-block; }\n\n.nav {\n  transition: transform .5s;\n  transform: translate3D(-100%, 0, 0); }\n  .nav.active {\n    transition: transform .5s;\n    transform: translate3D(0, 0, 0); }\n", ""]);
 
 	// exports
 

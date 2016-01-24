@@ -57,28 +57,23 @@ export default class nav extends React.Component {
         }
     }
 
-    
-
     componentWillMount() {
         var flag = true;// 是否带有相关参数
         const navList = this.state.nav;
         const tag = Url.getParams('nav');
-        for(let o of navList) {
-            if(o.img === tag) {
+        for(let i = 0, l = navList.length; i < l; i++) {
+            if(navList[i].img === tag) {
                 flag = false;
-                o.active = 'active';
-                o.img += '_active';
+                navList[i].active = 'active';
+                navList[i].img += '_active';
             } else {
-                o.active = '';
+                navList[i].active = '';
             }
         }
         if(flag) {
             navList[0].active = 'active';
             navList[0].img += '_active';
         }
-    }
-
-    componentDidMount() {
     }
 
     tapHide(e) {
