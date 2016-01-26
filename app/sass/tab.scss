@@ -7,13 +7,13 @@
         width: 15%;
         height: 1rem;
         float: left;
-        border-bottom: .05rem solid #aeaeae;
+        border-bottom: .05rem solid #eaeaea;
     }
     #tab-right {
         float: right;
         width: 15%;
         height: 1rem;
-        border-bottom: .05rem solid #aeaeae;
+        border-bottom: .05rem solid #eaeaea;
     }
     #tab-center {
         width: 70%;
@@ -24,7 +24,7 @@
             flex: 1;
             color: #999999;
             height: 1rem;
-            border-bottom: .05rem solid #aeaeae;
+            border-bottom: .05rem solid #eaeaea;
             &.active {
                 color: #474747;
                 border-bottom: .05rem solid #2fa4f6;
