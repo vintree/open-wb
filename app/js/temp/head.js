@@ -22,7 +22,8 @@ var headData = {
   // extend: ''
 }
 */
-var Head = function() {};
+var Head = function() {}
+
 Head.init  = function(data) {
     var head = '', i, l, extend;
     extend = data.extend;
@@ -49,4 +50,5 @@ Head.init  = function(data) {
     document.head.innerHTML = document.head.innerHTML + head;
     document.title = data.tit;
 }
+
 module.exports = Head;

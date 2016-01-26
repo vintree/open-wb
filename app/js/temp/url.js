@@ -1,4 +1,5 @@
-const url = function() {};
+const url = function() {}
+
 url.getParams = function(key) {
 	const search = location.search;
 	if(search.indexOf('?') != -1) {

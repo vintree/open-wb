@@ -15,19 +15,23 @@ webpackJsonp([1],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _jquery = __webpack_require__(163);
+	var _jquery = __webpack_require__(173);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _autoFont = __webpack_require__(164);
+	var _reactTapEventPlugin = __webpack_require__(159);
+
+	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
+
+	var _autoFont = __webpack_require__(163);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
-	var _addScript = __webpack_require__(166);
+	var _addScript = __webpack_require__(165);
 
 	var _addScript2 = _interopRequireDefault(_addScript);
 
-	var _head = __webpack_require__(167);
+	var _head = __webpack_require__(166);
 
 	var _head2 = _interopRequireDefault(_head);
 
@@ -49,6 +53,7 @@ webpackJsonp([1],{
 
 	__webpack_require__(210);
 
+	(0, _reactTapEventPlugin2.default)();
 	_autoFont2.default.init();
 
 	var HotGroup = (function (_React$Component) {
@@ -57,19 +62,74 @@ webpackJsonp([1],{
 	    function HotGroup() {
 	        _classCallCheck(this, HotGroup);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(HotGroup).call(this));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(HotGroup).call(this));
+
+	        _this.state = {
+	            tab: [{
+	                name: '最新',
+	                tag: 'new',
+	                active: 'active'
+	            }, {
+	                name: '最火',
+	                tag: 'hot',
+	                active: ''
+	            }, {
+	                name: '投资',
+	                tag: 'new',
+	                active: ''
+	            }, {
+	                name: '媒体人',
+	                tag: 'new',
+	                active: ''
+	            }, {
+	                name: '职业',
+	                tag: 'hot',
+	                active: ''
+	            }, {
+	                name: '空间',
+	                tag: 'new',
+	                active: ''
+	            }, {
+	                name: '运动',
+	                tag: 'new',
+	                active: ''
+	            }, {
+	                name: '美容',
+	                tag: 'hot',
+	                active: ''
+	            }]
+	        };
+	        return _this;
 	    }
 
 	    _createClass(HotGroup, [{
+	        key: 'toggleTab',
+	        value: function toggleTab(e) {
+	            var ix = +e.target.getAttribute('data-ix');
+	            var tab = this.state.tab;
+	            for (var i = 0, l = tab.length; i < l; i++) {
+	                if (i === ix) {
+	                    tab[i].active = 'active';
+	                } else {
+	                    tab[i].active = '';
+	                }
+	            }
+	            this.setState({ tab: tab });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this2 = this;
+
 	            return _react2.default.createElement(
 	                'div',
 	                null,
 	                _react2.default.createElement(
 	                    'section',
-	                    null,
-	                    _react2.default.createElement(_groupTab2.default, null)
+	                    { onTouchTap: function onTouchTap(e) {
+	                            _this2.toggleTab(e);
+	                        } },
+	                    _react2.default.createElement(_groupTab2.default, { tab: this.state.tab })
 	                ),
 	                _react2.default.createElement(
 	                    'section',
@@ -102,7 +162,7 @@ webpackJsonp([1],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(163);
+	var _jquery = __webpack_require__(173);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -122,12 +182,19 @@ webpackJsonp([1],{
 	    function GroupTab(props) {
 	        _classCallCheck(this, GroupTab);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(GroupTab).call(this));
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(GroupTab).call(this, props));
 	    }
 
 	    _createClass(GroupTab, [{
 	        key: 'render',
 	        value: function render() {
+	            var TabList = this.props.tab.map(function (v, ix) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { key: v.name, className: 'groupTab-unit ' + v.active, 'data-tag': v.tag, 'data-ix': ix },
+	                    v.name
+	                );
+	            });
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'groupTab' },
@@ -139,66 +206,7 @@ webpackJsonp([1],{
 	                    _react2.default.createElement(
 	                        'div',
 	                        { id: 'groupTab-overflow' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupTab-unit active' },
-	                            '最新'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupTab-unit' },
-	                            '最火'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupTab-unit' },
-	                            '投资'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupTab-unit' },
-	                            '媒体人'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupTab-unit' },
-	                            '职业'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupTab-unit' },
-	                            '空间'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupTab-unit' },
-	                            '运动'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupTab-unit' },
-	                            '美容'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupTab-unit' },
-	                            '职业'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupTab-unit' },
-	                            '空间'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupTab-unit' },
-	                            '职业'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupTab-unit' },
-	                            '空间'
-	                        )
+	                        TabList
 	                    )
 	                )
 	            );
@@ -221,7 +229,7 @@ webpackJsonp([1],{
 	var content = __webpack_require__(206);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(172)(content, {});
+	var update = __webpack_require__(171)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -242,7 +250,7 @@ webpackJsonp([1],{
 /***/ 206:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(171)();
+	exports = module.exports = __webpack_require__(170)();
 	// imports
 
 
@@ -269,7 +277,7 @@ webpackJsonp([1],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(163);
+	var _jquery = __webpack_require__(173);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -496,7 +504,7 @@ webpackJsonp([1],{
 	var content = __webpack_require__(209);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(172)(content, {});
+	var update = __webpack_require__(171)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -517,7 +525,7 @@ webpackJsonp([1],{
 /***/ 209:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(171)();
+	exports = module.exports = __webpack_require__(170)();
 	// imports
 
 
@@ -538,7 +546,7 @@ webpackJsonp([1],{
 	var content = __webpack_require__(211);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(172)(content, {});
+	var update = __webpack_require__(171)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -559,7 +567,7 @@ webpackJsonp([1],{
 /***/ 211:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(171)();
+	exports = module.exports = __webpack_require__(170)();
 	// imports
 
 
