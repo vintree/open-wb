@@ -79,6 +79,17 @@ webpackJsonp([2],{
 
 	_autoFont2.default.init();
 	(0, _reactTapEventPlugin2.default)();
+	_head2.default.init({
+	    tit: '不上班-用户个人页',
+	    shareName: '不上班-用户个人页',
+	    shareUrl: '',
+	    shareImg: '',
+	    shareDesc: '',
+	    keywords: '',
+	    desc: '',
+	    admins: '',
+	    favicon: ''
+	});
 
 	var User = (function (_React$Component) {
 	    _inherits(User, _React$Component);

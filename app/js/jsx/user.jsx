@@ -20,6 +20,18 @@ import Newest from "../common/newest.jsx";
 
 autoFont.init();
 InjectTapEventPlugin();
+Head.init({
+  tit: '不上班-用户个人页',
+  shareName: '不上班-用户个人页',
+  shareUrl: '',
+  shareImg: '',
+  shareDesc: '',
+  keywords: '',
+  desc: '',
+  admins: '',
+  favicon: ''
+});
+
 
 class User extends React.Component {
     constructor(props) {

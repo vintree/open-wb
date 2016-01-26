@@ -1,23 +1,23 @@
 /*
 var headData = {
   //页面title
-  tit: '首页-知乎',
+  tit: '',
   //分享出去的title
-  shareName: '首页-知乎',
+  shareName: '',
   //分享出去的url
-  shareUrl: 'http://fans.tv.sohu.com/h5/vstar/star_result.html',
+  shareUrl: '',
   //分享出去的图片
-  shareImg: 'http://tv.sohu.com/upload/clientapp/vstar/img/default_share_logo.jpg',
+  shareImg: '',
   //分享出去的描述
-  shareDesc: '搜狐V星团是为粉丝精心打造的追星互动平台！只要你来，就有机会零距离接触明星！快为你最爱的明星点赞吧！',
+  shareDesc: '',
   //SEO关键字
-  keywords: '搜狐V星团',
+  keywords: '',
   //SEO描述
-  desc: '搜狐V星团是为粉丝精心打造的追星互动平台！只要你来，就有机会零距离接触明星！快为你最爱的明星点赞吧！'
+  desc: '',
   //第二代微信配置
-  admins: '25250114746637056375',
+  admins: '',
   //页面ico
-  favicon: 'http://m.tv.sohu.com/favicon.ico',
+  favicon: '',
   //自己的扩展配置，支持List，String
   // extend: ''
 }
@@ -26,7 +26,6 @@ var Head = function() {};
 Head.init  = function(data) {
     var head = '', i, l, extend;
     extend = data.extend;
-    // head += '<meta charset="utf-8" />';
     head += '<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />';
     head += '<meta name="format-detection" content="telephone=no" />';
     head += '<meta name="og:url" property="og:url" content="'+data.shareUrl+'" />';
@@ -48,5 +47,6 @@ Head.init  = function(data) {
         }
     }
     document.head.innerHTML = document.head.innerHTML + head;
+    document.title = data.tit;
 }
 module.exports = Head;
