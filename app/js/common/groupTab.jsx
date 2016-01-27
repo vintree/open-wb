@@ -7,7 +7,7 @@ export default class GroupTab extends React.Component {
         super(props);
     }
     render() {
-        const TabList = this.props.tab.map(function(v, ix) {
+        const TabList = this.props.tab.map((v, ix) => {
             return (
                 <div key={v.name} className={'groupTab-unit ' + v.active} data-tag={v.tag} data-ix={ix}>{ v.name }</div>
             )
