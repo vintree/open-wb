@@ -13,6 +13,7 @@ class HeadImg extends React.Component {
 		return (
 			<div id="baseData-headImg">
 				<img src="../img/defaultHead@3x.png" />
+				<input type="file" />
 			</div>
 		)
 	}
