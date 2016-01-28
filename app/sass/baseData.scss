@@ -1,0 +1,60 @@
+@import "./base.scss";
+
+html, body {
+	background-color: #f3f4f5;
+}
+
+#baseData-content {
+	overflow: hidden;
+}
+#baseData-main {
+	text-align: center;
+	padding-top: 1rem;
+	padding-bottom: 2rem;
+	#baseData-head {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		color: #333333;
+		#baseData-head-tag {
+			font-size: 140%;
+		}
+	}
+	#baseData-headImg {
+		width: 10rem;
+		height: 10rem;
+		margin: auto;
+		padding: .5rem;
+		border: .2rem solid #ffffff;
+		border-radius: 100%;
+		margin-bottom: 1rem;
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+	#baseData-body {
+		padding-bottom: 1.5rem;
+		.baseData-unit {
+			margin-bottom: .5rem;
+			input {
+				text-align: center;
+				font-size: 1.2rem;
+				border: none;
+				background-color: transparent;
+				line-height: 2rem;
+				border-bottom: 1px solid #dfdfdf;
+				color: #999999;
+				&::-webkit-input-placeholder {
+					text-align: center;
+				}
+			}
+		}
+	}
+	#baseData-foot {
+		margin: auto;
+		width: 12rem;
+		img {
+			width: 100%;
+		}
+	}
+}
