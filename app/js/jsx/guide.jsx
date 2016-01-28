@@ -9,18 +9,66 @@ InjectTapEventPlugin();
 class Main extends React.Component {
 	constructor() {
 		super();
+		this.state = {
+			list: [
+				{
+					url: '../img/guide/大牛语录@3x',
+					active: ''
+				},
+				{
+					url: '../img/guide/公司八卦@3x',
+					active: ''
+				},
+				{
+					url: '../img/guide/职业技能@3x',
+					active: ''
+				},
+				{
+					url: '../img/guide/行业干活@3x',
+					active: ''
+				},
+				{
+					url: '../img/guide/创业@3x',
+					active: ''
+				},
+				{
+					url: '../img/guide/兴趣爱好@3x',
+					active: ''
+				},
+			]
+		}
 	}
+
+	isActive(e) {
+		const node = e.target;
+		const ix = node.getAttribute('data-ix');
+		const list = this.state.list;
+		if(e.target.tagName.toLowerCase() === 'img') {
+			if(list[ix].active === 'active') {
+				list[ix].active = '';
+				list[ix].url = list[ix].url.substr(0, list[ix].url.indexOf('active'));
+				console.log(list[ix]);
+			} else {
+				list[ix].active = 'active';
+				list[ix].url = list[ix].url + 'active';
+			}
+			this.setState({list: list});
+		}
+	}
+
 	render() {
+
+		const node = this.state.list.map(function(v, ix) {
+			return (
+				<div key={ix} className={'guide-unit guide-unit-' + (ix + 1)}><img className={v.active} src={v.url + '.png'} data-ix={ix} /></div>
+			)
+		})
+
 		return (
 			<div id="guide-main">
 				<div id="guide-head">不上班的时候您关注什么<span id="guide-head-tag">?</span></div>
-				<div id="guide-body">
-					<div className="guide-unit guide-unit-1"><img src="../img/guide/大牛语录@3x.png" /></div>
-					<div className="guide-unit guide-unit-2"><img src="../img/guide/公司八卦@3x.png" /></div>
-					<div className="guide-unit guide-unit-3"><img src="../img/guide/职业技能@3x.png" /></div>
-					<div className="guide-unit guide-unit-4"><img src="../img/guide/行业干活@3x.png" /></div>
-					<div className="guide-unit guide-unit-5"><img src="../img/guide/创业@3x.png" /></div>
-					<div className="guide-unit guide-unit-6"><img src="../img/guide/兴趣爱好@3x.png" /></div>
+				<div id="guide-body" onTouchTap={ e => {this.isActive(e)}}>
+					{node}
 				</div>
 				<div id="guide-foot">
 					<img src="../img/next@3x.png" />
@@ -43,4 +91,4 @@ class BaseData extends React.Component {
 	}
 }
 
-ReactDOM.render(<BaseData />, document.getElementById('guide-content'));
+ReactDOM.render(<BaseData />, document.querySelector('#guide-content'));

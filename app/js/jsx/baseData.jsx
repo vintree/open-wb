@@ -63,4 +63,9 @@ class BaseData extends React.Component {
 	}
 }
 
-ReactDOM.render(<BaseData />, document.getElementById('baseData-content'));
+ReactDOM.render(<BaseData />, document.querySelector('#baseData-content'));
+
+
+
+
+

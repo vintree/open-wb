@@ -37,12 +37,63 @@ webpackJsonp([2],{
 		function Main() {
 			_classCallCheck(this, Main);
 
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this));
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this));
+
+			_this.state = {
+				list: [{
+					url: '../img/guide/大牛语录@3x',
+					active: ''
+				}, {
+					url: '../img/guide/公司八卦@3x',
+					active: ''
+				}, {
+					url: '../img/guide/职业技能@3x',
+					active: ''
+				}, {
+					url: '../img/guide/行业干活@3x',
+					active: ''
+				}, {
+					url: '../img/guide/创业@3x',
+					active: ''
+				}, {
+					url: '../img/guide/兴趣爱好@3x',
+					active: ''
+				}]
+			};
+			return _this;
 		}
 
 		_createClass(Main, [{
+			key: 'isActive',
+			value: function isActive(e) {
+				var node = e.target;
+				var ix = node.getAttribute('data-ix');
+				var list = this.state.list;
+				if (e.target.tagName.toLowerCase() === 'img') {
+					if (list[ix].active === 'active') {
+						list[ix].active = '';
+						list[ix].url = list[ix].url.substr(0, list[ix].url.indexOf('active'));
+						console.log(list[ix]);
+					} else {
+						list[ix].active = 'active';
+						list[ix].url = list[ix].url + 'active';
+					}
+					this.setState({ list: list });
+				}
+			}
+		}, {
 			key: 'render',
 			value: function render() {
+				var _this2 = this;
+
+				var node = this.state.list.map(function (v, ix) {
+					return _react2.default.createElement(
+						'div',
+						{ key: ix, className: 'guide-unit guide-unit-' + (ix + 1) },
+						_react2.default.createElement('img', { className: v.active, src: v.url + '.png', 'data-ix': ix })
+					);
+				});
+
 				return _react2.default.createElement(
 					'div',
 					{ id: 'guide-main' },
@@ -58,37 +109,10 @@ webpackJsonp([2],{
 					),
 					_react2.default.createElement(
 						'div',
-						{ id: 'guide-body' },
-						_react2.default.createElement(
-							'div',
-							{ className: 'guide-unit guide-unit-1' },
-							_react2.default.createElement('img', { src: '../img/guide/大牛语录@3x.png' })
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'guide-unit guide-unit-2' },
-							_react2.default.createElement('img', { src: '../img/guide/公司八卦@3x.png' })
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'guide-unit guide-unit-3' },
-							_react2.default.createElement('img', { src: '../img/guide/职业技能@3x.png' })
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'guide-unit guide-unit-4' },
-							_react2.default.createElement('img', { src: '../img/guide/行业干活@3x.png' })
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'guide-unit guide-unit-5' },
-							_react2.default.createElement('img', { src: '../img/guide/创业@3x.png' })
-						),
-						_react2.default.createElement(
-							'div',
-							{ className: 'guide-unit guide-unit-6' },
-							_react2.default.createElement('img', { src: '../img/guide/兴趣爱好@3x.png' })
-						)
+						{ id: 'guide-body', onTouchTap: function onTouchTap(e) {
+								_this2.isActive(e);
+							} },
+						node
 					),
 					_react2.default.createElement(
 						'div',
@@ -125,7 +149,7 @@ webpackJsonp([2],{
 		return BaseData;
 	})(_react2.default.Component);
 
-	_reactDom2.default.render(_react2.default.createElement(BaseData, null), document.getElementById('guide-content'));
+	_reactDom2.default.render(_react2.default.createElement(BaseData, null), document.querySelector('#guide-content'));
 
 /***/ },
 
@@ -164,7 +188,7 @@ webpackJsonp([2],{
 
 
 	// module
-	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\nhtml, body {\n  background-color: #f3f4f5; }\n\n#guide-content {\n  overflow: hidden; }\n\n#guide-main {\n  text-align: center;\n  padding-top: 1rem;\n  padding-bottom: 2rem; }\n  #guide-main #guide-head {\n    font-size: 1.5rem;\n    margin-bottom: 1rem;\n    color: #333333; }\n    #guide-main #guide-head #guide-head-tag {\n      font-size: 140%; }\n  #guide-main #guide-body {\n    position: relative;\n    height: 30rem; }\n    #guide-main #guide-body .guide-unit {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 7rem;\n      height: 7rem; }\n      #guide-main #guide-body .guide-unit img {\n        width: 100%;\n        height: 100%; }\n    #guide-main #guide-body .guide-unit-1 {\n      transform: translate3D(8rem, 0, 0); }\n    #guide-main #guide-body .guide-unit-2 {\n      transform: translate3D(1rem, 7rem, 0); }\n    #guide-main #guide-body .guide-unit-3 {\n      transform: translate3D(8.5rem, 9rem, 0); }\n    #guide-main #guide-body .guide-unit-4 {\n      transform: translate3D(15rem, 5rem, 0); }\n    #guide-main #guide-body .guide-unit-5 {\n      transform: translate3D(4rem, 16rem, 0); }\n    #guide-main #guide-body .guide-unit-6 {\n      width: 6rem;\n      height: 6rem;\n      transform: translate3D(14rem, 15rem, 0); }\n  #guide-main #guide-foot {\n    margin: auto;\n    width: 12rem; }\n    #guide-main #guide-foot img {\n      width: 100%; }\n", ""]);
+	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\nhtml, body {\n  background-color: #f3f4f5; }\n\n#guide-content {\n  overflow: hidden; }\n\n#guide-main {\n  text-align: center;\n  padding-top: 1rem;\n  padding-bottom: 2rem; }\n  #guide-main #guide-head {\n    font-size: 1.5rem;\n    margin-bottom: 1rem;\n    color: #333333; }\n    #guide-main #guide-head #guide-head-tag {\n      font-size: 140%; }\n  #guide-main #guide-body {\n    position: relative;\n    height: 26rem; }\n    #guide-main #guide-body .guide-unit {\n      width: 7rem;\n      height: 7rem;\n      border-radius: 100%;\n      overflow: hidden; }\n      #guide-main #guide-body .guide-unit img {\n        width: 100%;\n        height: 100%; }\n    #guide-main #guide-body .guide-unit-1 {\n      margin: auto;\n      width: 7rem;\n      height: 7rem; }\n    #guide-main #guide-body .guide-unit-2 {\n      position: absolute;\n      top: 23%;\n      left: 5%;\n      width: 7rem;\n      height: 7rem; }\n    #guide-main #guide-body .guide-unit-3 {\n      position: absolute;\n      top: 35%;\n      left: 35%;\n      width: 7rem;\n      height: 7rem; }\n    #guide-main #guide-body .guide-unit-4 {\n      position: absolute;\n      top: 18%;\n      right: 5%;\n      width: 7.5rem;\n      height: 7.5rem; }\n    #guide-main #guide-body .guide-unit-5 {\n      position: absolute;\n      top: 60%;\n      left: 15%;\n      width: 7rem;\n      height: 7rem; }\n    #guide-main #guide-body .guide-unit-6 {\n      position: absolute;\n      top: 60%;\n      right: 20%;\n      width: 6rem;\n      height: 6rem; }\n  #guide-main #guide-foot {\n    margin: auto;\n    width: 12rem; }\n    #guide-main #guide-foot img {\n      width: 100%; }\n", ""]);
 
 	// exports
 

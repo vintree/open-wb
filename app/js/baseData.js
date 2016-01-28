@@ -140,7 +140,7 @@ webpackJsonp([0],{
 		return BaseData;
 	})(_react2.default.Component);
 
-	_reactDom2.default.render(_react2.default.createElement(BaseData, null), document.getElementById('baseData-content'));
+	_reactDom2.default.render(_react2.default.createElement(BaseData, null), document.querySelector('#baseData-content'));
 
 /***/ },
 
