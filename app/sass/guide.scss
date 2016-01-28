@@ -1,0 +1,64 @@
+@import "./base.scss";
+
+html, body {
+	background-color: #f3f4f5;
+}
+
+#guide-content {
+	overflow: hidden;
+}
+#guide-main {
+	text-align: center;
+	padding-top: 1rem;
+	padding-bottom: 2rem;
+	#guide-head {
+		font-size: 1.5rem;
+		margin-bottom: 1rem;
+		color: #333333;
+		#guide-head-tag {
+			font-size: 140%;
+		}
+	}
+	#guide-body {
+		position: relative;
+		height: 30rem;
+		.guide-unit {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 7rem;
+			height: 7rem;
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+		.guide-unit-1 {
+			transform: translate3D(8rem, 0, 0);
+		}
+		.guide-unit-2 {
+			transform: translate3D(1rem, 7rem, 0);
+		}
+		.guide-unit-3 {
+			transform: translate3D(8.5rem, 9rem, 0);
+		}
+		.guide-unit-4 {
+			transform: translate3D(15rem, 5rem, 0);
+		}
+		.guide-unit-5 {
+			transform: translate3D(4rem, 16rem, 0);
+		}
+		.guide-unit-6 {
+			width: 6rem;
+			height: 6rem;
+			transform: translate3D(14rem, 15rem, 0);
+		}
+	}
+	#guide-foot {
+		margin: auto;
+		width: 12rem;
+		img {
+			width: 100%;
+		}
+	}
+}

@@ -18,6 +18,8 @@ module.exports = {
         fansGroup: './app/js/jsx/fansGroup.jsx',
         user: './app/js/jsx/user.jsx',
         hotGroup: './app/js/jsx/hotGroup.jsx',
+        baseData: './app/js/jsx/baseData.jsx',
+        guide: './app/js/jsx/guide.jsx'
     },
     output: {
         publicPath: "http://127.0.0.1:9090/static/dist/",
