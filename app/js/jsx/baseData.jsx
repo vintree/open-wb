@@ -43,7 +43,7 @@ class Main extends React.Component {
 					</div>
 				</div>
 				<div id="baseData-foot">
-					<img src="../img/baseData-next@3x.png" />
+					<img src="../img/next@3x.png" />
 				</div>
 			</div>
 		)

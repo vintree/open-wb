@@ -1,4 +1,4 @@
-webpackJsonp([3],{
+webpackJsonp([4],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -15,7 +15,7 @@ webpackJsonp([3],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _jquery = __webpack_require__(173);
+	var _jquery = __webpack_require__(175);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -23,47 +23,47 @@ webpackJsonp([3],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _autoFont = __webpack_require__(163);
+	var _autoFont = __webpack_require__(167);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
-	var _addScript = __webpack_require__(165);
+	var _addScript = __webpack_require__(169);
 
 	var _addScript2 = _interopRequireDefault(_addScript);
 
-	var _head = __webpack_require__(166);
+	var _head = __webpack_require__(170);
 
 	var _head2 = _interopRequireDefault(_head);
 
-	var _nav = __webpack_require__(191);
+	var _nav = __webpack_require__(193);
 
 	var _nav2 = _interopRequireDefault(_nav);
 
-	var _userMsg = __webpack_require__(167);
+	var _userMsg = __webpack_require__(171);
 
 	var _userMsg2 = _interopRequireDefault(_userMsg);
 
-	var _tab = __webpack_require__(172);
+	var _tab = __webpack_require__(174);
 
 	var _tab2 = _interopRequireDefault(_tab);
 
-	var _follow = __webpack_require__(212);
+	var _follow = __webpack_require__(216);
 
 	var _follow2 = _interopRequireDefault(_follow);
 
-	var _group = __webpack_require__(215);
+	var _group = __webpack_require__(219);
 
 	var _group2 = _interopRequireDefault(_group);
 
-	var _activity = __webpack_require__(185);
+	var _activity = __webpack_require__(187);
 
 	var _activity2 = _interopRequireDefault(_activity);
 
-	var _msg = __webpack_require__(218);
+	var _msg = __webpack_require__(222);
 
 	var _msg2 = _interopRequireDefault(_msg);
 
-	var _newest = __webpack_require__(195);
+	var _newest = __webpack_require__(197);
 
 	var _newest2 = _interopRequireDefault(_newest);
 
@@ -75,7 +75,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(221);
+	__webpack_require__(225);
 
 	_autoFont2.default.init();
 	(0, _reactTapEventPlugin2.default)();
@@ -208,7 +208,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 163:
+/***/ 167:
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -218,7 +218,7 @@ webpackJsonp([3],{
 	 autoFont.init(); //自动执行
 	 */
 
-	var userAgent = __webpack_require__(164);
+	var userAgent = __webpack_require__(168);
 	var autoFont = function autoFont() {};
 
 	autoFont.init = function () {
@@ -299,7 +299,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 164:
+/***/ 168:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -321,7 +321,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 165:
+/***/ 169:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -353,7 +353,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 166:
+/***/ 170:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -420,7 +420,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 167:
+/***/ 171:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -443,7 +443,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(168);
+	__webpack_require__(172);
 
 	//import $ from 'jquery';
 
@@ -537,16 +537,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 168:
+/***/ 172:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(169);
+	var content = __webpack_require__(173);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(166)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -564,10 +564,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 169:
+/***/ 173:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(165)();
 	// imports
 
 
@@ -579,7 +579,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 172:
+/***/ 174:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -594,7 +594,7 @@ webpackJsonp([3],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(173);
+	var _jquery = __webpack_require__(175);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -606,7 +606,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(174);
+	__webpack_require__(176);
 
 	var Tab = (function (_React$Component) {
 	    _inherits(Tab, _React$Component);
@@ -652,7 +652,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 173:
+/***/ 175:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -9869,16 +9869,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 174:
+/***/ 176:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(175);
+	var content = __webpack_require__(177);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(166)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -9896,10 +9896,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 175:
+/***/ 177:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(165)();
 	// imports
 
 
@@ -9911,7 +9911,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 185:
+/***/ 187:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9934,7 +9934,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(186);
+	__webpack_require__(188);
 
 	//import $ from 'jquery';
 
@@ -10022,16 +10022,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 186:
+/***/ 188:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(187);
+	var content = __webpack_require__(189);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(166)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -10049,10 +10049,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 187:
+/***/ 189:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(165)();
 	// imports
 
 
@@ -10064,7 +10064,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 191:
+/***/ 193:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10083,7 +10083,7 @@ webpackJsonp([3],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _url = __webpack_require__(192);
+	var _url = __webpack_require__(194);
 
 	var _url2 = _interopRequireDefault(_url);
 
@@ -10107,7 +10107,7 @@ webpackJsonp([3],{
 
 	*/
 
-	__webpack_require__(193);
+	__webpack_require__(195);
 
 	(0, _reactTapEventPlugin2.default)();
 
@@ -10219,7 +10219,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 192:
+/***/ 194:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -10242,16 +10242,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 193:
+/***/ 195:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(194);
+	var content = __webpack_require__(196);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(166)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -10269,10 +10269,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 194:
+/***/ 196:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(165)();
 	// imports
 
 
@@ -10284,7 +10284,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 195:
+/***/ 197:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10307,7 +10307,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(196);
+	__webpack_require__(198);
 
 	//import $ from 'jquery';
 
@@ -10582,16 +10582,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 196:
+/***/ 198:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(197);
+	var content = __webpack_require__(199);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(166)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -10609,10 +10609,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 197:
+/***/ 199:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(165)();
 	// imports
 
 
@@ -10624,7 +10624,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 212:
+/***/ 216:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10639,7 +10639,7 @@ webpackJsonp([3],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(173);
+	var _jquery = __webpack_require__(175);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -10651,7 +10651,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(213);
+	__webpack_require__(217);
 
 	var Follow = (function (_React$Component) {
 	    _inherits(Follow, _React$Component);
@@ -10750,16 +10750,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 213:
+/***/ 217:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(214);
+	var content = __webpack_require__(218);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(166)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -10777,10 +10777,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 214:
+/***/ 218:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(165)();
 	// imports
 
 
@@ -10792,7 +10792,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 215:
+/***/ 219:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10807,7 +10807,7 @@ webpackJsonp([3],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(173);
+	var _jquery = __webpack_require__(175);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -10819,7 +10819,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(216);
+	__webpack_require__(220);
 
 	var Group = (function (_React$Component) {
 	    _inherits(Group, _React$Component);
@@ -10948,16 +10948,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 216:
+/***/ 220:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(217);
+	var content = __webpack_require__(221);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(166)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -10975,10 +10975,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 217:
+/***/ 221:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(165)();
 	// imports
 
 
@@ -10990,7 +10990,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 218:
+/***/ 222:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11005,7 +11005,7 @@ webpackJsonp([3],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(173);
+	var _jquery = __webpack_require__(175);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -11017,7 +11017,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(219);
+	__webpack_require__(223);
 
 	var Msg = (function (_React$Component) {
 	    _inherits(Msg, _React$Component);
@@ -11110,16 +11110,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 219:
+/***/ 223:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(220);
+	var content = __webpack_require__(224);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(166)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -11137,10 +11137,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 220:
+/***/ 224:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(165)();
 	// imports
 
 
@@ -11152,16 +11152,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 221:
+/***/ 225:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(222);
+	var content = __webpack_require__(226);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(166)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -11179,10 +11179,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 222:
+/***/ 226:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(165)();
 	// imports
 
 
