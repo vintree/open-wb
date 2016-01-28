@@ -42,22 +42,31 @@ html, body {
 			height: 100%;
 			visibility: hidden;
 		}
+
 	}
 	#baseData-body {
 		padding-bottom: 1.5rem;
 		.baseData-unit {
-			margin-bottom: .5rem;
+			width: 60%;
+			margin: auto;
+			border-bottom: 1px solid #dfdfdf;
+			padding-bottom: .5rem;
 			input {
+				width: 100%;
 				text-align: center;
 				font-size: 1.2rem;
 				border: none;
 				background-color: transparent;
 				line-height: 2rem;
-				border-bottom: 1px solid #dfdfdf;
 				color: #999999;
 				&::-webkit-input-placeholder {
 					text-align: center;
 				}
+			}
+			select {
+				width: 100%;
+				height: 1000px;
+				padding: 400px 0;
 			}
 		}
 	}

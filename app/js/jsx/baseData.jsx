@@ -8,6 +8,26 @@ InjectTapEventPlugin();
 class HeadImg extends React.Component {
 	constructor() {
 		super();
+		this.state = {
+			list: [
+				{
+					name: '怎么称呼您？',
+					scope: [6, 10]
+				},
+				{
+					name: '您的性别？',
+					scope: [6, 10]
+				},
+				{
+					name: '您的职业？',
+					scope: [6, 10]
+				},
+				{
+					name: '您的地址？',
+					scope: [6, 10]
+				},
+			]
+		}
 	}
 	render() {
 		return (
@@ -33,10 +53,10 @@ class Main extends React.Component {
 						<input type="text" placeholder="怎么称呼您？"></input>
 					</div>
 					<div className="baseData-unit">
-						<input type="text" placeholder="您的性别？"></input>
-					</div>
-					<div className="baseData-unit">
-						<input type="text" placeholder="您的职业？"></input>
+						<select placeholder="您的性别？">
+							<option>男</option>
+							<option>女</option>
+						</select>
 					</div>
 					<div className="baseData-unit">
 						<input type="text" placeholder="您的地址？"></input>

@@ -35,8 +35,30 @@ class Main extends React.Component {
 					url: '../img/guide/兴趣爱好@3x',
 					active: ''
 				},
-			]
+			],
+			next: {
+				url: '../img/next@3x',
+				active: ''
+			}
 		}
+	}
+	
+	isNext(list) {
+		const next = this.state.next;
+		const nextTag = list.some(function(v, ix) {
+			return v.active === 'active';
+		});
+
+		if(nextTag) {
+			if(!next.url.includes('active')) {
+				next.url = next.url + 'active';
+			}
+		} else {
+			next.url = next.url.substr(0, next.url.indexOf('active'));
+		}
+		this.setState({
+			next: next
+		});
 	}
 
 	isActive(e) {
@@ -47,23 +69,22 @@ class Main extends React.Component {
 			if(list[ix].active === 'active') {
 				list[ix].active = '';
 				list[ix].url = list[ix].url.substr(0, list[ix].url.indexOf('active'));
-				console.log(list[ix]);
 			} else {
 				list[ix].active = 'active';
 				list[ix].url = list[ix].url + 'active';
 			}
 			this.setState({list: list});
+			this.isNext(list);
 		}
+		
 	}
 
 	render() {
-
 		const node = this.state.list.map(function(v, ix) {
 			return (
 				<div key={ix} className={'guide-unit guide-unit-' + (ix + 1)}><img className={v.active} src={v.url + '.png'} data-ix={ix} /></div>
 			)
 		})
-
 		return (
 			<div id="guide-main">
 				<div id="guide-head">不上班的时候您关注什么<span id="guide-head-tag">?</span></div>
@@ -71,7 +92,7 @@ class Main extends React.Component {
 					{node}
 				</div>
 				<div id="guide-foot">
-					<img src="../img/next@3x.png" />
+					<img src={this.state.next.url + '.png'} />
 				</div>
 			</div>
 		)

@@ -58,12 +58,35 @@ webpackJsonp([2],{
 				}, {
 					url: '../img/guide/兴趣爱好@3x',
 					active: ''
-				}]
+				}],
+				next: {
+					url: '../img/next@3x',
+					active: ''
+				}
 			};
 			return _this;
 		}
 
 		_createClass(Main, [{
+			key: 'isNext',
+			value: function isNext(list) {
+				var next = this.state.next;
+				var nextTag = list.some(function (v, ix) {
+					return v.active === 'active';
+				});
+
+				if (nextTag) {
+					if (!next.url.includes('active')) {
+						next.url = next.url + 'active';
+					}
+				} else {
+					next.url = next.url.substr(0, next.url.indexOf('active'));
+				}
+				this.setState({
+					next: next
+				});
+			}
+		}, {
 			key: 'isActive',
 			value: function isActive(e) {
 				var node = e.target;
@@ -73,12 +96,12 @@ webpackJsonp([2],{
 					if (list[ix].active === 'active') {
 						list[ix].active = '';
 						list[ix].url = list[ix].url.substr(0, list[ix].url.indexOf('active'));
-						console.log(list[ix]);
 					} else {
 						list[ix].active = 'active';
 						list[ix].url = list[ix].url + 'active';
 					}
 					this.setState({ list: list });
+					this.isNext(list);
 				}
 			}
 		}, {
@@ -93,7 +116,6 @@ webpackJsonp([2],{
 						_react2.default.createElement('img', { className: v.active, src: v.url + '.png', 'data-ix': ix })
 					);
 				});
-
 				return _react2.default.createElement(
 					'div',
 					{ id: 'guide-main' },
@@ -117,7 +139,7 @@ webpackJsonp([2],{
 					_react2.default.createElement(
 						'div',
 						{ id: 'guide-foot' },
-						_react2.default.createElement('img', { src: '../img/next@3x.png' })
+						_react2.default.createElement('img', { src: this.state.next.url + '.png' })
 					)
 				);
 			}
