@@ -9,31 +9,35 @@ class HeadImg extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			list: [
-				{
-					name: '怎么称呼您？',
-					scope: [6, 10]
-				},
-				{
-					name: '您的性别？',
-					scope: [6, 10]
-				},
-				{
-					name: '您的职业？',
-					scope: [6, 10]
-				},
-				{
-					name: '您的地址？',
-					scope: [6, 10]
-				},
-			]
+			img: {
+				url: '../img/defaultHead@3x.png'
+			}
 		}
 	}
+
+	imgChange(e) {
+		const fileNode = e.target;
+		const imgData = this.state.img;
+		if(fileNode.files) {
+			if(window.FileReader) {
+				const reader = new FileReader();
+				reader.onload = (e1) => {
+					console.log(e1);
+					imgData.url = e1.target.result;
+					this.setState({
+						img: imgData
+					});
+				}
+				reader.readAsDataURL(fileNode.files[0], 'GB2312');
+			}
+		}
+	}
+// accept="image/jpg,image/png,image/jpeg"
 	render() {
 		return (
 			<div id="baseData-headImg">
-				<img src="../img/defaultHead@3x.png" />
-				<input type="file" />
+				<img src={this.state.img.url} />
+				<input type="file" multiple="multiple"  onChange= { (e) => {this.imgChange(e)} } />
 			</div>
 		)
 	}
@@ -44,7 +48,7 @@ class Main extends React.Component {
 		super();
 		this.state = {
 			nick: {
-				name: 'rwerew',
+				name: '',
 				placeholder: '怎么称呼您？',
 				scope: [1, 18]
 			}
