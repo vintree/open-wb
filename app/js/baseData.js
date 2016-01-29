@@ -78,12 +78,38 @@ webpackJsonp([0],{
 		function Main() {
 			_classCallCheck(this, Main);
 
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this));
+			var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this));
+
+			_this2.state = {
+				nick: {
+					name: 'rwerew',
+					placeholder: '怎么称呼您？',
+					scope: [1, 9]
+				}
+			};
+			return _this2;
 		}
 
 		_createClass(Main, [{
+			key: 'sexChange',
+			value: function sexChange(e) {
+				var value = e.target.value;
+				document.querySelector('.baseData-sex').innerHTML = value;
+			}
+		}, {
+			key: 'nickChange',
+			value: function nickChange(e) {
+				var nick = this.state.nick;
+				nick.name = e.target.value;
+				this.setState({
+					nick: nick
+				});
+			}
+		}, {
 			key: 'render',
 			value: function render() {
+				var _this3 = this;
+
 				return _react2.default.createElement(
 					'div',
 					{ id: 'baseData-main' },
@@ -104,14 +130,23 @@ webpackJsonp([0],{
 						_react2.default.createElement(
 							'div',
 							{ className: 'baseData-unit' },
-							_react2.default.createElement('input', { type: 'text', placeholder: '怎么称呼您？' })
+							_react2.default.createElement('input', { type: 'text', placeholder: this.state.nick.placeholder, value: this.state.nick.name, onChange: function onChange(e) {
+									_this3.nickChange(e);
+								} })
 						),
 						_react2.default.createElement(
 							'div',
 							{ className: 'baseData-unit' },
 							_react2.default.createElement(
+								'div',
+								{ className: 'baseData-sex' },
+								'男'
+							),
+							_react2.default.createElement(
 								'select',
-								{ placeholder: '您的性别？' },
+								{ onChange: function onChange(e) {
+										_this3.sexChange(e);
+									} },
 								_react2.default.createElement(
 									'option',
 									null,
@@ -204,7 +239,7 @@ webpackJsonp([0],{
 
 
 	// module
-	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\nhtml, body {\n  background-color: #f3f4f5; }\n\n#baseData-content {\n  overflow: hidden; }\n\n#baseData-main {\n  text-align: center;\n  padding-top: 1rem;\n  padding-bottom: 2rem; }\n  #baseData-main #baseData-head {\n    font-size: 1.5rem;\n    margin-bottom: 1rem;\n    color: #333333; }\n    #baseData-main #baseData-head #baseData-head-tag {\n      font-size: 140%; }\n  #baseData-main #baseData-headImg {\n    position: relative;\n    top: 0;\n    left: 0;\n    width: 10rem;\n    height: 10rem;\n    margin: auto;\n    padding: .5rem;\n    border: .2rem solid #ffffff;\n    border-radius: 100%;\n    margin-bottom: 1rem; }\n    #baseData-main #baseData-headImg img {\n      width: 100%;\n      height: 100%; }\n    #baseData-main #baseData-headImg input[type=file] {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      visibility: hidden; }\n  #baseData-main #baseData-body {\n    padding-bottom: 1.5rem; }\n    #baseData-main #baseData-body .baseData-unit {\n      width: 60%;\n      margin: auto;\n      border-bottom: 1px solid #dfdfdf;\n      padding-bottom: .5rem; }\n      #baseData-main #baseData-body .baseData-unit input {\n        width: 100%;\n        text-align: center;\n        font-size: 1.2rem;\n        border: none;\n        background-color: transparent;\n        line-height: 2rem;\n        color: #999999; }\n        #baseData-main #baseData-body .baseData-unit input::-webkit-input-placeholder {\n          text-align: center; }\n      #baseData-main #baseData-body .baseData-unit select {\n        width: 100%;\n        height: 1000px;\n        padding: 400px 0; }\n  #baseData-main #baseData-foot {\n    margin: auto;\n    width: 12rem; }\n    #baseData-main #baseData-foot img {\n      width: 100%; }\n", ""]);
+	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\nhtml, body {\n  background-color: #f3f4f5; }\n\n#baseData-content {\n  overflow: hidden; }\n\n#baseData-main {\n  text-align: center;\n  padding-top: 1rem;\n  padding-bottom: 2rem; }\n  #baseData-main #baseData-head {\n    font-size: 1.5rem;\n    margin-bottom: 1rem;\n    color: #333333; }\n    #baseData-main #baseData-head #baseData-head-tag {\n      font-size: 140%; }\n  #baseData-main #baseData-headImg {\n    position: relative;\n    top: 0;\n    left: 0;\n    width: 10rem;\n    height: 10rem;\n    margin: auto;\n    padding: .5rem;\n    border: .2rem solid #ffffff;\n    border-radius: 100%;\n    margin-bottom: 1rem; }\n    #baseData-main #baseData-headImg img {\n      width: 100%;\n      height: 100%; }\n    #baseData-main #baseData-headImg input[type=file] {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      visibility: hidden; }\n  #baseData-main #baseData-body {\n    padding-bottom: 1.5rem; }\n    #baseData-main #baseData-body .baseData-unit {\n      position: relative;\n      width: 70%;\n      margin: auto;\n      border-bottom: 1px solid #dfdfdf;\n      padding-bottom: .5rem;\n      line-height: 3.5rem;\n      height: 3.5rem;\n      text-align: center;\n      font-size: 1.2rem;\n      color: #999999; }\n      #baseData-main #baseData-body .baseData-unit input {\n        width: 100%;\n        text-align: center;\n        font-size: inherit;\n        border: none;\n        background-color: transparent;\n        color: #333333; }\n        #baseData-main #baseData-body .baseData-unit input::-webkit-input-placeholder {\n          text-align: center;\n          color: #999999; }\n      #baseData-main #baseData-body .baseData-unit select {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        background-color: transparent;\n        border: none;\n        opacity: 0; }\n      #baseData-main #baseData-body .baseData-unit .baseData-sex {\n        color: #2fa4f6; }\n  #baseData-main #baseData-foot {\n    margin: auto;\n    width: 12rem; }\n    #baseData-main #baseData-foot img {\n      width: 100%; }\n", ""]);
 
 	// exports
 

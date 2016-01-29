@@ -42,7 +42,28 @@ class HeadImg extends React.Component {
 class Main extends React.Component {
 	constructor() {
 		super();
+		this.state = {
+			nick: {
+				name: 'rwerew',
+				placeholder: '怎么称呼您？',
+				scope: [1, 9]
+			}
+		}
 	}
+
+	sexChange(e) {
+		const value = e.target.value;
+		document.querySelector('.baseData-sex').innerHTML = value;
+	}
+
+	nickChange(e) {
+		const nick = this.state.nick;
+		nick.name = e.target.value;
+		this.setState({
+			nick: nick
+		});
+	}
+
 	render() {
 		return (
 			<div id="baseData-main">
@@ -50,10 +71,11 @@ class Main extends React.Component {
 				<HeadImg />
 				<div id="baseData-body">
 					<div className="baseData-unit">
-						<input type="text" placeholder="怎么称呼您？"></input>
+						<input type="text" placeholder={this.state.nick.placeholder} value={this.state.nick.name} onChange={ e => { this.nickChange(e) }}></input>
 					</div>
 					<div className="baseData-unit">
-						<select placeholder="您的性别？">
+						<div className="baseData-sex">男</div>
+						<select onChange={ e => {this.sexChange(e)} }>
 							<option>男</option>
 							<option>女</option>
 						</select>
