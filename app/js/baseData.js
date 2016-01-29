@@ -84,7 +84,7 @@ webpackJsonp([0],{
 				nick: {
 					name: 'rwerew',
 					placeholder: '怎么称呼您？',
-					scope: [1, 9]
+					scope: [1, 18]
 				}
 			};
 			return _this2;
@@ -100,10 +100,34 @@ webpackJsonp([0],{
 			key: 'nickChange',
 			value: function nickChange(e) {
 				var nick = this.state.nick;
-				nick.name = e.target.value;
-				this.setState({
-					nick: nick
-				});
+				var value = e.target.value;
+				var len = this.resultEn(value) + this.resultCn(value);
+				var min = this.state.nick.scope[0];
+				var max = this.state.nick.scope[1];
+				if (len < max) {
+					nick.name = value;
+					this.setState({
+						nick: nick
+					});
+				}
+			}
+		}, {
+			key: 'resultEn',
+			value: function resultEn(value) {
+				var str = value.match(/\w{1}/g);
+				if (str) {
+					return str.length;
+				}
+				return 0;
+			}
+		}, {
+			key: 'resultCn',
+			value: function resultCn(value) {
+				var str = value.match(/[\u4e00-\u9fa5]{1}/g);
+				if (str) {
+					return str.length * 2;
+				}
+				return 0;
 			}
 		}, {
 			key: 'render',

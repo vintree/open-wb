@@ -46,7 +46,7 @@ class Main extends React.Component {
 			nick: {
 				name: 'rwerew',
 				placeholder: '怎么称呼您？',
-				scope: [1, 9]
+				scope: [1, 18]
 			}
 		}
 	}
@@ -58,10 +58,32 @@ class Main extends React.Component {
 
 	nickChange(e) {
 		const nick = this.state.nick;
-		nick.name = e.target.value;
-		this.setState({
-			nick: nick
-		});
+		const value = e.target.value;
+		const len = this.resultEn(value) + this.resultCn(value);
+		const min = this.state.nick.scope[0];
+		const max = this.state.nick.scope[1];
+		if(len < max) {
+			nick.name = value;
+			this.setState({
+				nick: nick
+			});
+		}
+	}
+
+	resultEn(value) {
+		const str = value.match(/\w{1}/g);
+		if(str) {
+			return str.length;
+		}
+		return 0;
+	}
+
+	resultCn(value) {
+		const str = value.match(/[\u4e00-\u9fa5]{1}/g);
+		if(str) {
+			return str.length * 2;
+		}
+		return 0;
 	}
 
 	render() {
