@@ -3,6 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import InjectTapEventPlugin from "react-tap-event-plugin";
 
+import autoFont from '../temp/autoFont.js';
+
+autoFont.init();
 InjectTapEventPlugin();
 
 class HeadImg extends React.Component {
@@ -20,7 +23,7 @@ class HeadImg extends React.Component {
 		const imgData = this.state.img;
 		if(fileNode.files) {
 			if(window.FileReader) {
-				const reader = new FileReader();
+				let reader = new FileReader();
 				reader.onload = (e1) => {
 					console.log(e1);
 					imgData.url = e1.target.result;
@@ -28,16 +31,16 @@ class HeadImg extends React.Component {
 						img: imgData
 					});
 				}
-				reader.readAsDataURL(fileNode.files[0], 'GB2312');
+				reader.readAsDataURL(fileNode.files[0]);
 			}
 		}
 	}
-// accept="image/jpg,image/png,image/jpeg"
 	render() {
 		return (
 			<div id="baseData-headImg">
 				<img src={this.state.img.url} />
-				<input type="file" multiple="multiple"  onChange= { (e) => {this.imgChange(e)} } />
+				<input type="file" multiple="multiple" accept="image/jpg,image/png,image/jpeg"
+ onChange= { (e) => {this.imgChange(e)} } />
 			</div>
 		)
 	}

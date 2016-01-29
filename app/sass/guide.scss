@@ -9,11 +9,11 @@ html, body {
 }
 #guide-main {
 	text-align: center;
-	padding-top: 1rem;
-	padding-bottom: 2rem;
+	padding-top: .3rem;
+	padding-bottom: .5rem;
 	#guide-head {
-		font-size: 1.5rem;
-		margin-bottom: 1rem;
+		font-size: .5rem;
+		margin-bottom: .3rem;
 		color: #333333;
 		#guide-head-tag {
 			font-size: 140%;
@@ -21,7 +21,7 @@ html, body {
 	}
 	#guide-body {
 		position: relative;
-		height: 26rem;
+		height: 8.5rem;
 		.guide-unit {
 			width: 7rem;
 			height: 7rem;
@@ -34,48 +34,48 @@ html, body {
 		}
 		.guide-unit-1 {
 			margin: auto;
-			width: 7rem;
-			height: 7rem;
+			width: 2.3rem;
+			height: 2.3rem;
 		}
 		.guide-unit-2 {
 			position: absolute;
-		    top: 23%;
-		    left: 5%;
-		    width: 7rem;
-		    height: 7rem;
+		    top: 1.5rem;
+		    left: .3rem;
+		    width: 2.3rem;
+		    height: 2.3rem;
 		}
 		.guide-unit-3 {
 			position: absolute;
-		    top: 35%;
-		    left: 35%;
-		    width: 7rem;
-		    height: 7rem;
+		    top: 2.9rem;
+		    left: 2.2rem;
+		    width: 2.5rem;
+		    height: 2.5rem;
 		}
 		.guide-unit-4 {
 			position: absolute;
-		    top: 18%;
-		    right: 5%;
-		    width: 7.5rem;
-		    height: 7.5rem;
+		    top: 1.5rem;
+		    right: .3rem;
+		    width: 2.7rem;
+		    height: 2.7rem;
 		}
 		.guide-unit-5 {
 			position: absolute;
-		    top: 60%;
-		    left: 15%;
-		    width: 7rem;
-		    height: 7rem;
+		    top: 5.2rem;
+		    left: .8rem;
+		    width: 2.3rem;
+		    height: 2.3rem;
 		}
 		.guide-unit-6 {
 			position: absolute;
-		    top: 60%;
-		    right: 20%;
-		    width: 6rem;
-		    height: 6rem;
+		    top: 4.5rem;
+		    right: 1rem;
+		    width: 2rem;
+		    height: 2rem;
 		}
 	}
 	#guide-foot {
 		margin: auto;
-		width: 12rem;
+		width: 4rem;
 		img {
 			width: 100%;
 		}

@@ -3,8 +3,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import InjectTapEventPlugin from "react-tap-event-plugin";
 
-InjectTapEventPlugin();
 
+import autoFont from '../temp/autoFont.js';
+
+autoFont.init();
+InjectTapEventPlugin();
 
 class Main extends React.Component {
 	constructor() {

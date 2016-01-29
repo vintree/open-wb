@@ -1,0 +1,13 @@
+<MKM version="2.0" minAppVer="2.0.0" imageFileUrl="">
+  <Marks>
+    <ColorMark x="881" y="49" color="16711680" offsetX="163" offsetY="0" defaultDirection="10" colorSystem="hex"/>
+    <TextMark x="779" y="137" color="16711680" offsetX="72" offsetY="3" defaultDirection="9" direction="9" textMaxWidth="292" text="字号：54点   白色&#xD;"/>
+    <TextMark x="748" y="308" color="16711680" offsetX="52" offsetY="21" defaultDirection="10" direction="10" textMaxWidth="249" text="蓝天尺寸：1242*6px   色值：＃24a2f9"/>
+    <LengthMark x="1110" y="192" color="16711680" length="114" direction="3"/>
+    <LengthMark x="-1" y="243" color="16711680" length="325" direction="12"/>
+    <LengthMark x="916.5" y="271" color="16711680" length="325" direction="12"/>
+    <TextMark x="817" y="253" color="16711680" offsetX="45" offsetY="45" defaultDirection="9" direction="9" textMaxWidth="215" text="字号：52点   色值：＃666666"/>
+    <TextMark x="412" y="259" color="16711680" offsetX="56" offsetY="31" defaultDirection="9" direction="9" textMaxWidth="215" text="选中字号：52点   色值：＃2fa4f6"/>
+    <LengthMark x="614" y="312" color="16711680" length="60" direction="3"/>
+  </Marks>
+</MKM>
