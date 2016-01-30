@@ -19,7 +19,7 @@ webpackJsonp([0],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _autoFont = __webpack_require__(167);
+	var _autoFont = __webpack_require__(163);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
@@ -31,7 +31,7 @@ webpackJsonp([0],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(163);
+	__webpack_require__(165);
 
 	_autoFont2.default.init();
 	(0, _reactTapEventPlugin2.default)();
@@ -151,6 +151,28 @@ webpackJsonp([0],{
 				return 0;
 			}
 		}, {
+			key: 'nexts',
+			value: function nexts() {
+				// alert('dasd');
+
+				fetch('../js/json/1.json').then(function (data) {
+					data.text().then(function (obj) {
+						console.log(JSON.stringify(obj));
+					});
+				}, function (ex) {
+					console.log(ex);
+				});
+
+				// fetch('../js/json/1.json').then(response => {
+				// 	response.json()
+				// }).then(data => {
+				// 	console.log(data);
+				// }).catch(e => {
+				// 	console.log(e);
+				// 	console.log("Oops, error", e)
+				// })
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				var _this5 = this;
@@ -212,7 +234,9 @@ webpackJsonp([0],{
 					),
 					_react2.default.createElement(
 						'div',
-						{ id: 'baseData-foot' },
+						{ id: 'baseData-foot', onTouchTap: function onTouchTap(e) {
+								_this5.nexts(e);
+							} },
 						_react2.default.createElement('img', { src: '../img/next@3x.png' })
 					)
 				);
@@ -249,16 +273,16 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 163:
+/***/ 165:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(164);
+	var content = __webpack_require__(166);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(166)(content, {});
+	var update = __webpack_require__(168)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -276,10 +300,10 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 164:
+/***/ 166:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(165)();
+	exports = module.exports = __webpack_require__(167)();
 	// imports
 
 

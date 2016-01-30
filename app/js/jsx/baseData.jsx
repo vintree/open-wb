@@ -93,6 +93,30 @@ class Main extends React.Component {
 		return 0;
 	}
 
+	nexts() {
+		// alert('dasd');
+
+		fetch('../js/json/1.json').then(function(data) {
+			data.text().then(function(obj) {
+				console.log(JSON.stringify(obj));
+			});
+		}, function(ex) {
+			console.log(ex);
+		});
+
+
+		// fetch('../js/json/1.json').then(response => {
+		// 	response.json()
+		// }).then(data => {
+		// 	console.log(data);
+		// }).catch(e => {
+		// 	console.log(e);
+		// 	console.log("Oops, error", e)
+		// })
+
+	}
+
+
 	render() {
 		return (
 			<div id="baseData-main">
@@ -113,7 +137,7 @@ class Main extends React.Component {
 						<input type="text" placeholder="您的地址？"></input>
 					</div>
 				</div>
-				<div id="baseData-foot">
+				<div id="baseData-foot" onTouchTap={ e => {this.nexts(e)} }>
 					<img src="../img/next@3x.png" />
 				</div>
 			</div>
