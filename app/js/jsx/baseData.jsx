@@ -96,13 +96,13 @@ class Main extends React.Component {
 	nexts() {
 		// alert('dasd');
 
-		fetch('http://dev.useastore.com:8086/v1/kiklink/shop_list.json').then(function(data) {
-			data.text().then(function(obj) {
-				console.log(JSON.parse(obj));
-			});
-		}, function(ex) {
-			console.log(ex);
-		});
+		// fetch('http://dev.useastore.com:8086/v1/kiklink/shop_list.json').then(function(data) {
+		// 	data.text().then(function(obj) {
+		// 		console.log(JSON.parse(obj));
+		// 	});
+		// }, function(ex) {
+		// 	console.log(ex);
+		// });
 
 
 		// fetch('../js/json/1.json').then(function(data) {
@@ -114,15 +114,16 @@ class Main extends React.Component {
 		// });
 
 
-		// fetch('../js/json/1.json').then(response => {
-		// 	response.json()
-		// }).then(data => {
-		// 	console.log(data);
-		// }).catch(e => {
-		// 	console.log(e);
-		// 	console.log("Oops, error", e)
-		// })
-
+		fetch('../js/json/1.json').then(data => {
+			data.text().then(function(json) {
+				console.log(json);
+			});
+		}).then(data => {
+			// console.log(data);
+		}).catch(e => {
+			console.log(e);
+			console.log("Oops, error", e)
+		})
 	}
 
 
