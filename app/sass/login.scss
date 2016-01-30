@@ -1,0 +1,111 @@
+@import "./base.scss";
+
+html, body {
+	background-color: #f3f4f5;
+}
+
+#login-content {
+	overflow: hidden;
+}
+#login-main {
+	font-size: .4rem;
+	#login-tab {
+		text-align: center;
+		line-height: 1rem;
+		border-bottom: .07rem solid #24a2f9;
+		overflow: hidden;
+		color: #666666;
+		margin-bottom: .4rem;
+		.login-tab-unit {
+			float: left;
+			width: 50%;
+			&.active {
+				color: #2fa4f6;
+			}
+		}
+	}
+	#login-input {
+		padding: 0 .2rem;
+		.login-input-unit {
+			position: relative;
+			height: 1.1rem;
+			margin-bottom: .2rem;
+			input {
+				position: absolute;
+				top: 0;
+				left: 0;
+				border-radius: .15rem;
+				width: 100%;
+				height: 100%;
+				border: none;
+				padding: 0 .4rem;
+				font-size: .4rem;
+			}
+			&:nth-child(2) {
+				input {
+					padding-right: 2.5rem;
+				}
+				.login-code-bt {
+					position: absolute;
+					top: .15rem;
+					right: .12rem;
+					width: 2rem;
+					height: .8rem;
+					background-color: #ffb541;
+					color: #ffffff;
+					border: none;
+					border-radius: .1rem;
+					font-size: .25rem;
+					padding: 0 .1rem;
+				}
+			}
+		}
+	}
+	#login-confirm {
+		margin-top: .6rem;
+		.login-confirm-bt {
+			width: 100%;
+			height: 1.1rem;
+			border: none;
+			background-color: #24a2f9;
+			color: #ffffff;
+			border-radius: .15rem;
+			font-size: inherit;
+		}
+	}
+	#login-other {
+		margin-top: 1rem;
+		#login-tx {
+			width: 70%;
+			margin: auto;
+			overflow: hidden;
+			margin-bottom: .5rem;
+			.login-cf {
+				float: left;
+				width: 15%;
+				border-bottom: .04rem solid #e0e0e0;
+				height: .5rem;
+			}
+			.login-content {
+				float: left;
+				width: 70%;
+				text-align: center;
+				line-height: 1rem;
+				height: 1rem;
+				font-size: .35rem;
+				color: #666666;
+			}
+		}
+		#login-pro {
+			overflow: hidden;
+			.login-pro-unit {
+				float: left;
+				width: 50%;
+				text-align: center;
+				img {
+					width: 3rem;
+				}
+			}
+		}
+	}
+}
