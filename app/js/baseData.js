@@ -44,9 +44,11 @@ webpackJsonp([0],{
 
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(HeadImg).call(this));
 
+			var _lib = window._lib;
+			var path = _lib.path();
 			_this.state = {
 				img: {
-					url: '../img/defaultHead@3x.png'
+					url: path + 'img/defaultHead@3x.png'
 				}
 			};
 			return _this;
@@ -101,11 +103,16 @@ webpackJsonp([0],{
 
 			var _this4 = _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this));
 
+			var _lib = window._lib;
+			var path = _lib.path();
 			_this4.state = {
 				nick: {
 					name: '',
 					placeholder: '怎么称呼您？',
 					scope: [1, 18]
+				},
+				next: {
+					url: path + 'img/next@3x.png'
 				}
 			};
 			return _this4;
@@ -171,9 +178,9 @@ webpackJsonp([0],{
 				// 	console.log(ex);
 				// });
 
-				fetch('../js/json/1.json').then(function (data) {
+				fetch('/users/register.json').then(function (data) {
 					data.text().then(function (json) {
-						console.log(json);
+						// console.log(json);
 					});
 				}).then(function (data) {
 					// console.log(data);
@@ -247,7 +254,7 @@ webpackJsonp([0],{
 						{ id: 'baseData-foot', onTouchTap: function onTouchTap(e) {
 								_this5.nexts(e);
 							} },
-						_react2.default.createElement('img', { src: '../img/next@3x.png' })
+						_react2.default.createElement('img', { src: this.state.next.url })
 					)
 				);
 			}

@@ -11,9 +11,11 @@ InjectTapEventPlugin();
 class HeadImg extends React.Component {
 	constructor() {
 		super();
+		const _lib = window._lib;
+		const path = _lib.path();
 		this.state = {
 			img: {
-				url: '../img/defaultHead@3x.png'
+				url: path + 'img/defaultHead@3x.png'
 			}
 		}
 	}
@@ -49,11 +51,16 @@ class HeadImg extends React.Component {
 class Main extends React.Component {
 	constructor() {
 		super();
+		const _lib = window._lib;
+		const path = _lib.path();
 		this.state = {
 			nick: {
 				name: '',
 				placeholder: '怎么称呼您？',
 				scope: [1, 18]
+			},
+			next: {
+				url: path + 'img/next@3x.png'
 			}
 		}
 	}
@@ -114,9 +121,9 @@ class Main extends React.Component {
 		// });
 
 
-		fetch('../js/json/1.json').then(data => {
+		fetch('/users/register.json').then(data => {
 			data.text().then(function(json) {
-				console.log(json);
+				// console.log(json);
 			});
 		}).then(data => {
 			// console.log(data);
@@ -148,7 +155,7 @@ class Main extends React.Component {
 					</div>
 				</div>
 				<div id="baseData-foot" onTouchTap={ e => {this.nexts(e)} }>
-					<img src="../img/next@3x.png" />
+					<img src={this.state.next.url} />
 				</div>
 			</div>
 		)

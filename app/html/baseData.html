@@ -9,5 +9,43 @@
     <div id="baseData-content"></div>
 </body>
 </html>
-<script src="../js/common.js"></script>
+
+<script type="text/javascript">
+	var path = function() {
+		var port = location.port;
+		if(port === '8080') {
+			return '../';
+		}
+		return 'http://10.2.144.38:8080/github/open-wb/app/';
+	}
+	var config = document.createElement('script');
+	config.type = 'text/javascript';
+	config.src = path() + 'js/config.js';
+	document.body.appendChild(config);
+	config.onload = function() {
+		this._lib.addScript(['js/common.js', 'js/baseData.js']);
+	}.bind(window);
+</script>
+
+
+
+
+
+<script type="text/javascript">
+	// var path = 'http://10.2.144.38:8080/github/open-wb/app/js/';
+	// var common = document.createElement('script');
+	// common.type = "text/javascript";
+	// common.src = path + 'common.js';
+	// common.onload = function() {
+	// 	var script = document.createElement('script');
+	// 	script.type = "text/javascript";
+	// 	script.src = path + "baseData.js";
+	// 	document.body.appendChild(script);
+	// }
+	// document.body.appendChild(common);
+</script>
+
+
+<!-- <script src="../js/common.js"></script>
 <script src="../js/baseData.js"></script>
+ -->
