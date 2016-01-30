@@ -14,7 +14,11 @@
 			if(arr.length === 0) return;
 			var script = document.createElement('script');
 			script.type = 'text/javascript';
-			script.src = this.path() + arr[0];
+			if(arr[0].indexOf('http') === -1) {
+				script.src = this.path() + arr[0];
+			} else {
+				script.src = arr[0];
+			}
 			document.body.appendChild(script);
 			script.onload = function() {
 				arr.shift();

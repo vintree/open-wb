@@ -115,12 +115,6 @@ webpackJsonp([6],{
 		return Input;
 	})(_react2.default.Component);
 
-	_react2.default.createElement(
-		'button',
-		{ className: 'login-code-bt' },
-		'获取验证码'
-	);
-
 	var Other = (function (_React$Component3) {
 		_inherits(Other, _React$Component3);
 

@@ -46,9 +46,6 @@ class Input extends React.Component {
 	}
 }
 
-					<button className="login-code-bt">获取验证码</button>
-
-
 class Other extends React.Component {
 	constructor() {
 		super();
@@ -94,7 +91,6 @@ class Main extends React.Component {
 		)
 	}
 }
-
 
 ReactDOM.render(<Main />, document.querySelector('#login-content'));
 
