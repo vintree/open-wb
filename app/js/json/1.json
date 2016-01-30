@@ -1,11 +1,5 @@
-// {
-// 	name: 'name',
-// 	place: 'bj'
-// }
-
-json({
-
+{
 	name: 'name',
 	place: 'bj'
+}
 
-})

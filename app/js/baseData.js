@@ -155,13 +155,21 @@ webpackJsonp([0],{
 			value: function nexts() {
 				// alert('dasd');
 
-				fetch('../js/json/1.json').then(function (data) {
+				fetch('http://dev.useastore.com:8086/v1/kiklink/shop_list.json').then(function (data) {
 					data.text().then(function (obj) {
-						console.log(JSON.stringify(obj));
+						console.log(JSON.parse(obj));
 					});
 				}, function (ex) {
 					console.log(ex);
 				});
+
+				// fetch('../js/json/1.json').then(function(data) {
+				// 	data.text().then(function(obj) {
+				// 		console.log(JSON.parse(obj));
+				// 	});
+				// }, function(ex) {
+				// 	console.log(ex);
+				// });
 
 				// fetch('../js/json/1.json').then(response => {
 				// 	response.json()
