@@ -123,7 +123,7 @@ class Main extends React.Component {
 
 		fetch('/users/register.json').then(data => {
 			data.text().then(function(json) {
-				// console.log(json);
+				console.log(JSON.parse(json));
 			});
 		}).then(data => {
 			// console.log(data);

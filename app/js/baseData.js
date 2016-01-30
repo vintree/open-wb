@@ -180,7 +180,7 @@ webpackJsonp([0],{
 
 				fetch('/users/register.json').then(function (data) {
 					data.text().then(function (json) {
-						// console.log(json);
+						console.log(JSON.parse(json));
 					});
 				}).then(function (data) {
 					// console.log(data);

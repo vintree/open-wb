@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh" id="html" style="font-size: 14px">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width">
+    <meta name="format-detection" content="telephone=no">
+</head>
+<body>
+    <div id="login-content"></div>
+</body>
+</html>
+
+<script type="text/javascript">
+	var path = function() {
+		var port = location.port;
+		if(port === '8080') {
+			return '../';
+		}
+		return 'http://10.2.144.38:8080/github/open-wb/app/';
+	}
+	var config = document.createElement('script');
+	config.type = 'text/javascript';
+	config.src = path() + 'js/config.js';
+	document.body.appendChild(config);
+	config.onload = function() {
+		this._lib.addScript(['js/common.js', 'js/login.js']);
+	}.bind(window);
+</script>

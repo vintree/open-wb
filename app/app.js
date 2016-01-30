@@ -14,9 +14,7 @@ app.get('/html/baseData.html', function (req, res) {
 
 
 app.get('/users/*', function (req, res) {
-    // 使用了superagent来发起请求
     var superagent = require('superagent');
-    // 查询本机ip，这里需要根据实际情况选择get还是post
     var sreq = superagent.get('http://dev.useastore.com:8086/v1' + req.originalUrl);
     sreq.pipe(res);
     sreq.on('end', function(){
