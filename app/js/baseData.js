@@ -27,6 +27,10 @@ webpackJsonp([0],{
 
 	var _formatAjax2 = _interopRequireDefault(_formatAjax);
 
+	var _unicode = __webpack_require__(232);
+
+	var _unicode2 = _interopRequireDefault(_unicode);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -165,11 +169,15 @@ webpackJsonp([0],{
 			key: 'nexts',
 			value: function nexts() {
 				var url = _formatAjax2.default.get(window.$c.apiPath() + 'zuji/city.json');
-				console.log(url);
 				fetch(url).then(function (data) {
-					data.json().then(function (json) {
-						console.log(json);
-					});
+					if (data.status === 200) {
+						data.json().then(function (json) {
+							if (json.status.code === "0") {
+								json = JSON.parse(_unicode2.default.toHex(JSON.stringify(json.data.china)));
+								console.log(json);
+							}
+						});
+					}
 				}).then(function (data) {
 					// console.log(data);
 				}).catch(function (e) {
@@ -343,6 +351,34 @@ webpackJsonp([0],{
 	formatAjax.post = function (url, obj) {};
 
 	module.exports = formatAjax;
+
+/***/ },
+
+/***/ 232:
+/***/ function(module, exports) {
+
+	"use strict";
+
+	/*
+		Unicode编码转换
+	*/
+	var unicode = function unicode() {};
+
+	// 加码
+	unicode.toDec = function (str) {
+	  var res = [];
+	  for (var i = 0; i < str.length; i++) {
+	    res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
+	  }return "\\u" + res.join("\\u");
+	};
+
+	// 解码
+	unicode.toHex = function (str) {
+	  str = str.replace(/\\/g, '%');
+	  return unescape(str).replace(/%/g, '');
+	};
+
+	module.exports = unicode;
 
 /***/ }
 

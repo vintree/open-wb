@@ -13,8 +13,8 @@ unicode.toDec = function(str) {
 
 // 解码
 unicode.toHex = function(str) {
-	str=str.replace(/\\/g, "%");
-    return unescape(str);
+	str=str.replace(/\\/g, '%');
+    return unescape(str).replace(/%/g, '');
 }
 
 module.exports = unicode;

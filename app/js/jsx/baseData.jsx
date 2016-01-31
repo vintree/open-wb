@@ -5,6 +5,7 @@ import InjectTapEventPlugin from "react-tap-event-plugin";
 
 import autoFont from '../temp/autoFont.js';
 import FormatAjax from '../temp/formatAjax.js';
+import Unicode from '../temp/unicode.js';
 
 
 autoFont.init();
@@ -104,11 +105,16 @@ class Main extends React.Component {
 
 	nexts() {
 		const url = FormatAjax.get(window.$c.apiPath() + 'zuji/city.json');
-		console.log(url);
 		fetch(url).then(data => {
-			data.json().then(function(json) {
-				console.log(json);
-			});
+			if(data.status === 200) {
+				data.json().then(function(json) {
+					if(json.status.code === "0") {
+						json = JSON.parse(Unicode.toHex(JSON.stringify(json.data.china)));
+						console.log(json);
+					}
+				});
+			}
+			
 		}).then(data => {
 			// console.log(data);
 		}).catch(e => {
