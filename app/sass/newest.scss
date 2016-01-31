@@ -33,6 +33,7 @@ $headHeight: 1.2rem;
                     width: 57%;
                     .newest-msg-pp {
                         padding-top: .1rem;
+                        @include ellipsis1;
                         .newest-name {
                             float: left;
                             margin-right: .1rem;

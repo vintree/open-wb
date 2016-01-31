@@ -6,8 +6,8 @@ import InjectTapEventPlugin from "react-tap-event-plugin";
 
 import AutoFont from '../temp/autoFont.js';
 import Md5 from '../temp/md5.js';
-import FormatAjax from '../temp/formatAjax.js';
 import Format from '../temp/format.js';
+import FormatAjax from '../temp/formatAjax.js';
 import Unicode from '../temp/unicode.js';
 
 // import Ibootstrap from '../temp/lib/ibootstrap.all.min.js';
@@ -78,7 +78,7 @@ class Input extends React.Component {
 			});
 			fetch(url).then(data => {
 				if(data.status === 200) {
-					data.json().then(function(json) {
+					data.json().then(json => {
 						console.log(json);
 						if(json.status.code === '0') {
 

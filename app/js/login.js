@@ -27,13 +27,13 @@ webpackJsonp([6],{
 
 	var _md2 = _interopRequireDefault(_md);
 
-	var _formatAjax = __webpack_require__(230);
-
-	var _formatAjax2 = _interopRequireDefault(_formatAjax);
-
 	var _format = __webpack_require__(231);
 
 	var _format2 = _interopRequireDefault(_format);
+
+	var _formatAjax = __webpack_require__(230);
+
+	var _formatAjax2 = _interopRequireDefault(_formatAjax);
 
 	var _unicode = __webpack_require__(232);
 
@@ -588,7 +588,7 @@ webpackJsonp([6],{
 					str += o + '=' + obj[o] + '&';
 				}
 			}
-			return url + str;
+			return url + str.substr(0, str.length - 1);
 		}
 		return url;
 	};
@@ -631,16 +631,22 @@ webpackJsonp([6],{
 
 	// 加码
 	unicode.toDec = function (str) {
-	  var res = [];
-	  for (var i = 0; i < str.length; i++) {
-	    res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
-	  }return "\\u" + res.join("\\u");
+		if (str) {
+			var res = [];
+			for (var i = 0; i < str.length; i++) {
+				res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
+			}return "\\u" + res.join("\\u");
+		}
+		return '';
 	};
 
 	// 解码
 	unicode.toHex = function (str) {
-	  str = str.replace(/\\/g, '%');
-	  return unescape(str).replace(/%/g, '');
+		if (str) {
+			str = str.replace(/\\/g, '%');
+			return unescape(str).replace(/%/g, '');
+		}
+		return '';
 	};
 
 	module.exports = unicode;

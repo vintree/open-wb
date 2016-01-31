@@ -9,5 +9,21 @@
     <div id="fansGroup-content"></div>
 </body>
 </html>
-<script src="../js/common.js"></script>
-<script src="../js/fansGroup.js"></script>
+<script type="text/javascript">
+	var 
+		port = location.port,
+		path,
+		config;
+	if(port === '8080') {
+		path = '../';
+	} else {
+		path = 'http://10.2.144.38:8080/github/open-wb/app/';
+	}
+	config = document.createElement('script');
+	config.type = 'text/javascript';
+	config.src = path + 'js/config.js';
+	document.body.appendChild(config);
+	config.onload = function() {
+		this.$c.addScriptTree(['js/common.js', 'js/fansGroup.js']);
+	}.bind(window);
+</script>

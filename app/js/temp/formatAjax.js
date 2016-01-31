@@ -9,7 +9,7 @@ formatAjax.get = function(url, obj) {
 				str += o + '=' + obj[o] + '&';  
 			}
 		}
-		return url + str;
+		return url + str.substr(0, str.length - 1);
 	}
 	return url;
 }
