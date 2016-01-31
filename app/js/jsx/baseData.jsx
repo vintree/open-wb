@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 import InjectTapEventPlugin from "react-tap-event-plugin";
 
 import autoFont from '../temp/autoFont.js';
+import FormatAjax from '../temp/formatAjax.js';
+
 
 autoFont.init();
 InjectTapEventPlugin();
@@ -11,8 +13,8 @@ InjectTapEventPlugin();
 class HeadImg extends React.Component {
 	constructor() {
 		super();
-		const _lib = window._lib;
-		const path = _lib.path();
+		const $c = window.$c;
+		const path = $c.path();
 		this.state = {
 			img: {
 				url: path + 'img/defaultHead@3x.png'
@@ -51,8 +53,8 @@ class HeadImg extends React.Component {
 class Main extends React.Component {
 	constructor() {
 		super();
-		const _lib = window._lib;
-		const path = _lib.path();
+		const $c = window.$c;
+		const path = $c.path();
 		this.state = {
 			nick: {
 				name: '',
@@ -101,29 +103,11 @@ class Main extends React.Component {
 	}
 
 	nexts() {
-		// alert('dasd');
-
-		// fetch('http://dev.useastore.com:8086/v1/kiklink/shop_list.json').then(function(data) {
-		// 	data.text().then(function(obj) {
-		// 		console.log(JSON.parse(obj));
-		// 	});
-		// }, function(ex) {
-		// 	console.log(ex);
-		// });
-
-
-		// fetch('../js/json/1.json').then(function(data) {
-		// 	data.text().then(function(obj) {
-		// 		console.log(JSON.parse(obj));
-		// 	});
-		// }, function(ex) {
-		// 	console.log(ex);
-		// });
-
-
-		fetch('/users/register.json').then(data => {
-			data.text().then(function(json) {
-				console.log(JSON.parse(json));
+		const url = FormatAjax.get(window.$c.apiPath() + 'zuji/city.json');
+		console.log(url);
+		fetch(url).then(data => {
+			data.json().then(function(json) {
+				console.log(json);
 			});
 		}).then(data => {
 			// console.log(data);

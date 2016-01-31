@@ -11,19 +11,21 @@
 </html>
 
 <script type="text/javascript">
-	var path = function() {
-		var port = location.port;
-		if(port === '8080') {
-			return '../';
-		}
-		return 'http://10.2.144.38:8080/github/open-wb/app/';
+	var 
+		port = location.port,
+		path,
+		config;
+	if(port === '8080') {
+		path = '../';
+	} else {
+		path = 'http://10.2.144.38:8080/github/open-wb/app/';
 	}
-	var config = document.createElement('script');
+	config = document.createElement('script');
 	config.type = 'text/javascript';
-	config.src = path() + 'js/config.js';
+	config.src = path + 'js/config.js';
 	document.body.appendChild(config);
 	config.onload = function() {
-		this._lib.addScript(['js/common.js', 'js/baseData.js']);
+		this.$c.addScriptTree(['js/common.js', 'js/baseData.js']);
 	}.bind(window);
 </script>
 

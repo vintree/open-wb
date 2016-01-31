@@ -23,6 +23,10 @@ webpackJsonp([0],{
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
+	var _formatAjax = __webpack_require__(230);
+
+	var _formatAjax2 = _interopRequireDefault(_formatAjax);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -44,8 +48,8 @@ webpackJsonp([0],{
 
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(HeadImg).call(this));
 
-			var _lib = window._lib;
-			var path = _lib.path();
+			var $c = window.$c;
+			var path = $c.path();
 			_this.state = {
 				img: {
 					url: path + 'img/defaultHead@3x.png'
@@ -103,8 +107,8 @@ webpackJsonp([0],{
 
 			var _this4 = _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this));
 
-			var _lib = window._lib;
-			var path = _lib.path();
+			var $c = window.$c;
+			var path = $c.path();
 			_this4.state = {
 				nick: {
 					name: '',
@@ -160,27 +164,11 @@ webpackJsonp([0],{
 		}, {
 			key: 'nexts',
 			value: function nexts() {
-				// alert('dasd');
-
-				// fetch('http://dev.useastore.com:8086/v1/kiklink/shop_list.json').then(function(data) {
-				// 	data.text().then(function(obj) {
-				// 		console.log(JSON.parse(obj));
-				// 	});
-				// }, function(ex) {
-				// 	console.log(ex);
-				// });
-
-				// fetch('../js/json/1.json').then(function(data) {
-				// 	data.text().then(function(obj) {
-				// 		console.log(JSON.parse(obj));
-				// 	});
-				// }, function(ex) {
-				// 	console.log(ex);
-				// });
-
-				fetch('/users/register.json').then(function (data) {
-					data.text().then(function (json) {
-						console.log(JSON.parse(json));
+				var url = _formatAjax2.default.get(window.$c.apiPath() + 'zuji/city.json');
+				console.log(url);
+				fetch(url).then(function (data) {
+					data.json().then(function (json) {
+						console.log(json);
 					});
 				}).then(function (data) {
 					// console.log(data);
@@ -329,6 +317,32 @@ webpackJsonp([0],{
 
 	// exports
 
+
+/***/ },
+
+/***/ 230:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var formatAjax = function formatAjax() {};
+
+	formatAjax.get = function (url, obj) {
+		var str = '?';
+		if (arguments.length !== 1) {
+			for (var o in obj) {
+				if (obj.hasOwnProperty(o)) {
+					str += o + '=' + obj[o] + '&';
+				}
+			}
+			return url + str;
+		}
+		return url;
+	};
+
+	formatAjax.post = function (url, obj) {};
+
+	module.exports = formatAjax;
 
 /***/ }
 
