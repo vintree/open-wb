@@ -13,15 +13,10 @@ autoFont.init();
 InjectTapEventPlugin();
 
 class HeadImg extends React.Component {
-	constructor() {
-		super();
-		var cf = new _config;
-		const path = cf.path();
+	constructor(props) {
+		super(props);
 		this.state = {
-			config: {
-				path: cf.path(),
-				apiPath: cf.apiPath()
-			},
+			vars: props.vars,
 			img: {
 				url: path + 'img/defaultHead@3x.png'
 			}
@@ -60,12 +55,8 @@ class Main extends React.Component {
 	constructor() {
 		super();
 		var cf = new _config;
-		const path = cf.path();
 		this.state = {
-			config: {
-				path: cf.path(),
-				apiPath: cf.apiPath()
-			},
+			vars: cf.vars(),
 			nick: {
 				name: '',
 				placeholder: '怎么称呼您？',
@@ -73,13 +64,34 @@ class Main extends React.Component {
 			},
 			next: {
 				url: path + 'img/next@3x.png'
-			}
+			},
+			cityList: []
 		}
+		this.initCity();
+	}
+
+	initCity() {
+		const apiPath = this.state.vars.apiPath;
+		var url = apiPath + 'zuji/city.json';
+		url = FormatAjax.get(url);
+		Superagent.get(url).end((err, res) => {
+			if(res.status === 200) {
+				var data = JSON.parse(Unicode.toHex(res.text));
+				this.setState({
+					cityList: data.data.china
+				});
+			}
+		});
 	}
 
 	sexChange(e) {
 		const value = e.target.value;
-		document.querySelector('.baseData-sex').innerHTML = value;
+		document.querySelector('#baseData-sex').innerHTML = value;
+	}
+
+	cityChange(e) {
+		const value = e.target.value;
+		document.querySelector('#baseData-city').innerHTML = value;
 	}
 
 	nickChange(e) {
@@ -113,46 +125,47 @@ class Main extends React.Component {
 	}
 
 	nexts() {
-		const config = this.state.config;
-		const apiPath = config.apiPath;
-		var url = apiPath + 'kiklink/shop_list.json';
-		url = FormatAjax.get(url);
-		Superagent.get(url).end(function(err, res) {
-			if(res.status === 200) {
-				var data = JSON.parse(Unicode.toHex(res.text));
-				alert(data.status.msg);
-				console.log(data);
-			}
-		});
-
-		// fetch('http://dev.useastore.com:8086/v1/kiklink/shop_list.json').then(function(data) {
-		// 	data.text().then(function(obj) {
-		// 		console.log(JSON.parse(obj));
-		// 	});
-		// }, function(ex) {
-		// 	console.log(ex);
+		// const apiPath = this.state.vars.apiPath;
+		// var url = apiPath + 'zuji/city.json';
+		// url = FormatAjax.get(url);
+		// Superagent.get(url).end((err, res) => {
+		// 	if(res.status === 200) {
+		// 		var data = JSON.parse(Unicode.toHex(res.text));
+		// 		this.setState({
+		// 			cityList: data.data.china
+		// 		});
+		// 	}
 		// });
 	}
 
-
 	render() {
+
+		const cityList = this.state.cityList.map( (v, ix) => {
+			return (
+				<option key={v.id} value={v.city}>{v.city}</option>
+			);
+		});
+
 		return (
 			<div id="baseData-main">
 				<div id="baseData-head">请问您是<span id="baseData-head-tag">?</span></div>
-				<HeadImg />
+				<HeadImg vars={this.state.vars}/>
 				<div id="baseData-body">
 					<div className="baseData-unit">
 						<input type="text" placeholder={this.state.nick.placeholder} value={this.state.nick.name} onChange={ e => { this.nickChange(e) }}></input>
 					</div>
 					<div className="baseData-unit">
-						<div className="baseData-sex">男</div>
+						<div id="baseData-sex" className="baseData-tx">男</div>
 						<select onChange={ e => {this.sexChange(e)} }>
 							<option>男</option>
 							<option>女</option>
 						</select>
 					</div>
 					<div className="baseData-unit">
-						<input type="text" placeholder="您的地址？"></input>
+						<div id="baseData-city" className="baseData-tx">北京</div>
+						<select onChange={ e => {this.cityChange(e)} }>
+							{cityList}
+						</select>
 					</div>
 				</div>
 				<div id="baseData-foot" onTouchTap={ e => {this.nexts(e)} }>
@@ -163,20 +176,7 @@ class Main extends React.Component {
 	}
 }
 
-class BaseData extends React.Component {
-	constructor() {
-		super();
-	}
-	render() {
-		return (
-			<div>
-				<Main />
-			</div>
-		)
-	}
-}
-
-ReactDOM.render(<BaseData />, document.querySelector('#baseData-content'));
+ReactDOM.render(<Main />, document.querySelector('#baseData-content'));
 
 
 

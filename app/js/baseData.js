@@ -51,18 +51,13 @@ webpackJsonp([0],{
 	var HeadImg = (function (_React$Component) {
 		_inherits(HeadImg, _React$Component);
 
-		function HeadImg() {
+		function HeadImg(props) {
 			_classCallCheck(this, HeadImg);
 
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(HeadImg).call(this));
+			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(HeadImg).call(this, props));
 
-			var cf = new _config();
-			var path = cf.path();
 			_this.state = {
-				config: {
-					path: cf.path(),
-					apiPath: cf.apiPath()
-				},
+				vars: props.vars,
 				img: {
 					url: path + 'img/defaultHead@3x.png'
 				}
@@ -120,12 +115,8 @@ webpackJsonp([0],{
 			var _this4 = _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this));
 
 			var cf = new _config();
-			var path = cf.path();
 			_this4.state = {
-				config: {
-					path: cf.path(),
-					apiPath: cf.apiPath()
-				},
+				vars: cf.vars(),
 				nick: {
 					name: '',
 					placeholder: '怎么称呼您？',
@@ -133,16 +124,41 @@ webpackJsonp([0],{
 				},
 				next: {
 					url: path + 'img/next@3x.png'
-				}
+				},
+				cityList: []
 			};
+			_this4.initCity();
 			return _this4;
 		}
 
 		_createClass(Main, [{
+			key: 'initCity',
+			value: function initCity() {
+				var _this5 = this;
+
+				var apiPath = this.state.vars.apiPath;
+				var url = apiPath + 'zuji/city.json';
+				url = _formatAjax2.default.get(url);
+				_superagent2.default.get(url).end(function (err, res) {
+					if (res.status === 200) {
+						var data = JSON.parse(_unicode2.default.toHex(res.text));
+						_this5.setState({
+							cityList: data.data.china
+						});
+					}
+				});
+			}
+		}, {
 			key: 'sexChange',
 			value: function sexChange(e) {
 				var value = e.target.value;
-				document.querySelector('.baseData-sex').innerHTML = value;
+				document.querySelector('#baseData-sex').innerHTML = value;
+			}
+		}, {
+			key: 'cityChange',
+			value: function cityChange(e) {
+				var value = e.target.value;
+				document.querySelector('#baseData-city').innerHTML = value;
 			}
 		}, {
 			key: 'nickChange',
@@ -180,30 +196,30 @@ webpackJsonp([0],{
 		}, {
 			key: 'nexts',
 			value: function nexts() {
-				var config = this.state.config;
-				var apiPath = config.apiPath;
-				var url = apiPath + 'kiklink/shop_list.json';
-				url = _formatAjax2.default.get(url);
-				_superagent2.default.get(url).end(function (err, res) {
-					if (res.status === 200) {
-						var data = JSON.parse(_unicode2.default.toHex(res.text));
-						alert(data.status.msg);
-						console.log(data);
-					}
-				});
-
-				// fetch('http://dev.useastore.com:8086/v1/kiklink/shop_list.json').then(function(data) {
-				// 	data.text().then(function(obj) {
-				// 		console.log(JSON.parse(obj));
-				// 	});
-				// }, function(ex) {
-				// 	console.log(ex);
+				// const apiPath = this.state.vars.apiPath;
+				// var url = apiPath + 'zuji/city.json';
+				// url = FormatAjax.get(url);
+				// Superagent.get(url).end((err, res) => {
+				// 	if(res.status === 200) {
+				// 		var data = JSON.parse(Unicode.toHex(res.text));
+				// 		this.setState({
+				// 			cityList: data.data.china
+				// 		});
+				// 	}
 				// });
 			}
 		}, {
 			key: 'render',
 			value: function render() {
-				var _this5 = this;
+				var _this6 = this;
+
+				var cityList = this.state.cityList.map(function (v, ix) {
+					return _react2.default.createElement(
+						'option',
+						{ key: v.id, value: v.city },
+						v.city
+					);
+				});
 
 				return _react2.default.createElement(
 					'div',
@@ -218,7 +234,7 @@ webpackJsonp([0],{
 							'?'
 						)
 					),
-					_react2.default.createElement(HeadImg, null),
+					_react2.default.createElement(HeadImg, { vars: this.state.vars }),
 					_react2.default.createElement(
 						'div',
 						{ id: 'baseData-body' },
@@ -226,7 +242,7 @@ webpackJsonp([0],{
 							'div',
 							{ className: 'baseData-unit' },
 							_react2.default.createElement('input', { type: 'text', placeholder: this.state.nick.placeholder, value: this.state.nick.name, onChange: function onChange(e) {
-									_this5.nickChange(e);
+									_this6.nickChange(e);
 								} })
 						),
 						_react2.default.createElement(
@@ -234,13 +250,13 @@ webpackJsonp([0],{
 							{ className: 'baseData-unit' },
 							_react2.default.createElement(
 								'div',
-								{ className: 'baseData-sex' },
+								{ id: 'baseData-sex', className: 'baseData-tx' },
 								'男'
 							),
 							_react2.default.createElement(
 								'select',
 								{ onChange: function onChange(e) {
-										_this5.sexChange(e);
+										_this6.sexChange(e);
 									} },
 								_react2.default.createElement(
 									'option',
@@ -257,13 +273,24 @@ webpackJsonp([0],{
 						_react2.default.createElement(
 							'div',
 							{ className: 'baseData-unit' },
-							_react2.default.createElement('input', { type: 'text', placeholder: '您的地址？' })
+							_react2.default.createElement(
+								'div',
+								{ id: 'baseData-city', className: 'baseData-tx' },
+								'北京'
+							),
+							_react2.default.createElement(
+								'select',
+								{ onChange: function onChange(e) {
+										_this6.cityChange(e);
+									} },
+								cityList
+							)
 						)
 					),
 					_react2.default.createElement(
 						'div',
 						{ id: 'baseData-foot', onTouchTap: function onTouchTap(e) {
-								_this5.nexts(e);
+								_this6.nexts(e);
 							} },
 						_react2.default.createElement('img', { src: this.state.next.url })
 					)
@@ -274,30 +301,7 @@ webpackJsonp([0],{
 		return Main;
 	})(_react2.default.Component);
 
-	var BaseData = (function (_React$Component3) {
-		_inherits(BaseData, _React$Component3);
-
-		function BaseData() {
-			_classCallCheck(this, BaseData);
-
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(BaseData).call(this));
-		}
-
-		_createClass(BaseData, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(Main, null)
-				);
-			}
-		}]);
-
-		return BaseData;
-	})(_react2.default.Component);
-
-	_reactDom2.default.render(_react2.default.createElement(BaseData, null), document.querySelector('#baseData-content'));
+	_reactDom2.default.render(_react2.default.createElement(Main, null), document.querySelector('#baseData-content'));
 
 /***/ },
 
@@ -1792,7 +1796,7 @@ webpackJsonp([0],{
 
 
 	// module
-	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\nhtml, body {\n  background-color: #f3f4f5; }\n\n#baseData-content {\n  overflow: hidden; }\n\n#baseData-main {\n  text-align: center;\n  padding-top: .3rem;\n  padding-bottom: .5rem; }\n  #baseData-main #baseData-head {\n    font-size: .5rem;\n    margin-bottom: .3rem;\n    color: #333333; }\n    #baseData-main #baseData-head #baseData-head-tag {\n      font-size: 140%; }\n  #baseData-main #baseData-headImg {\n    position: relative;\n    top: 0;\n    left: 0;\n    width: 3rem;\n    height: 3rem;\n    margin: auto;\n    padding: .1rem;\n    border: .06rem solid #ffffff;\n    border-radius: 100%;\n    margin-bottom: .6rem; }\n    #baseData-main #baseData-headImg img {\n      width: 100%;\n      height: 100%;\n      border-radius: 100%; }\n    #baseData-main #baseData-headImg input[type=file] {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      opacity: 0; }\n  #baseData-main #baseData-body {\n    padding-bottom: .8rem; }\n    #baseData-main #baseData-body .baseData-unit {\n      position: relative;\n      width: 70%;\n      margin: auto;\n      border-bottom: 1px solid #dfdfdf;\n      padding-bottom: 1rem;\n      line-height: 1rem;\n      height: .5rem;\n      text-align: center;\n      font-size: .4rem;\n      color: #999999; }\n      #baseData-main #baseData-body .baseData-unit input {\n        width: 100%;\n        text-align: center;\n        font-size: inherit;\n        border: none;\n        background-color: transparent;\n        color: #333333; }\n        #baseData-main #baseData-body .baseData-unit input::-webkit-input-placeholder {\n          text-align: center;\n          color: #999999; }\n      #baseData-main #baseData-body .baseData-unit select {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        background-color: transparent;\n        border: none;\n        opacity: 0; }\n      #baseData-main #baseData-body .baseData-unit .baseData-sex {\n        color: #2fa4f6; }\n  #baseData-main #baseData-foot {\n    margin: auto;\n    width: 4rem; }\n    #baseData-main #baseData-foot img {\n      width: 100%; }\n", ""]);
+	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\nhtml, body {\n  background-color: #f3f4f5; }\n\n#baseData-content {\n  overflow: hidden; }\n\n#baseData-main {\n  text-align: center;\n  padding-top: .3rem;\n  padding-bottom: .5rem; }\n  #baseData-main #baseData-head {\n    font-size: .5rem;\n    margin-bottom: .3rem;\n    color: #333333; }\n    #baseData-main #baseData-head #baseData-head-tag {\n      font-size: 140%; }\n  #baseData-main #baseData-headImg {\n    position: relative;\n    top: 0;\n    left: 0;\n    width: 3rem;\n    height: 3rem;\n    margin: auto;\n    padding: .1rem;\n    border: .06rem solid #ffffff;\n    border-radius: 100%;\n    margin-bottom: .6rem; }\n    #baseData-main #baseData-headImg img {\n      width: 100%;\n      height: 100%;\n      border-radius: 100%; }\n    #baseData-main #baseData-headImg input[type=file] {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      opacity: 0; }\n  #baseData-main #baseData-body {\n    padding-bottom: .8rem; }\n    #baseData-main #baseData-body .baseData-unit {\n      position: relative;\n      width: 70%;\n      margin: auto;\n      border-bottom: 1px solid #dfdfdf;\n      padding-bottom: 1rem;\n      line-height: 1rem;\n      height: .5rem;\n      text-align: center;\n      font-size: .4rem;\n      color: #999999; }\n      #baseData-main #baseData-body .baseData-unit input {\n        width: 100%;\n        text-align: center;\n        font-size: inherit;\n        border: none;\n        background-color: transparent;\n        color: #333333; }\n        #baseData-main #baseData-body .baseData-unit input::-webkit-input-placeholder {\n          text-align: center;\n          color: #999999; }\n      #baseData-main #baseData-body .baseData-unit select {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        background-color: transparent;\n        border: none;\n        opacity: 0; }\n      #baseData-main #baseData-body .baseData-unit .baseData-tx {\n        color: #2fa4f6; }\n  #baseData-main #baseData-foot {\n    margin: auto;\n    width: 4rem; }\n    #baseData-main #baseData-foot img {\n      width: 100%; }\n", ""]);
 
 	// exports
 

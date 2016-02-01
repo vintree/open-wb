@@ -102,7 +102,12 @@ class FansGroup extends React.Component {
                     <section id="fansGroup-newest" className={'fansGroup-md ' + this.state.tab[0].active}>
                         <Newest vars={this.state.vars}></Newest>
                     </section>
-
+                    <section id="fansGroup-hot" className={'fansGroup-md ' + this.state.tab[1].active}>
+                        <Newest vars={this.state.vars}></Newest>
+                    </section>
+                    <section id="fansGroup-details" className={'fansGroup-md ' + this.state.tab[2].active}>
+                        <Details></Details>
+                    </section>
                 </div>
             </div>
         )

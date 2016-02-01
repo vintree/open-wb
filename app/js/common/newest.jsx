@@ -40,11 +40,11 @@ class Newest_head extends React.Component {
     }
 }
 
-class Newest_tx extends React.Component {
-    constructor() {
-        super();
-    }
-}
+// class Newest_tx extends React.Component {
+//     constructor() {
+//         super();
+//     }
+// }
 
 class Newest_body_1 extends React.Component {
     constructor(props) {
@@ -62,7 +62,7 @@ class Newest_body_1 extends React.Component {
                     {this.props.data.content}
                 </div>
                 <div className="newest-model1">
-                    <img src={this.state.imgUrl[0]}></img>
+                    <img src={this.props.data.picList[0]}></img>
                 </div>
             </div>
         )
@@ -70,19 +70,19 @@ class Newest_body_1 extends React.Component {
 }
 
 class Newest_body_2 extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
     }
     render() {
         return (
             <div className="newest-body">
                 <div className="newest-tx">
-                    虽然没有明确具体坐标，但现场很好找，因为很远就能看到马路边上一团火。“车身已经是一片火海，看不清车型和车牌了。”水枪从着火汽车正前方左右两侧进......
+                    {this.props.data.content}
                 </div>
                 <div className="newest-model2">
-                    <div className="newest-img"><img src="../img/bk.png"></img></div>
-                    <div className="newest-img"><img src="../img/bk.png"></img></div>
-                    <div className="newest-img"><img src="../img/bk.png"></img></div>
+                    <div className="newest-img"><img src={this.props.data.picList[0]}></img></div>
+                    <div className="newest-img"><img src={this.props.data.picList[1]}></img></div>
+                    <div className="newest-img"><img src={this.props.data.picList[2]}></img></div>
                 </div>
             </div>
         )
@@ -168,15 +168,20 @@ export default class Newest extends React.Component {
 
     render() {
         const list = this.state.list.map((v, ix) => {
+            let newest = '';
+            if(v.picList.length === 1) {
+                newest = (<Newest_body_1 data={v} vars={this.props.vars}></Newest_body_1>)
+            } else if(v.picList.length > 1) {
+                newest = (<Newest_body_2 data={v} vars={this.props.vars}></Newest_body_2>)
+            } 
             return (
                 <div key={v.time} className="newest-unit gap">
                     <Newest_head data={v} vars={this.props.vars}></Newest_head>
-                    <Newest_body_1 data={v} vars={this.props.vars}></Newest_body_1>
+                    {newest}
                     <Newest_foot data={v} vars={this.props.vars}></Newest_foot>
                 </div>
             );
         });
-
         return (
             <div id="newest">
                 <div id="newest-group">
@@ -186,17 +191,3 @@ export default class Newest extends React.Component {
         )
     }
 }
-
-// <div className="newest-unit gap">
-//                         <Newest_head></Newest_head>
-//                         <Newest_body_1></Newest_body_1>
-//                         <Newest_foot></Newest_foot>
-//                     </div>
-
-
-// <div className="newest-unit gap">
-//                         <Newest_head></Newest_head>
-//                         <Newest_body_2></Newest_body_2>
-//                         <Newest_foot></Newest_foot>
-//                     </div>
-
