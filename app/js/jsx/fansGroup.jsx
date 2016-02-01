@@ -98,7 +98,11 @@ class FansGroup extends React.Component {
                     <section id="fansGroup-tab" onTouchTap={ e => {this.tapTab(e)} }>
                         <Tab data={this.state.tab}></Tab>
                     </section>
-                    
+
+                    <section id="fansGroup-newest" className={'fansGroup-md ' + this.state.tab[0].active}>
+                        <Newest vars={this.state.vars}></Newest>
+                    </section>
+
                 </div>
             </div>
         )
