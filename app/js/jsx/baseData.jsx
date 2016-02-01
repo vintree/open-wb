@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import InjectTapEventPlugin from "react-tap-event-plugin";
 import Superagent from 'superagent';
-import Jsonp from 'superagent-jsonp';
 
 import autoFont from '../temp/autoFont.js';
 import FormatAjax from '../temp/formatAjax.js';
