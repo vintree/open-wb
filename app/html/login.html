@@ -25,7 +25,7 @@
 	config.src = path + 'js/config.js';
 	document.body.appendChild(config);
 	config.onload = function() {
-		this.$c.addScriptTree(['js/common.js', 'js/login.js']);
-		// this.$c.addStyle(['font/css/font-awesome.min.css']);
+		var cf = new _config;
+		cf.addScriptTree(['js/common.js', 'js/login.js']);
 	}.bind(window);
 </script>

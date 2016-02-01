@@ -1,5 +1,7 @@
 require('../../sass/newest.scss');
 import React from 'react';
+import Superagent from 'superagent';
+
 import FormatAjax from '../temp/formatAjax.js';
 import Unicode from '../temp/unicode.js';
 //import $ from 'jquery';
@@ -30,7 +32,7 @@ class Newest_head extends React.Component {
                         <div className="newest-source-1-2">春光乍泄剧组</div>
                     </div>
                     <div className="newest-source-2">
-                        <img src="../img/photo.png" />
+                        <img src={this.props.vars.path + 'img/photo.png'} />
                     </div>
                 </div>
             </div>
@@ -47,10 +49,9 @@ class Newest_tx extends React.Component {
 class Newest_body_1 extends React.Component {
     constructor(props) {
         super(props);
-        const path = window.$c.path();
         this.state = {
             imgUrl: [
-                path + 'img/bk.png',
+                props.vars.path + 'img/bk.png',
             ]
         };
     }
@@ -91,13 +92,12 @@ class Newest_body_2 extends React.Component {
 class Newest_foot extends React.Component {
     constructor(props) {
         super(props);
-        const path = window.$c.path();
         this.state = {
             imgUrl: [
-                path + 'img/collect.png',
-                path + 'img/good.png',
-                path + 'img/review.png',
-                path + 'img/map@3x.png'
+                props.vars.path + 'img/collect.png',
+                props.vars.path + 'img/good.png',
+                props.vars.path + 'img/review.png',
+                props.vars.path + 'img/map@3x.png'
             ]
         };
     }
@@ -130,52 +130,49 @@ class Newest_foot extends React.Component {
 }
 
 export default class Newest extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             list: []
         };
     }
 
     componentWillMount() {
-        var url = window.$c.apiPath() + 'tag/newest.json';
+        var url = this.props.vars.apiPath + 'tag/newest.json';
         url = FormatAjax.get(url, {
             tid: 1,
             count: 10
         });
-        fetch(url).then(data => {
-            if(data.status === 200) {
-                data.json().then(json => {
-                    if(json.status.code === '0') {
-                        let list = this.state.list;
-                        json = json.data;
-                        json = json.map((v, ix) => {
-                            v.address = Unicode.toHex(v.address);
-                            v.constellation = Unicode.toHex(v.constellation);
-                            v.content = Unicode.toHex(v.content);
-                            v.extension = Unicode.toHex(v.extension);
-                            v.nickName = Unicode.toHex(v.nickName);
-                            v.sign = Unicode.toHex(v.sign);
-                            v.title = Unicode.toHex(v.title);
-                            return v;
-                        });
-                        list = list.concat(list, json);
-                        this.setState({list: list});
-                    }
-                });
+        Superagent.get(url).end((err, req) => {
+            if(req.status === 200) {
+                var data = JSON.parse(req.text);
+                if(data.status.code === '0') {
+                    let list = this.state.list;
+                    data = data.data;
+                    data = data.map((v, ix) => {
+                        v.address = Unicode.toHex(v.address);
+                        v.constellation = Unicode.toHex(v.constellation);
+                        v.content = Unicode.toHex(v.content);
+                        v.extension = Unicode.toHex(v.extension);
+                        v.nickName = Unicode.toHex(v.nickName);
+                        v.sign = Unicode.toHex(v.sign);
+                        v.title = Unicode.toHex(v.title);
+                        return v;
+                    });
+                    list = list.concat(list, data);
+                    this.setState({list: list});
+                }
             }
         });
     }
-
-
 
     render() {
         const list = this.state.list.map((v, ix) => {
             return (
                 <div key={v.time} className="newest-unit gap">
-                    <Newest_head data={v}></Newest_head>
-                    <Newest_body_1 data={v}></Newest_body_1>
-                    <Newest_foot data={v}></Newest_foot>
+                    <Newest_head data={v} vars={this.props.vars}></Newest_head>
+                    <Newest_body_1 data={v} vars={this.props.vars}></Newest_body_1>
+                    <Newest_foot data={v} vars={this.props.vars}></Newest_foot>
                 </div>
             );
         });

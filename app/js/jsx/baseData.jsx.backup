@@ -2,8 +2,6 @@ require('../../sass/baseData.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import InjectTapEventPlugin from "react-tap-event-plugin";
-import Superagent from 'superagent';
-import Jsonp from 'superagent-jsonp';
 
 import autoFont from '../temp/autoFont.js';
 import FormatAjax from '../temp/formatAjax.js';
@@ -16,13 +14,9 @@ InjectTapEventPlugin();
 class HeadImg extends React.Component {
 	constructor() {
 		super();
-		var cf = new _config;
-		const path = cf.path();
+		const $c = window.$c;
+		const path = $c.path();
 		this.state = {
-			config: {
-				path: cf.path(),
-				apiPath: cf.apiPath()
-			},
 			img: {
 				url: path + 'img/defaultHead@3x.png'
 			}
@@ -60,13 +54,9 @@ class HeadImg extends React.Component {
 class Main extends React.Component {
 	constructor() {
 		super();
-		var cf = new _config;
-		const path = cf.path();
+		const $c = window.$c;
+		const path = $c.path();
 		this.state = {
-			config: {
-				path: cf.path(),
-				apiPath: cf.apiPath()
-			},
 			nick: {
 				name: '',
 				placeholder: '怎么称呼您？',
@@ -114,25 +104,23 @@ class Main extends React.Component {
 	}
 
 	nexts() {
-		const config = this.state.config;
-		const apiPath = config.apiPath;
-		var url = apiPath + 'kiklink/shop_list.json';
-		url = FormatAjax.get(url);
-		Superagent.get(url).end(function(err, res) {
-			if(res.status === 200) {
-				var data = JSON.parse(Unicode.toHex(res.text));
-				alert(data.status.msg);
-				console.log(data);
+		const url = FormatAjax.get(window.$c.apiPath() + 'zuji/city.json');
+		fetch(url).then(data => {
+			if(data.status === 200) {
+				data.json().then(function(json) {
+					if(json.status.code === "0") {
+						json = JSON.parse(Unicode.toHex(JSON.stringify(json.data.china)));
+						console.log(json);
+					}
+				});
 			}
-		});
-
-		// fetch('http://dev.useastore.com:8086/v1/kiklink/shop_list.json').then(function(data) {
-		// 	data.text().then(function(obj) {
-		// 		console.log(JSON.parse(obj));
-		// 	});
-		// }, function(ex) {
-		// 	console.log(ex);
-		// });
+			
+		}).then(data => {
+			// console.log(data);
+		}).catch(e => {
+			console.log(e);
+			console.log("Oops, error", e)
+		})
 	}
 
 

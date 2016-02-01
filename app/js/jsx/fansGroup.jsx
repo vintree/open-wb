@@ -29,7 +29,9 @@ InjectTapEventPlugin();
 class FansGroup extends React.Component {
     constructor() {
         super();
+        var cf = new _config;
         this.state = {
+            vars : cf.vars(),
             tab: [
                 {
                     name: '最新',
@@ -48,6 +50,7 @@ class FansGroup extends React.Component {
                 }
             ]
         };
+        // console.log(this.state.vars);
     }
 
     initializeTouchEvents() {
@@ -84,28 +87,44 @@ class FansGroup extends React.Component {
         return (
             <div>
                 <div className="base-nav">
-                    <Nav></Nav>
+                    <Nav vars={this.state.vars}></Nav>
                 </div>
                 <div className="base-body">
+                    
                     <section id='fansGroup-head' onTouchTap={ e => {this.tapMemu(e)} }>
-                        <UserMsg name="Nate"></UserMsg>
+                        <UserMsg vars={this.state.vars}></UserMsg>
                     </section>
+
                     <section id="fansGroup-tab" onTouchTap={ e => {this.tapTab(e)} }>
                         <Tab data={this.state.tab}></Tab>
                     </section>
+
                     <section id="fansGroup-newest" className={'fansGroup-md ' + this.state.tab[0].active}>
-                        <Newest></Newest>
+                        <Newest vars={this.state.vars}></Newest>
                     </section>
-                    <section id="fansGroup-hot" className={'fansGroup-md ' + this.state.tab[1].active}>
-                        <Newest></Newest>
-                    </section>
-                    <section id="fansGroup-details" className={'fansGroup-md ' + this.state.tab[2].active}>
-                        <Details></Details>
-                    </section>
+
                 </div>
             </div>
         )
     }
 }
+
+// <Nav></Nav>
+
+// <section id='fansGroup-head' onTouchTap={ e => {this.tapMemu(e)} }>
+//                         <UserMsg name="Nate"></UserMsg>
+//                     </section>
+
+
+// <section id="fansGroup-newest" className={'fansGroup-md ' + this.state.tab[0].active}>
+//     <Newest></Newest>
+// </section>
+// <section id="fansGroup-hot" className={'fansGroup-md ' + this.state.tab[1].active}>
+//     <Newest></Newest>
+// </section>
+// <section id="fansGroup-details" className={'fansGroup-md ' + this.state.tab[2].active}>
+//     <Details></Details>
+// </section>
+
 
 ReactDOM.render(<FansGroup name="Nate" />, document.getElementById('fansGroup-content'));
