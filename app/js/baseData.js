@@ -23,11 +23,11 @@ webpackJsonp([0],{
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
-	var _formatAjax = __webpack_require__(230);
+	var _formatAjax = __webpack_require__(165);
 
 	var _formatAjax2 = _interopRequireDefault(_formatAjax);
 
-	var _unicode = __webpack_require__(232);
+	var _unicode = __webpack_require__(166);
 
 	var _unicode2 = _interopRequireDefault(_unicode);
 
@@ -39,7 +39,7 @@ webpackJsonp([0],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(165);
+	__webpack_require__(167);
 
 	_autoFont2.default.init();
 	(0, _reactTapEventPlugin2.default)();
@@ -287,48 +287,6 @@ webpackJsonp([0],{
 /***/ },
 
 /***/ 165:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(166);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(168)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./baseData.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./baseData.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 166:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(167)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\nhtml, body {\n  background-color: #f3f4f5; }\n\n#baseData-content {\n  overflow: hidden; }\n\n#baseData-main {\n  text-align: center;\n  padding-top: .3rem;\n  padding-bottom: .5rem; }\n  #baseData-main #baseData-head {\n    font-size: .5rem;\n    margin-bottom: .3rem;\n    color: #333333; }\n    #baseData-main #baseData-head #baseData-head-tag {\n      font-size: 140%; }\n  #baseData-main #baseData-headImg {\n    position: relative;\n    top: 0;\n    left: 0;\n    width: 3rem;\n    height: 3rem;\n    margin: auto;\n    padding: .1rem;\n    border: .06rem solid #ffffff;\n    border-radius: 100%;\n    margin-bottom: .6rem; }\n    #baseData-main #baseData-headImg img {\n      width: 100%;\n      height: 100%;\n      border-radius: 100%; }\n    #baseData-main #baseData-headImg input[type=file] {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      opacity: 0; }\n  #baseData-main #baseData-body {\n    padding-bottom: .8rem; }\n    #baseData-main #baseData-body .baseData-unit {\n      position: relative;\n      width: 70%;\n      margin: auto;\n      border-bottom: 1px solid #dfdfdf;\n      padding-bottom: 1rem;\n      line-height: 1rem;\n      height: .5rem;\n      text-align: center;\n      font-size: .4rem;\n      color: #999999; }\n      #baseData-main #baseData-body .baseData-unit input {\n        width: 100%;\n        text-align: center;\n        font-size: inherit;\n        border: none;\n        background-color: transparent;\n        color: #333333; }\n        #baseData-main #baseData-body .baseData-unit input::-webkit-input-placeholder {\n          text-align: center;\n          color: #999999; }\n      #baseData-main #baseData-body .baseData-unit select {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        background-color: transparent;\n        border: none;\n        opacity: 0; }\n      #baseData-main #baseData-body .baseData-unit .baseData-sex {\n        color: #2fa4f6; }\n  #baseData-main #baseData-foot {\n    margin: auto;\n    width: 4rem; }\n    #baseData-main #baseData-foot img {\n      width: 100%; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 230:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -354,7 +312,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 232:
+/***/ 166:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -385,6 +343,48 @@ webpackJsonp([0],{
 	};
 
 	module.exports = unicode;
+
+/***/ },
+
+/***/ 167:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(168);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(170)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./baseData.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./baseData.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 168:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(169)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\nhtml, body {\n  background-color: #f3f4f5; }\n\n#baseData-content {\n  overflow: hidden; }\n\n#baseData-main {\n  text-align: center;\n  padding-top: .3rem;\n  padding-bottom: .5rem; }\n  #baseData-main #baseData-head {\n    font-size: .5rem;\n    margin-bottom: .3rem;\n    color: #333333; }\n    #baseData-main #baseData-head #baseData-head-tag {\n      font-size: 140%; }\n  #baseData-main #baseData-headImg {\n    position: relative;\n    top: 0;\n    left: 0;\n    width: 3rem;\n    height: 3rem;\n    margin: auto;\n    padding: .1rem;\n    border: .06rem solid #ffffff;\n    border-radius: 100%;\n    margin-bottom: .6rem; }\n    #baseData-main #baseData-headImg img {\n      width: 100%;\n      height: 100%;\n      border-radius: 100%; }\n    #baseData-main #baseData-headImg input[type=file] {\n      position: absolute;\n      top: 0;\n      left: 0;\n      width: 100%;\n      height: 100%;\n      opacity: 0; }\n  #baseData-main #baseData-body {\n    padding-bottom: .8rem; }\n    #baseData-main #baseData-body .baseData-unit {\n      position: relative;\n      width: 70%;\n      margin: auto;\n      border-bottom: 1px solid #dfdfdf;\n      padding-bottom: 1rem;\n      line-height: 1rem;\n      height: .5rem;\n      text-align: center;\n      font-size: .4rem;\n      color: #999999; }\n      #baseData-main #baseData-body .baseData-unit input {\n        width: 100%;\n        text-align: center;\n        font-size: inherit;\n        border: none;\n        background-color: transparent;\n        color: #333333; }\n        #baseData-main #baseData-body .baseData-unit input::-webkit-input-placeholder {\n          text-align: center;\n          color: #999999; }\n      #baseData-main #baseData-body .baseData-unit select {\n        position: absolute;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        background-color: transparent;\n        border: none;\n        opacity: 0; }\n      #baseData-main #baseData-body .baseData-unit .baseData-sex {\n        color: #2fa4f6; }\n  #baseData-main #baseData-foot {\n    margin: auto;\n    width: 4rem; }\n    #baseData-main #baseData-foot img {\n      width: 100%; }\n", ""]);
+
+	// exports
+
 
 /***/ }
 
