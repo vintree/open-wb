@@ -23,10 +23,6 @@ webpackJsonp([0],{
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _superagentJsonp = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"superagent-jsonp\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-	var _superagentJsonp2 = _interopRequireDefault(_superagentJsonp);
-
 	var _autoFont = __webpack_require__(166);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
