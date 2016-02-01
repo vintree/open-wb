@@ -40,12 +40,6 @@ class Newest_head extends React.Component {
     }
 }
 
-// class Newest_tx extends React.Component {
-//     constructor() {
-//         super();
-//     }
-// }
-
 class Newest_body_1 extends React.Component {
     constructor(props) {
         super(props);
@@ -102,12 +96,19 @@ class Newest_foot extends React.Component {
         };
     }
     render() {
-        return (
-            <div className="newest-foot">
+        let address = '';
+        if(this.props.data.address.length !== 0) {
+            address = (
                 <div className="newest-place">
                     <img src={this.state.imgUrl[3]}></img>
                     {this.props.data.address}
                 </div>
+            )
+        }
+
+        return (
+            <div className="newest-foot">
+                {address}
                 <div className="newest-tfoot">
                     <div className="newest-tfoot-content">
                         <div className="newest-foot-1">
