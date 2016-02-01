@@ -9,5 +9,25 @@
     <div id="hotGroup-content"></div>
 </body>
 </html>
+<!-- 
 <script src="../js/common.js"></script>
-<script src="../js/hotGroup.js"></script>
+<script src="../js/hotGroup.js"></script> -->
+<script type="text/javascript">
+	var 
+		port = location.port,
+		path,
+		config;
+	if(port === '8080') {
+		path = '../';
+	} else {
+		path = 'http://10.2.144.38:8080/github/open-wb/app/';
+	}
+	config = document.createElement('script');
+	config.type = 'text/javascript';
+	config.src = path + 'js/config.js';
+	document.body.appendChild(config);
+	config.onload = function() {
+		var cf = new _config;
+		cf.addScriptTree(['js/common.js', 'js/hotGroup.js']);
+	}.bind(window);
+</script>

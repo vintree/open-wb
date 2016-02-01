@@ -3,8 +3,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from "jquery";
 import InjectTapEventPlugin from "react-tap-event-plugin";
+import Superagent from 'superagent';
 
-
+import FormatAjax from '../temp/formatAjax.js';
+import Unicode from '../temp/unicode.js';
 import autoFont from '../temp/autoFont.js';
 import addScript from '../temp/addScript.js';
 import Head from '../temp/head.js';
@@ -20,6 +22,12 @@ class HotGroup extends React.Component {
     constructor() {
         super();
         this.state = {
+            vars: {
+                vars: (new _config).vars(),
+                apiUrl: {
+                    tag_category: 'zuji/tag_category.json'
+                }
+            },
             tab: [
                 {
                     name: '最新',
@@ -62,7 +70,25 @@ class HotGroup extends React.Component {
                     active: ''
                 }
             ]
-        }        
+        }
+        this.iniTab();
+    }
+
+
+    iniTab() {
+        let url = this.state.vars.vars.apiPath + this.state.vars.apiUrl.tag_category;
+        console.log(url);
+        Superagent.get(url).end((arr, req) => {
+            if(req.status === 200) {
+                let data = JSON.parse(Unicode.toHex(req.text));
+                if(data.status.code === '0') {
+                    data = data.data;
+                    console.log(data);
+                } else {
+
+                }
+            }
+        })
     }
 
     toggleTab(e) {
