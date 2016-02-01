@@ -3,6 +3,7 @@ require('../../sass/login.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import InjectTapEventPlugin from "react-tap-event-plugin";
+import Superagent from 'superagent';
 
 import AutoFont from '../temp/autoFont.js';
 import Md5 from '../temp/md5.js';
@@ -15,8 +16,8 @@ AutoFont.init();
 InjectTapEventPlugin();
 
 class Tab extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 	}
 	render() {
 		return (
@@ -29,8 +30,8 @@ class Tab extends React.Component {
 }
 
 class Input extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 	}
 
 	componentDidMount() {
@@ -66,36 +67,30 @@ class Input extends React.Component {
 		var 
 			mobile = this.refs.mobile.value.trim();
 		const 
-			sharekey = window.$c.data.sharekey;
-		// if(Format.mobile(mobile)) {
+			vars = this.props.vars,
+			sharekey = vars.sharekey;
+		if(Format.mobile(mobile)) {
 			let timestamp = (new Date()).getTime(),
 				url;
 			timestamp += Md5.init(timestamp + sharekey);
 			mobile += Md5.init(mobile + sharekey);
-			url = FormatAjax.get(window.$c.apiPath() + 'users/register.json', {
+			url = FormatAjax.get(vars.apiPath + 'users/register.json', {
 				timestamp: timestamp,
 				mobile: mobile
 			});
-			fetch(url).then(data => {
-				if(data.status === 200) {
-					data.json().then(json => {
-						console.log(json);
-						if(json.status.code === '0') {
-
-						} else {
-							// location.href = './baseData.html';
-							alert(Unicode.toHex(json.status.msg));
-						}
-					});
+			Superagent.get(url).end(function(err, res) {
+				if(res.status === 200) {
+					var data = JSON.parse(Unicode.toHex(res.text));
+					if(data.status.code === '0') {
+						console.log(data);
+					} else {
+						alert(data.status.msg);
+					}
 				}
-			}).then(data => {
-				// console.log(data);
-			}).catch(e => {
-				console.log(e);
-			})
-		// } else {
-		// 	alert('手机号格式不正确！');
-		// }
+			});
+		} else {
+			alert('手机号格式不正确！');
+		}
 	}
 
 	render() {
@@ -119,16 +114,15 @@ class Input extends React.Component {
 }
 
 class Other extends React.Component {
-	constructor() {
-		super();
-		const $c = window.$c;
+	constructor(props) {
+		super(props);
 		this.state = {
 			img: [
 				{
-					imgUrl: $c.path() + 'img/login/wechat@3x.png'
+					imgUrl: this.props.vars.path + 'img/login/wechat@3x.png'
 				},
 				{
-					imgUrl: $c.path() + 'img/login/sina@3x.png'
+					imgUrl: this.props.vars.path + 'img/login/sina@3x.png'
 				}
 			]
 		}
@@ -157,19 +151,18 @@ class Other extends React.Component {
 class Main extends React.Component {
 	constructor() {
 		super();
-		const $c = window.$c;
-		const path = $c.path();
+		const cf = new _config;
 		this.state = {
-			
+			vars: cf.vars()
 		}
 	}
 
 	render() {
 		return (
 			<div id="login-main">
-				<Tab />
-				<Input />
-				<Other />
+				<Tab vars={this.state.vars}/>
+				<Input vars={this.state.vars}/>
+				<Other vars={this.state.vars}/>
 			</div>
 		)
 	}

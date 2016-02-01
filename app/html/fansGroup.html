@@ -24,6 +24,7 @@
 	config.src = path + 'js/config.js';
 	document.body.appendChild(config);
 	config.onload = function() {
-		this.$c.addScriptTree(['js/common.js', 'js/fansGroup.js']);
+		var cf = new _config;
+		cf.addScriptTree(['js/common.js', 'js/fansGroup.js']);
 	}.bind(window);
 </script>

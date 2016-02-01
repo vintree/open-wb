@@ -97,7 +97,9 @@ webpackJsonp([1],{
 
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(FansGroup).call(this));
 
+	        var cf = new _config();
 	        _this.state = {
+	            vars: cf.vars(),
 	            tab: [{
 	                name: '最新',
 	                codeName: 'fansGroup-newest',
@@ -112,6 +114,7 @@ webpackJsonp([1],{
 	                active: ''
 	            }]
 	        };
+	        // console.log(this.state.vars);
 	        return _this;
 	    }
 
@@ -158,7 +161,7 @@ webpackJsonp([1],{
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'base-nav' },
-	                    _react2.default.createElement(_nav2.default, null)
+	                    _react2.default.createElement(_nav2.default, { vars: this.state.vars })
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -168,7 +171,7 @@ webpackJsonp([1],{
 	                        { id: 'fansGroup-head', onTouchTap: function onTouchTap(e) {
 	                                _this2.tapMemu(e);
 	                            } },
-	                        _react2.default.createElement(_userMsg2.default, { name: 'Nate' })
+	                        _react2.default.createElement(_userMsg2.default, { vars: this.state.vars })
 	                    ),
 	                    _react2.default.createElement(
 	                        'section',
@@ -176,21 +179,6 @@ webpackJsonp([1],{
 	                                _this2.tapTab(e);
 	                            } },
 	                        _react2.default.createElement(_tab2.default, { data: this.state.tab })
-	                    ),
-	                    _react2.default.createElement(
-	                        'section',
-	                        { id: 'fansGroup-newest', className: 'fansGroup-md ' + this.state.tab[0].active },
-	                        _react2.default.createElement(_newest2.default, null)
-	                    ),
-	                    _react2.default.createElement(
-	                        'section',
-	                        { id: 'fansGroup-hot', className: 'fansGroup-md ' + this.state.tab[1].active },
-	                        _react2.default.createElement(_newest2.default, null)
-	                    ),
-	                    _react2.default.createElement(
-	                        'section',
-	                        { id: 'fansGroup-details', className: 'fansGroup-md ' + this.state.tab[2].active },
-	                        _react2.default.createElement(_details2.default, null)
 	                    )
 	                )
 	            );
@@ -199,6 +187,22 @@ webpackJsonp([1],{
 
 	    return FansGroup;
 	})(_react2.default.Component);
+
+	// <Nav></Nav>
+
+	// <section id='fansGroup-head' onTouchTap={ e => {this.tapMemu(e)} }>
+	//                         <UserMsg name="Nate"></UserMsg>
+	//                     </section>
+
+	// <section id="fansGroup-newest" className={'fansGroup-md ' + this.state.tab[0].active}>
+	//     <Newest></Newest>
+	// </section>
+	// <section id="fansGroup-hot" className={'fansGroup-md ' + this.state.tab[1].active}>
+	//     <Newest></Newest>
+	// </section>
+	// <section id="fansGroup-details" className={'fansGroup-md ' + this.state.tab[2].active}>
+	//     <Details></Details>
+	// </section>
 
 	_reactDom2.default.render(_react2.default.createElement(FansGroup, { name: 'Nate' }), document.getElementById('fansGroup-content'));
 
@@ -333,10 +337,10 @@ webpackJsonp([1],{
 	var UserMsg = (function (_React$Component) {
 	    _inherits(UserMsg, _React$Component);
 
-	    function UserMsg() {
+	    function UserMsg(props) {
 	        _classCallCheck(this, UserMsg);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(UserMsg).apply(this, arguments));
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(UserMsg).call(this, props));
 	    }
 
 	    _createClass(UserMsg, [{
@@ -361,7 +365,7 @@ webpackJsonp([1],{
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'userMsg' },
-	                _react2.default.createElement('img', { id: 'userMsg-kbImg', className: 'blur', src: '../img/bk.png' }),
+	                _react2.default.createElement('img', { id: 'userMsg-kbImg', className: 'blur', src: this.props.vars.path + 'img/bk.png' }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { id: 'userMsg-head-group' },
@@ -371,18 +375,18 @@ webpackJsonp([1],{
 	                        _react2.default.createElement(
 	                            'div',
 	                            { id: 'userMsg-left', className: 'userMsg-Menu userMsg-ease' },
-	                            _react2.default.createElement('img', { src: '../img/menu@3x.png' })
+	                            _react2.default.createElement('img', { src: this.props.vars.path + 'img/menu@3x.png' })
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
 	                            { id: 'userMsg-right', className: 'userMsg-ease' },
-	                            _react2.default.createElement('img', { src: '../img/share@1x.png' })
+	                            _react2.default.createElement('img', { src: this.props.vars.path + 'img/share@1x.png' })
 	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { id: 'userMsg-headImg' },
-	                        _react2.default.createElement('img', { src: '../img/headImg@1x.png' })
+	                        _react2.default.createElement('img', { src: this.props.vars.path + 'img/headImg@1x.png' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -10752,7 +10756,7 @@ webpackJsonp([1],{
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'nav-img' },
-	                        _react2.default.createElement('img', { src: '../img/icon_nav/' + v.img + '.png' })
+	                        _react2.default.createElement('img', { src: _this2.props.vars.path + 'img/icon_nav/' + v.img + '.png' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -10987,7 +10991,8 @@ webpackJsonp([1],{
 
 	        var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(Newest_body_1).call(this, props));
 
-	        var path = window.$c.path();
+	        var cf = new _config();
+	        var path = cf.path();
 	        _this3.state = {
 	            imgUrl: [path + 'img/bk.png']
 	        };
@@ -11071,7 +11076,8 @@ webpackJsonp([1],{
 
 	        var _this5 = _possibleConstructorReturn(this, Object.getPrototypeOf(Newest_foot).call(this, props));
 
-	        var path = window.$c.path();
+	        var cf = new _config();
+	        var path = cf.path();
 	        _this5.state = {
 	            imgUrl: [path + 'img/collect.png', path + 'img/good.png', path + 'img/review.png', path + 'img/map@3x.png']
 	        };
@@ -11142,7 +11148,9 @@ webpackJsonp([1],{
 	        value: function componentWillMount() {
 	            var _this7 = this;
 
-	            var url = window.$c.apiPath() + 'tag/newest.json';
+	            var cf = new _config();
+	            var apiPath = cf.apiPath();
+	            var url = apiPath + 'tag/newest.json';
 	            url = _formatAjax2.default.get(url, {
 	                tid: 1,
 	                count: 10

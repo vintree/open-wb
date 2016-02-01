@@ -82,11 +82,11 @@ export default class nav extends React.Component {
     }
 
     render() {
-        const navList = this.state.nav.map(function(v) {
+        const navList = this.state.nav.map(v => {
             return (
                 <a className={'nav-unit ' + v.active} key={ v.img } href={ '?nav=' + v.img }>
                     <div className="nav-img">
-                        <img src={'../img/icon_nav/'+ v.img +'.png'}></img>
+                        <img src={this.props.vars.path + 'img/icon_nav/'+ v.img +'.png'}></img>
                     </div>
                     <div className="nav-name">{v.name}</div>
                 </a>

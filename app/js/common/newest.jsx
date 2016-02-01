@@ -47,7 +47,8 @@ class Newest_tx extends React.Component {
 class Newest_body_1 extends React.Component {
     constructor(props) {
         super(props);
-        const path = window.$c.path();
+        var cf = new _config;
+        const path = cf.path();
         this.state = {
             imgUrl: [
                 path + 'img/bk.png',
@@ -91,7 +92,8 @@ class Newest_body_2 extends React.Component {
 class Newest_foot extends React.Component {
     constructor(props) {
         super(props);
-        const path = window.$c.path();
+        var cf = new _config;
+        const path = cf.path();
         this.state = {
             imgUrl: [
                 path + 'img/collect.png',
@@ -138,7 +140,9 @@ export default class Newest extends React.Component {
     }
 
     componentWillMount() {
-        var url = window.$c.apiPath() + 'tag/newest.json';
+        var cf = new _config;
+        const apiPath = cf.apiPath();
+        var url = apiPath + 'tag/newest.json';
         url = FormatAjax.get(url, {
             tid: 1,
             count: 10

@@ -337,10 +337,10 @@ webpackJsonp([4],{
 	var UserMsg = (function (_React$Component) {
 	    _inherits(UserMsg, _React$Component);
 
-	    function UserMsg() {
+	    function UserMsg(props) {
 	        _classCallCheck(this, UserMsg);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(UserMsg).apply(this, arguments));
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(UserMsg).call(this, props));
 	    }
 
 	    _createClass(UserMsg, [{
@@ -365,7 +365,7 @@ webpackJsonp([4],{
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'userMsg' },
-	                _react2.default.createElement('img', { id: 'userMsg-kbImg', className: 'blur', src: '../img/bk.png' }),
+	                _react2.default.createElement('img', { id: 'userMsg-kbImg', className: 'blur', src: this.props.vars.path + 'img/bk.png' }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { id: 'userMsg-head-group' },
@@ -375,18 +375,18 @@ webpackJsonp([4],{
 	                        _react2.default.createElement(
 	                            'div',
 	                            { id: 'userMsg-left', className: 'userMsg-Menu userMsg-ease' },
-	                            _react2.default.createElement('img', { src: '../img/menu@3x.png' })
+	                            _react2.default.createElement('img', { src: this.props.vars.path + 'img/menu@3x.png' })
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
 	                            { id: 'userMsg-right', className: 'userMsg-ease' },
-	                            _react2.default.createElement('img', { src: '../img/share@1x.png' })
+	                            _react2.default.createElement('img', { src: this.props.vars.path + 'img/share@1x.png' })
 	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { id: 'userMsg-headImg' },
-	                        _react2.default.createElement('img', { src: '../img/headImg@1x.png' })
+	                        _react2.default.createElement('img', { src: this.props.vars.path + 'img/headImg@1x.png' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -10074,7 +10074,7 @@ webpackJsonp([4],{
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'nav-img' },
-	                        _react2.default.createElement('img', { src: '../img/icon_nav/' + v.img + '.png' })
+	                        _react2.default.createElement('img', { src: _this2.props.vars.path + 'img/icon_nav/' + v.img + '.png' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -10309,7 +10309,8 @@ webpackJsonp([4],{
 
 	        var _this3 = _possibleConstructorReturn(this, Object.getPrototypeOf(Newest_body_1).call(this, props));
 
-	        var path = window.$c.path();
+	        var cf = new _config();
+	        var path = cf.path();
 	        _this3.state = {
 	            imgUrl: [path + 'img/bk.png']
 	        };
@@ -10393,7 +10394,8 @@ webpackJsonp([4],{
 
 	        var _this5 = _possibleConstructorReturn(this, Object.getPrototypeOf(Newest_foot).call(this, props));
 
-	        var path = window.$c.path();
+	        var cf = new _config();
+	        var path = cf.path();
 	        _this5.state = {
 	            imgUrl: [path + 'img/collect.png', path + 'img/good.png', path + 'img/review.png', path + 'img/map@3x.png']
 	        };
@@ -10464,7 +10466,9 @@ webpackJsonp([4],{
 	        value: function componentWillMount() {
 	            var _this7 = this;
 
-	            var url = window.$c.apiPath() + 'tag/newest.json';
+	            var cf = new _config();
+	            var apiPath = cf.apiPath();
+	            var url = apiPath + 'tag/newest.json';
 	            url = _formatAjax2.default.get(url, {
 	                tid: 1,
 	                count: 10

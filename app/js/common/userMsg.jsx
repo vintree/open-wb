@@ -3,6 +3,9 @@ import React from 'react';
 //import $ from 'jquery';
 
 export default class UserMsg extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     handleFocus(e) {
         $('#header-rsBox').addClass('active');
     }
@@ -19,18 +22,18 @@ export default class UserMsg extends React.Component {
     render() {
         return (
             <div id="userMsg">
-                <img id="userMsg-kbImg" className="blur" src="../img/bk.png" />
+                <img id="userMsg-kbImg" className="blur" src={this.props.vars.path + 'img/bk.png'} />
                 <div id="userMsg-head-group">
                     <div id="userMsg-head">
                         <div id="userMsg-left" className="userMsg-Menu userMsg-ease">
-                            <img src="../img/menu@3x.png" />
+                            <img src={this.props.vars.path + 'img/menu@3x.png'} />
                         </div>
                         <div id="userMsg-right" className="userMsg-ease">
-                            <img src="../img/share@1x.png" />
+                            <img src={this.props.vars.path + 'img/share@1x.png'} />
                         </div>
                     </div>
                     <div id="userMsg-headImg">
-                        <img src="../img/headImg@1x.png" />
+                        <img src={this.props.vars.path + 'img/headImg@1x.png'} />
                     </div>
                     <div id="userMsg-name">MakeBlok粉丝群</div>
                     <div id="userMsg-info">
