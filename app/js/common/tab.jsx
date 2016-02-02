@@ -1,6 +1,5 @@
 require('../../sass/tab.scss');
 import React from 'react';
-import $ from 'jquery';
 
 export default class Tab extends React.Component {
     constructor(props) {

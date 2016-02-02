@@ -1,6 +1,5 @@
 require('../../sass/member.scss');
 import React from 'react';
-//import $ from 'jquery';
 
 export default class Member extends React.Component {
     constructor() {

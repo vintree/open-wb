@@ -1,6 +1,5 @@
 require('../../sass/userMsg.scss');
 import React from 'react';
-//import $ from 'jquery';
 
 export default class UserMsg extends React.Component {
     constructor(props) {

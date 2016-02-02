@@ -1,6 +1,5 @@
 require('../../sass/related.scss');
 import React from 'react';
-//import $ from 'jquery';
 
 export default class Related extends React.Component {
     constructor() {

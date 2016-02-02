@@ -1,6 +1,5 @@
 require('../../sass/tag.scss');
 import React from 'react';
-//import $ from 'jquery';
 
 export default class Tag extends React.Component {
     constructor() {

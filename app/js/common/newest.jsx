@@ -4,7 +4,6 @@ import Superagent from 'superagent';
 
 import FormatAjax from '../temp/formatAjax.js';
 import Unicode from '../temp/unicode.js';
-//import $ from 'jquery';
 
 class Newest_head extends React.Component {
     constructor(props) {

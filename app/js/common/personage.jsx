@@ -1,6 +1,6 @@
 // require('../../sass/personage.scss');
 import React from 'react';
-import $ from 'jquery';
+// import $ from 'jquery';
 
 export default class Personage extends React.Component {
     constructor(props) {
