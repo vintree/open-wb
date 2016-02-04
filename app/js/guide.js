@@ -31,7 +31,7 @@ webpackJsonp([2],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(211);
+	__webpack_require__(210);
 
 	_autoFont2.default.init();
 	(0, _reactTapEventPlugin2.default)();
@@ -180,13 +180,13 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 211:
+/***/ 210:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(212);
+	var content = __webpack_require__(211);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(173)(content, {});
@@ -207,7 +207,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 212:
+/***/ 211:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();

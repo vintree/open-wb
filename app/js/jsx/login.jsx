@@ -10,7 +10,8 @@ import Md5 from '../temp/md5.js';
 import Format from '../temp/format.js';
 import FormatAjax from '../temp/formatAjax.js';
 import Unicode from '../temp/unicode.js';
-
+import UserAgent from '../temp/userAgent.js';
+import ErrorMsg from '../temp/errorMsg.js';
 // import Ibootstrap from '../temp/lib/ibootstrap.all.min.js';
 AutoFont.init();
 InjectTapEventPlugin();
@@ -60,36 +61,62 @@ class Input extends React.Component {
 	// 获取手机验证码
 	getCode() {
 		const mobile = this.refs.mobile.value.trim();
+		if(Format.mobile(mobile)) {
+
+			AV.Cloud.requestSmsCode({
+				 mobilePhoneNumber: mobile,
+				 name: '我司',
+				 op: '验证操作',
+				 ttl: 10
+			}).then(function(){
+			 //发送成功
+			}, function(err){
+			 //发送失败
+			 	alert(err.message);
+			});
+		} else {
+			alert(ErrorMsg.err('mobileFormat'));
+		}
+		
 	}
 
 	// 提交注册
 	btConfirm() {
 		var 
-			mobile = this.refs.mobile.value.trim();
+			mobile = this.refs.mobile.value.trim(),
+			code = this.refs.code.value.trim();
 		const 
 			vars = this.props.vars,
 			sharekey = vars.sharekey;
 		if(Format.mobile(mobile)) {
-			let timestamp = (new Date()).getTime(),
+
+			AV.Cloud.verifySmsCode(code, mobile).then(function(){
+   			//验证成功
+   				let timestamp = (new Date()).getTime(),
 				url;
-			timestamp += Md5.init(timestamp + sharekey);
-			mobile += Md5.init(mobile + sharekey);
-			url = FormatAjax.get(vars.apiPath + 'users/register.json', {
-				timestamp: timestamp,
-				mobile: mobile
-			});
-			Superagent.get(url).end(function(err, res) {
-				if(res.status === 200) {
-					var data = JSON.parse(Unicode.toHex(res.text));
-					if(data.status.code === '0') {
-						console.log(data);
-					} else {
-						alert(data.status.msg);
+				timestamp += Md5.init(timestamp + sharekey);
+				mobile += Md5.init(mobile + sharekey);
+				url = FormatAjax.get(vars.apiPath + 'users/register.json', {
+					timestamp: timestamp,
+					mobile: mobile,
+					device: UserAgent.identify()
+				});
+				Superagent.get(url).end(function(err, res) {
+					if(res.status === 200) {
+						var data = JSON.parse(Unicode.toHex(res.text));
+						if(data.status.code === '0') {
+							console.log(data);
+						} else {
+							alert(data.status.msg);
+						}
 					}
-				}
+				});
+			}, function(err) {
+			   //验证失败
+			   alert(err.message);
 			});
 		} else {
-			alert('手机号格式不正确！');
+			alert(ErrorMsg.err('mobileFormat'));
 		}
 	}
 
@@ -100,7 +127,7 @@ class Input extends React.Component {
 					<input type="tel" placeholder="输入手机号" maxLength="11" ref="mobile" />
 				</div>
 				<div className="login-input-unit">
-					<input type="text" placeholder="输入验证码" />
+					<input type="text" placeholder="输入验证码" ref="code" />
 					<button className="login-code-bt" onTouchTap={ e => { this.getCode(e) } }>获取验证码</button>
 				</div>
 				<div id="login-confirm">

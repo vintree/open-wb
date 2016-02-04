@@ -11,4 +11,15 @@ userAgent.isMobile = function() {
     });
 }
 
+userAgent.identify = function() {
+	const userAgent = window.navigator.userAgent;
+	if(userAgent.includes('Android')) {
+		return 'android';
+	} else if(userAgent.includes('iPhone')) {
+		return 'ios';
+	} else {
+		return 'windows';
+	}
+}
+
 module.exports = userAgent;

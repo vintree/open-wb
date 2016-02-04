@@ -43,6 +43,14 @@ webpackJsonp([4],{
 
 	var _unicode2 = _interopRequireDefault(_unicode);
 
+	var _userAgent = __webpack_require__(167);
+
+	var _userAgent2 = _interopRequireDefault(_userAgent);
+
+	var _errorMsg = __webpack_require__(236);
+
+	var _errorMsg2 = _interopRequireDefault(_errorMsg);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -133,6 +141,22 @@ webpackJsonp([4],{
 			key: 'getCode',
 			value: function getCode() {
 				var mobile = this.refs.mobile.value.trim();
+				if (_format2.default.mobile(mobile)) {
+
+					AV.Cloud.requestSmsCode({
+						mobilePhoneNumber: mobile,
+						name: '我司',
+						op: '验证操作',
+						ttl: 10
+					}).then(function () {
+						//发送成功
+					}, function (err) {
+						//发送失败
+						alert(err.message);
+					});
+				} else {
+					alert(_errorMsg2.default.err('mobileFormat'));
+				}
 			}
 
 			// 提交注册
@@ -140,30 +164,39 @@ webpackJsonp([4],{
 		}, {
 			key: 'btConfirm',
 			value: function btConfirm() {
-				var mobile = this.refs.mobile.value.trim();
+				var mobile = this.refs.mobile.value.trim(),
+				    code = this.refs.code.value.trim();
 				var vars = this.props.vars,
 				    sharekey = vars.sharekey;
 				if (_format2.default.mobile(mobile)) {
-					var timestamp = new Date().getTime(),
-					    url = undefined;
-					timestamp += _md2.default.init(timestamp + sharekey);
-					mobile += _md2.default.init(mobile + sharekey);
-					url = _formatAjax2.default.get(vars.apiPath + 'users/register.json', {
-						timestamp: timestamp,
-						mobile: mobile
-					});
-					_superagent2.default.get(url).end(function (err, res) {
-						if (res.status === 200) {
-							var data = JSON.parse(_unicode2.default.toHex(res.text));
-							if (data.status.code === '0') {
-								console.log(data);
-							} else {
-								alert(data.status.msg);
+
+					AV.Cloud.verifySmsCode(code, mobile).then(function () {
+						//验证成功
+						var timestamp = new Date().getTime(),
+						    url = undefined;
+						timestamp += _md2.default.init(timestamp + sharekey);
+						mobile += _md2.default.init(mobile + sharekey);
+						url = _formatAjax2.default.get(vars.apiPath + 'users/register.json', {
+							timestamp: timestamp,
+							mobile: mobile,
+							device: _userAgent2.default.identify()
+						});
+						_superagent2.default.get(url).end(function (err, res) {
+							if (res.status === 200) {
+								var data = JSON.parse(_unicode2.default.toHex(res.text));
+								if (data.status.code === '0') {
+									console.log(data);
+								} else {
+									alert(data.status.msg);
+								}
 							}
-						}
+						});
+					}, function (err) {
+						//验证失败
+						alert(err.message);
 					});
 				} else {
-					alert('手机号格式不正确！');
+					alert(_errorMsg2.default.err('mobileFormat'));
 				}
 			}
 		}, {
@@ -182,7 +215,7 @@ webpackJsonp([4],{
 					_react2.default.createElement(
 						'div',
 						{ className: 'login-input-unit' },
-						_react2.default.createElement('input', { type: 'text', placeholder: '输入验证码' }),
+						_react2.default.createElement('input', { type: 'text', placeholder: '输入验证码', ref: 'code' }),
 						_react2.default.createElement(
 							'button',
 							{ className: 'login-code-bt', onTouchTap: function onTouchTap(e) {
@@ -2046,6 +2079,24 @@ webpackJsonp([4],{
 
 	// exports
 
+
+/***/ },
+
+/***/ 236:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var errorMsg = function errorMsg() {};
+
+	errorMsg.err = function (key) {
+		var obj = {
+			mobileFormat: '手机号格式不正确！'
+		};
+		return obj[key];
+	};
+
+	module.exports = errorMsg;
 
 /***/ }
 

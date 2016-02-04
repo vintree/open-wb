@@ -20059,10 +20059,21 @@
 	var userAgent = function userAgent() {};
 
 	userAgent.isMobile = function () {
-	    mobileArr: ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
-	    return this.mobileArr.some(function (v) {
-	        return window.navigator.userAgent.indexOf(v) > 0 ? true : false;
-	    });
+		mobileArr: ["Android", "iPhone", "SymbianOS", "Windows Phone", "iPad", "iPod"];
+		return this.mobileArr.some(function (v) {
+			return window.navigator.userAgent.indexOf(v) > 0 ? true : false;
+		});
+	};
+
+	userAgent.identify = function () {
+		var userAgent = window.navigator.userAgent;
+		if (userAgent.includes('Android')) {
+			return 'android';
+		} else if (userAgent.includes('iPhone')) {
+			return 'ios';
+		} else {
+			return 'windows';
+		}
 	};
 
 	module.exports = userAgent;
