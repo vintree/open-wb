@@ -104,7 +104,19 @@ webpackJsonp([4],{
 		function Input(props) {
 			_classCallCheck(this, Input);
 
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(Input).call(this, props));
+			var _this2 = _possibleConstructorReturn(this, Object.getPrototypeOf(Input).call(this, props));
+
+			_this2.state = {
+				code: {
+					name: '获取验证码',
+					time: '',
+					initName: '获取验证码',
+					initTime: 60,
+					initDes: '秒后再次获取',
+					active: ''
+				}
+			};
+			return _this2;
 		}
 
 		_createClass(Input, [{
@@ -140,22 +152,51 @@ webpackJsonp([4],{
 		}, {
 			key: 'getCode',
 			value: function getCode() {
-				var mobile = this.refs.mobile.value.trim();
-				if (_format2.default.mobile(mobile)) {
+				var _this3 = this;
 
-					AV.Cloud.requestSmsCode({
-						mobilePhoneNumber: mobile,
-						name: '我司',
-						op: '验证操作',
-						ttl: 10
-					}).then(function () {
-						//发送成功
-					}, function (err) {
-						//发送失败
-						alert(err.message);
-					});
-				} else {
-					alert(_errorMsg2.default.err('mobileFormat'));
+				var code = this.state.code;
+				if (code.active === '') {
+					var mobile = this.refs.mobile.value.trim();
+					if (_format2.default.mobile(mobile)) {
+						(function () {
+							code.active = 'active';
+							code.time = code.initTime;
+							code.name = code.time + code.initDes;
+							_this3.setState({
+								code: code
+							});
+							code.time--;
+							var t = setInterval(function () {
+								if (code.time !== 0) {
+									code.name = code.time + code.initDes;
+									_this3.setState({
+										code: code
+									});
+									code.time--;
+								} else {
+									clearTimeout(t);
+									code.active = '';
+									code.name = code.initName;
+									_this3.setState({
+										code: code
+									});
+								}
+							}, 1000);
+							AV.Cloud.requestSmsCode({
+								mobilePhoneNumber: mobile,
+								name: '我司',
+								op: '验证操作',
+								ttl: 10
+							}).then(function () {
+								//发送成功
+							}, function (err) {
+								//发送失败
+								alert(err.message);
+							});
+						})();
+					} else {
+						alert(_errorMsg2.default.err('mobileFormat'));
+					}
 				}
 			}
 
@@ -169,7 +210,6 @@ webpackJsonp([4],{
 				var vars = this.props.vars,
 				    sharekey = vars.sharekey;
 				if (_format2.default.mobile(mobile)) {
-
 					AV.Cloud.verifySmsCode(code, mobile).then(function () {
 						//验证成功
 						var timestamp = new Date().getTime(),
@@ -179,7 +219,9 @@ webpackJsonp([4],{
 						url = _formatAjax2.default.get(vars.apiPath + 'users/register.json', {
 							timestamp: timestamp,
 							mobile: mobile,
-							device: _userAgent2.default.identify()
+							device: _userAgent2.default.identify(),
+							deviceuuid: 'web',
+							source: 'useastore'
 						});
 						_superagent2.default.get(url).end(function (err, res) {
 							if (res.status === 200) {
@@ -202,7 +244,7 @@ webpackJsonp([4],{
 		}, {
 			key: 'render',
 			value: function render() {
-				var _this3 = this;
+				var _this4 = this;
 
 				return _react2.default.createElement(
 					'div',
@@ -218,10 +260,10 @@ webpackJsonp([4],{
 						_react2.default.createElement('input', { type: 'text', placeholder: '输入验证码', ref: 'code' }),
 						_react2.default.createElement(
 							'button',
-							{ className: 'login-code-bt', onTouchTap: function onTouchTap(e) {
-									_this3.getCode(e);
+							{ className: 'login-code-bt ' + this.state.code.active, onTouchTap: function onTouchTap(e) {
+									_this4.getCode(e);
 								} },
-							'获取验证码'
+							this.state.code.name
 						)
 					),
 					_react2.default.createElement(
@@ -230,7 +272,7 @@ webpackJsonp([4],{
 						_react2.default.createElement(
 							'button',
 							{ className: 'login-confirm-bt', onTouchTap: function onTouchTap(e) {
-									_this3.btConfirm(e);
+									_this4.btConfirm(e);
 								} },
 							'注册'
 						)
@@ -249,16 +291,16 @@ webpackJsonp([4],{
 		function Other(props) {
 			_classCallCheck(this, Other);
 
-			var _this4 = _possibleConstructorReturn(this, Object.getPrototypeOf(Other).call(this, props));
+			var _this5 = _possibleConstructorReturn(this, Object.getPrototypeOf(Other).call(this, props));
 
-			_this4.state = {
+			_this5.state = {
 				img: [{
-					imgUrl: _this4.props.vars.path + 'img/login/wechat@3x.png'
+					imgUrl: _this5.props.vars.path + 'img/login/wechat@3x.png'
 				}, {
-					imgUrl: _this4.props.vars.path + 'img/login/sina@3x.png'
+					imgUrl: _this5.props.vars.path + 'img/login/sina@3x.png'
 				}]
 			};
-			return _this4;
+			return _this5;
 		}
 
 		_createClass(Other, [{
@@ -305,13 +347,13 @@ webpackJsonp([4],{
 		function Main() {
 			_classCallCheck(this, Main);
 
-			var _this5 = _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this));
+			var _this6 = _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this));
 
 			var cf = new _config();
-			_this5.state = {
+			_this6.state = {
 				vars: cf.vars()
 			};
-			return _this5;
+			return _this6;
 		}
 
 		_createClass(Main, [{
@@ -2075,7 +2117,7 @@ webpackJsonp([4],{
 
 
 	// module
-	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\nhtml, body {\n  background-color: #f3f4f5; }\n\n#login-content {\n  overflow: hidden; }\n\n#login-main {\n  font-size: .4rem; }\n  #login-main #login-tab {\n    text-align: center;\n    line-height: 1rem;\n    border-bottom: .07rem solid #24a2f9;\n    overflow: hidden;\n    color: #666666;\n    margin-bottom: .4rem; }\n    #login-main #login-tab .login-tab-unit {\n      float: left;\n      width: 50%; }\n      #login-main #login-tab .login-tab-unit.active {\n        color: #2fa4f6; }\n  #login-main #login-input {\n    padding: 0 .2rem; }\n    #login-main #login-input .login-input-unit {\n      position: relative;\n      height: 1.1rem;\n      margin-bottom: .2rem; }\n      #login-main #login-input .login-input-unit input {\n        position: absolute;\n        top: 0;\n        left: 0;\n        border-radius: .15rem;\n        width: 100%;\n        height: 100%;\n        border: none;\n        padding: 0 .4rem;\n        font-size: .4rem; }\n      #login-main #login-input .login-input-unit:nth-child(2) input {\n        padding-right: 2.5rem; }\n      #login-main #login-input .login-input-unit:nth-child(2) .login-code-bt {\n        position: absolute;\n        top: .15rem;\n        right: .12rem;\n        width: 2rem;\n        height: .8rem;\n        background-color: #ffb541;\n        color: #ffffff;\n        border: none;\n        border-radius: .1rem;\n        font-size: .25rem;\n        padding: 0 .1rem; }\n  #login-main #login-confirm {\n    margin-top: .6rem; }\n    #login-main #login-confirm .login-confirm-bt {\n      width: 100%;\n      height: 1.1rem;\n      border: none;\n      background-color: #24a2f9;\n      color: #ffffff;\n      border-radius: .15rem;\n      font-size: inherit; }\n  #login-main #login-other {\n    margin-top: 1rem; }\n    #login-main #login-other #login-tx {\n      width: 70%;\n      margin: auto;\n      overflow: hidden;\n      margin-bottom: .5rem; }\n      #login-main #login-other #login-tx .login-cf {\n        float: left;\n        width: 15%;\n        border-bottom: .04rem solid #e0e0e0;\n        height: .5rem; }\n      #login-main #login-other #login-tx .login-content {\n        float: left;\n        width: 70%;\n        text-align: center;\n        line-height: 1rem;\n        height: 1rem;\n        font-size: .35rem;\n        color: #666666; }\n    #login-main #login-other #login-pro {\n      overflow: hidden; }\n      #login-main #login-other #login-pro .login-pro-unit {\n        float: left;\n        width: 50%;\n        text-align: center; }\n        #login-main #login-other #login-pro .login-pro-unit img {\n          width: 3rem; }\n", ""]);
+	exports.push([module.id, "@charset \"UTF-8\";\n*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\n/*\n    文字省略\n*/\nhtml, body {\n  background-color: #f3f4f5; }\n\n#login-content {\n  overflow: hidden; }\n\n#login-main {\n  font-size: .4rem; }\n  #login-main #login-tab {\n    text-align: center;\n    line-height: 1rem;\n    border-bottom: .07rem solid #24a2f9;\n    overflow: hidden;\n    color: #666666;\n    margin-bottom: .4rem; }\n    #login-main #login-tab .login-tab-unit {\n      float: left;\n      width: 50%; }\n      #login-main #login-tab .login-tab-unit.active {\n        color: #2fa4f6; }\n  #login-main #login-input {\n    padding: 0 .2rem; }\n    #login-main #login-input .login-input-unit {\n      position: relative;\n      height: 1.1rem;\n      margin-bottom: .2rem; }\n      #login-main #login-input .login-input-unit input {\n        position: absolute;\n        top: 0;\n        left: 0;\n        border-radius: .15rem;\n        width: 100%;\n        height: 100%;\n        border: none;\n        padding: 0 .4rem;\n        font-size: .4rem; }\n      #login-main #login-input .login-input-unit:nth-child(2) input {\n        padding-right: 2.5rem; }\n      #login-main #login-input .login-input-unit:nth-child(2) .login-code-bt {\n        position: absolute;\n        top: .15rem;\n        right: .12rem;\n        width: 2.3rem;\n        height: .8rem;\n        background-color: #ffb541;\n        color: #ffffff;\n        border: none;\n        border-radius: .1rem;\n        font-size: .25rem;\n        padding: 0 .1rem;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis; }\n        #login-main #login-input .login-input-unit:nth-child(2) .login-code-bt.active {\n          background-color: #b6b6b6; }\n  #login-main #login-confirm {\n    margin-top: .6rem; }\n    #login-main #login-confirm .login-confirm-bt {\n      width: 100%;\n      height: 1.1rem;\n      border: none;\n      background-color: #24a2f9;\n      color: #ffffff;\n      border-radius: .15rem;\n      font-size: inherit; }\n  #login-main #login-other {\n    margin-top: 1rem; }\n    #login-main #login-other #login-tx {\n      width: 70%;\n      margin: auto;\n      overflow: hidden;\n      margin-bottom: .5rem; }\n      #login-main #login-other #login-tx .login-cf {\n        float: left;\n        width: 15%;\n        border-bottom: .04rem solid #e0e0e0;\n        height: .5rem; }\n      #login-main #login-other #login-tx .login-content {\n        float: left;\n        width: 70%;\n        text-align: center;\n        line-height: 1rem;\n        height: 1rem;\n        font-size: .35rem;\n        color: #666666; }\n    #login-main #login-other #login-pro {\n      overflow: hidden; }\n      #login-main #login-other #login-pro .login-pro-unit {\n        float: left;\n        width: 50%;\n        text-align: center; }\n        #login-main #login-other #login-pro .login-pro-unit img {\n          width: 3rem; }\n", ""]);
 
 	// exports
 

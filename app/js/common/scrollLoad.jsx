@@ -1,9 +1,15 @@
+require('../../sass/scrollLoad.scss');
 import React from 'react';
 
-default export class ScrollLoad extends React.Component {
+export default class ScrollLoad extends React.Component {
 	constructor(props) {
 		super(props);
 	}
+
+	componentDidMount() {
+
+	}
+
 	render() {
 		return (
 			<div id="scrollLoad">

@@ -2,12 +2,10 @@ require('../../sass/fansGroup.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import InjectTapEventPlugin from "react-tap-event-plugin";
-// import $ from 'jquery';
 
 import autoFont from '../temp/autoFont.js';
 import addScript from '../temp/addScript.js';
 import Head from '../temp/head.js';
-
 
 import UserMsg from '../common/userMsg.jsx';
 import Tab from "../common/tab.jsx";
@@ -16,6 +14,8 @@ import Tag from "../common/tag.jsx";
 import Related from "../common/related.jsx";
 import Activity from "../common/activity.jsx";
 import Photo from "../common/photo.jsx";
+import ScrollLoad from '../common/ScrollLoad.jsx';
+
 
 import Nav from "../common/nav.jsx";
 import Newest from "../common/newest.jsx";
@@ -58,7 +58,13 @@ class FansGroup extends React.Component {
     }
 
     componentDidMount() {
-
+        window.addEventListener('scroll', (e) => {
+            const loadNode = ReactDOM.findDOMNode(this.refs.load);
+            var 
+                viewT = window.pageYOffset,
+                viewH = window.innerHeight,
+                clientT = loadNode.offsetTop;
+        });
     }
 
     tapMemu(e) {
@@ -109,27 +115,10 @@ class FansGroup extends React.Component {
                         <Details></Details>
                     </section>
                 </div>
+                <ScrollLoad ref='load'></ScrollLoad>
             </div>
         )
     }
 }
-
-// <Nav></Nav>
-
-// <section id='fansGroup-head' onTouchTap={ e => {this.tapMemu(e)} }>
-//                         <UserMsg name="Nate"></UserMsg>
-//                     </section>
-
-
-// <section id="fansGroup-newest" className={'fansGroup-md ' + this.state.tab[0].active}>
-//     <Newest></Newest>
-// </section>
-// <section id="fansGroup-hot" className={'fansGroup-md ' + this.state.tab[1].active}>
-//     <Newest></Newest>
-// </section>
-// <section id="fansGroup-details" className={'fansGroup-md ' + this.state.tab[2].active}>
-//     <Details></Details>
-// </section>
-
 
 ReactDOM.render(<FansGroup name="Nate" />, document.getElementById('fansGroup-content'));

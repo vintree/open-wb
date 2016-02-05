@@ -33,6 +33,16 @@ class Tab extends React.Component {
 class Input extends React.Component {
 	constructor(props) {
 		super(props);
+		this.state = {
+			code: {
+				name: '获取验证码',
+				time: '',
+				initName: '获取验证码',
+				initTime: 60,
+				initDes: '秒后再次获取',
+				active: ''
+			}
+		}
 	}
 
 	componentDidMount() {
@@ -60,24 +70,48 @@ class Input extends React.Component {
 
 	// 获取手机验证码
 	getCode() {
-		const mobile = this.refs.mobile.value.trim();
-		if(Format.mobile(mobile)) {
-
-			AV.Cloud.requestSmsCode({
-				 mobilePhoneNumber: mobile,
-				 name: '我司',
-				 op: '验证操作',
-				 ttl: 10
-			}).then(function(){
-			 //发送成功
-			}, function(err){
-			 //发送失败
-			 	alert(err.message);
-			});
-		} else {
-			alert(ErrorMsg.err('mobileFormat'));
+		var code = this.state.code;
+		if(code.active === '') {
+			const mobile = this.refs.mobile.value.trim();
+			if(Format.mobile(mobile)) {
+				code.active = 'active';
+				code.time = code.initTime;
+				code.name = code.time + code.initDes;
+				this.setState({
+					code: code
+				});
+				code.time--;
+				let t = setInterval(() => {
+					if(code.time !== 0) {
+						code.name = code.time + code.initDes;
+						this.setState({
+							code: code
+						});
+						code.time--;
+					} else {
+						clearTimeout(t);
+						code.active = '';
+						code.name = code.initName;
+						this.setState({
+							code: code
+						});
+					}
+				}, 1000);
+				AV.Cloud.requestSmsCode({
+					 mobilePhoneNumber: mobile,
+					 name: '我司',
+					 op: '验证操作',
+					 ttl: 10
+				}).then(function() {
+				 //发送成功
+				}, function(err) {
+				 //发送失败
+				 	alert(err.message);
+				});
+			} else {
+				alert(ErrorMsg.err('mobileFormat'));
+			}
 		}
-		
 	}
 
 	// 提交注册
@@ -89,7 +123,6 @@ class Input extends React.Component {
 			vars = this.props.vars,
 			sharekey = vars.sharekey;
 		if(Format.mobile(mobile)) {
-
 			AV.Cloud.verifySmsCode(code, mobile).then(function(){
    			//验证成功
    				let timestamp = (new Date()).getTime(),
@@ -99,7 +132,9 @@ class Input extends React.Component {
 				url = FormatAjax.get(vars.apiPath + 'users/register.json', {
 					timestamp: timestamp,
 					mobile: mobile,
-					device: UserAgent.identify()
+					device: UserAgent.identify(),
+					deviceuuid: 'web',
+					source: 'useastore'
 				});
 				Superagent.get(url).end(function(err, res) {
 					if(res.status === 200) {
@@ -128,7 +163,7 @@ class Input extends React.Component {
 				</div>
 				<div className="login-input-unit">
 					<input type="text" placeholder="输入验证码" ref="code" />
-					<button className="login-code-bt" onTouchTap={ e => { this.getCode(e) } }>获取验证码</button>
+					<button className={'login-code-bt ' + this.state.code.active}    onTouchTap={ e => { this.getCode(e) } }>{this.state.code.name}</button>
 				</div>
 				<div id="login-confirm">
 					<button className="login-confirm-bt" onTouchTap={ e => { this.btConfirm(e) } }>注册</button>
@@ -183,7 +218,6 @@ class Main extends React.Component {
 			vars: cf.vars()
 		}
 	}
-
 	render() {
 		return (
 			<div id="login-main">
@@ -196,8 +230,3 @@ class Main extends React.Component {
 }
 
 ReactDOM.render(<Main />, document.querySelector('#login-content'));
-
-
-
-
-

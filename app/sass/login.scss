@@ -1,4 +1,5 @@
 @import "./base.scss";
+@import "./mixin/ellipsis.scss";
 
 html, body {
 	background-color: #f3f4f5;
@@ -49,7 +50,7 @@ html, body {
 					position: absolute;
 					top: .15rem;
 					right: .12rem;
-					width: 2rem;
+					width: 2.3rem;
 					height: .8rem;
 					background-color: #ffb541;
 					color: #ffffff;
@@ -57,6 +58,10 @@ html, body {
 					border-radius: .1rem;
 					font-size: .25rem;
 					padding: 0 .1rem;
+					@include ellipsis1;
+					&.active {
+						background-color: #b6b6b6;
+					}
 				}
 			}
 		}

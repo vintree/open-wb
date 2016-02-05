@@ -59,6 +59,10 @@ webpackJsonp([1],{
 
 	var _photo2 = _interopRequireDefault(_photo);
 
+	var _ScrollLoad = __webpack_require__(237);
+
+	var _ScrollLoad2 = _interopRequireDefault(_ScrollLoad);
+
 	var _nav = __webpack_require__(197);
 
 	var _nav2 = _interopRequireDefault(_nav);
@@ -84,7 +88,6 @@ webpackJsonp([1],{
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	__webpack_require__(208);
-	// import $ from 'jquery';
 
 	_autoFont2.default.init();
 	(0, _reactTapEventPlugin2.default)();
@@ -125,7 +128,16 @@ webpackJsonp([1],{
 	        }
 	    }, {
 	        key: 'componentDidMount',
-	        value: function componentDidMount() {}
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            window.addEventListener('scroll', function (e) {
+	                var loadNode = _reactDom2.default.findDOMNode(_this2.refs.load);
+	                var viewT = window.pageYOffset,
+	                    viewH = window.innerHeight,
+	                    clientT = loadNode.offsetTop;
+	            });
+	        }
 	    }, {
 	        key: 'tapMemu',
 	        value: function tapMemu(e) {
@@ -153,7 +165,7 @@ webpackJsonp([1],{
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
+	            var _this3 = this;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -169,14 +181,14 @@ webpackJsonp([1],{
 	                    _react2.default.createElement(
 	                        'section',
 	                        { id: 'fansGroup-head', onTouchTap: function onTouchTap(e) {
-	                                _this2.tapMemu(e);
+	                                _this3.tapMemu(e);
 	                            } },
 	                        _react2.default.createElement(_userMsg2.default, { vars: this.state.vars })
 	                    ),
 	                    _react2.default.createElement(
 	                        'section',
 	                        { id: 'fansGroup-tab', onTouchTap: function onTouchTap(e) {
-	                                _this2.tapTab(e);
+	                                _this3.tapTab(e);
 	                            } },
 	                        _react2.default.createElement(_tab2.default, { data: this.state.tab })
 	                    ),
@@ -195,29 +207,14 @@ webpackJsonp([1],{
 	                        { id: 'fansGroup-details', className: 'fansGroup-md ' + this.state.tab[2].active },
 	                        _react2.default.createElement(_details2.default, null)
 	                    )
-	                )
+	                ),
+	                _react2.default.createElement(_ScrollLoad2.default, { ref: 'load' })
 	            );
 	        }
 	    }]);
 
 	    return FansGroup;
 	})(_react2.default.Component);
-
-	// <Nav></Nav>
-
-	// <section id='fansGroup-head' onTouchTap={ e => {this.tapMemu(e)} }>
-	//                         <UserMsg name="Nate"></UserMsg>
-	//                     </section>
-
-	// <section id="fansGroup-newest" className={'fansGroup-md ' + this.state.tab[0].active}>
-	//     <Newest></Newest>
-	// </section>
-	// <section id="fansGroup-hot" className={'fansGroup-md ' + this.state.tab[1].active}>
-	//     <Newest></Newest>
-	// </section>
-	// <section id="fansGroup-details" className={'fansGroup-md ' + this.state.tab[2].active}>
-	//     <Details></Details>
-	// </section>
 
 	_reactDom2.default.render(_react2.default.createElement(FansGroup, { name: 'Nate' }), document.getElementById('fansGroup-content'));
 
@@ -3772,6 +3769,107 @@ webpackJsonp([1],{
 
 	// module
 	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\n#fansGroup-content {\n  background-color: #f6f6f8;\n  height: 1000px; }\n\n.fansGroup-md {\n  display: none; }\n  .fansGroup-md.active {\n    display: block; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 237:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	__webpack_require__(238);
+
+	var ScrollLoad = (function (_React$Component) {
+		_inherits(ScrollLoad, _React$Component);
+
+		function ScrollLoad(props) {
+			_classCallCheck(this, ScrollLoad);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(ScrollLoad).call(this, props));
+		}
+
+		_createClass(ScrollLoad, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					{ id: 'scrollLoad' },
+					_react2.default.createElement(
+						'div',
+						{ id: 'scrollLoad-tx' },
+						'加载更多'
+					)
+				);
+			}
+		}]);
+
+		return ScrollLoad;
+	})(_react2.default.Component);
+
+	exports.default = ScrollLoad;
+
+/***/ },
+
+/***/ 238:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(239);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(173)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./scrollLoad.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./scrollLoad.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 239:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(172)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#scrollLoad {\n  line-height: .8rem;\n  font-size: .3rem;\n  text-align: center; }\n", ""]);
 
 	// exports
 
