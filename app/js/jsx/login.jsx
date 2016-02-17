@@ -19,12 +19,13 @@ InjectTapEventPlugin();
 class Tab extends React.Component {
 	constructor(props) {
 		super(props);
+		// console.log(this.props);
 	}
 	render() {
 		return (
 			<div id="login-tab">
-				<div className="login-tab-unit active">注册</div>
-				<div className="login-tab-unit">登录</div>
+				<div className={'login-tab-unit ' + this.props.tab[0].active } data-ix='0'>{this.props.tab[0].buttonName}</div>
+				<div className={'login-tab-unit ' + this.props.tab[1].active } data-ix='1'>{this.props.tab[1].buttonName}</div>
 			</div>
 		)
 	}
@@ -41,13 +42,26 @@ class Input extends React.Component {
 				initTime: 60,
 				initDes: '秒后再次获取',
 				active: ''
-			}
+			},
+			imgList: {
+				bottom: this.props.vars.path + 'img/login/bottom@3x.png',
+				box: this.props.vars.path + 'img/login/box@3x.png',
+				selector: this.props.vars.path + 'img/login/selector@3x.png',
+				info: this.props.vars.path + 'img/login/info@3x.png'
+			},
+			protocol: '',
+			isLogin: ''
 		}
 	}
 
 	componentDidMount() {
 		this.initAv();
 	}
+
+	componentDidUpdate() {
+		this.login();
+	}
+
 
 	// 初始化第三方数据
 	initAv() {
@@ -116,36 +130,68 @@ class Input extends React.Component {
 
 	// 提交注册
 	btConfirm() {
-		var 
+		var
 			mobile = this.refs.mobile.value.trim(),
+			username = mobile,
 			code = this.refs.code.value.trim();
-		const 
+		const
 			vars = this.props.vars,
 			sharekey = vars.sharekey;
+
+			// let
+			// 	timestamp = (new Date()).getTime(),
+			// 	url;
+			// timestamp += Md5.init(timestamp + sharekey);
+			// username += Md5.init(username + sharekey);
+			// url = FormatAjax.get(vars.apiPath + 'users/register.json', {
+			// 	timestamp: timestamp,
+			// 	username: username,
+			// 	mobile: mobile,
+			// 	device: UserAgent.identify(),
+			// 	deviceuuid: 'web',
+			// 	source: 'useastore',
+			// 	type: 'nopassword'
+			// });
+			// Superagent.get(url).end(function(err, res) {
+			// 	if(res.status === 200) {
+			// 		var data = JSON.parse(Unicode.toHex(res.text));
+			// 		if(data.status.code === '0') {
+			// 			alert('注册成功！');
+			// 		} else {
+			// 			alert(data.status.msg);
+			// 		}
+			// 	}
+			// });
+
+
+// 临时注释，短信验证失败！
 		if(Format.mobile(mobile)) {
-			AV.Cloud.verifySmsCode(code, mobile).then(function(){
+			AV.Cloud.verifySmsCode(code, mobile).then(function() {
    			//验证成功
-   				let timestamp = (new Date()).getTime(),
-				url;
-				timestamp += Md5.init(timestamp + sharekey);
-				mobile += Md5.init(mobile + sharekey);
-				url = FormatAjax.get(vars.apiPath + 'users/register.json', {
-					timestamp: timestamp,
-					mobile: mobile,
-					device: UserAgent.identify(),
-					deviceuuid: 'web',
-					source: 'useastore'
-				});
-				Superagent.get(url).end(function(err, res) {
-					if(res.status === 200) {
-						var data = JSON.parse(Unicode.toHex(res.text));
-						if(data.status.code === '0') {
-							console.log(data);
-						} else {
-							alert(data.status.msg);
-						}
-					}
-				});
+			  let
+				  timestamp = (new Date()).getTime(),
+				  url;
+			  timestamp += Md5.init(timestamp + sharekey);
+			  username += Md5.init(username + sharekey);
+			  url = FormatAjax.get(vars.apiPath + 'users/register.json', {
+				  timestamp: timestamp,
+				  username: username,
+				  mobile: mobile,
+				  device: UserAgent.identify(),
+				  deviceuuid: 'web',
+				  source: 'useastore',
+				  type: 'nopassword'
+			  });
+			  Superagent.get(url).end(function(err, res) {
+				  if(res.status === 200) {
+					  var data = JSON.parse(Unicode.toHex(res.text));
+					  if(data.status.code === '0') {
+						  alert('注册成功！');
+					  } else {
+						  alert(data.status.msg);
+					  }
+				  }
+			  });
 			}, function(err) {
 			   //验证失败
 			   alert(err.message);
@@ -155,20 +201,112 @@ class Input extends React.Component {
 		}
 	}
 
+	isProtocol(e) {
+		let protocol = this.state.protocol;
+		if(protocol === 'active') {
+			protocol = '';
+		} else {
+			protocol = 'active';
+		}
+		this.setState({
+			protocol: protocol
+		});
+		// this.login();
+	}
+
+	isLogin() {
+		let
+			mobile = document.querySelector('.login-mobile').value,
+			code = document.querySelector('.login-code').value,
+			isProtocol = document.querySelector('.login-selected');
+		isProtocol = isProtocol ? isProtocol.classList.contains('active') : '';
+		// console.log(mobile);
+		// console.log(code);
+		// console.log(isProtocol);
+		if(!Format.mobile(mobile)) {
+			return false;
+		}
+		if(code.length === 0) {
+			return false;
+		}
+		if(!isProtocol) {
+			return false;
+		}
+		return true;
+	}
+
+	login() {
+		let node = document.querySelector('.login-confirm-bt');
+		if(this.isLogin()) {
+			node.classList.add('active');
+		} else {
+			node.classList.remove('active');
+		}
+	}
+
+	mobileInput() {
+		this.login();
+	}
+
+	codeInput() {
+		this.login();
+	}
+
 	render() {
+		let
+			buttonName = this.props.tab,
+			login,
+			register;
+		for(let i = 0, l = buttonName.length; i < l; i++) {
+			if(buttonName[i].active === 'active') {
+				buttonName = buttonName[i];
+				break;
+			}
+		}
+
+
+		console.log(buttonName.buttonName);
+
+		if(buttonName.buttonName === '注册') {
+			login = (
+				<div className="login-protocol">
+					<div onTouchTap={ e => { this.isProtocol(e) } }>
+						<img className="login-box" src={this.state.imgList.box}></img>
+						<img className={'login-selected ' + this.state.protocol} src={this.state.imgList.selector}></img>
+					</div>
+					<span>我已阅读并同意</span>
+					<a href="http://www.baidu.com">我司用户协议及隐私协议</a>
+				</div>
+			)
+		} else {
+			login = (
+				<div className="login-protocol">
+					<div >
+						<img className="login-box" src={this.state.imgList.info}></img>
+					</div>
+					<span>首次凭借手机号和手机验证码登录即可</span>
+				</div>
+			)
+		}
+
+
+
+
+
+
+
 		return (
 			<div id="login-input">
 				<div className="login-input-unit">
-					<input type="tel" placeholder="输入手机号" maxLength="11" ref="mobile" />
+					<input className="login-mobile" type="tel" placeholder="输入手机号" maxLength="11" ref="mobile" onInput={ e => { this.mobileInput(e) } }/>
 				</div>
 				<div className="login-input-unit">
-					<input type="text" placeholder="输入验证码" ref="code" />
-					<button className={'login-code-bt ' + this.state.code.active}    onTouchTap={ e => { this.getCode(e) } }>{this.state.code.name}</button>
+					<input className="login-code" type="text" placeholder="输入验证码" ref="code" onInput={ e => { this.codeInput(e) } } />
+					<button className={'login-code-bt ' + this.state.code.active} onTouchTap={ e => { this.getCode(e) } }>{this.state.code.name}</button>
 				</div>
+				{login}
 				<div id="login-confirm">
-					<button className="login-confirm-bt" onTouchTap={ e => { this.btConfirm(e) } }>注册</button>
-				</div>
-				<div id="login-state">
+					<button className={'login-confirm-bt ' + this.state.isLogin} onTouchTap={ e => { this.btConfirm(e) } }>{buttonName.buttonName}</button>
 				</div>
 			</div>
 		)
@@ -215,14 +353,47 @@ class Main extends React.Component {
 		super();
 		const cf = new _config;
 		this.state = {
-			vars: cf.vars()
+			vars: cf.vars(),
+			tab: [
+				{
+					active: 'active',
+					buttonName: '注册'
+				},
+				{
+					active: '',
+					buttonName: '登录'
+				}
+			]
 		}
 	}
+
+	tabToggle(e) {
+		const
+			node = e.target,
+			ix = node.getAttribute('data-ix');
+		let tab = this.state.tab;
+		tab = tab.map((v, i) => {
+			if(i === Number(ix)) {
+				v.active = 'active';
+				return v;
+			} else {
+				v.active = '';
+				return v;
+			}
+		});
+
+		this.setState({
+			tab: tab
+		});
+	}
+
 	render() {
 		return (
 			<div id="login-main">
-				<Tab vars={this.state.vars}/>
-				<Input vars={this.state.vars}/>
+				<section onTouchTap={ e => {this.tabToggle(e)} }>
+					<Tab vars={this.state.vars} tab={this.state.tab} />
+				</section>
+				<Input vars={this.state.vars} tab={this.state.tab}/>
 				<Other vars={this.state.vars}/>
 			</div>
 		)

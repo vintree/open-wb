@@ -6,11 +6,13 @@ function _config() {
 }
 
 _config.prototype.path = function() {
-	var port = location.port;
+	var port = location.port,
+		// host = 'http://10.2.144.38:8080/';
+		host = 'http://127.0.0.1:8080/';
 	if(port === '8080') {
 		return '../';
 	}
-	return 'http://10.2.144.38:8080/github/open-wb/app/';
+	return host + 'github/open-wb/app/';
 }
 
 _config.prototype.apiPath = function() {

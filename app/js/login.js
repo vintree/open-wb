@@ -27,11 +27,11 @@ webpackJsonp([4],{
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
-	var _md = __webpack_require__(221);
+	var _md = __webpack_require__(224);
 
 	var _md2 = _interopRequireDefault(_md);
 
-	var _format = __webpack_require__(222);
+	var _format = __webpack_require__(225);
 
 	var _format2 = _interopRequireDefault(_format);
 
@@ -47,7 +47,7 @@ webpackJsonp([4],{
 
 	var _userAgent2 = _interopRequireDefault(_userAgent);
 
-	var _errorMsg = __webpack_require__(236);
+	var _errorMsg = __webpack_require__(226);
 
 	var _errorMsg2 = _interopRequireDefault(_errorMsg);
 
@@ -59,7 +59,7 @@ webpackJsonp([4],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(223);
+	__webpack_require__(227);
 	// import $ from 'jquery';
 
 	// import Ibootstrap from '../temp/lib/ibootstrap.all.min.js';
@@ -73,6 +73,7 @@ webpackJsonp([4],{
 			_classCallCheck(this, Tab);
 
 			return _possibleConstructorReturn(this, Object.getPrototypeOf(Tab).call(this, props));
+			// console.log(this.props);
 		}
 
 		_createClass(Tab, [{
@@ -83,13 +84,13 @@ webpackJsonp([4],{
 					{ id: 'login-tab' },
 					_react2.default.createElement(
 						'div',
-						{ className: 'login-tab-unit active' },
-						'注册'
+						{ className: 'login-tab-unit ' + this.props.tab[0].active, 'data-ix': '0' },
+						this.props.tab[0].buttonName
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'login-tab-unit' },
-						'登录'
+						{ className: 'login-tab-unit ' + this.props.tab[1].active, 'data-ix': '1' },
+						this.props.tab[1].buttonName
 					)
 				);
 			}
@@ -114,7 +115,15 @@ webpackJsonp([4],{
 					initTime: 60,
 					initDes: '秒后再次获取',
 					active: ''
-				}
+				},
+				imgList: {
+					bottom: _this2.props.vars.path + 'img/login/bottom@3x.png',
+					box: _this2.props.vars.path + 'img/login/box@3x.png',
+					selector: _this2.props.vars.path + 'img/login/selector@3x.png',
+					info: _this2.props.vars.path + 'img/login/info@3x.png'
+				},
+				protocol: '',
+				isLogin: ''
 			};
 			return _this2;
 		}
@@ -123,6 +132,11 @@ webpackJsonp([4],{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
 				this.initAv();
+			}
+		}, {
+			key: 'componentDidUpdate',
+			value: function componentDidUpdate() {
+				this.login();
 			}
 
 			// 初始化第三方数据
@@ -206,28 +220,58 @@ webpackJsonp([4],{
 			key: 'btConfirm',
 			value: function btConfirm() {
 				var mobile = this.refs.mobile.value.trim(),
+				    username = mobile,
 				    code = this.refs.code.value.trim();
 				var vars = this.props.vars,
 				    sharekey = vars.sharekey;
+
+				// let
+				// 	timestamp = (new Date()).getTime(),
+				// 	url;
+				// timestamp += Md5.init(timestamp + sharekey);
+				// username += Md5.init(username + sharekey);
+				// url = FormatAjax.get(vars.apiPath + 'users/register.json', {
+				// 	timestamp: timestamp,
+				// 	username: username,
+				// 	mobile: mobile,
+				// 	device: UserAgent.identify(),
+				// 	deviceuuid: 'web',
+				// 	source: 'useastore',
+				// 	type: 'nopassword'
+				// });
+				// Superagent.get(url).end(function(err, res) {
+				// 	if(res.status === 200) {
+				// 		var data = JSON.parse(Unicode.toHex(res.text));
+				// 		if(data.status.code === '0') {
+				// 			alert('注册成功！');
+				// 		} else {
+				// 			alert(data.status.msg);
+				// 		}
+				// 	}
+				// });
+
+				// 临时注释，短信验证失败！
 				if (_format2.default.mobile(mobile)) {
 					AV.Cloud.verifySmsCode(code, mobile).then(function () {
 						//验证成功
 						var timestamp = new Date().getTime(),
 						    url = undefined;
 						timestamp += _md2.default.init(timestamp + sharekey);
-						mobile += _md2.default.init(mobile + sharekey);
+						username += _md2.default.init(username + sharekey);
 						url = _formatAjax2.default.get(vars.apiPath + 'users/register.json', {
 							timestamp: timestamp,
+							username: username,
 							mobile: mobile,
 							device: _userAgent2.default.identify(),
 							deviceuuid: 'web',
-							source: 'useastore'
+							source: 'useastore',
+							type: 'nopassword'
 						});
 						_superagent2.default.get(url).end(function (err, res) {
 							if (res.status === 200) {
 								var data = JSON.parse(_unicode2.default.toHex(res.text));
 								if (data.status.code === '0') {
-									console.log(data);
+									alert('注册成功！');
 								} else {
 									alert(data.status.msg);
 								}
@@ -242,9 +286,116 @@ webpackJsonp([4],{
 				}
 			}
 		}, {
+			key: 'isProtocol',
+			value: function isProtocol(e) {
+				var protocol = this.state.protocol;
+				if (protocol === 'active') {
+					protocol = '';
+				} else {
+					protocol = 'active';
+				}
+				this.setState({
+					protocol: protocol
+				});
+				// this.login();
+			}
+		}, {
+			key: 'isLogin',
+			value: function isLogin() {
+				var mobile = document.querySelector('.login-mobile').value,
+				    code = document.querySelector('.login-code').value,
+				    isProtocol = document.querySelector('.login-selected');
+				isProtocol = isProtocol ? isProtocol.classList.contains('active') : '';
+				// console.log(mobile);
+				// console.log(code);
+				// console.log(isProtocol);
+				if (!_format2.default.mobile(mobile)) {
+					return false;
+				}
+				if (code.length === 0) {
+					return false;
+				}
+				if (!isProtocol) {
+					return false;
+				}
+				return true;
+			}
+		}, {
+			key: 'login',
+			value: function login() {
+				var node = document.querySelector('.login-confirm-bt');
+				if (this.isLogin()) {
+					node.classList.add('active');
+				} else {
+					node.classList.remove('active');
+				}
+			}
+		}, {
+			key: 'mobileInput',
+			value: function mobileInput() {
+				this.login();
+			}
+		}, {
+			key: 'codeInput',
+			value: function codeInput() {
+				this.login();
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				var _this4 = this;
+
+				var buttonName = this.props.tab,
+				    login = undefined,
+				    register = undefined;
+				for (var i = 0, l = buttonName.length; i < l; i++) {
+					if (buttonName[i].active === 'active') {
+						buttonName = buttonName[i];
+						break;
+					}
+				}
+
+				console.log(buttonName.buttonName);
+
+				if (buttonName.buttonName === '注册') {
+					login = _react2.default.createElement(
+						'div',
+						{ className: 'login-protocol' },
+						_react2.default.createElement(
+							'div',
+							{ onTouchTap: function onTouchTap(e) {
+									_this4.isProtocol(e);
+								} },
+							_react2.default.createElement('img', { className: 'login-box', src: this.state.imgList.box }),
+							_react2.default.createElement('img', { className: 'login-selected ' + this.state.protocol, src: this.state.imgList.selector })
+						),
+						_react2.default.createElement(
+							'span',
+							null,
+							'我已阅读并同意'
+						),
+						_react2.default.createElement(
+							'a',
+							{ href: 'http://www.baidu.com' },
+							'我司用户协议及隐私协议'
+						)
+					);
+				} else {
+					login = _react2.default.createElement(
+						'div',
+						{ className: 'login-protocol' },
+						_react2.default.createElement(
+							'div',
+							null,
+							_react2.default.createElement('img', { className: 'login-box', src: this.state.imgList.info })
+						),
+						_react2.default.createElement(
+							'span',
+							null,
+							'首次凭借手机号和手机验证码登录即可'
+						)
+					);
+				}
 
 				return _react2.default.createElement(
 					'div',
@@ -252,12 +403,16 @@ webpackJsonp([4],{
 					_react2.default.createElement(
 						'div',
 						{ className: 'login-input-unit' },
-						_react2.default.createElement('input', { type: 'tel', placeholder: '输入手机号', maxLength: '11', ref: 'mobile' })
+						_react2.default.createElement('input', { className: 'login-mobile', type: 'tel', placeholder: '输入手机号', maxLength: '11', ref: 'mobile', onInput: function onInput(e) {
+								_this4.mobileInput(e);
+							} })
 					),
 					_react2.default.createElement(
 						'div',
 						{ className: 'login-input-unit' },
-						_react2.default.createElement('input', { type: 'text', placeholder: '输入验证码', ref: 'code' }),
+						_react2.default.createElement('input', { className: 'login-code', type: 'text', placeholder: '输入验证码', ref: 'code', onInput: function onInput(e) {
+								_this4.codeInput(e);
+							} }),
 						_react2.default.createElement(
 							'button',
 							{ className: 'login-code-bt ' + this.state.code.active, onTouchTap: function onTouchTap(e) {
@@ -266,18 +421,18 @@ webpackJsonp([4],{
 							this.state.code.name
 						)
 					),
+					login,
 					_react2.default.createElement(
 						'div',
 						{ id: 'login-confirm' },
 						_react2.default.createElement(
 							'button',
-							{ className: 'login-confirm-bt', onTouchTap: function onTouchTap(e) {
+							{ className: 'login-confirm-bt ' + this.state.isLogin, onTouchTap: function onTouchTap(e) {
 									_this4.btConfirm(e);
 								} },
-							'注册'
+							buttonName.buttonName
 						)
-					),
-					_react2.default.createElement('div', { id: 'login-state' })
+					)
 				);
 			}
 		}]);
@@ -351,19 +506,54 @@ webpackJsonp([4],{
 
 			var cf = new _config();
 			_this6.state = {
-				vars: cf.vars()
+				vars: cf.vars(),
+				tab: [{
+					active: 'active',
+					buttonName: '注册'
+				}, {
+					active: '',
+					buttonName: '登录'
+				}]
 			};
 			return _this6;
 		}
 
 		_createClass(Main, [{
+			key: 'tabToggle',
+			value: function tabToggle(e) {
+				var node = e.target,
+				    ix = node.getAttribute('data-ix');
+				var tab = this.state.tab;
+				tab = tab.map(function (v, i) {
+					if (i === Number(ix)) {
+						v.active = 'active';
+						return v;
+					} else {
+						v.active = '';
+						return v;
+					}
+				});
+
+				this.setState({
+					tab: tab
+				});
+			}
+		}, {
 			key: 'render',
 			value: function render() {
+				var _this7 = this;
+
 				return _react2.default.createElement(
 					'div',
 					{ id: 'login-main' },
-					_react2.default.createElement(Tab, { vars: this.state.vars }),
-					_react2.default.createElement(Input, { vars: this.state.vars }),
+					_react2.default.createElement(
+						'section',
+						{ onTouchTap: function onTouchTap(e) {
+								_this7.tabToggle(e);
+							} },
+						_react2.default.createElement(Tab, { vars: this.state.vars, tab: this.state.tab })
+					),
+					_react2.default.createElement(Input, { vars: this.state.vars, tab: this.state.tab }),
 					_react2.default.createElement(Other, { vars: this.state.vars })
 				);
 			}
@@ -1832,7 +2022,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 221:
+/***/ 224:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2062,7 +2252,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 222:
+/***/ 225:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2082,13 +2272,31 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 223:
+/***/ 226:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var errorMsg = function errorMsg() {};
+
+	errorMsg.err = function (key) {
+		var obj = {
+			mobileFormat: '手机号格式不正确！'
+		};
+		return obj[key];
+	};
+
+	module.exports = errorMsg;
+
+/***/ },
+
+/***/ 227:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(224);
+	var content = __webpack_require__(228);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(173)(content, {});
@@ -2109,7 +2317,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 224:
+/***/ 228:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -2117,28 +2325,10 @@ webpackJsonp([4],{
 
 
 	// module
-	exports.push([module.id, "@charset \"UTF-8\";\n*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\n/*\n    文字省略\n*/\nhtml, body {\n  background-color: #f3f4f5; }\n\n#login-content {\n  overflow: hidden; }\n\n#login-main {\n  font-size: .4rem; }\n  #login-main #login-tab {\n    text-align: center;\n    line-height: 1rem;\n    border-bottom: .07rem solid #24a2f9;\n    overflow: hidden;\n    color: #666666;\n    margin-bottom: .4rem; }\n    #login-main #login-tab .login-tab-unit {\n      float: left;\n      width: 50%; }\n      #login-main #login-tab .login-tab-unit.active {\n        color: #2fa4f6; }\n  #login-main #login-input {\n    padding: 0 .2rem; }\n    #login-main #login-input .login-input-unit {\n      position: relative;\n      height: 1.1rem;\n      margin-bottom: .2rem; }\n      #login-main #login-input .login-input-unit input {\n        position: absolute;\n        top: 0;\n        left: 0;\n        border-radius: .15rem;\n        width: 100%;\n        height: 100%;\n        border: none;\n        padding: 0 .4rem;\n        font-size: .4rem; }\n      #login-main #login-input .login-input-unit:nth-child(2) input {\n        padding-right: 2.5rem; }\n      #login-main #login-input .login-input-unit:nth-child(2) .login-code-bt {\n        position: absolute;\n        top: .15rem;\n        right: .12rem;\n        width: 2.3rem;\n        height: .8rem;\n        background-color: #ffb541;\n        color: #ffffff;\n        border: none;\n        border-radius: .1rem;\n        font-size: .25rem;\n        padding: 0 .1rem;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis; }\n        #login-main #login-input .login-input-unit:nth-child(2) .login-code-bt.active {\n          background-color: #b6b6b6; }\n  #login-main #login-confirm {\n    margin-top: .6rem; }\n    #login-main #login-confirm .login-confirm-bt {\n      width: 100%;\n      height: 1.1rem;\n      border: none;\n      background-color: #24a2f9;\n      color: #ffffff;\n      border-radius: .15rem;\n      font-size: inherit; }\n  #login-main #login-other {\n    margin-top: 1rem; }\n    #login-main #login-other #login-tx {\n      width: 70%;\n      margin: auto;\n      overflow: hidden;\n      margin-bottom: .5rem; }\n      #login-main #login-other #login-tx .login-cf {\n        float: left;\n        width: 15%;\n        border-bottom: .04rem solid #e0e0e0;\n        height: .5rem; }\n      #login-main #login-other #login-tx .login-content {\n        float: left;\n        width: 70%;\n        text-align: center;\n        line-height: 1rem;\n        height: 1rem;\n        font-size: .35rem;\n        color: #666666; }\n    #login-main #login-other #login-pro {\n      overflow: hidden; }\n      #login-main #login-other #login-pro .login-pro-unit {\n        float: left;\n        width: 50%;\n        text-align: center; }\n        #login-main #login-other #login-pro .login-pro-unit img {\n          width: 3rem; }\n", ""]);
+	exports.push([module.id, "@charset \"UTF-8\";\n*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\n/*\n    文字省略\n*/\nhtml, body {\n  background-color: #f3f4f5; }\n\n#login-content {\n  overflow: hidden; }\n\n#login-main {\n  font-size: .4rem; }\n  #login-main #login-tab {\n    text-align: center;\n    line-height: 1rem;\n    border-bottom: .07rem solid #24a2f9;\n    overflow: hidden;\n    color: #666666;\n    margin-bottom: .4rem; }\n    #login-main #login-tab .login-tab-unit {\n      float: left;\n      width: 50%; }\n      #login-main #login-tab .login-tab-unit.active {\n        color: #2fa4f6; }\n  #login-main #login-input {\n    padding: 0 .2rem; }\n    #login-main #login-input .login-input-unit {\n      position: relative;\n      height: 1.1rem;\n      margin-bottom: .2rem; }\n      #login-main #login-input .login-input-unit input {\n        position: absolute;\n        top: 0;\n        left: 0;\n        border-radius: .15rem;\n        width: 100%;\n        height: 100%;\n        border: none;\n        padding: 0 .4rem;\n        font-size: .4rem; }\n      #login-main #login-input .login-input-unit:nth-child(2) input {\n        padding-right: 2.5rem; }\n      #login-main #login-input .login-input-unit:nth-child(2) .login-code-bt {\n        position: absolute;\n        top: .15rem;\n        right: .12rem;\n        width: 2.3rem;\n        height: .8rem;\n        background-color: #ffb541;\n        color: #ffffff;\n        border: none;\n        border-radius: .1rem;\n        font-size: .25rem;\n        padding: 0 .1rem;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis; }\n        #login-main #login-input .login-input-unit:nth-child(2) .login-code-bt.active {\n          background-color: #b6b6b6; }\n    #login-main #login-input .login-protocol {\n      position: relative;\n      font-size: .3rem;\n      color: #666666;\n      margin-top: .5rem; }\n      #login-main #login-input .login-protocol .login-box {\n        position: absolute;\n        top: -.05rem;\n        height: .4rem; }\n      #login-main #login-input .login-protocol .login-selected {\n        position: absolute;\n        top: -.1rem;\n        left: .08rem;\n        height: .35rem;\n        display: none; }\n        #login-main #login-input .login-protocol .login-selected.active {\n          display: block; }\n      #login-main #login-input .login-protocol span {\n        padding-left: .55rem; }\n      #login-main #login-input .login-protocol a {\n        color: #24a2f9; }\n  #login-main #login-confirm {\n    margin-top: .6rem; }\n    #login-main #login-confirm .login-confirm-bt {\n      width: 100%;\n      height: 1.1rem;\n      border: none;\n      background-color: #cccccc;\n      color: #ffffff;\n      border-radius: .15rem;\n      font-size: inherit; }\n      #login-main #login-confirm .login-confirm-bt.active {\n        background-color: #24a2f9; }\n  #login-main #login-other {\n    margin-top: 1rem; }\n    #login-main #login-other #login-tx {\n      width: 70%;\n      margin: auto;\n      overflow: hidden;\n      margin-bottom: .5rem; }\n      #login-main #login-other #login-tx .login-cf {\n        float: left;\n        width: 15%;\n        border-bottom: .04rem solid #e0e0e0;\n        height: .5rem; }\n      #login-main #login-other #login-tx .login-content {\n        float: left;\n        width: 70%;\n        text-align: center;\n        line-height: 1rem;\n        height: 1rem;\n        font-size: .35rem;\n        color: #666666; }\n    #login-main #login-other #login-pro {\n      overflow: hidden; }\n      #login-main #login-other #login-pro .login-pro-unit {\n        float: left;\n        width: 50%;\n        text-align: center; }\n        #login-main #login-other #login-pro .login-pro-unit img {\n          width: 3rem; }\n", ""]);
 
 	// exports
 
-
-/***/ },
-
-/***/ 236:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var errorMsg = function errorMsg() {};
-
-	errorMsg.err = function (key) {
-		var obj = {
-			mobileFormat: '手机号格式不正确！'
-		};
-		return obj[key];
-	};
-
-	module.exports = errorMsg;
 
 /***/ }
 

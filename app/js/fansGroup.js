@@ -1,6 +1,5 @@
-webpackJsonp([1],{
-
-/***/ 0:
+webpackJsonp([1],[
+/* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -59,23 +58,23 @@ webpackJsonp([1],{
 
 	var _photo2 = _interopRequireDefault(_photo);
 
-	var _ScrollLoad = __webpack_require__(237);
+	var _ScrollLoad = __webpack_require__(197);
 
 	var _ScrollLoad2 = _interopRequireDefault(_ScrollLoad);
 
-	var _nav = __webpack_require__(197);
+	var _nav = __webpack_require__(200);
 
 	var _nav2 = _interopRequireDefault(_nav);
 
-	var _newest = __webpack_require__(201);
+	var _newest = __webpack_require__(204);
 
 	var _newest2 = _interopRequireDefault(_newest);
 
-	var _hot = __webpack_require__(204);
+	var _hot = __webpack_require__(207);
 
 	var _hot2 = _interopRequireDefault(_hot);
 
-	var _details = __webpack_require__(207);
+	var _details = __webpack_require__(210);
 
 	var _details2 = _interopRequireDefault(_details);
 
@@ -87,7 +86,7 @@ webpackJsonp([1],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(208);
+	__webpack_require__(211);
 
 	_autoFont2.default.init();
 	(0, _reactTapEventPlugin2.default)();
@@ -219,8 +218,169 @@ webpackJsonp([1],{
 	_reactDom2.default.render(_react2.default.createElement(FansGroup, { name: 'Nate' }), document.getElementById('fansGroup-content'));
 
 /***/ },
-
-/***/ 163:
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */,
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */,
+/* 18 */,
+/* 19 */,
+/* 20 */,
+/* 21 */,
+/* 22 */,
+/* 23 */,
+/* 24 */,
+/* 25 */,
+/* 26 */,
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -1417,8 +1577,7 @@ webpackJsonp([1],{
 
 
 /***/ },
-
-/***/ 164:
+/* 164 */
 /***/ function(module, exports) {
 
 	
@@ -1585,8 +1744,7 @@ webpackJsonp([1],{
 
 
 /***/ },
-
-/***/ 165:
+/* 165 */
 /***/ function(module, exports) {
 
 	
@@ -1615,8 +1773,9 @@ webpackJsonp([1],{
 	};
 
 /***/ },
-
-/***/ 168:
+/* 166 */,
+/* 167 */,
+/* 168 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1641,8 +1800,7 @@ webpackJsonp([1],{
 	module.exports = formatAjax;
 
 /***/ },
-
-/***/ 169:
+/* 169 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1675,8 +1833,11 @@ webpackJsonp([1],{
 	module.exports = unicode;
 
 /***/ },
-
-/***/ 174:
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1707,8 +1868,7 @@ webpackJsonp([1],{
 	module.exports = addScript;
 
 /***/ },
-
-/***/ 175:
+/* 175 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1774,8 +1934,7 @@ webpackJsonp([1],{
 	module.exports = Head;
 
 /***/ },
-
-/***/ 176:
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1889,8 +2048,7 @@ webpackJsonp([1],{
 	exports.default = UserMsg;
 
 /***/ },
-
-/***/ 177:
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -1916,8 +2074,7 @@ webpackJsonp([1],{
 	}
 
 /***/ },
-
-/***/ 178:
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -1931,8 +2088,7 @@ webpackJsonp([1],{
 
 
 /***/ },
-
-/***/ 179:
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2000,8 +2156,7 @@ webpackJsonp([1],{
 	exports.default = Tab;
 
 /***/ },
-
-/***/ 180:
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -2027,8 +2182,7 @@ webpackJsonp([1],{
 	}
 
 /***/ },
-
-/***/ 181:
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -2042,8 +2196,7 @@ webpackJsonp([1],{
 
 
 /***/ },
-
-/***/ 182:
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2173,8 +2326,7 @@ webpackJsonp([1],{
 	exports.default = Member;
 
 /***/ },
-
-/***/ 183:
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -2200,8 +2352,7 @@ webpackJsonp([1],{
 	}
 
 /***/ },
-
-/***/ 184:
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -2215,8 +2366,7 @@ webpackJsonp([1],{
 
 
 /***/ },
-
-/***/ 185:
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2321,8 +2471,7 @@ webpackJsonp([1],{
 	exports.default = Tag;
 
 /***/ },
-
-/***/ 186:
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -2348,8 +2497,7 @@ webpackJsonp([1],{
 	}
 
 /***/ },
-
-/***/ 187:
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -2363,8 +2511,7 @@ webpackJsonp([1],{
 
 
 /***/ },
-
-/***/ 188:
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2506,8 +2653,7 @@ webpackJsonp([1],{
 	exports.default = Related;
 
 /***/ },
-
-/***/ 189:
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -2533,8 +2679,7 @@ webpackJsonp([1],{
 	}
 
 /***/ },
-
-/***/ 190:
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -2548,8 +2693,7 @@ webpackJsonp([1],{
 
 
 /***/ },
-
-/***/ 191:
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2659,8 +2803,7 @@ webpackJsonp([1],{
 	exports.default = Tag;
 
 /***/ },
-
-/***/ 192:
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -2686,8 +2829,7 @@ webpackJsonp([1],{
 	}
 
 /***/ },
-
-/***/ 193:
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -2701,8 +2843,7 @@ webpackJsonp([1],{
 
 
 /***/ },
-
-/***/ 194:
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2829,8 +2970,7 @@ webpackJsonp([1],{
 	exports.default = Photo;
 
 /***/ },
-
-/***/ 195:
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
@@ -2856,8 +2996,7 @@ webpackJsonp([1],{
 	}
 
 /***/ },
-
-/***/ 196:
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -2871,8 +3010,105 @@ webpackJsonp([1],{
 
 
 /***/ },
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
 
-/***/ 197:
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	__webpack_require__(198);
+
+	var ScrollLoad = (function (_React$Component) {
+		_inherits(ScrollLoad, _React$Component);
+
+		function ScrollLoad(props) {
+			_classCallCheck(this, ScrollLoad);
+
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(ScrollLoad).call(this, props));
+		}
+
+		_createClass(ScrollLoad, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {}
+		}, {
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					{ id: 'scrollLoad' },
+					_react2.default.createElement(
+						'div',
+						{ id: 'scrollLoad-tx' },
+						'加载更多'
+					)
+				);
+			}
+		}]);
+
+		return ScrollLoad;
+	})(_react2.default.Component);
+
+	exports.default = ScrollLoad;
+
+/***/ },
+/* 198 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(199);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(173)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./scrollLoad.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./scrollLoad.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 199 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(172)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#scrollLoad {\n  line-height: .8rem;\n  font-size: .3rem;\n  text-align: center; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2891,7 +3127,7 @@ webpackJsonp([1],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _url = __webpack_require__(198);
+	var _url = __webpack_require__(201);
 
 	var _url2 = _interopRequireDefault(_url);
 
@@ -2915,7 +3151,7 @@ webpackJsonp([1],{
 
 	*/
 
-	__webpack_require__(199);
+	__webpack_require__(202);
 
 	(0, _reactTapEventPlugin2.default)();
 
@@ -3026,8 +3262,7 @@ webpackJsonp([1],{
 	exports.default = nav;
 
 /***/ },
-
-/***/ 198:
+/* 201 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -3049,14 +3284,13 @@ webpackJsonp([1],{
 	module.exports = url;
 
 /***/ },
-
-/***/ 199:
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(200);
+	var content = __webpack_require__(203);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(173)(content, {});
@@ -3076,8 +3310,7 @@ webpackJsonp([1],{
 	}
 
 /***/ },
-
-/***/ 200:
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -3091,8 +3324,7 @@ webpackJsonp([1],{
 
 
 /***/ },
-
-/***/ 201:
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3127,7 +3359,7 @@ webpackJsonp([1],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(202);
+	__webpack_require__(205);
 
 	var Newest_head = (function (_React$Component) {
 	    _inherits(Newest_head, _React$Component);
@@ -3443,14 +3675,13 @@ webpackJsonp([1],{
 	exports.default = Newest;
 
 /***/ },
-
-/***/ 202:
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(203);
+	var content = __webpack_require__(206);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(173)(content, {});
@@ -3470,8 +3701,7 @@ webpackJsonp([1],{
 	}
 
 /***/ },
-
-/***/ 203:
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -3485,8 +3715,7 @@ webpackJsonp([1],{
 
 
 /***/ },
-
-/***/ 204:
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3509,7 +3738,7 @@ webpackJsonp([1],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(205);
+	__webpack_require__(208);
 
 	//import $ from 'jquery';
 
@@ -3593,14 +3822,13 @@ webpackJsonp([1],{
 	exports.default = Tag;
 
 /***/ },
-
-/***/ 205:
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(206);
+	var content = __webpack_require__(209);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(173)(content, {});
@@ -3620,8 +3848,7 @@ webpackJsonp([1],{
 	}
 
 /***/ },
-
-/***/ 206:
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -3635,8 +3862,7 @@ webpackJsonp([1],{
 
 
 /***/ },
-
-/***/ 207:
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -3732,14 +3958,13 @@ webpackJsonp([1],{
 	exports.default = Details;
 
 /***/ },
-
-/***/ 208:
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(209);
+	var content = __webpack_require__(212);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(173)(content, {});
@@ -3759,8 +3984,7 @@ webpackJsonp([1],{
 	}
 
 /***/ },
-
-/***/ 209:
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -3773,107 +3997,5 @@ webpackJsonp([1],{
 	// exports
 
 
-/***/ },
-
-/***/ 237:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	__webpack_require__(238);
-
-	var ScrollLoad = (function (_React$Component) {
-		_inherits(ScrollLoad, _React$Component);
-
-		function ScrollLoad(props) {
-			_classCallCheck(this, ScrollLoad);
-
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(ScrollLoad).call(this, props));
-		}
-
-		_createClass(ScrollLoad, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {}
-		}, {
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					{ id: 'scrollLoad' },
-					_react2.default.createElement(
-						'div',
-						{ id: 'scrollLoad-tx' },
-						'加载更多'
-					)
-				);
-			}
-		}]);
-
-		return ScrollLoad;
-	})(_react2.default.Component);
-
-	exports.default = ScrollLoad;
-
-/***/ },
-
-/***/ 238:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(239);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(173)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./scrollLoad.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./scrollLoad.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 239:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(172)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#scrollLoad {\n  line-height: .8rem;\n  font-size: .3rem;\n  text-align: center; }\n", ""]);
-
-	// exports
-
-
 /***/ }
-
-});
+]);

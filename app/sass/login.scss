@@ -65,6 +65,33 @@ html, body {
 				}
 			}
 		}
+		.login-protocol {
+			position: relative;
+			font-size: .3rem;
+			color: #666666;
+			margin-top: .5rem;
+			.login-box {
+				position: absolute;
+				top: -.05rem;
+				height: .4rem;
+			}
+			.login-selected {
+				position: absolute;
+				top: -.1rem;
+				left: .08rem;
+				height: .35rem;
+				display: none;
+				&.active {
+					display: block;
+				}
+			}
+			span {
+				padding-left: .55rem;
+			}
+			a {
+				color: #24a2f9;
+			}
+		}
 	}
 	#login-confirm {
 		margin-top: .6rem;
@@ -72,10 +99,13 @@ html, body {
 			width: 100%;
 			height: 1.1rem;
 			border: none;
-			background-color: #24a2f9;
+			background-color: #cccccc;
 			color: #ffffff;
 			border-radius: .15rem;
 			font-size: inherit;
+			&.active {
+				background-color: #24a2f9;
+			}
 		}
 	}
 	#login-other {

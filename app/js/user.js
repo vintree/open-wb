@@ -15,7 +15,7 @@ webpackJsonp([5],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _jquery = __webpack_require__(212);
+	var _jquery = __webpack_require__(215);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -35,7 +35,7 @@ webpackJsonp([5],{
 
 	var _head2 = _interopRequireDefault(_head);
 
-	var _nav = __webpack_require__(197);
+	var _nav = __webpack_require__(200);
 
 	var _nav2 = _interopRequireDefault(_nav);
 
@@ -47,11 +47,11 @@ webpackJsonp([5],{
 
 	var _tab2 = _interopRequireDefault(_tab);
 
-	var _follow = __webpack_require__(225);
+	var _follow = __webpack_require__(229);
 
 	var _follow2 = _interopRequireDefault(_follow);
 
-	var _group = __webpack_require__(228);
+	var _group = __webpack_require__(232);
 
 	var _group2 = _interopRequireDefault(_group);
 
@@ -59,11 +59,11 @@ webpackJsonp([5],{
 
 	var _activity2 = _interopRequireDefault(_activity);
 
-	var _msg = __webpack_require__(231);
+	var _msg = __webpack_require__(235);
 
 	var _msg2 = _interopRequireDefault(_msg);
 
-	var _newest = __webpack_require__(201);
+	var _newest = __webpack_require__(204);
 
 	var _newest2 = _interopRequireDefault(_newest);
 
@@ -75,7 +75,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(234);
+	__webpack_require__(238);
 
 	_autoFont2.default.init();
 	(0, _reactTapEventPlugin2.default)();
@@ -2184,7 +2184,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 197:
+/***/ 200:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2203,7 +2203,7 @@ webpackJsonp([5],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _url = __webpack_require__(198);
+	var _url = __webpack_require__(201);
 
 	var _url2 = _interopRequireDefault(_url);
 
@@ -2227,7 +2227,7 @@ webpackJsonp([5],{
 
 	*/
 
-	__webpack_require__(199);
+	__webpack_require__(202);
 
 	(0, _reactTapEventPlugin2.default)();
 
@@ -2339,7 +2339,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 198:
+/***/ 201:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2362,13 +2362,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 199:
+/***/ 202:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(200);
+	var content = __webpack_require__(203);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(173)(content, {});
@@ -2389,7 +2389,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 200:
+/***/ 203:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -2404,7 +2404,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 201:
+/***/ 204:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2439,7 +2439,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(202);
+	__webpack_require__(205);
 
 	var Newest_head = (function (_React$Component) {
 	    _inherits(Newest_head, _React$Component);
@@ -2756,13 +2756,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 202:
+/***/ 205:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(203);
+	var content = __webpack_require__(206);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(173)(content, {});
@@ -2783,7 +2783,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 203:
+/***/ 206:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -2798,7 +2798,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 212:
+/***/ 215:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -12015,7 +12015,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 225:
+/***/ 229:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12030,7 +12030,7 @@ webpackJsonp([5],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(212);
+	var _jquery = __webpack_require__(215);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -12042,7 +12042,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(226);
+	__webpack_require__(230);
 
 	var Follow = (function (_React$Component) {
 	    _inherits(Follow, _React$Component);
@@ -12141,13 +12141,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 226:
+/***/ 230:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(227);
+	var content = __webpack_require__(231);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(173)(content, {});
@@ -12168,7 +12168,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 227:
+/***/ 231:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -12183,7 +12183,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 228:
+/***/ 232:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12198,7 +12198,7 @@ webpackJsonp([5],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(212);
+	var _jquery = __webpack_require__(215);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -12210,7 +12210,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(229);
+	__webpack_require__(233);
 
 	var Group = (function (_React$Component) {
 	    _inherits(Group, _React$Component);
@@ -12339,13 +12339,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 229:
+/***/ 233:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(230);
+	var content = __webpack_require__(234);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(173)(content, {});
@@ -12366,7 +12366,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 230:
+/***/ 234:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -12381,7 +12381,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 231:
+/***/ 235:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -12396,7 +12396,7 @@ webpackJsonp([5],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(212);
+	var _jquery = __webpack_require__(215);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -12408,7 +12408,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(232);
+	__webpack_require__(236);
 
 	var Msg = (function (_React$Component) {
 	    _inherits(Msg, _React$Component);
@@ -12501,13 +12501,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 232:
+/***/ 236:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(233);
+	var content = __webpack_require__(237);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(173)(content, {});
@@ -12528,7 +12528,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 233:
+/***/ 237:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();
@@ -12543,13 +12543,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 234:
+/***/ 238:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(235);
+	var content = __webpack_require__(239);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(173)(content, {});
@@ -12570,7 +12570,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 235:
+/***/ 239:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(172)();

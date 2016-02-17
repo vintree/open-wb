@@ -13,12 +13,14 @@
 <script type="text/javascript">
 	var 
 		port = location.port,
+		// host = 'http://10.2.144.38:8080/',
+		host = 'http://127.0.0.1:8080/',
 		path,
 		config;
 	if(port === '8080') {
 		path = '../';
 	} else {
-		path = 'http://10.2.144.38:8080/github/open-wb/app/';
+		path = host + 'github/open-wb/app/';
 	}
 	config = document.createElement('script');
 	config.type = 'text/javascript';
