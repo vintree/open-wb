@@ -1,4 +1,4 @@
-webpackJsonp([3],{
+webpackJsonp([2],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -15,7 +15,7 @@ webpackJsonp([3],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _jquery = __webpack_require__(215);
+	var _jquery = __webpack_require__(213);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -23,35 +23,35 @@ webpackJsonp([3],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _superagent = __webpack_require__(163);
+	var _superagent = __webpack_require__(198);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _formatAjax = __webpack_require__(168);
+	var _formatAjax = __webpack_require__(201);
 
 	var _formatAjax2 = _interopRequireDefault(_formatAjax);
 
-	var _unicode = __webpack_require__(169);
+	var _unicode = __webpack_require__(202);
 
 	var _unicode2 = _interopRequireDefault(_unicode);
 
-	var _autoFont = __webpack_require__(166);
+	var _autoFont = __webpack_require__(163);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
-	var _addScript = __webpack_require__(174);
+	var _addScript = __webpack_require__(165);
 
 	var _addScript2 = _interopRequireDefault(_addScript);
 
-	var _head = __webpack_require__(175);
+	var _head = __webpack_require__(166);
 
 	var _head2 = _interopRequireDefault(_head);
 
-	var _groupTab = __webpack_require__(216);
+	var _groupTab = __webpack_require__(214);
 
 	var _groupTab2 = _interopRequireDefault(_groupTab);
 
-	var _groupList = __webpack_require__(219);
+	var _groupList = __webpack_require__(217);
 
 	var _groupList2 = _interopRequireDefault(_groupList);
 
@@ -63,7 +63,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(222);
+	__webpack_require__(220);
 
 	(0, _reactTapEventPlugin2.default)();
 	_autoFont2.default.init();
@@ -181,15 +181,114 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 163:
+/***/ 165:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/*
+	    动态添加scrit
+	    addScript.init('http://t.m.tv.sohu.com/mb/dist/js/baseLib.min.js?v=1.0.1')
+	*/
+	var addScript = function addScript() {};
+
+	addScript.init = function (data) {
+	    var head = document.getElementsByTagName('head')[0];
+	    var script = document.createElement('script');
+	    script.src = data;
+	    script.type = 'text/javascript';
+	    document.body.appendChild(script);
+	};
+
+	// var addScript = {
+	//     init: function(data) {
+	//         var head = document.getElementsByTagName('head')[0];
+	//         var script = document.createElement('script');
+	//         script.src = data;
+	//         script.type = 'text/javascript';
+	//         document.body.appendChild(script);
+	//     }
+	// }
+	module.exports = addScript;
+
+/***/ },
+
+/***/ 166:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/*
+	var headData = {
+	  //页面title
+	  tit: '',
+	  //分享出去的title
+	  shareName: '',
+	  //分享出去的url
+	  shareUrl: '',
+	  //分享出去的图片
+	  shareImg: '',
+	  //分享出去的描述
+	  shareDesc: '',
+	  //SEO关键字
+	  keywords: '',
+	  //SEO描述
+	  desc: '',
+	  //第二代微信配置
+	  admins: '',
+	  //页面ico
+	  favicon: '',
+	  //自己的扩展配置，支持List，String
+	  // extend: ''
+	}
+	*/
+	var Head = function Head() {};
+
+	Head.init = function (data) {
+	    var head = '',
+	        i,
+	        l,
+	        extend;
+	    extend = data.extend;
+	    head += '<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />';
+	    head += '<meta name="format-detection" content="telephone=no" />';
+	    head += '<meta name="og:url" property="og:url" content="' + data.shareUrl + '" />';
+	    head += '<meta name="og:site_name" property="og:site_name" content="' + (data.shareName || data.tit) + '" />';
+	    head += '<meta name="og:title" property="og:title" content="' + (data.shareName || data.tit) + '" />';
+	    head += '<meta name="og:image" property="og:image" content="' + (data.shareImg || data.defaultImg) + '" />';
+	    head += '<meta name="og:desc" property="og:desc" content="' + data.shareDesc + '" />';
+	    head += '<meta name="keywords" property="keywords" content="' + data.keywords + '" />';
+	    head += '<meta name="description" property="description" content="' + data.desc + '" />';
+	    head += '<meta property="qc:admins" content="' + data.admins + '"/>';
+	    head += '<title>' + data.tit + '</title>';
+	    head += '<link rel="shortcut icon" type="image/x-icon" href="' + data.favicon + '"/>';
+	    head += '<link type="text/css" rel="stylesheet" href="../font/css/font-awesome.min.css">';
+	    if (!!extend) {
+	        if (Object.prototype.toString.call(extend) === '[object Array]') {
+	            data.extend.map(function (v, i) {
+	                head += v;
+	            });
+	        } else if (Object.prototype.toString.call(extend) === '[object String]') {
+	            head += extend;
+	        }
+	    }
+	    document.head.innerHTML = document.head.innerHTML + head;
+	    document.title = data.tit;
+	};
+
+	module.exports = Head;
+
+/***/ },
+
+/***/ 198:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var Emitter = __webpack_require__(164);
-	var reduce = __webpack_require__(165);
+	var Emitter = __webpack_require__(199);
+	var reduce = __webpack_require__(200);
 
 	/**
 	 * Root reference for iframes.
@@ -1379,7 +1478,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 164:
+/***/ 199:
 /***/ function(module, exports) {
 
 	
@@ -1547,7 +1646,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 165:
+/***/ 200:
 /***/ function(module, exports) {
 
 	
@@ -1577,7 +1676,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 168:
+/***/ 201:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1603,7 +1702,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 169:
+/***/ 202:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1637,106 +1736,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 174:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	/*
-	    动态添加scrit
-	    addScript.init('http://t.m.tv.sohu.com/mb/dist/js/baseLib.min.js?v=1.0.1')
-	*/
-	var addScript = function addScript() {};
-
-	addScript.init = function (data) {
-	    var head = document.getElementsByTagName('head')[0];
-	    var script = document.createElement('script');
-	    script.src = data;
-	    script.type = 'text/javascript';
-	    document.body.appendChild(script);
-	};
-
-	// var addScript = {
-	//     init: function(data) {
-	//         var head = document.getElementsByTagName('head')[0];
-	//         var script = document.createElement('script');
-	//         script.src = data;
-	//         script.type = 'text/javascript';
-	//         document.body.appendChild(script);
-	//     }
-	// }
-	module.exports = addScript;
-
-/***/ },
-
-/***/ 175:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	/*
-	var headData = {
-	  //页面title
-	  tit: '',
-	  //分享出去的title
-	  shareName: '',
-	  //分享出去的url
-	  shareUrl: '',
-	  //分享出去的图片
-	  shareImg: '',
-	  //分享出去的描述
-	  shareDesc: '',
-	  //SEO关键字
-	  keywords: '',
-	  //SEO描述
-	  desc: '',
-	  //第二代微信配置
-	  admins: '',
-	  //页面ico
-	  favicon: '',
-	  //自己的扩展配置，支持List，String
-	  // extend: ''
-	}
-	*/
-	var Head = function Head() {};
-
-	Head.init = function (data) {
-	    var head = '',
-	        i,
-	        l,
-	        extend;
-	    extend = data.extend;
-	    head += '<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />';
-	    head += '<meta name="format-detection" content="telephone=no" />';
-	    head += '<meta name="og:url" property="og:url" content="' + data.shareUrl + '" />';
-	    head += '<meta name="og:site_name" property="og:site_name" content="' + (data.shareName || data.tit) + '" />';
-	    head += '<meta name="og:title" property="og:title" content="' + (data.shareName || data.tit) + '" />';
-	    head += '<meta name="og:image" property="og:image" content="' + (data.shareImg || data.defaultImg) + '" />';
-	    head += '<meta name="og:desc" property="og:desc" content="' + data.shareDesc + '" />';
-	    head += '<meta name="keywords" property="keywords" content="' + data.keywords + '" />';
-	    head += '<meta name="description" property="description" content="' + data.desc + '" />';
-	    head += '<meta property="qc:admins" content="' + data.admins + '"/>';
-	    head += '<title>' + data.tit + '</title>';
-	    head += '<link rel="shortcut icon" type="image/x-icon" href="' + data.favicon + '"/>';
-	    head += '<link type="text/css" rel="stylesheet" href="../font/css/font-awesome.min.css">';
-	    if (!!extend) {
-	        if (Object.prototype.toString.call(extend) === '[object Array]') {
-	            data.extend.map(function (v, i) {
-	                head += v;
-	            });
-	        } else if (Object.prototype.toString.call(extend) === '[object String]') {
-	            head += extend;
-	        }
-	    }
-	    document.head.innerHTML = document.head.innerHTML + head;
-	    document.title = data.tit;
-	};
-
-	module.exports = Head;
-
-/***/ },
-
-/***/ 215:
+/***/ 213:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10953,7 +10953,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 216:
+/***/ 214:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10968,7 +10968,7 @@ webpackJsonp([3],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(215);
+	var _jquery = __webpack_require__(213);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -10980,7 +10980,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(217);
+	__webpack_require__(215);
 
 	var GroupTab = (function (_React$Component) {
 	    _inherits(GroupTab, _React$Component);
@@ -11026,16 +11026,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 217:
+/***/ 215:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(218);
+	var content = __webpack_require__(216);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(173)(content, {});
+	var update = __webpack_require__(171)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -11053,10 +11053,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 218:
+/***/ 216:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(172)();
+	exports = module.exports = __webpack_require__(170)();
 	// imports
 
 
@@ -11068,7 +11068,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 219:
+/***/ 217:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11083,7 +11083,7 @@ webpackJsonp([3],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(215);
+	var _jquery = __webpack_require__(213);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -11095,7 +11095,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(220);
+	__webpack_require__(218);
 
 	var GroupList = (function (_React$Component) {
 	    _inherits(GroupList, _React$Component);
@@ -11301,16 +11301,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 220:
+/***/ 218:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(221);
+	var content = __webpack_require__(219);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(173)(content, {});
+	var update = __webpack_require__(171)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -11328,10 +11328,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 221:
+/***/ 219:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(172)();
+	exports = module.exports = __webpack_require__(170)();
 	// imports
 
 
@@ -11343,16 +11343,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 222:
+/***/ 220:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(223);
+	var content = __webpack_require__(221);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(173)(content, {});
+	var update = __webpack_require__(171)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -11370,10 +11370,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 223:
+/***/ 221:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(172)();
+	exports = module.exports = __webpack_require__(170)();
 	// imports
 
 

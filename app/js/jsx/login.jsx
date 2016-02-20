@@ -12,6 +12,8 @@ import FormatAjax from '../temp/formatAjax.js';
 import Unicode from '../temp/unicode.js';
 import UserAgent from '../temp/userAgent.js';
 import ErrorMsg from '../temp/errorMsg.js';
+import Storage from '../temp/storage.js';
+import Vars from '../temp/vars.js';
 // import Ibootstrap from '../temp/lib/ibootstrap.all.min.js';
 AutoFont.init();
 InjectTapEventPlugin();
@@ -24,8 +26,8 @@ class Tab extends React.Component {
 	render() {
 		return (
 			<div id="login-tab">
-				<div className={'login-tab-unit ' + this.props.tab[0].active } data-ix='0'>{this.props.tab[0].buttonName}</div>
-				<div className={'login-tab-unit ' + this.props.tab[1].active } data-ix='1'>{this.props.tab[1].buttonName}</div>
+				<div id='login-tabs' className={'login-tab-unit ' + this.props.tab[0].active } data-ix='0'>{this.props.tab[0].buttonName}</div>
+				<div id='register-tabs' className={'login-tab-unit ' + this.props.tab[1].active } data-ix='1'>{this.props.tab[1].buttonName}</div>
 			</div>
 		)
 	}
@@ -128,8 +130,17 @@ class Input extends React.Component {
 		}
 	}
 
+
+	// btControl() {
+	// 	if(this.isTab()) {
+	// 		btFun(1);
+	// 	} else {
+	// 		btFun(2);
+	// 	}
+	// }
+
 	// 提交注册
-	btConfirm() {
+	btConfirm(code) {
 		var
 			mobile = this.refs.mobile.value.trim(),
 			username = mobile,
@@ -162,42 +173,56 @@ class Input extends React.Component {
 			// 		}
 			// 	}
 			// });
-
-
 // 临时注释，短信验证失败！
 		if(Format.mobile(mobile)) {
 			AV.Cloud.verifySmsCode(code, mobile).then(function() {
    			//验证成功
-			  let
-				  timestamp = (new Date()).getTime(),
-				  url;
-			  timestamp += Md5.init(timestamp + sharekey);
-			  username += Md5.init(username + sharekey);
-			  url = FormatAjax.get(vars.apiPath + 'users/register.json', {
-				  timestamp: timestamp,
-				  username: username,
-				  mobile: mobile,
-				  device: UserAgent.identify(),
-				  deviceuuid: 'web',
-				  source: 'useastore',
-				  type: 'nopassword'
-			  });
-			  Superagent.get(url).end(function(err, res) {
-				  if(res.status === 200) {
-					  var data = JSON.parse(Unicode.toHex(res.text));
-					  if(data.status.code === '0') {
-						  alert('注册成功！');
-					  } else {
-						  alert(data.status.msg);
-					  }
-				  }
-			  });
+				let
+					timestamp = (new Date()).getTime(),
+				  	url;
+				timestamp += Md5.init(timestamp + sharekey);
+				username += Md5.init(username + sharekey);
+				url = FormatAjax.get(vars.apiPath + 'users/register.json', {
+				  	timestamp: timestamp,
+				  	username: username,
+				  	mobile: mobile,
+					device: UserAgent.identify(),
+					deviceuuid: 'web',
+					source: 'useastore',
+					type: 'nopassword'
+				});
+				Superagent.get(url).end(function(err, res) {
+					if(res.status === 200) {
+						var data = JSON.parse(Unicode.toHex(res.text));
+						if(data.status.code === '0') {
+							Storage.set(Vars('userStorage'), data.data)
+							//  	alert('注册成功！');
+						} else {
+						  	alert(data.status.msg);
+						}
+					}
+				});
 			}, function(err) {
 			   //验证失败
 			   alert(err.message);
 			});
 		} else {
 			alert(ErrorMsg.err('mobileFormat'));
+		}
+	}
+
+	// btRegister() {
+	//
+	// }
+
+	isTab() {// 判断注册模块
+		let node = document.querySelector('#login-tabs');
+		if(node.classList.contains('active')) {
+			// 注册模块
+			return true;
+		} else {
+			// 登录模块
+			return false;
 		}
 	}
 
@@ -220,17 +245,16 @@ class Input extends React.Component {
 			code = document.querySelector('.login-code').value,
 			isProtocol = document.querySelector('.login-selected');
 		isProtocol = isProtocol ? isProtocol.classList.contains('active') : '';
-		// console.log(mobile);
-		// console.log(code);
-		// console.log(isProtocol);
 		if(!Format.mobile(mobile)) {
 			return false;
 		}
 		if(code.length === 0) {
 			return false;
 		}
-		if(!isProtocol) {
-			return false;
+		if(this.isTab()) {
+			if(!isProtocol) {
+				return false;
+			}
 		}
 		return true;
 	}
@@ -264,8 +288,7 @@ class Input extends React.Component {
 			}
 		}
 
-
-		console.log(buttonName.buttonName);
+		// console.log(buttonName.buttonName);
 
 		if(buttonName.buttonName === '注册') {
 			login = (
@@ -288,12 +311,6 @@ class Input extends React.Component {
 				</div>
 			)
 		}
-
-
-
-
-
-
 
 		return (
 			<div id="login-input">

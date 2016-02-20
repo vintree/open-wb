@@ -1,4 +1,4 @@
-webpackJsonp([4],{
+webpackJsonp([3],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -19,37 +19,45 @@ webpackJsonp([4],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _superagent = __webpack_require__(163);
+	var _superagent = __webpack_require__(198);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _autoFont = __webpack_require__(166);
+	var _autoFont = __webpack_require__(163);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
-	var _md = __webpack_require__(224);
+	var _md = __webpack_require__(222);
 
 	var _md2 = _interopRequireDefault(_md);
 
-	var _format = __webpack_require__(225);
+	var _format = __webpack_require__(223);
 
 	var _format2 = _interopRequireDefault(_format);
 
-	var _formatAjax = __webpack_require__(168);
+	var _formatAjax = __webpack_require__(201);
 
 	var _formatAjax2 = _interopRequireDefault(_formatAjax);
 
-	var _unicode = __webpack_require__(169);
+	var _unicode = __webpack_require__(202);
 
 	var _unicode2 = _interopRequireDefault(_unicode);
 
-	var _userAgent = __webpack_require__(167);
+	var _userAgent = __webpack_require__(164);
 
 	var _userAgent2 = _interopRequireDefault(_userAgent);
 
-	var _errorMsg = __webpack_require__(226);
+	var _errorMsg = __webpack_require__(224);
 
 	var _errorMsg2 = _interopRequireDefault(_errorMsg);
+
+	var _storage = __webpack_require__(225);
+
+	var _storage2 = _interopRequireDefault(_storage);
+
+	var _vars = __webpack_require__(226);
+
+	var _vars2 = _interopRequireDefault(_vars);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -84,12 +92,12 @@ webpackJsonp([4],{
 					{ id: 'login-tab' },
 					_react2.default.createElement(
 						'div',
-						{ className: 'login-tab-unit ' + this.props.tab[0].active, 'data-ix': '0' },
+						{ id: 'login-tabs', className: 'login-tab-unit ' + this.props.tab[0].active, 'data-ix': '0' },
 						this.props.tab[0].buttonName
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'login-tab-unit ' + this.props.tab[1].active, 'data-ix': '1' },
+						{ id: 'register-tabs', className: 'login-tab-unit ' + this.props.tab[1].active, 'data-ix': '1' },
 						this.props.tab[1].buttonName
 					)
 				);
@@ -214,11 +222,19 @@ webpackJsonp([4],{
 				}
 			}
 
+			// btControl() {
+			// 	if(this.isTab()) {
+			// 		btFun(1);
+			// 	} else {
+			// 		btFun(2);
+			// 	}
+			// }
+
 			// 提交注册
 
 		}, {
 			key: 'btConfirm',
-			value: function btConfirm() {
+			value: function btConfirm(code) {
 				var mobile = this.refs.mobile.value.trim(),
 				    username = mobile,
 				    code = this.refs.code.value.trim();
@@ -249,7 +265,6 @@ webpackJsonp([4],{
 				// 		}
 				// 	}
 				// });
-
 				// 临时注释，短信验证失败！
 				if (_format2.default.mobile(mobile)) {
 					AV.Cloud.verifySmsCode(code, mobile).then(function () {
@@ -271,10 +286,11 @@ webpackJsonp([4],{
 							if (res.status === 200) {
 								var data = JSON.parse(_unicode2.default.toHex(res.text));
 								if (data.status.code === '0') {
-									alert('注册成功！');
+									_storage2.default.set((0, _vars2.default)('userStorage'), data.data);
+									//  	alert('注册成功！');
 								} else {
-									alert(data.status.msg);
-								}
+										alert(data.status.msg);
+									}
 							}
 						});
 					}, function (err) {
@@ -283,6 +299,24 @@ webpackJsonp([4],{
 					});
 				} else {
 					alert(_errorMsg2.default.err('mobileFormat'));
+				}
+			}
+
+			// btRegister() {
+			//
+			// }
+
+		}, {
+			key: 'isTab',
+			value: function isTab() {
+				// 判断注册模块
+				var node = document.querySelector('#login-tabs');
+				if (node.classList.contains('active')) {
+					// 注册模块
+					return true;
+				} else {
+					// 登录模块
+					return false;
 				}
 			}
 		}, {
@@ -306,17 +340,16 @@ webpackJsonp([4],{
 				    code = document.querySelector('.login-code').value,
 				    isProtocol = document.querySelector('.login-selected');
 				isProtocol = isProtocol ? isProtocol.classList.contains('active') : '';
-				// console.log(mobile);
-				// console.log(code);
-				// console.log(isProtocol);
 				if (!_format2.default.mobile(mobile)) {
 					return false;
 				}
 				if (code.length === 0) {
 					return false;
 				}
-				if (!isProtocol) {
-					return false;
+				if (this.isTab()) {
+					if (!isProtocol) {
+						return false;
+					}
 				}
 				return true;
 			}
@@ -355,7 +388,7 @@ webpackJsonp([4],{
 					}
 				}
 
-				console.log(buttonName.buttonName);
+				// console.log(buttonName.buttonName);
 
 				if (buttonName.buttonName === '注册') {
 					login = _react2.default.createElement(
@@ -566,15 +599,15 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 163:
+/***/ 198:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var Emitter = __webpack_require__(164);
-	var reduce = __webpack_require__(165);
+	var Emitter = __webpack_require__(199);
+	var reduce = __webpack_require__(200);
 
 	/**
 	 * Root reference for iframes.
@@ -1764,7 +1797,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 164:
+/***/ 199:
 /***/ function(module, exports) {
 
 	
@@ -1932,7 +1965,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 165:
+/***/ 200:
 /***/ function(module, exports) {
 
 	
@@ -1962,7 +1995,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 168:
+/***/ 201:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1988,7 +2021,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 169:
+/***/ 202:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2022,7 +2055,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 224:
+/***/ 222:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2252,7 +2285,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 225:
+/***/ 223:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2272,7 +2305,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 226:
+/***/ 224:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2290,6 +2323,83 @@ webpackJsonp([4],{
 
 /***/ },
 
+/***/ 225:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var storage = function storage() {
+	    if ('localStorage' in window && window['localStorage'] != null) {
+	        return true;
+	    }
+	    return false;
+	};
+
+	storage.set = function (name, key) {
+	    if (storage()) {
+	        key = JSON.stringify(key);
+	        localStorage.setItem(name, key);
+	    }
+	};
+
+	storage.get = function (name) {
+	    if (storage()) {
+	        return JSON.parse(localStorage.getItem(name));
+	    }
+	};
+
+	storage.clear = function () {
+	    localStorage.clear();
+	};
+
+	module.exports = storage;
+
+/***/ },
+
+/***/ 226:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var cf = new _config();
+	var vars = function vars(key) {
+	    var obj = {
+	        userStorage: 'ws'
+	    };
+	    return obj[key];
+	};
+
+	vars.href = function (key) {
+	    var path = './';
+	    var obj = {
+	        login: path + 'login.html',
+	        baseData: path + 'baseData.html'
+	    };
+	};
+
+	vars.api = function (key) {
+	    var path = cf.apiPath,
+	        obj = {
+	        fileUpload: path() + 'file/post.json',
+	        userInfo: path() + 'users/userinfo.json',
+	        city: path() + 'zuji/city.json'
+	    };
+	    return obj[key];
+	};
+
+	vars.err = function (key) {
+	    var obj = {
+	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
+	        gender: '请选择性别',
+	        city: '请选择城市'
+	    };
+	    return obj[key];
+	};
+
+	module.exports = vars;
+
+/***/ },
+
 /***/ 227:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2299,7 +2409,7 @@ webpackJsonp([4],{
 	var content = __webpack_require__(228);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(173)(content, {});
+	var update = __webpack_require__(171)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -2320,7 +2430,7 @@ webpackJsonp([4],{
 /***/ 228:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(172)();
+	exports = module.exports = __webpack_require__(170)();
 	// imports
 
 
