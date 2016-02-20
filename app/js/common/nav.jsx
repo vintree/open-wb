@@ -8,50 +8,59 @@
     DT:
         2016-1-20
 
-*/ 
+*/
 
 require('../../sass/nav.scss');
 import React from 'react';
 import InjectTapEventPlugin from "react-tap-event-plugin";
 
 import Url from '../temp/url.js';
+import Vars from '../temp/vars.js';
 
 InjectTapEventPlugin();
 
 export default class nav extends React.Component {
     constructor(props) {
         super(props);
+        // console.log(props);
         this.state = {
+            vars: props.vars,
             nav: [
                 {
                     name: '热门推荐',
                     active: 'active',
                     img: 'heart',
+                    href: '?nav=heart'
                 },
                 {
                     name: '热门群组',
                     active: '',
                     img: 'hot',
+                    href: Vars.href('hotGroup')
                 },
                 {
                     name: '话题',
                     active: '',
                     img: 'talk',
+                    href: '?nav=talk'
                 },
                 {
                     name: '活动',
                     active: '',
                     img: 'activity',
+                    href: '?nav=activity'
                 },
                 {
                     name: '我的主页',
                     active: '',
                     img: 'me',
+                    href: Vars.href('user')
                 },
                 {
                     name: '关于我们',
                     active: '',
                     img: 'about',
+                    href: '?nav=about'
                 }
             ]
         }
@@ -84,9 +93,9 @@ export default class nav extends React.Component {
     render() {
         const navList = this.state.nav.map(v => {
             return (
-                <a className={'nav-unit ' + v.active} key={ v.img } href={ '?nav=' + v.img }>
+                <a className={'nav-unit ' + v.active} key={ v.img } href={ v.href }>
                     <div className="nav-img">
-                        <img src={this.props.vars.path + 'img/icon_nav/'+ v.img +'.png'}></img>
+                        <img src={this.state.vars.path + 'img/icon_nav/'+ v.img +'.png'}></img>
                     </div>
                     <div className="nav-name">{v.name}</div>
                 </a>

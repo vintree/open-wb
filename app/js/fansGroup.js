@@ -462,7 +462,7 @@ webpackJsonp([0],[
 	    head += '<meta property="qc:admins" content="' + data.admins + '"/>';
 	    head += '<title>' + data.tit + '</title>';
 	    head += '<link rel="shortcut icon" type="image/x-icon" href="' + data.favicon + '"/>';
-	    head += '<link type="text/css" rel="stylesheet" href="../font/css/font-awesome.min.css">';
+	    // head += '<link type="text/css" rel="stylesheet" href="../font/css/font-awesome.min.css">';
 	    if (!!extend) {
 	        if (Object.prototype.toString.call(extend) === '[object Array]') {
 	            data.extend.map(function (v, i) {
@@ -510,7 +510,12 @@ webpackJsonp([0],[
 	    function UserMsg(props) {
 	        _classCallCheck(this, UserMsg);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(UserMsg).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UserMsg).call(this, props));
+
+	        _this.state = {
+	            vars: props.vars
+	        };
+	        return _this;
 	    }
 
 	    _createClass(UserMsg, [{
@@ -535,7 +540,7 @@ webpackJsonp([0],[
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'userMsg' },
-	                _react2.default.createElement('img', { id: 'userMsg-kbImg', className: 'blur', src: this.props.vars.path + 'img/bk.png' }),
+	                _react2.default.createElement('img', { id: 'userMsg-kbImg', className: 'blur', src: this.state.vars.path + 'img/bk.png' }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { id: 'userMsg-head-group' },
@@ -545,18 +550,18 @@ webpackJsonp([0],[
 	                        _react2.default.createElement(
 	                            'div',
 	                            { id: 'userMsg-left', className: 'userMsg-Menu userMsg-ease' },
-	                            _react2.default.createElement('img', { src: this.props.vars.path + 'img/menu@3x.png' })
+	                            _react2.default.createElement('img', { src: this.state.vars.path + 'img/menu@3x.png' })
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
 	                            { id: 'userMsg-right', className: 'userMsg-ease' },
-	                            _react2.default.createElement('img', { src: this.props.vars.path + 'img/share@1x.png' })
+	                            _react2.default.createElement('img', { src: this.state.vars.path + 'img/share@1x.png' })
 	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { id: 'userMsg-headImg' },
-	                        _react2.default.createElement('img', { src: this.props.vars.path + 'img/headImg@1x.png' })
+	                        _react2.default.createElement('img', { src: this.state.vars.path + 'img/headImg@1x.png' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -1270,7 +1275,7 @@ webpackJsonp([0],[
 	var Tag = (function (_React$Component) {
 	    _inherits(Tag, _React$Component);
 
-	    function Tag() {
+	    function Tag(props) {
 	        _classCallCheck(this, Tag);
 
 	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Tag).call(this));
@@ -1336,7 +1341,7 @@ webpackJsonp([0],[
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'activity-more' },
-	                            _react2.default.createElement('img', { src: '../img/right@1.png' })
+	                            _react2.default.createElement('img', { src: this.props.vars.path + "img/right@1.png" })
 	                        )
 	                    )
 	                )
@@ -1678,6 +1683,10 @@ webpackJsonp([0],[
 
 	var _url2 = _interopRequireDefault(_url);
 
+	var _vars = __webpack_require__(226);
+
+	var _vars2 = _interopRequireDefault(_vars);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -1708,33 +1717,42 @@ webpackJsonp([0],[
 	    function nav(props) {
 	        _classCallCheck(this, nav);
 
+	        // console.log(props);
+
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(nav).call(this, props));
 
 	        _this.state = {
+	            vars: props.vars,
 	            nav: [{
 	                name: '热门推荐',
 	                active: 'active',
-	                img: 'heart'
+	                img: 'heart',
+	                href: '?nav=heart'
 	            }, {
 	                name: '热门群组',
 	                active: '',
-	                img: 'hot'
+	                img: 'hot',
+	                href: _vars2.default.href('hotGroup')
 	            }, {
 	                name: '话题',
 	                active: '',
-	                img: 'talk'
+	                img: 'talk',
+	                href: '?nav=talk'
 	            }, {
 	                name: '活动',
 	                active: '',
-	                img: 'activity'
+	                img: 'activity',
+	                href: '?nav=activity'
 	            }, {
 	                name: '我的主页',
 	                active: '',
-	                img: 'me'
+	                img: 'me',
+	                href: _vars2.default.href('user')
 	            }, {
 	                name: '关于我们',
 	                active: '',
-	                img: 'about'
+	                img: 'about',
+	                href: '?nav=about'
 	            }]
 	        };
 	        return _this;
@@ -1774,11 +1792,11 @@ webpackJsonp([0],[
 	            var navList = this.state.nav.map(function (v) {
 	                return _react2.default.createElement(
 	                    'a',
-	                    { className: 'nav-unit ' + v.active, key: v.img, href: '?nav=' + v.img },
+	                    { className: 'nav-unit ' + v.active, key: v.img, href: v.href },
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'nav-img' },
-	                        _react2.default.createElement('img', { src: _this2.props.vars.path + 'img/icon_nav/' + v.img + '.png' })
+	                        _react2.default.createElement('img', { src: _this2.state.vars.path + 'img/icon_nav/' + v.img + '.png' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -1914,7 +1932,12 @@ webpackJsonp([0],[
 	    function Newest_head(props) {
 	        _classCallCheck(this, Newest_head);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Newest_head).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Newest_head).call(this, props));
+
+	        _this.state = {
+	            vars: props.vars
+	        };
+	        return _this;
 	    }
 
 	    _createClass(Newest_head, [{
@@ -1981,7 +2004,7 @@ webpackJsonp([0],[
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'newest-source-2' },
-	                        _react2.default.createElement('img', { src: this.props.vars.path + 'img/photo.png' })
+	                        _react2.default.createElement('img', { src: this.state.vars.path + 'img/photo.png' })
 	                    )
 	                )
 	            );
@@ -3994,6 +4017,69 @@ webpackJsonp([0],[
 
 	// exports
 
+
+/***/ },
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var cf = new _config();
+	var vars = function vars(key) {
+	    var obj = {
+	        userStorage: 'ws'
+	    };
+	    return obj[key];
+	};
+
+	vars.href = function (key) {
+	    var path = './';
+	    var obj = {
+	        login: path + 'login.html',
+	        baseData: path + 'baseData.html',
+	        user: path + 'user.html?nav=me',
+	        hotGroup: path + 'hotGroup.html',
+	        fansGroup: path + 'fansGroup.html',
+	        guide: path + 'guide.html'
+	    };
+	    return obj[key];
+	};
+
+	vars.api = function (key) {
+	    var path = cf.apiPath,
+	        obj = {
+	        fileUpload: path() + 'file/post.json',
+	        userInfo: path() + 'users/userinfo.json',
+	        city: path() + 'zuji/city.json'
+	    };
+	    return obj[key];
+	};
+
+	vars.err = function (key) {
+	    var obj = {
+	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
+	        gender: '请选择性别',
+	        city: '请选择城市'
+	    };
+	    return obj[key];
+	};
+
+	module.exports = vars;
 
 /***/ }
 ]);

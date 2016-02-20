@@ -4,7 +4,7 @@ import $ from 'jquery';
 
 export default class Group extends React.Component {
     constructor(props) {
-        super();
+        super(props);
     }
     render() {
         return (
@@ -16,30 +16,30 @@ export default class Group extends React.Component {
                     </div>
                     <div id="group-2">
                         <div className="group-2-unit">
-                            <div className="group-2-img"><img src="../img/headImg@1x.png" /></div>
+                            <div className="group-2-img"><img src={this.props.vars.path + "img/headImg@1x.png"} /></div>
                             <div className="group-2-name">寻龙诀影迷</div>
                         </div>
                         <div className="group-2-unit">
-                            <div className="group-2-img"><img src="../img/headImg@1x.png" /></div>
+                            <div className="group-2-img"><img src={this.props.vars.path + "img/headImg@1x.png"} /></div>
                             <div className="group-2-name">治疗系</div>
                         </div>
                         <div className="group-2-unit">
-                            <div className="group-2-img"><img src="../img/headImg@1x.png" /></div>
+                            <div className="group-2-img"><img src={this.props.vars.path + "img/headImg@1x.png"} /></div>
                             <div className="group-2-name">游戏玩家</div>
                         </div>
                         <div className="group-2-unit">
-                            <div className="group-2-img"><img src="../img/headImg@1x.png" /></div>
+                            <div className="group-2-img"><img src={this.props.vars.path + "img/headImg@1x.png"} /></div>
                             <div className="group-2-name">猫耳朵</div>
                         </div>
                         <div className="group-2-unit">
-                            <div className="group-2-img"><img src="../img/headImg@1x.png" /></div>
+                            <div className="group-2-img"><img src={this.props.vars.path + "img/headImg@1x.png"} /></div>
                             <div className="group-2-name">下午时光</div>
                         </div>
 
                     </div>
                     <div id="group-3">
                         <div id="group-3-img">
-                            <img src="../img/right@1.png" />
+                            <img src={this.props.vars.path + "img/right@1.png"} />
                         </div>
                     </div>
                 </div>

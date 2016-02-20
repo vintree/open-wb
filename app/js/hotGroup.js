@@ -262,7 +262,7 @@ webpackJsonp([2],{
 	    head += '<meta property="qc:admins" content="' + data.admins + '"/>';
 	    head += '<title>' + data.tit + '</title>';
 	    head += '<link rel="shortcut icon" type="image/x-icon" href="' + data.favicon + '"/>';
-	    head += '<link type="text/css" rel="stylesheet" href="../font/css/font-awesome.min.css">';
+	    // head += '<link type="text/css" rel="stylesheet" href="../font/css/font-awesome.min.css">';
 	    if (!!extend) {
 	        if (Object.prototype.toString.call(extend) === '[object Array]') {
 	            data.extend.map(function (v, i) {

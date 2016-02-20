@@ -21,21 +21,22 @@ import Newest from "../common/newest.jsx";
 autoFont.init();
 InjectTapEventPlugin();
 Head.init({
-  tit: '不上班-用户个人页',
-  shareName: '不上班-用户个人页',
-  shareUrl: '',
-  shareImg: '',
-  shareDesc: '',
-  keywords: '',
-  desc: '',
-  admins: '',
-  favicon: ''
+    tit: '不上班-用户个人页',
+    shareName: '不上班-用户个人页',
+    shareUrl: '',
+    shareImg: '',
+    shareDesc: '',
+    keywords: '',
+    desc: '',
+    admins: '',
+    favicon: ''
 });
 
 class User extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            vars: (new _config()).vars(),
             tab: [
                 {
                     name: '动态',
@@ -70,37 +71,37 @@ class User extends React.Component {
                 tab[i].active = '';
             }
         }
-        this.setState({tab: tab});    
+        this.setState({tab: tab});
     }
 
     render() {
         return (
             <div>
                 <div className="base-nav">
-                    <Nav></Nav>
+                    <Nav vars={this.state.vars}></Nav>
                 </div>
                 <div className="base-body">
                     <section id='user-head' onTouchTap={ e => {this.tapMemu(e)} }>
-                        <UserMsg name="Nate"></UserMsg>
+                        <UserMsg vars={this.state.vars} name="Nate"></UserMsg>
                     </section>
                     <section id="user-tab" onTouchTap={ e => {this.tapTab(e)} }>
-                        <Tab data={this.state.tab}></Tab>
+                        <Tab vars={this.state.vars} data={this.state.tab}></Tab>
                     </section>
                     <section id="user-dynamic" className={'user-md ' + this.state.tab[0].active}>
-                        <Newest></Newest>
+                        <Newest vars={this.state.vars}></Newest>
                     </section>
                     <section id="user-personage" className={'user-md ' + this.state.tab[1].active}>
                         <section className="gap">
-                            <Follow></Follow>
+                            <Follow vars={this.state.vars}></Follow>
                         </section>
                         <section className="gap">
-                            <Group></Group>
+                            <Group vars={this.state.vars}></Group>
                         </section>
                         <section className="gap">
-                            <Activity></Activity>
+                            <Activity vars={this.state.vars}></Activity>
                         </section>
                         <section className="gap">
-                            <Msg></Msg>
+                            <Msg vars={this.state.vars}></Msg>
                         </section>
                     </section>
                 </div>

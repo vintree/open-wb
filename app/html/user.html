@@ -9,5 +9,24 @@
     <div id="user-content"></div>
 </body>
 </html>
-<script src="../js/common.js"></script>
-<script src="../js/user.js"></script>
+<script type="text/javascript">
+	var
+		port = location.port,
+		// host = 'http://10.2.144.38:8080/',
+		host = 'http://127.0.0.1:8080/',
+		path,
+		config;
+	if(port === '8080') {
+		path = '../';
+	} else {
+		path = host + 'github/open-wb/app/';
+	}
+	config = document.createElement('script');
+	config.type = 'text/javascript';
+	config.src = path + 'js/config.js';
+	document.body.appendChild(config);
+	config.onload = function() {
+		var cf = new _config;
+		cf.addScriptTree(['js/common.js', 'js/user.js']);
+	}.bind(window);
+</script>

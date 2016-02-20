@@ -13,4 +13,3 @@ url.getParams = function(key) {
 }
 
 module.exports = url;
-

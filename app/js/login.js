@@ -2373,8 +2373,13 @@ webpackJsonp([3],{
 	    var path = './';
 	    var obj = {
 	        login: path + 'login.html',
-	        baseData: path + 'baseData.html'
+	        baseData: path + 'baseData.html',
+	        user: path + 'user.html?nav=me',
+	        hotGroup: path + 'hotGroup.html',
+	        fansGroup: path + 'fansGroup.html',
+	        guide: path + 'guide.html'
 	    };
+	    return obj[key];
 	};
 
 	vars.api = function (key) {

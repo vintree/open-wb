@@ -4,7 +4,8 @@ import $ from 'jquery';
 
 export default class Follow extends React.Component {
     constructor(props) {
-        super();
+        super(props);
+        // console.log(props);
     }
     render() {
         return (
@@ -15,18 +16,16 @@ export default class Follow extends React.Component {
                         <div id="follow-1-num">48</div>
                     </div>
                     <div id="follow-2">
-                        <div className="follow-2-img"><img src="../img/headImg@1x.png" /></div>
-                        <div className="follow-2-img"><img src="../img/headImg@1x.png" /></div>
-                        <div className="follow-2-img"><img src="../img/headImg@1x.png" /></div>
-                        <div className="follow-2-img"><img src="../img/headImg@1x.png" /></div>
-                        <div className="follow-2-img"><img src="../img/headImg@1x.png" /></div>
-                        <div className="follow-2-img"><img src="../img/headImg@1x.png" /></div>
-                        <div className="follow-2-img"><img src="../img/headImg@1x.png" /></div>
-                        <div className="follow-2-img"><img src="../img/headImg@1x.png" /></div>
+                        <div className="follow-2-img"><img src={this.props.vars.path + "img/headImg@1x.png"}></img></div>
+                        <div className="follow-2-img"><img src={this.props.vars.path + "img/headImg@1x.png"}></img></div>
+                        <div className="follow-2-img"><img src={this.props.vars.path + "img/headImg@1x.png"}></img></div>
+                        <div className="follow-2-img"><img src={this.props.vars.path + "img/headImg@1x.png"}></img></div>
+                        <div className="follow-2-img"><img src={this.props.vars.path + "img/headImg@1x.png"}></img></div>
+                        <div className="follow-2-img"><img src={this.props.vars.path + "img/headImg@1x.png"}></img></div>
                     </div>
                     <div id="follow-3">
                         <div id="follow-3-img">
-                            <img src="../img/right@1.png" />
+                            <img src={this.props.vars.path + "img/right@1.png"} />
                         </div>
                     </div>
                 </div>

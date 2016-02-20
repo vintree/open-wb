@@ -8,6 +8,9 @@ import Unicode from '../temp/unicode.js';
 class Newest_head extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            vars: props.vars
+        }
     }
 
     render() {
@@ -31,7 +34,7 @@ class Newest_head extends React.Component {
                         <div className="newest-source-1-2">春光乍泄剧组</div>
                     </div>
                     <div className="newest-source-2">
-                        <img src={this.props.vars.path + 'img/photo.png'} />
+                        <img src={this.state.vars.path + 'img/photo.png'} />
                     </div>
                 </div>
             </div>
@@ -173,7 +176,7 @@ export default class Newest extends React.Component {
                 newest = (<Newest_body_1 data={v} vars={this.props.vars}></Newest_body_1>)
             } else if(v.picList.length > 1) {
                 newest = (<Newest_body_2 data={v} vars={this.props.vars}></Newest_body_2>)
-            } 
+            }
             return (
                 <div key={v.time} className="newest-unit gap">
                     <Newest_head data={v} vars={this.props.vars}></Newest_head>

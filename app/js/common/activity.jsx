@@ -3,7 +3,7 @@ import React from 'react';
 //import $ from 'jquery';
 
 export default class Tag extends React.Component {
-    constructor() {
+    constructor(props) {
         super();
     }
     render() {
@@ -27,7 +27,7 @@ export default class Tag extends React.Component {
                             </div>
                         </div>
                         <div className="activity-more">
-                            <img src="../img/right@1.png" />
+                            <img src={this.props.vars.path + "img/right@1.png"} />
                         </div>
                     </div>
                 </div>
