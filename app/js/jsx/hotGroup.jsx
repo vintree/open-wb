@@ -17,7 +17,7 @@ import GroupList from "../common/groupList.jsx";
 InjectTapEventPlugin();
 autoFont.init();
 
-class HotGroup extends React.Component {
+class Main extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -75,47 +75,36 @@ class HotGroup extends React.Component {
 
 
     iniTab() {
-        let url = this.state.vars.vars.apiPath + this.state.vars.apiUrl.tag_category;
-        console.log(url);
-        Superagent.get(url).end((arr, req) => {
-            if(req.status === 200) {
-                let data = JSON.parse(Unicode.toHex(req.text));
-                if(data.status.code === '0') {
-                    data = data.data;
-                    console.log(data);
-                } else {
-
-                }
-            }
-        })
+        // let url = this.state.vars.vars.apiPath + this.state.vars.apiUrl.tag_category;
+        // console.log(url);
+        // Superagent.get(url).end((arr, req) => {
+        //     if(req.status === 200) {
+        //         let data = JSON.parse(Unicode.toHex(req.text));
+        //         if(data.status.code === '0') {
+        //             data = data.data;
+        //             console.log(data);
+        //         } else {
+        //
+        //         }
+        //     }
+        // })
     }
 
-    toggleTab(e) {
-        const ix = +e.target.getAttribute('data-ix');
-        const tab = this.state.tab;
-        for(let i = 0, l = tab.length; i < l; i++) {
-            if(i === ix) {
-                tab[i].active = 'active';
-            } else {
-                tab[i].active = '';
-            }
-        }
-        this.setState({tab: tab});
-    }
+
 
     render() {
         return (
             <div>
-                <section onTouchTap={ e => { this.toggleTab(e)} }>
+                <section>
                     <GroupTab tab={this.state.tab}></GroupTab>
                 </section>
                 <section>
                     <GroupList></GroupList>
                 </section>
-                
+
             </div>
         )
     }
 }
 
-ReactDOM.render(<HotGroup name="Nate" />, document.getElementById('hotGroup-content'));
+ReactDOM.render(<Main name="Nate" />, document.getElementById('hotGroup-content'));

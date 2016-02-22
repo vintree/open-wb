@@ -1,4 +1,4 @@
-webpackJsonp([3],{
+webpackJsonp([4],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -19,43 +19,43 @@ webpackJsonp([3],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _superagent = __webpack_require__(198);
+	var _superagent = __webpack_require__(163);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _autoFont = __webpack_require__(163);
+	var _autoFont = __webpack_require__(167);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
-	var _md = __webpack_require__(222);
+	var _md = __webpack_require__(173);
 
 	var _md2 = _interopRequireDefault(_md);
 
-	var _format = __webpack_require__(223);
+	var _format = __webpack_require__(228);
 
 	var _format2 = _interopRequireDefault(_format);
 
-	var _formatAjax = __webpack_require__(201);
+	var _formatAjax = __webpack_require__(169);
 
 	var _formatAjax2 = _interopRequireDefault(_formatAjax);
 
-	var _unicode = __webpack_require__(202);
+	var _unicode = __webpack_require__(170);
 
 	var _unicode2 = _interopRequireDefault(_unicode);
 
-	var _userAgent = __webpack_require__(164);
+	var _userAgent = __webpack_require__(168);
 
 	var _userAgent2 = _interopRequireDefault(_userAgent);
 
-	var _errorMsg = __webpack_require__(224);
+	var _errorMsg = __webpack_require__(229);
 
 	var _errorMsg2 = _interopRequireDefault(_errorMsg);
 
-	var _storage = __webpack_require__(225);
+	var _storage = __webpack_require__(172);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
-	var _vars = __webpack_require__(226);
+	var _vars = __webpack_require__(171);
 
 	var _vars2 = _interopRequireDefault(_vars);
 
@@ -67,7 +67,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(227);
+	__webpack_require__(230);
 	// import $ from 'jquery';
 
 	// import Ibootstrap from '../temp/lib/ibootstrap.all.min.js';
@@ -599,15 +599,15 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 198:
+/***/ 163:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var Emitter = __webpack_require__(199);
-	var reduce = __webpack_require__(200);
+	var Emitter = __webpack_require__(164);
+	var reduce = __webpack_require__(165);
 
 	/**
 	 * Root reference for iframes.
@@ -1797,7 +1797,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 199:
+/***/ 164:
 /***/ function(module, exports) {
 
 	
@@ -1965,7 +1965,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 200:
+/***/ 165:
 /***/ function(module, exports) {
 
 	
@@ -1995,7 +1995,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 201:
+/***/ 169:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2021,7 +2021,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 202:
+/***/ 170:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2055,7 +2055,90 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 222:
+/***/ 171:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var cf = new _config();
+	var vars = function vars(key) {
+	    var obj = {
+	        userStorage: 'ws'
+	    };
+	    return obj[key];
+	};
+
+	vars.href = function (key) {
+	    var path = './';
+	    var obj = {
+	        login: path + 'login.html',
+	        baseData: path + 'baseData.html',
+	        user: path + 'user.html?nav=me',
+	        hotGroup: path + 'hotGroup.html',
+	        fansGroup: path + 'fansGroup.html',
+	        guide: path + 'guide.html'
+	    };
+	    return obj[key];
+	};
+
+	vars.api = function (key) {
+	    var path = cf.apiPath(),
+	        obj = {
+	        fileUpload: path + 'file/post.json',
+	        userInfo: path + 'users/userinfo.json',
+	        city: path + 'zuji/city.json',
+	        hotList: path + 'biaoqian/list.json'
+	    };
+	    return obj[key];
+	};
+
+	vars.err = function (key) {
+	    var obj = {
+	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
+	        gender: '请选择性别',
+	        city: '请选择城市'
+	    };
+	    return obj[key];
+	};
+
+	module.exports = vars;
+
+/***/ },
+
+/***/ 172:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var storage = function storage() {
+	    if ('localStorage' in window && window['localStorage'] != null) {
+	        return true;
+	    }
+	    return false;
+	};
+
+	storage.set = function (name, key) {
+	    if (storage()) {
+	        key = JSON.stringify(key);
+	        localStorage.setItem(name, key);
+	    }
+	};
+
+	storage.get = function (name) {
+	    if (storage()) {
+	        return JSON.parse(localStorage.getItem(name));
+	    }
+	};
+
+	storage.clear = function () {
+	    localStorage.clear();
+	};
+
+	module.exports = storage;
+
+/***/ },
+
+/***/ 173:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2285,7 +2368,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 223:
+/***/ 228:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2305,7 +2388,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 224:
+/***/ 229:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2323,98 +2406,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 225:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var storage = function storage() {
-	    if ('localStorage' in window && window['localStorage'] != null) {
-	        return true;
-	    }
-	    return false;
-	};
-
-	storage.set = function (name, key) {
-	    if (storage()) {
-	        key = JSON.stringify(key);
-	        localStorage.setItem(name, key);
-	    }
-	};
-
-	storage.get = function (name) {
-	    if (storage()) {
-	        return JSON.parse(localStorage.getItem(name));
-	    }
-	};
-
-	storage.clear = function () {
-	    localStorage.clear();
-	};
-
-	module.exports = storage;
-
-/***/ },
-
-/***/ 226:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var cf = new _config();
-	var vars = function vars(key) {
-	    var obj = {
-	        userStorage: 'ws'
-	    };
-	    return obj[key];
-	};
-
-	vars.href = function (key) {
-	    var path = './';
-	    var obj = {
-	        login: path + 'login.html',
-	        baseData: path + 'baseData.html',
-	        user: path + 'user.html?nav=me',
-	        hotGroup: path + 'hotGroup.html',
-	        fansGroup: path + 'fansGroup.html',
-	        guide: path + 'guide.html'
-	    };
-	    return obj[key];
-	};
-
-	vars.api = function (key) {
-	    var path = cf.apiPath,
-	        obj = {
-	        fileUpload: path() + 'file/post.json',
-	        userInfo: path() + 'users/userinfo.json',
-	        city: path() + 'zuji/city.json'
-	    };
-	    return obj[key];
-	};
-
-	vars.err = function (key) {
-	    var obj = {
-	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
-	        gender: '请选择性别',
-	        city: '请选择城市'
-	    };
-	    return obj[key];
-	};
-
-	module.exports = vars;
-
-/***/ },
-
-/***/ 227:
+/***/ 230:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(228);
+	var content = __webpack_require__(231);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(177)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -2432,10 +2433,10 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 228:
+/***/ 231:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(176)();
 	// imports
 
 

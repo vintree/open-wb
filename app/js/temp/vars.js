@@ -20,11 +20,13 @@ vars.href = (key) => {
 }
 
 vars.api = (key) => {
-    let path = cf.apiPath,
+    let path = cf.apiPath(),
+
         obj = {
-            fileUpload: path() + 'file/post.json',
-            userInfo: path() + 'users/userinfo.json',
-            city: path() + 'zuji/city.json'
+            fileUpload: path + 'file/post.json',
+            userInfo: path + 'users/userinfo.json',
+            city: path + 'zuji/city.json',
+            hotList: path + 'biaoqian/list.json'
         }
     return obj[key];
 }

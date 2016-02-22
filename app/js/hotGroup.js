@@ -1,4 +1,4 @@
-webpackJsonp([2],{
+webpackJsonp([3],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -15,7 +15,7 @@ webpackJsonp([2],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _jquery = __webpack_require__(213);
+	var _jquery = __webpack_require__(166);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -23,35 +23,35 @@ webpackJsonp([2],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _superagent = __webpack_require__(198);
+	var _superagent = __webpack_require__(163);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _formatAjax = __webpack_require__(201);
+	var _formatAjax = __webpack_require__(169);
 
 	var _formatAjax2 = _interopRequireDefault(_formatAjax);
 
-	var _unicode = __webpack_require__(202);
+	var _unicode = __webpack_require__(170);
 
 	var _unicode2 = _interopRequireDefault(_unicode);
 
-	var _autoFont = __webpack_require__(163);
+	var _autoFont = __webpack_require__(167);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
-	var _addScript = __webpack_require__(165);
+	var _addScript = __webpack_require__(179);
 
 	var _addScript2 = _interopRequireDefault(_addScript);
 
-	var _head = __webpack_require__(166);
+	var _head = __webpack_require__(180);
 
 	var _head2 = _interopRequireDefault(_head);
 
-	var _groupTab = __webpack_require__(214);
+	var _groupTab = __webpack_require__(220);
 
 	var _groupTab2 = _interopRequireDefault(_groupTab);
 
-	var _groupList = __webpack_require__(217);
+	var _groupList = __webpack_require__(223);
 
 	var _groupList2 = _interopRequireDefault(_groupList);
 
@@ -63,18 +63,18 @@ webpackJsonp([2],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(220);
+	__webpack_require__(226);
 
 	(0, _reactTapEventPlugin2.default)();
 	_autoFont2.default.init();
 
-	var HotGroup = (function (_React$Component) {
-	    _inherits(HotGroup, _React$Component);
+	var Main = (function (_React$Component) {
+	    _inherits(Main, _React$Component);
 
-	    function HotGroup() {
-	        _classCallCheck(this, HotGroup);
+	    function Main() {
+	        _classCallCheck(this, Main);
 
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(HotGroup).call(this));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this));
 
 	        _this.state = {
 	            vars: {
@@ -121,48 +121,32 @@ webpackJsonp([2],{
 	        return _this;
 	    }
 
-	    _createClass(HotGroup, [{
+	    _createClass(Main, [{
 	        key: 'iniTab',
 	        value: function iniTab() {
-	            var url = this.state.vars.vars.apiPath + this.state.vars.apiUrl.tag_category;
-	            console.log(url);
-	            _superagent2.default.get(url).end(function (arr, req) {
-	                if (req.status === 200) {
-	                    var data = JSON.parse(_unicode2.default.toHex(req.text));
-	                    if (data.status.code === '0') {
-	                        data = data.data;
-	                        console.log(data);
-	                    } else {}
-	                }
-	            });
-	        }
-	    }, {
-	        key: 'toggleTab',
-	        value: function toggleTab(e) {
-	            var ix = +e.target.getAttribute('data-ix');
-	            var tab = this.state.tab;
-	            for (var i = 0, l = tab.length; i < l; i++) {
-	                if (i === ix) {
-	                    tab[i].active = 'active';
-	                } else {
-	                    tab[i].active = '';
-	                }
-	            }
-	            this.setState({ tab: tab });
+	            // let url = this.state.vars.vars.apiPath + this.state.vars.apiUrl.tag_category;
+	            // console.log(url);
+	            // Superagent.get(url).end((arr, req) => {
+	            //     if(req.status === 200) {
+	            //         let data = JSON.parse(Unicode.toHex(req.text));
+	            //         if(data.status.code === '0') {
+	            //             data = data.data;
+	            //             console.log(data);
+	            //         } else {
+	            //
+	            //         }
+	            //     }
+	            // })
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this2 = this;
-
 	            return _react2.default.createElement(
 	                'div',
 	                null,
 	                _react2.default.createElement(
 	                    'section',
-	                    { onTouchTap: function onTouchTap(e) {
-	                            _this2.toggleTab(e);
-	                        } },
+	                    null,
 	                    _react2.default.createElement(_groupTab2.default, { tab: this.state.tab })
 	                ),
 	                _react2.default.createElement(
@@ -174,121 +158,22 @@ webpackJsonp([2],{
 	        }
 	    }]);
 
-	    return HotGroup;
+	    return Main;
 	})(_react2.default.Component);
 
-	_reactDom2.default.render(_react2.default.createElement(HotGroup, { name: 'Nate' }), document.getElementById('hotGroup-content'));
+	_reactDom2.default.render(_react2.default.createElement(Main, { name: 'Nate' }), document.getElementById('hotGroup-content'));
 
 /***/ },
 
-/***/ 165:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	/*
-	    动态添加scrit
-	    addScript.init('http://t.m.tv.sohu.com/mb/dist/js/baseLib.min.js?v=1.0.1')
-	*/
-	var addScript = function addScript() {};
-
-	addScript.init = function (data) {
-	    var head = document.getElementsByTagName('head')[0];
-	    var script = document.createElement('script');
-	    script.src = data;
-	    script.type = 'text/javascript';
-	    document.body.appendChild(script);
-	};
-
-	// var addScript = {
-	//     init: function(data) {
-	//         var head = document.getElementsByTagName('head')[0];
-	//         var script = document.createElement('script');
-	//         script.src = data;
-	//         script.type = 'text/javascript';
-	//         document.body.appendChild(script);
-	//     }
-	// }
-	module.exports = addScript;
-
-/***/ },
-
-/***/ 166:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	/*
-	var headData = {
-	  //页面title
-	  tit: '',
-	  //分享出去的title
-	  shareName: '',
-	  //分享出去的url
-	  shareUrl: '',
-	  //分享出去的图片
-	  shareImg: '',
-	  //分享出去的描述
-	  shareDesc: '',
-	  //SEO关键字
-	  keywords: '',
-	  //SEO描述
-	  desc: '',
-	  //第二代微信配置
-	  admins: '',
-	  //页面ico
-	  favicon: '',
-	  //自己的扩展配置，支持List，String
-	  // extend: ''
-	}
-	*/
-	var Head = function Head() {};
-
-	Head.init = function (data) {
-	    var head = '',
-	        i,
-	        l,
-	        extend;
-	    extend = data.extend;
-	    head += '<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />';
-	    head += '<meta name="format-detection" content="telephone=no" />';
-	    head += '<meta name="og:url" property="og:url" content="' + data.shareUrl + '" />';
-	    head += '<meta name="og:site_name" property="og:site_name" content="' + (data.shareName || data.tit) + '" />';
-	    head += '<meta name="og:title" property="og:title" content="' + (data.shareName || data.tit) + '" />';
-	    head += '<meta name="og:image" property="og:image" content="' + (data.shareImg || data.defaultImg) + '" />';
-	    head += '<meta name="og:desc" property="og:desc" content="' + data.shareDesc + '" />';
-	    head += '<meta name="keywords" property="keywords" content="' + data.keywords + '" />';
-	    head += '<meta name="description" property="description" content="' + data.desc + '" />';
-	    head += '<meta property="qc:admins" content="' + data.admins + '"/>';
-	    head += '<title>' + data.tit + '</title>';
-	    head += '<link rel="shortcut icon" type="image/x-icon" href="' + data.favicon + '"/>';
-	    // head += '<link type="text/css" rel="stylesheet" href="../font/css/font-awesome.min.css">';
-	    if (!!extend) {
-	        if (Object.prototype.toString.call(extend) === '[object Array]') {
-	            data.extend.map(function (v, i) {
-	                head += v;
-	            });
-	        } else if (Object.prototype.toString.call(extend) === '[object String]') {
-	            head += extend;
-	        }
-	    }
-	    document.head.innerHTML = document.head.innerHTML + head;
-	    document.title = data.tit;
-	};
-
-	module.exports = Head;
-
-/***/ },
-
-/***/ 198:
+/***/ 163:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var Emitter = __webpack_require__(199);
-	var reduce = __webpack_require__(200);
+	var Emitter = __webpack_require__(164);
+	var reduce = __webpack_require__(165);
 
 	/**
 	 * Root reference for iframes.
@@ -1478,7 +1363,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 199:
+/***/ 164:
 /***/ function(module, exports) {
 
 	
@@ -1646,7 +1531,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 200:
+/***/ 165:
 /***/ function(module, exports) {
 
 	
@@ -1676,67 +1561,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 201:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var formatAjax = function formatAjax() {};
-
-	formatAjax.get = function (url, obj) {
-		var str = '?';
-		if (arguments.length !== 1) {
-			for (var o in obj) {
-				if (obj.hasOwnProperty(o)) {
-					str += o + '=' + obj[o] + '&';
-				}
-			}
-			return url + str.substr(0, str.length - 1);
-		}
-		return url;
-	};
-
-	formatAjax.post = function (url, obj) {};
-
-	module.exports = formatAjax;
-
-/***/ },
-
-/***/ 202:
-/***/ function(module, exports) {
-
-	"use strict";
-
-	/*
-		Unicode编码转换
-	*/
-	var unicode = function unicode() {};
-
-	// 加码
-	unicode.toDec = function (str) {
-		if (str) {
-			var res = [];
-			for (var i = 0; i < str.length; i++) {
-				res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
-			}return "\\u" + res.join("\\u");
-		}
-		return '';
-	};
-
-	// 解码
-	unicode.toHex = function (str) {
-		if (str) {
-			str = str.replace(/\\/g, '%');
-			return unescape(str).replace(/%/g, '');
-		}
-		return '';
-	};
-
-	module.exports = unicode;
-
-/***/ },
-
-/***/ 213:
+/***/ 166:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10953,7 +10778,216 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 214:
+/***/ 169:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var formatAjax = function formatAjax() {};
+
+	formatAjax.get = function (url, obj) {
+		var str = '?';
+		if (arguments.length !== 1) {
+			for (var o in obj) {
+				if (obj.hasOwnProperty(o)) {
+					str += o + '=' + obj[o] + '&';
+				}
+			}
+			return url + str.substr(0, str.length - 1);
+		}
+		return url;
+	};
+
+	formatAjax.post = function (url, obj) {};
+
+	module.exports = formatAjax;
+
+/***/ },
+
+/***/ 170:
+/***/ function(module, exports) {
+
+	"use strict";
+
+	/*
+		Unicode编码转换
+	*/
+	var unicode = function unicode() {};
+
+	// 加码
+	unicode.toDec = function (str) {
+		if (str) {
+			var res = [];
+			for (var i = 0; i < str.length; i++) {
+				res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
+			}return "\\u" + res.join("\\u");
+		}
+		return '';
+	};
+
+	// 解码
+	unicode.toHex = function (str) {
+		if (str) {
+			str = str.replace(/\\/g, '%');
+			return unescape(str).replace(/%/g, '');
+		}
+		return '';
+	};
+
+	module.exports = unicode;
+
+/***/ },
+
+/***/ 171:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var cf = new _config();
+	var vars = function vars(key) {
+	    var obj = {
+	        userStorage: 'ws'
+	    };
+	    return obj[key];
+	};
+
+	vars.href = function (key) {
+	    var path = './';
+	    var obj = {
+	        login: path + 'login.html',
+	        baseData: path + 'baseData.html',
+	        user: path + 'user.html?nav=me',
+	        hotGroup: path + 'hotGroup.html',
+	        fansGroup: path + 'fansGroup.html',
+	        guide: path + 'guide.html'
+	    };
+	    return obj[key];
+	};
+
+	vars.api = function (key) {
+	    var path = cf.apiPath(),
+	        obj = {
+	        fileUpload: path + 'file/post.json',
+	        userInfo: path + 'users/userinfo.json',
+	        city: path + 'zuji/city.json',
+	        hotList: path + 'biaoqian/list.json'
+	    };
+	    return obj[key];
+	};
+
+	vars.err = function (key) {
+	    var obj = {
+	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
+	        gender: '请选择性别',
+	        city: '请选择城市'
+	    };
+	    return obj[key];
+	};
+
+	module.exports = vars;
+
+/***/ },
+
+/***/ 179:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/*
+	    动态添加scrit
+	    addScript.init('http://t.m.tv.sohu.com/mb/dist/js/baseLib.min.js?v=1.0.1')
+	*/
+	var addScript = function addScript() {};
+
+	addScript.init = function (data) {
+	    var head = document.getElementsByTagName('head')[0];
+	    var script = document.createElement('script');
+	    script.src = data;
+	    script.type = 'text/javascript';
+	    document.body.appendChild(script);
+	};
+
+	// var addScript = {
+	//     init: function(data) {
+	//         var head = document.getElementsByTagName('head')[0];
+	//         var script = document.createElement('script');
+	//         script.src = data;
+	//         script.type = 'text/javascript';
+	//         document.body.appendChild(script);
+	//     }
+	// }
+	module.exports = addScript;
+
+/***/ },
+
+/***/ 180:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/*
+	var headData = {
+	  //页面title
+	  tit: '',
+	  //分享出去的title
+	  shareName: '',
+	  //分享出去的url
+	  shareUrl: '',
+	  //分享出去的图片
+	  shareImg: '',
+	  //分享出去的描述
+	  shareDesc: '',
+	  //SEO关键字
+	  keywords: '',
+	  //SEO描述
+	  desc: '',
+	  //第二代微信配置
+	  admins: '',
+	  //页面ico
+	  favicon: '',
+	  //自己的扩展配置，支持List，String
+	  // extend: ''
+	}
+	*/
+	var Head = function Head() {};
+
+	Head.init = function (data) {
+	    var head = '',
+	        i,
+	        l,
+	        extend;
+	    extend = data.extend;
+	    head += '<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />';
+	    head += '<meta name="format-detection" content="telephone=no" />';
+	    head += '<meta name="og:url" property="og:url" content="' + data.shareUrl + '" />';
+	    head += '<meta name="og:site_name" property="og:site_name" content="' + (data.shareName || data.tit) + '" />';
+	    head += '<meta name="og:title" property="og:title" content="' + (data.shareName || data.tit) + '" />';
+	    head += '<meta name="og:image" property="og:image" content="' + (data.shareImg || data.defaultImg) + '" />';
+	    head += '<meta name="og:desc" property="og:desc" content="' + data.shareDesc + '" />';
+	    head += '<meta name="keywords" property="keywords" content="' + data.keywords + '" />';
+	    head += '<meta name="description" property="description" content="' + data.desc + '" />';
+	    head += '<meta property="qc:admins" content="' + data.admins + '"/>';
+	    head += '<title>' + data.tit + '</title>';
+	    head += '<link rel="shortcut icon" type="image/x-icon" href="' + data.favicon + '"/>';
+	    // head += '<link type="text/css" rel="stylesheet" href="../font/css/font-awesome.min.css">';
+	    if (!!extend) {
+	        if (Object.prototype.toString.call(extend) === '[object Array]') {
+	            data.extend.map(function (v, i) {
+	                head += v;
+	            });
+	        } else if (Object.prototype.toString.call(extend) === '[object String]') {
+	            head += extend;
+	        }
+	    }
+	    document.head.innerHTML = document.head.innerHTML + head;
+	    document.title = data.tit;
+	};
+
+	module.exports = Head;
+
+/***/ },
+
+/***/ 220:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10968,9 +11002,25 @@ webpackJsonp([2],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(213);
+	var _superagent = __webpack_require__(163);
 
-	var _jquery2 = _interopRequireDefault(_jquery);
+	var _superagent2 = _interopRequireDefault(_superagent);
+
+	var _reactTapEventPlugin = __webpack_require__(159);
+
+	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
+
+	var _formatAjax = __webpack_require__(169);
+
+	var _formatAjax2 = _interopRequireDefault(_formatAjax);
+
+	var _vars = __webpack_require__(171);
+
+	var _vars2 = _interopRequireDefault(_vars);
+
+	var _unicode = __webpack_require__(170);
+
+	var _unicode2 = _interopRequireDefault(_unicode);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10980,7 +11030,9 @@ webpackJsonp([2],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(215);
+	__webpack_require__(221);
+
+	(0, _reactTapEventPlugin2.default)();
 
 	var GroupTab = (function (_React$Component) {
 	    _inherits(GroupTab, _React$Component);
@@ -10988,31 +11040,84 @@ webpackJsonp([2],{
 	    function GroupTab(props) {
 	        _classCallCheck(this, GroupTab);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(GroupTab).call(this, props));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(GroupTab).call(this, props));
+
+	        _this.state = {
+	            hotList: []
+	        };
+	        return _this;
 	    }
 
 	    _createClass(GroupTab, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            var url = _formatAjax2.default.get(_vars2.default.api('hotList'), {
+	                cid: 17,
+	                offset: 0,
+	                count: 20
+	            });
+	            _superagent2.default.get(url).end(function (err, req) {
+	                if (req.status === 200) {
+	                    var data = JSON.parse(_unicode2.default.toHex(req.text));
+	                    if (data.status.code === '0') {
+	                        data = data.data;
+	                        data.map(function (v, i) {
+	                            if (i === 0) {
+	                                v.active = 'active';
+	                            } else {
+	                                v.active = '';
+	                            }
+	                        });
+	                        _this2.setState({
+	                            hotList: data
+	                        });
+	                    } else {
+	                        alert(data.status.msg);
+	                    }
+	                }
+	            });
+	        }
+	    }, {
+	        key: 'toggleTab',
+	        value: function toggleTab(e) {
+	            var ix = e.target.getAttribute('data-ix');
+	            var hotList = this.state.hotList;
+	            for (var i = 0, l = hotList.length; i < l; i++) {
+	                if (i === Number(ix)) {
+	                    hotList[i].active = 'active';
+	                } else {
+	                    hotList[i].active = '';
+	                }
+	            }
+	            this.setState({ hotList: hotList });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var TabList = this.props.tab.map(function (v, ix) {
+	            var _this3 = this;
+
+	            var HotList = this.state.hotList || [];
+	            HotList = HotList.map(function (v, ix) {
 	                return _react2.default.createElement(
 	                    'div',
-	                    { key: v.name, className: 'groupTab-unit ' + v.active, 'data-tag': v.tag, 'data-ix': ix },
+	                    { key: v.trid, className: 'groupTab-unit ' + v.active, 'data-tag': v.trid, 'data-ix': ix },
 	                    v.name
 	                );
 	            });
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'groupTab' },
-	                _react2.default.createElement('div', { id: 'groupTab-left' }),
-	                _react2.default.createElement('div', { id: 'groupTab-right' }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { id: 'groupTab-center' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { id: 'groupTab-overflow' },
-	                        TabList
+	                        { id: 'groupTab-overflow', onTouchTap: function onTouchTap(e) {
+	                                _this3.toggleTab(e);
+	                            } },
+	                        HotList
 	                    )
 	                )
 	            );
@@ -11022,20 +11127,23 @@ webpackJsonp([2],{
 	    return GroupTab;
 	})(_react2.default.Component);
 
+	// <div id="groupTab-left"></div>
+	// <div id="groupTab-right"></div>
+
 	exports.default = GroupTab;
 
 /***/ },
 
-/***/ 215:
+/***/ 221:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(216);
+	var content = __webpack_require__(222);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(177)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -11053,22 +11161,22 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 216:
+/***/ 222:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(176)();
 	// imports
 
 
 	// module
-	exports.push([module.id, "#groupTab {\n  font-size: .35rem;\n  height: 1rem;\n  line-height: 1rem;\n  white-space: nowrap;\n  background-color: #ffffff;\n  color: #666666; }\n  #groupTab #groupTab-left {\n    float: left;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-right {\n    float: right;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-center {\n    height: 1.1rem;\n    overflow: hidden; }\n    #groupTab #groupTab-center #groupTab-overflow {\n      overflow-y: hidden;\n      overflow-x: auto;\n      -webkit-overflow-scrolling: touch;\n      height: 1.5rem; }\n    #groupTab #groupTab-center .groupTab-unit {\n      display: inline-block;\n      padding: 0 .2rem;\n      border-bottom: 2px solid #e2e2e2;\n      height: 1rem;\n      line-height: 1rem; }\n      #groupTab #groupTab-center .groupTab-unit.active {\n        color: #2fa4f6;\n        border-bottom: 2px solid #2fa4f6; }\n", ""]);
+	exports.push([module.id, "#groupTab {\n  font-size: .35rem;\n  height: 1rem;\n  line-height: 1rem;\n  white-space: nowrap;\n  background-color: #ffffff;\n  color: #666666; }\n  #groupTab #groupTab-left {\n    float: left;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-right {\n    float: right;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-center {\n    overflow: hidden;\n    white-space: nowrap;\n    padding: 0 .15rem; }\n    #groupTab #groupTab-center #groupTab-overflow {\n      overflow-y: hidden;\n      overflow-x: auto;\n      -webkit-overflow-scrolling: touch;\n      white-space: nowrap; }\n    #groupTab #groupTab-center .groupTab-unit {\n      display: inline-block;\n      padding: 0 .2rem;\n      white-space: nowrap;\n      height: 1rem;\n      line-height: 1rem; }\n      #groupTab #groupTab-center .groupTab-unit.active {\n        color: #2fa4f6;\n        border-bottom: 2px solid #2fa4f6; }\n", ""]);
 
 	// exports
 
 
 /***/ },
 
-/***/ 217:
+/***/ 223:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11083,7 +11191,7 @@ webpackJsonp([2],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(213);
+	var _jquery = __webpack_require__(166);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
@@ -11095,7 +11203,7 @@ webpackJsonp([2],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(218);
+	__webpack_require__(224);
 
 	var GroupList = (function (_React$Component) {
 	    _inherits(GroupList, _React$Component);
@@ -11301,16 +11409,16 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 218:
+/***/ 224:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(219);
+	var content = __webpack_require__(225);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(177)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -11328,10 +11436,10 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 219:
+/***/ 225:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(176)();
 	// imports
 
 
@@ -11343,16 +11451,16 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 220:
+/***/ 226:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(221);
+	var content = __webpack_require__(227);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(177)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -11370,10 +11478,10 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 221:
+/***/ 227:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(176)();
 	// imports
 
 

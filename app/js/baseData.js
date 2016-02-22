@@ -1,4 +1,4 @@
-webpackJsonp([6],{
+webpackJsonp([0],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
@@ -19,35 +19,35 @@ webpackJsonp([6],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _superagent = __webpack_require__(198);
+	var _superagent = __webpack_require__(163);
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _jquery = __webpack_require__(213);
+	var _jquery = __webpack_require__(166);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _autoFont = __webpack_require__(163);
+	var _autoFont = __webpack_require__(167);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
-	var _formatAjax = __webpack_require__(201);
+	var _formatAjax = __webpack_require__(169);
 
 	var _formatAjax2 = _interopRequireDefault(_formatAjax);
 
-	var _unicode = __webpack_require__(202);
+	var _unicode = __webpack_require__(170);
 
 	var _unicode2 = _interopRequireDefault(_unicode);
 
-	var _vars = __webpack_require__(226);
+	var _vars = __webpack_require__(171);
 
 	var _vars2 = _interopRequireDefault(_vars);
 
-	var _storage = __webpack_require__(225);
+	var _storage = __webpack_require__(172);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
-	var _md = __webpack_require__(222);
+	var _md = __webpack_require__(173);
 
 	var _md2 = _interopRequireDefault(_md);
 
@@ -65,8 +65,8 @@ webpackJsonp([6],{
 	window.$ = _jquery2.default;
 	window.jQuery = _jquery2.default;
 
-	__webpack_require__(240);
-	__webpack_require__(242);
+	__webpack_require__(174);
+	__webpack_require__(178);
 
 	var HeadImg = (function (_React$Component) {
 		_inherits(HeadImg, _React$Component);
@@ -420,15 +420,15 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 198:
+/***/ 163:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
 	 * Module dependencies.
 	 */
 
-	var Emitter = __webpack_require__(199);
-	var reduce = __webpack_require__(200);
+	var Emitter = __webpack_require__(164);
+	var reduce = __webpack_require__(165);
 
 	/**
 	 * Root reference for iframes.
@@ -1618,7 +1618,7 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 199:
+/***/ 164:
 /***/ function(module, exports) {
 
 	
@@ -1786,7 +1786,7 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 200:
+/***/ 165:
 /***/ function(module, exports) {
 
 	
@@ -1816,67 +1816,7 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 201:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var formatAjax = function formatAjax() {};
-
-	formatAjax.get = function (url, obj) {
-		var str = '?';
-		if (arguments.length !== 1) {
-			for (var o in obj) {
-				if (obj.hasOwnProperty(o)) {
-					str += o + '=' + obj[o] + '&';
-				}
-			}
-			return url + str.substr(0, str.length - 1);
-		}
-		return url;
-	};
-
-	formatAjax.post = function (url, obj) {};
-
-	module.exports = formatAjax;
-
-/***/ },
-
-/***/ 202:
-/***/ function(module, exports) {
-
-	"use strict";
-
-	/*
-		Unicode编码转换
-	*/
-	var unicode = function unicode() {};
-
-	// 加码
-	unicode.toDec = function (str) {
-		if (str) {
-			var res = [];
-			for (var i = 0; i < str.length; i++) {
-				res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
-			}return "\\u" + res.join("\\u");
-		}
-		return '';
-	};
-
-	// 解码
-	unicode.toHex = function (str) {
-		if (str) {
-			str = str.replace(/\\/g, '%');
-			return unescape(str).replace(/%/g, '');
-		}
-		return '';
-	};
-
-	module.exports = unicode;
-
-/***/ },
-
-/***/ 213:
+/***/ 166:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -11093,7 +11033,150 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 222:
+/***/ 169:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var formatAjax = function formatAjax() {};
+
+	formatAjax.get = function (url, obj) {
+		var str = '?';
+		if (arguments.length !== 1) {
+			for (var o in obj) {
+				if (obj.hasOwnProperty(o)) {
+					str += o + '=' + obj[o] + '&';
+				}
+			}
+			return url + str.substr(0, str.length - 1);
+		}
+		return url;
+	};
+
+	formatAjax.post = function (url, obj) {};
+
+	module.exports = formatAjax;
+
+/***/ },
+
+/***/ 170:
+/***/ function(module, exports) {
+
+	"use strict";
+
+	/*
+		Unicode编码转换
+	*/
+	var unicode = function unicode() {};
+
+	// 加码
+	unicode.toDec = function (str) {
+		if (str) {
+			var res = [];
+			for (var i = 0; i < str.length; i++) {
+				res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
+			}return "\\u" + res.join("\\u");
+		}
+		return '';
+	};
+
+	// 解码
+	unicode.toHex = function (str) {
+		if (str) {
+			str = str.replace(/\\/g, '%');
+			return unescape(str).replace(/%/g, '');
+		}
+		return '';
+	};
+
+	module.exports = unicode;
+
+/***/ },
+
+/***/ 171:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var cf = new _config();
+	var vars = function vars(key) {
+	    var obj = {
+	        userStorage: 'ws'
+	    };
+	    return obj[key];
+	};
+
+	vars.href = function (key) {
+	    var path = './';
+	    var obj = {
+	        login: path + 'login.html',
+	        baseData: path + 'baseData.html',
+	        user: path + 'user.html?nav=me',
+	        hotGroup: path + 'hotGroup.html',
+	        fansGroup: path + 'fansGroup.html',
+	        guide: path + 'guide.html'
+	    };
+	    return obj[key];
+	};
+
+	vars.api = function (key) {
+	    var path = cf.apiPath(),
+	        obj = {
+	        fileUpload: path + 'file/post.json',
+	        userInfo: path + 'users/userinfo.json',
+	        city: path + 'zuji/city.json',
+	        hotList: path + 'biaoqian/list.json'
+	    };
+	    return obj[key];
+	};
+
+	vars.err = function (key) {
+	    var obj = {
+	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
+	        gender: '请选择性别',
+	        city: '请选择城市'
+	    };
+	    return obj[key];
+	};
+
+	module.exports = vars;
+
+/***/ },
+
+/***/ 172:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var storage = function storage() {
+	    if ('localStorage' in window && window['localStorage'] != null) {
+	        return true;
+	    }
+	    return false;
+	};
+
+	storage.set = function (name, key) {
+	    if (storage()) {
+	        key = JSON.stringify(key);
+	        localStorage.setItem(name, key);
+	    }
+	};
+
+	storage.get = function (name) {
+	    if (storage()) {
+	        return JSON.parse(localStorage.getItem(name));
+	    }
+	};
+
+	storage.clear = function () {
+	    localStorage.clear();
+	};
+
+	module.exports = storage;
+
+/***/ },
+
+/***/ 173:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -11323,98 +11406,16 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 225:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var storage = function storage() {
-	    if ('localStorage' in window && window['localStorage'] != null) {
-	        return true;
-	    }
-	    return false;
-	};
-
-	storage.set = function (name, key) {
-	    if (storage()) {
-	        key = JSON.stringify(key);
-	        localStorage.setItem(name, key);
-	    }
-	};
-
-	storage.get = function (name) {
-	    if (storage()) {
-	        return JSON.parse(localStorage.getItem(name));
-	    }
-	};
-
-	storage.clear = function () {
-	    localStorage.clear();
-	};
-
-	module.exports = storage;
-
-/***/ },
-
-/***/ 226:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var cf = new _config();
-	var vars = function vars(key) {
-	    var obj = {
-	        userStorage: 'ws'
-	    };
-	    return obj[key];
-	};
-
-	vars.href = function (key) {
-	    var path = './';
-	    var obj = {
-	        login: path + 'login.html',
-	        baseData: path + 'baseData.html',
-	        user: path + 'user.html?nav=me',
-	        hotGroup: path + 'hotGroup.html',
-	        fansGroup: path + 'fansGroup.html',
-	        guide: path + 'guide.html'
-	    };
-	    return obj[key];
-	};
-
-	vars.api = function (key) {
-	    var path = cf.apiPath,
-	        obj = {
-	        fileUpload: path() + 'file/post.json',
-	        userInfo: path() + 'users/userinfo.json',
-	        city: path() + 'zuji/city.json'
-	    };
-	    return obj[key];
-	};
-
-	vars.err = function (key) {
-	    var obj = {
-	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
-	        gender: '请选择性别',
-	        city: '请选择城市'
-	    };
-	    return obj[key];
-	};
-
-	module.exports = vars;
-
-/***/ },
-
-/***/ 240:
+/***/ 174:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(241);
+	var content = __webpack_require__(175);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(171)(content, {});
+	var update = __webpack_require__(177)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -11432,10 +11433,10 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 241:
+/***/ 175:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(170)();
+	exports = module.exports = __webpack_require__(176)();
 	// imports
 
 
@@ -11447,7 +11448,7 @@ webpackJsonp([6],{
 
 /***/ },
 
-/***/ 242:
+/***/ 178:
 /***/ function(module, exports) {
 
 	'use strict';

@@ -18,18 +18,23 @@
         border-bottom: 2px solid #e2e2e2;
     }
     #groupTab-center {
-        height: 1.1rem;
+        // height: 1.1rem;
         overflow: hidden;
+        // border-bottom: 2px solid #e2e2e2;
+        white-space: nowrap;
+        padding: 0 .15rem;
         #groupTab-overflow {
             overflow-y: hidden;
             overflow-x: auto;
             -webkit-overflow-scrolling:touch;
-            height: 1.5rem;
+            white-space: nowrap;
+            // height: 1.5rem;
         }
         .groupTab-unit {
             display: inline-block;
             padding: 0 .2rem;
-            border-bottom: 2px solid #e2e2e2;
+            // border-bottom: 2px solid #e2e2e2;
+            white-space: nowrap;
             height: 1rem;
             line-height: 1rem;
             &.active {

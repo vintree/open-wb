@@ -7,6 +7,7 @@ import InjectTapEventPlugin from "react-tap-event-plugin";
 import autoFont from '../temp/autoFont.js';
 import addScript from '../temp/addScript.js';
 import Head from '../temp/head.js';
+import Storage from "../temp/storage.js";
 
 import Nav from "../common/nav.jsx";
 import UserMsg from '../common/userMsg.jsx';
@@ -32,7 +33,7 @@ Head.init({
     favicon: ''
 });
 
-class User extends React.Component {
+class Main extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -50,6 +51,12 @@ class User extends React.Component {
                 }
             ]
         };
+    }
+
+    componentWillMount() {
+        let userData = Storage.get('ws');
+        this.state.userData = userData;
+        console.log(this.state);
     }
 
     tapMemu(e) {
@@ -82,7 +89,7 @@ class User extends React.Component {
                 </div>
                 <div className="base-body">
                     <section id='user-head' onTouchTap={ e => {this.tapMemu(e)} }>
-                        <UserMsg vars={this.state.vars} name="Nate"></UserMsg>
+                        <UserMsg vars={this.state.vars} data={this.state.userData}></UserMsg>
                     </section>
                     <section id="user-tab" onTouchTap={ e => {this.tapTab(e)} }>
                         <Tab vars={this.state.vars} data={this.state.tab}></Tab>
@@ -110,4 +117,4 @@ class User extends React.Component {
     }
 }
 
-ReactDOM.render(<User name="Nate" />, document.getElementById('user-content'));
+ReactDOM.render(<Main name="Nate" />, document.getElementById('user-content'));

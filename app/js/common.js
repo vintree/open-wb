@@ -30,7 +30,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		5:0
+/******/ 		6:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -76,7 +76,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"fansGroup","1":"guide","2":"hotGroup","3":"login","4":"user","6":"baseData"}[chunkId]||chunkId) + ".js";
+/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"baseData","1":"fansGroup","2":"guide","3":"hotGroup","4":"login","5":"user"}[chunkId]||chunkId) + ".js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -19954,7 +19954,11 @@
 	module.exports = keyOf;
 
 /***/ },
-/* 163 */
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19964,7 +19968,7 @@
 	 autoFont.init(); //自动执行
 	 */
 
-	var userAgent = __webpack_require__(164);
+	var userAgent = __webpack_require__(168);
 	var autoFont = function autoFont() {};
 
 	autoFont.init = function () {
@@ -20044,7 +20048,7 @@
 	module.exports = autoFont;
 
 /***/ },
-/* 164 */
+/* 168 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20076,12 +20080,14 @@
 	module.exports = userAgent;
 
 /***/ },
-/* 165 */,
-/* 166 */,
-/* 167 */,
-/* 168 */,
 /* 169 */,
-/* 170 */
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */
 /***/ function(module, exports) {
 
 	/*
@@ -20137,7 +20143,7 @@
 
 
 /***/ },
-/* 171 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
