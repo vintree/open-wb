@@ -47,6 +47,10 @@ webpackJsonp([3],{
 
 	var _head2 = _interopRequireDefault(_head);
 
+	var _vars = __webpack_require__(171);
+
+	var _vars2 = _interopRequireDefault(_vars);
+
 	var _groupTab = __webpack_require__(220);
 
 	var _groupTab2 = _interopRequireDefault(_groupTab);
@@ -77,82 +81,124 @@ webpackJsonp([3],{
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Main).call(this));
 
 	        _this.state = {
-	            vars: {
-	                vars: new _config().vars(),
-	                apiUrl: {
-	                    tag_category: 'zuji/tag_category.json'
-	                }
-	            },
-	            tab: [{
-	                name: '最新',
-	                tag: 'new',
-	                active: 'active'
-	            }, {
-	                name: '最火',
-	                tag: 'hot',
-	                active: ''
-	            }, {
-	                name: '投资',
-	                tag: 'new',
-	                active: ''
-	            }, {
-	                name: '媒体人',
-	                tag: 'new',
-	                active: ''
-	            }, {
-	                name: '职业',
-	                tag: 'hot',
-	                active: ''
-	            }, {
-	                name: '空间',
-	                tag: 'new',
-	                active: ''
-	            }, {
-	                name: '运动',
-	                tag: 'new',
-	                active: ''
-	            }, {
-	                name: '美容',
-	                tag: 'hot',
-	                active: ''
-	            }]
+	            // vars: {
+	            //     vars: (new _config).vars(),
+	            //     apiUrl: {
+	            //         tag_category: 'zuji/tag_category.json'
+	            //     }
+	            // },
+	            hotTagList: [],
+	            list: []
 	        };
-	        _this.iniTab();
+
 	        return _this;
 	    }
 
 	    _createClass(Main, [{
-	        key: 'iniTab',
-	        value: function iniTab() {
-	            // let url = this.state.vars.vars.apiPath + this.state.vars.apiUrl.tag_category;
-	            // console.log(url);
-	            // Superagent.get(url).end((arr, req) => {
-	            //     if(req.status === 200) {
-	            //         let data = JSON.parse(Unicode.toHex(req.text));
-	            //         if(data.status.code === '0') {
-	            //             data = data.data;
-	            //             console.log(data);
-	            //         } else {
-	            //
-	            //         }
-	            //     }
-	            // })
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            this.initTab();
+	        }
+	    }, {
+	        key: 'initTab',
+	        value: function initTab() {
+	            var _this2 = this;
+
+	            var url = _formatAjax2.default.get(_vars2.default.api('hotTagList'), {
+	                cid: _vars2.default.sys('cid'),
+	                offset: 0,
+	                count: 20
+	            });
+	            _superagent2.default.get(url).end(function (err, req) {
+	                if (req.status === 200) {
+	                    var data = JSON.parse(_unicode2.default.toHex(req.text));
+	                    if (data.status.code === '0') {
+	                        data = data.data;
+	                        data.map(function (v, i) {
+	                            if (i === 0) {
+	                                v.active = 'active';
+	                                _this2.initList(v.trid);
+	                            } else {
+	                                v.active = '';
+	                            }
+	                        });
+	                        _this2.setState({
+	                            hotTagList: data
+	                        });
+	                    } else {
+	                        alert(data.status.msg);
+	                    }
+	                }
+	            });
+	        }
+	    }, {
+	        key: 'initList',
+	        value: function initList(trid) {
+	            var _this3 = this;
+
+	            var url = _formatAjax2.default.get(_vars2.default.api('hotList'), {
+	                cid: _vars2.default.sys('cid'),
+	                mid: _vars2.default.sys('mid'),
+	                ofid: _vars2.default.sys('ofusername'),
+	                offset: 0,
+	                count: 20,
+	                bqid: trid
+	            });
+	            _superagent2.default.get(url).end(function (err, req) {
+	                if (req.status === 200) {
+	                    // console.log(req.text);
+	                    // console.log(JSON.parse(req.text));
+	                    var data = JSON.parse(req.text);
+	                    if (data.status.code === '0') {
+	                        data = data.data;
+	                        _this3.setState({
+	                            list: data
+	                        });
+	                    } else {
+	                        alert(data.status.msg);
+	                    }
+	                }
+	            });
+	        }
+
+	        // 事件
+
+	    }, {
+	        key: 'eventToggleTab',
+	        value: function eventToggleTab(e) {
+	            var ix = e.target.getAttribute('data-ix'),
+	                hotTagList = this.state.hotTagList,
+	                trid = e.target.getAttribute('data-tag');
+	            this.initList(trid);
+	            for (var i = 0, l = hotTagList.length; i < l; i++) {
+	                if (i === Number(ix)) {
+	                    hotTagList[i].active = 'active';
+	                } else {
+	                    hotTagList[i].active = '';
+	                }
+	            }
+	            this.setState({ hotTagList: hotTagList });
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var _this4 = this;
+
 	            return _react2.default.createElement(
 	                'div',
 	                null,
 	                _react2.default.createElement(
 	                    'section',
-	                    null,
-	                    _react2.default.createElement(_groupTab2.default, { tab: this.state.tab })
+	                    { onTouchTap: function onTouchTap(e) {
+	                            _this4.eventToggleTab(e);
+	                        } },
+	                    _react2.default.createElement(_groupTab2.default, { hotTagList: this.state.hotTagList })
 	                ),
 	                _react2.default.createElement(
 	                    'section',
 	                    null,
-	                    _react2.default.createElement(_groupList2.default, null)
+	                    _react2.default.createElement(_groupList2.default, { data: this.state.list }),
+	                    _react2.default.createElement('div', null)
 	                )
 	            );
 	        }
@@ -10839,9 +10885,15 @@ webpackJsonp([3],{
 /***/ },
 
 /***/ 171:
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+
+	var _storage = __webpack_require__(172);
+
+	var _storage2 = _interopRequireDefault(_storage);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var cf = new _config();
 	var vars = function vars(key) {
@@ -10851,9 +10903,52 @@ webpackJsonp([3],{
 	    return obj[key];
 	};
 
-	vars.href = function (key) {
-	    var path = './';
+	vars.storage = function (key) {
 	    var obj = {
+	        userStorage: 'ws'
+	    };
+	    return obj[key];
+	};
+
+	// 系统参数
+	vars.sys = function (key) {
+	    var obj = {
+	        cid: 17,
+	        sharekey: 'X-v]4hcK$C'
+	    },
+	        sobj = _storage2.default.get(vars.storage('userStorage'));
+	    for (var o in sobj) {
+	        if (sobj.hasOwnProperty(o)) {
+	            obj[o] = sobj[o];
+	        }
+	    }
+	    // console.log(obj);
+	    return obj[key];
+	};
+
+	// 基本地址
+	vars.path = function (key) {
+	    var obj = {
+	        href: './',
+	        apiPath: '/v1/'
+	    };
+	    return obj[key];
+	};
+
+	// 错误信息
+	vars.err = function (key) {
+	    var obj = {
+	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
+	        gender: '请选择性别',
+	        city: '请选择城市'
+	    };
+	    return obj[key];
+	};
+
+	// 跳转地址
+	vars.href = function (key) {
+	    var path = vars.path('href'),
+	        obj = {
 	        login: path + 'login.html',
 	        baseData: path + 'baseData.html',
 	        user: path + 'user.html?nav=me',
@@ -10864,27 +10959,55 @@ webpackJsonp([3],{
 	    return obj[key];
 	};
 
+	// 接口地址
 	vars.api = function (key) {
-	    var path = cf.apiPath(),
+	    var path = vars.path('apiPath'),
 	        obj = {
 	        fileUpload: path + 'file/post.json',
 	        userInfo: path + 'users/userinfo.json',
 	        city: path + 'zuji/city.json',
-	        hotList: path + 'biaoqian/list.json'
-	    };
-	    return obj[key];
-	};
-
-	vars.err = function (key) {
-	    var obj = {
-	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
-	        gender: '请选择性别',
-	        city: '请选择城市'
+	        hotTagList: path + 'biaoqian/list.json',
+	        hotList: path + 'biaoqian/search.json'
 	    };
 	    return obj[key];
 	};
 
 	module.exports = vars;
+
+	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":null,"vip":0,"gender":"m","age":0,"constellation":"","address":"澳门市","sign":"","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ofusername":"7f3304db83383f8624b5eb5a41ea2758","ngroups":null}
+
+/***/ },
+
+/***/ 172:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var storage = function storage() {
+	    if ('localStorage' in window && window['localStorage'] != null) {
+	        return true;
+	    }
+	    return false;
+	};
+
+	storage.set = function (name, key) {
+	    if (storage()) {
+	        key = JSON.stringify(key);
+	        localStorage.setItem(name, key);
+	    }
+	};
+
+	storage.get = function (name) {
+	    if (storage()) {
+	        return JSON.parse(localStorage.getItem(name));
+	    }
+	};
+
+	storage.clear = function () {
+	    localStorage.clear();
+	};
+
+	module.exports = storage;
 
 /***/ },
 
@@ -11040,66 +11163,46 @@ webpackJsonp([3],{
 	    function GroupTab(props) {
 	        _classCallCheck(this, GroupTab);
 
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(GroupTab).call(this, props));
-
-	        _this.state = {
-	            hotList: []
-	        };
-	        return _this;
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(GroupTab).call(this, props));
+	        // this.state = {
+	        //     hotTagList: []
+	        // }
 	    }
 
 	    _createClass(GroupTab, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            var _this2 = this;
-
-	            var url = _formatAjax2.default.get(_vars2.default.api('hotList'), {
-	                cid: 17,
-	                offset: 0,
-	                count: 20
-	            });
-	            _superagent2.default.get(url).end(function (err, req) {
-	                if (req.status === 200) {
-	                    var data = JSON.parse(_unicode2.default.toHex(req.text));
-	                    if (data.status.code === '0') {
-	                        data = data.data;
-	                        data.map(function (v, i) {
-	                            if (i === 0) {
-	                                v.active = 'active';
-	                            } else {
-	                                v.active = '';
-	                            }
-	                        });
-	                        _this2.setState({
-	                            hotList: data
-	                        });
-	                    } else {
-	                        alert(data.status.msg);
-	                    }
-	                }
-	            });
-	        }
-	    }, {
-	        key: 'toggleTab',
-	        value: function toggleTab(e) {
-	            var ix = e.target.getAttribute('data-ix');
-	            var hotList = this.state.hotList;
-	            for (var i = 0, l = hotList.length; i < l; i++) {
-	                if (i === Number(ix)) {
-	                    hotList[i].active = 'active';
-	                } else {
-	                    hotList[i].active = '';
-	                }
-	            }
-	            this.setState({ hotList: hotList });
+	            // let url = FormatAjax.get(Vars.api('hotTagList'), {
+	            //     cid: 17,
+	            //     offset: 0,
+	            //     count: 20
+	            // });
+	            // Superagent.get(url).end( (err, req) => {
+	            //     if(req.status === 200) {
+	            //         let data = JSON.parse(Unicode.toHex(req.text));
+	            //         if(data.status.code === '0') {
+	            //             data = data.data;
+	            //             data.map( (v, i) => {
+	            //                 if(i === 0) {
+	            //                     v.active = 'active';
+	            //                 } else {
+	            //                     v.active = '';
+	            //                 }
+	            //             })
+	            //             this.setState({
+	            //                 hotTagList: data
+	            //             })
+	            //         } else {
+	            //             alert(data.status.msg);
+	            //         }
+	            //     }
+	            // });
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this3 = this;
-
-	            var HotList = this.state.hotList || [];
-	            HotList = HotList.map(function (v, ix) {
+	            var hotTagList = this.props.hotTagList || [];
+	            hotTagList = hotTagList.map(function (v, ix) {
 	                return _react2.default.createElement(
 	                    'div',
 	                    { key: v.trid, className: 'groupTab-unit ' + v.active, 'data-tag': v.trid, 'data-ix': ix },
@@ -11114,10 +11217,8 @@ webpackJsonp([3],{
 	                    { id: 'groupTab-center' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { id: 'groupTab-overflow', onTouchTap: function onTouchTap(e) {
-	                                _this3.toggleTab(e);
-	                            } },
-	                        HotList
+	                        { id: 'groupTab-overflow' },
+	                        hotTagList
 	                    )
 	                )
 	            );
@@ -11169,7 +11270,7 @@ webpackJsonp([3],{
 
 
 	// module
-	exports.push([module.id, "#groupTab {\n  font-size: .35rem;\n  height: 1rem;\n  line-height: 1rem;\n  white-space: nowrap;\n  background-color: #ffffff;\n  color: #666666; }\n  #groupTab #groupTab-left {\n    float: left;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-right {\n    float: right;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-center {\n    overflow: hidden;\n    white-space: nowrap;\n    padding: 0 .15rem; }\n    #groupTab #groupTab-center #groupTab-overflow {\n      overflow-y: hidden;\n      overflow-x: auto;\n      -webkit-overflow-scrolling: touch;\n      white-space: nowrap; }\n    #groupTab #groupTab-center .groupTab-unit {\n      display: inline-block;\n      padding: 0 .2rem;\n      white-space: nowrap;\n      height: 1rem;\n      line-height: 1rem; }\n      #groupTab #groupTab-center .groupTab-unit.active {\n        color: #2fa4f6;\n        border-bottom: 2px solid #2fa4f6; }\n", ""]);
+	exports.push([module.id, "#groupTab {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  font-size: .35rem;\n  height: 1rem;\n  line-height: 1rem;\n  white-space: nowrap;\n  background-color: #ffffff;\n  color: #666666;\n  z-index: 999; }\n  #groupTab #groupTab-left {\n    float: left;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-right {\n    float: right;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-center {\n    overflow: hidden;\n    white-space: nowrap;\n    padding: 0 .15rem; }\n    #groupTab #groupTab-center #groupTab-overflow {\n      overflow-y: hidden;\n      overflow-x: auto;\n      -webkit-overflow-scrolling: touch;\n      white-space: nowrap; }\n    #groupTab #groupTab-center .groupTab-unit {\n      display: inline-block;\n      padding: 0 .2rem;\n      white-space: nowrap;\n      height: 1rem;\n      line-height: 1rem; }\n      #groupTab #groupTab-center .groupTab-unit.active {\n        color: #2fa4f6;\n        border-bottom: 2px solid #2fa4f6; }\n", ""]);
 
 	// exports
 
@@ -11191,9 +11292,9 @@ webpackJsonp([3],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _jquery = __webpack_require__(166);
+	var _unicode = __webpack_require__(170);
 
-	var _jquery2 = _interopRequireDefault(_jquery);
+	var _unicode2 = _interopRequireDefault(_unicode);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11211,199 +11312,194 @@ webpackJsonp([3],{
 	    function GroupList(props) {
 	        _classCallCheck(this, GroupList);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(GroupList).call(this));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(GroupList).call(this, props));
+
+	        console.log(props);
+	        return _this;
 	    }
 
 	    _createClass(GroupList, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {}
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var List = this.props.data;
+	            List = List.map(function (v, i) {
+	                var name = _unicode2.default.toHex(v.name),
+	                    dec = _unicode2.default.toHex(v.description),
+	                    cname = _unicode2.default.toHex(v.cname),
+	                    summary = _unicode2.default.toHex(v.summary),
+	                    users = v.users,
+	                    isMember = v.isMember === 0 ? ['', '+ 加入'] : ['active', '已加入'];
+	                summary = summary || cname;
+	                // console.log(name);
+	                // console.log(dec);
+	                // console.log(cname);
+	                // console.log(summary);
+
+	                return _react2.default.createElement(
+	                    'div',
+	                    { key: v.tid, 'data-tid': v.tid, className: 'groupList-unit' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'groupList-head' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupList-img' },
+	                            _react2.default.createElement('img', { src: v.icon })
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupList-msg' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'groupList-mainInfo' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'groupList-name' },
+	                                    name
+	                                ),
+	                                _react2.default.createElement(
+	                                    'span',
+	                                    { className: 'groupList-tag' },
+	                                    summary
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'groupList-info' },
+	                                dec
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'groupList-px' },
+	                        _react2.default.createElement('div', { className: 'groupList-radius' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'groupList-body' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupList-num' },
+	                            users.length,
+	                            '个成员'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupList-member' },
+	                            _react2.default.createElement(
+	                                'span',
+	                                null,
+	                                '圆圆、'
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                null,
+	                                '吹吹、'
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                null,
+	                                '小鱼儿、'
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                null,
+	                                '杜拉拉、'
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                null,
+	                                '鱼刺、'
+	                            ),
+	                            _react2.default.createElement(
+	                                'span',
+	                                null,
+	                                '神奇宝贝、'
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupList-join ' + isMember[0] },
+	                            isMember[1]
+	                        )
+	                    )
+	                );
+	            });
+
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'groupList' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'groupList-unit' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupList-head' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-img' },
-	                            _react2.default.createElement('img', { src: '../img/headImg@1x.png' })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-msg' },
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'groupList-mainInfo' },
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'groupList-name' },
-	                                    '谁动了我的奶酪'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'groupList-tag' },
-	                                    '我司官方'
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'groupList-info' },
-	                                '发数据库繁华落尽第三方好好发挥拉斯科啊绝色赌妃来看哈三菱电机反悔拉克丝大姐夫'
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupList-px' },
-	                        _react2.default.createElement('div', { className: 'groupList-radius' })
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupList-body' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-num' },
-	                            '1280个成员'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-member' },
-	                            _react2.default.createElement(
-	                                'span',
-	                                null,
-	                                '圆圆、'
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                null,
-	                                '吹吹、'
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                null,
-	                                '小鱼儿、'
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                null,
-	                                '杜拉拉、'
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                null,
-	                                '鱼刺、'
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                null,
-	                                '神奇宝贝、'
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-join' },
-	                            '+ 加入'
-	                        )
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'groupList-unit' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupList-head' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-img' },
-	                            _react2.default.createElement('img', { src: '../img/headImg@1x.png' })
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-msg' },
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'groupList-mainInfo' },
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'groupList-name' },
-	                                    '谁动了我的奶酪'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'groupList-tag' },
-	                                    '我司官方'
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'groupList-info' },
-	                                '发数据库繁华落尽第三方好好发挥拉斯科啊绝色赌妃来看哈三菱电机反悔拉克丝大姐夫'
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupList-px' },
-	                        _react2.default.createElement('div', { className: 'groupList-radius' })
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupList-body' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-num' },
-	                            '1280个成员'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-member' },
-	                            _react2.default.createElement(
-	                                'span',
-	                                null,
-	                                '圆圆、'
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                null,
-	                                '吹吹、'
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                null,
-	                                '小鱼儿、'
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                null,
-	                                '杜拉拉、'
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                null,
-	                                '鱼刺、'
-	                            ),
-	                            _react2.default.createElement(
-	                                'span',
-	                                null,
-	                                '神奇宝贝、'
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-join' },
-	                            '+ 加入'
-	                        )
-	                    )
-	                )
+	                List
 	            );
 	        }
 	    }]);
 
 	    return GroupList;
 	})(_react2.default.Component);
+
+	// <div className="groupList-unit">
+	//     <div className="groupList-head">
+	//         <div className="groupList-img"><img src="../img/headImg@1x.png" /></div>
+	//         <div className="groupList-msg">
+	//             <div className="groupList-mainInfo">
+	//                 <div className="groupList-name">谁动了我的奶酪</div>
+	//                 <span className="groupList-tag">我司官方</span>
+	//             </div>
+	//             <div className="groupList-info">
+	//                 发数据库繁华落尽第三方好好发挥拉斯科啊绝色赌妃来看哈三菱电机反悔拉克丝大姐夫
+	//             </div>
+	//         </div>
+	//     </div>
+	//     <div className="groupList-px">
+	//         <div className="groupList-radius"></div>
+	//     </div>
+	//     <div className="groupList-body">
+	//         <div className="groupList-num">1280个成员</div>
+	//         <div className="groupList-member">
+	//             <span>圆圆、</span>
+	//             <span>吹吹、</span>
+	//             <span>小鱼儿、</span>
+	//             <span>杜拉拉、</span>
+	//             <span>鱼刺、</span>
+	//             <span>神奇宝贝、</span>
+	//         </div>
+	//         <div className="groupList-join">+ 加入</div>
+	//     </div>
+	// </div>
+	//
+	// <div className="groupList-unit">
+	//     <div className="groupList-head">
+	//         <div className="groupList-img"><img src="../img/headImg@1x.png" /></div>
+	//         <div className="groupList-msg">
+	//             <div className="groupList-mainInfo">
+	//                 <div className="groupList-name">谁动了我的奶酪</div>
+	//                 <span className="groupList-tag">我司官方</span>
+	//             </div>
+	//             <div className="groupList-info">
+	//                 发数据库繁华落尽第三方好好发挥拉斯科啊绝色赌妃来看哈三菱电机反悔拉克丝大姐夫
+	//             </div>
+	//         </div>
+	//     </div>
+	//     <div className="groupList-px">
+	//         <div className="groupList-radius"></div>
+	//     </div>
+	//     <div className="groupList-body">
+	//         <div className="groupList-num">1280个成员</div>
+	//         <div className="groupList-member">
+	//             <span>圆圆、</span>
+	//             <span>吹吹、</span>
+	//             <span>小鱼儿、</span>
+	//             <span>杜拉拉、</span>
+	//             <span>鱼刺、</span>
+	//             <span>神奇宝贝、</span>
+	//         </div>
+	//         <div className="groupList-join">+ 加入</div>
+	//     </div>
+	// </div>
 
 	exports.default = GroupList;
 
@@ -11444,7 +11540,7 @@ webpackJsonp([3],{
 
 
 	// module
-	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    文字省略\n*/\n#groupList {\n  padding: 0 .2rem;\n  font-size: .35rem; }\n  #groupList .groupList-unit {\n    margin-top: .2rem;\n    padding: .2rem;\n    border: 1px solid #e2e2e2;\n    border-radius: .2rem;\n    overflow: hidden;\n    background-color: #ffffff; }\n    #groupList .groupList-unit .groupList-head {\n      overflow: hidden;\n      margin-bottom: .2rem; }\n      #groupList .groupList-unit .groupList-head .groupList-img {\n        width: 1.4rem;\n        height: 1.4rem;\n        margin-right: .2rem;\n        border-radius: 100%;\n        float: left; }\n        #groupList .groupList-unit .groupList-head .groupList-img img {\n          width: 100%;\n          height: 100%;\n          border: 100%; }\n      #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo {\n        line-height: .5rem; }\n        #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo .groupList-name {\n          display: inline-block;\n          padding-right: .2rem;\n          color: #474747; }\n        #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo .groupList-tag {\n          position: relative;\n          top: -.05rem;\n          font-size: 70%;\n          background-color: #ffb541;\n          padding: .06rem .1rem;\n          border-radius: .2rem;\n          color: #ffffff; }\n      #groupList .groupList-unit .groupList-head .groupList-msg .groupList-info {\n        display: -webkit-box;\n        text-overflow: -o-ellipsis-lastline;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        -webkit-line-clamp: 2;\n        -webkit-box-orient: vertical;\n        font-size: 90%;\n        line-height: 1.45;\n        color: #666666; }\n    #groupList .groupList-unit .groupList-px {\n      position: relative;\n      margin-left: .7rem;\n      border-bottom: 1px solid #e2e2e2; }\n      #groupList .groupList-unit .groupList-px .groupList-radius {\n        position: absolute;\n        top: -.04rem;\n        left: 0;\n        width: .12rem;\n        height: .12rem;\n        border-radius: 100%;\n        background-color: #e2e2e2; }\n    #groupList .groupList-unit .groupList-body {\n      font-size: 80%;\n      margin-top: .2rem;\n      height: .5rem;\n      line-height: .5rem;\n      overflow: hidden; }\n      #groupList .groupList-unit .groupList-body .groupList-num {\n        float: left;\n        width: 1.5rem;\n        padding-right: .2rem;\n        color: #999999; }\n      #groupList .groupList-unit .groupList-body .groupList-member {\n        float: left;\n        width: 3.5rem;\n        color: #2fa4f6;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis; }\n      #groupList .groupList-unit .groupList-body .groupList-join {\n        float: right;\n        padding: 0 .2rem;\n        background-color: #a8e1ff;\n        color: #ffffff;\n        border-radius: .3rem; }\n", ""]);
+	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    文字省略\n*/\n#groupList {\n  padding: 0 .2rem;\n  font-size: .35rem;\n  padding-top: 1rem;\n  padding-bottom: .4rem; }\n  #groupList .groupList-unit {\n    margin-top: .2rem;\n    padding: .2rem;\n    border: 1px solid #e2e2e2;\n    border-radius: .2rem;\n    overflow: hidden;\n    background-color: #ffffff; }\n    #groupList .groupList-unit .groupList-head {\n      overflow: hidden;\n      margin-bottom: .2rem; }\n      #groupList .groupList-unit .groupList-head .groupList-img {\n        width: 1.4rem;\n        height: 1.4rem;\n        margin-right: .2rem;\n        border-radius: 100%;\n        float: left; }\n        #groupList .groupList-unit .groupList-head .groupList-img img {\n          width: 100%;\n          height: 100%;\n          border: 100%; }\n      #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo {\n        line-height: .5rem; }\n        #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo .groupList-name {\n          display: inline-block;\n          padding-right: .2rem;\n          color: #474747; }\n        #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo .groupList-tag {\n          position: relative;\n          top: -.05rem;\n          font-size: 70%;\n          background-color: #ffb541;\n          padding: .06rem .1rem;\n          border-radius: .2rem;\n          color: #ffffff; }\n      #groupList .groupList-unit .groupList-head .groupList-msg .groupList-info {\n        display: -webkit-box;\n        text-overflow: -o-ellipsis-lastline;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        -webkit-line-clamp: 2;\n        -webkit-box-orient: vertical;\n        font-size: 90%;\n        line-height: 1.45;\n        color: #666666; }\n    #groupList .groupList-unit .groupList-px {\n      position: relative;\n      margin-left: .7rem;\n      border-bottom: 1px solid #e2e2e2; }\n      #groupList .groupList-unit .groupList-px .groupList-radius {\n        position: absolute;\n        top: -.04rem;\n        left: 0;\n        width: .12rem;\n        height: .12rem;\n        border-radius: 100%;\n        background-color: #e2e2e2; }\n    #groupList .groupList-unit .groupList-body {\n      font-size: 80%;\n      margin-top: .2rem;\n      height: .5rem;\n      line-height: .5rem;\n      overflow: hidden; }\n      #groupList .groupList-unit .groupList-body .groupList-num {\n        float: left;\n        width: 1.5rem;\n        padding-right: .2rem;\n        color: #999999; }\n      #groupList .groupList-unit .groupList-body .groupList-member {\n        float: left;\n        width: 3.5rem;\n        color: #2fa4f6;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis; }\n      #groupList .groupList-unit .groupList-body .groupList-join {\n        float: right;\n        padding: 0 .2rem;\n        background-color: #a8e1ff;\n        color: #ffffff;\n        border-radius: .3rem; }\n        #groupList .groupList-unit .groupList-body .groupList-join.active {\n          background-color: #999999; }\n", ""]);
 
 	// exports
 

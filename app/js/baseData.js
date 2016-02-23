@@ -11094,9 +11094,15 @@ webpackJsonp([0],{
 /***/ },
 
 /***/ 171:
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+
+	var _storage = __webpack_require__(172);
+
+	var _storage2 = _interopRequireDefault(_storage);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var cf = new _config();
 	var vars = function vars(key) {
@@ -11106,9 +11112,52 @@ webpackJsonp([0],{
 	    return obj[key];
 	};
 
-	vars.href = function (key) {
-	    var path = './';
+	vars.storage = function (key) {
 	    var obj = {
+	        userStorage: 'ws'
+	    };
+	    return obj[key];
+	};
+
+	// 系统参数
+	vars.sys = function (key) {
+	    var obj = {
+	        cid: 17,
+	        sharekey: 'X-v]4hcK$C'
+	    },
+	        sobj = _storage2.default.get(vars.storage('userStorage'));
+	    for (var o in sobj) {
+	        if (sobj.hasOwnProperty(o)) {
+	            obj[o] = sobj[o];
+	        }
+	    }
+	    // console.log(obj);
+	    return obj[key];
+	};
+
+	// 基本地址
+	vars.path = function (key) {
+	    var obj = {
+	        href: './',
+	        apiPath: '/v1/'
+	    };
+	    return obj[key];
+	};
+
+	// 错误信息
+	vars.err = function (key) {
+	    var obj = {
+	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
+	        gender: '请选择性别',
+	        city: '请选择城市'
+	    };
+	    return obj[key];
+	};
+
+	// 跳转地址
+	vars.href = function (key) {
+	    var path = vars.path('href'),
+	        obj = {
 	        login: path + 'login.html',
 	        baseData: path + 'baseData.html',
 	        user: path + 'user.html?nav=me',
@@ -11119,27 +11168,22 @@ webpackJsonp([0],{
 	    return obj[key];
 	};
 
+	// 接口地址
 	vars.api = function (key) {
-	    var path = cf.apiPath(),
+	    var path = vars.path('apiPath'),
 	        obj = {
 	        fileUpload: path + 'file/post.json',
 	        userInfo: path + 'users/userinfo.json',
 	        city: path + 'zuji/city.json',
-	        hotList: path + 'biaoqian/list.json'
-	    };
-	    return obj[key];
-	};
-
-	vars.err = function (key) {
-	    var obj = {
-	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
-	        gender: '请选择性别',
-	        city: '请选择城市'
+	        hotTagList: path + 'biaoqian/list.json',
+	        hotList: path + 'biaoqian/search.json'
 	    };
 	    return obj[key];
 	};
 
 	module.exports = vars;
+
+	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":null,"vip":0,"gender":"m","age":0,"constellation":"","address":"澳门市","sign":"","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ofusername":"7f3304db83383f8624b5eb5a41ea2758","ngroups":null}
 
 /***/ },
 

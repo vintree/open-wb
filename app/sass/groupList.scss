@@ -3,6 +3,8 @@
 #groupList {
     padding: 0 .2rem;
     font-size: .35rem;
+    padding-top: 1rem;
+    padding-bottom: .4rem;
     .groupList-unit {
     	margin-top: .2rem;
     	padding: .2rem;
@@ -89,6 +91,9 @@
     			background-color: #a8e1ff;
     			color: #ffffff;
     			border-radius: .3rem;
+                &.active {
+                    background-color: #999999;
+                }
     		}
     	}
     }
