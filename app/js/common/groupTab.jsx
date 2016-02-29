@@ -2,7 +2,7 @@ require('../../sass/groupTab.scss');
 import React from 'react';
 import Superagent from 'superagent';
 import InjectTapEventPlugin from "react-tap-event-plugin";
-
+import Immutable from 'immutable';
 
 import FormatAjax from '../temp/formatAjax.js';
 import Vars from '../temp/vars.js';
@@ -14,40 +14,19 @@ InjectTapEventPlugin();
 export default class GroupTab extends React.Component {
     constructor(props) {
         super(props);
-        // this.state = {
-        //     hotTagList: []
+    }
+
+    shouldComponentUpdate(nextProps) {
+        // console.log(this.props.hotTagList);
+        // console.log(nextProps.hotTagList);
+        // console.log(Immutable.is(this.props.hotTagList, nextProps.hotTagList));
+
+        // if(Immutable.is(this.props.hotTagList, nextProps.hotTagList)) {
+        //     return false;
         // }
+        // return true;
+        return true;
     }
-
-    componentDidMount() {
-        // let url = FormatAjax.get(Vars.api('hotTagList'), {
-        //     cid: 17,
-        //     offset: 0,
-        //     count: 20
-        // });
-        // Superagent.get(url).end( (err, req) => {
-        //     if(req.status === 200) {
-        //         let data = JSON.parse(Unicode.toHex(req.text));
-        //         if(data.status.code === '0') {
-        //             data = data.data;
-        //             data.map( (v, i) => {
-        //                 if(i === 0) {
-        //                     v.active = 'active';
-        //                 } else {
-        //                     v.active = '';
-        //                 }
-        //             })
-        //             this.setState({
-        //                 hotTagList: data
-        //             })
-        //         } else {
-        //             alert(data.status.msg);
-        //         }
-        //     }
-        // });
-    }
-
-
 
     render() {
         let hotTagList = this.props.hotTagList || [];

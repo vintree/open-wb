@@ -1878,9 +1878,21 @@ webpackJsonp([1],[
 
 	// 基本地址
 	vars.path = function (key) {
-	    var obj = {
+	    var staticPath = undefined,
+	        port = undefined,
+	        obj = undefined;
+	    port = location.port,
+	    // host = 'http://10.2.144.38:8080/';
+	    staticPath = 'http://127.0.0.1:8080/';
+	    if (port === '8080') {
+	        staticPath = '../';
+	    } else {
+	        staticPath += 'github/open-wb/app/';
+	    }
+	    obj = {
 	        href: './',
-	        apiPath: '/v1/'
+	        apiPath: '/v1/',
+	        staticPath: staticPath
 	    };
 	    return obj[key];
 	};

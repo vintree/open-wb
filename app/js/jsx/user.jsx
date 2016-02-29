@@ -22,8 +22,8 @@ import Newest from "../common/newest.jsx";
 autoFont.init();
 InjectTapEventPlugin();
 Head.init({
-    tit: '不上班-用户个人页',
-    shareName: '不上班-用户个人页',
+    tit: '我司-用户个人页',
+    shareName: '我司-用户个人页',
     shareUrl: '',
     shareImg: '',
     shareDesc: '',

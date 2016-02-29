@@ -64,7 +64,6 @@ class Input extends React.Component {
 		this.login();
 	}
 
-
 	// 初始化第三方数据
 	initAv() {
 		window.onload = () => {

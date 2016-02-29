@@ -1,7 +1,11 @@
 require('../../sass/hotGroup.scss');
+// let Immutable = require('immutable');
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from "jquery";
+import Immutable from 'immutable';
+// import $ from "jquery";
+
+
 import InjectTapEventPlugin from "react-tap-event-plugin";
 import Superagent from 'superagent';
 
@@ -12,37 +16,56 @@ import addScript from '../temp/addScript.js';
 import Head from '../temp/head.js';
 import Vars from '../temp/vars.js';
 
+import Loading from "../common/loading.jsx";
 import GroupTab from "../common/groupTab.jsx";
 import GroupList from "../common/groupList.jsx";
 
+
 InjectTapEventPlugin();
 autoFont.init();
+
+Head.init({
+    tit: '我司-热门群组',
+    shareName: '我司-热门群组',
+    shareUrl: '',
+    shareImg: '',
+    shareDesc: '',
+    keywords: '',
+    desc: '',
+    admins: '',
+    favicon: ''
+});
 
 class Main extends React.Component {
     constructor() {
         super();
         this.state = {
-            // vars: {
-            //     vars: (new _config).vars(),
-            //     apiUrl: {
-            //         tag_category: 'zuji/tag_category.json'
-            //     }
-            // },
-            hotTagList: [],
-            list: []
-        }
-
+            hotTagList: Immutable.List(),
+            list: Immutable.List(),
+            trid: '',
+            listInfo: {
+                size: 10,
+                page: 0
+            }
+        };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.initTab();
+        this.scrollLoading();
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        // console.log(nextProps);
+        // console.log(nextState);
+        return true;
     }
 
     initTab() {
         let url = FormatAjax.get(Vars.api('hotTagList'), {
             cid: Vars.sys('cid'),
             offset: 0,
-            count: 20
+            count: 10
         });
         Superagent.get(url).end( (err, req) => {
             if(req.status === 200) {
@@ -52,13 +75,10 @@ class Main extends React.Component {
                     data.map( (v, i) => {
                         if(i === 0) {
                             v.active = 'active';
-                            this.initList(v.trid);
+                            this.initList(v.trid, data);
                         } else {
                             v.active = '';
                         }
-                    })
-                    this.setState({
-                        hotTagList: data
                     });
                 } else {
                     alert(data.status.msg);
@@ -67,24 +87,24 @@ class Main extends React.Component {
         });
     }
 
-    initList(trid) {
+    initList(trid, hotTagList) {
         let url = FormatAjax.get(Vars.api('hotList'), {
             cid: Vars.sys('cid'),
             mid: Vars.sys('mid'),
             ofid: Vars.sys('ofusername'),
-            offset: 0,
-            count: 20,
+            offset: this.state.listInfo.page,
+            count: this.state.listInfo.size,
             bqid: trid,
         });
         Superagent.get(url).end( (err, req) => {
             if(req.status === 200) {
-                // console.log(req.text);
-                // console.log(JSON.parse(req.text));
                 let data = JSON.parse(req.text);
                 if(data.status.code === '0') {
                     data = data.data;
                     this.setState({
-                        list: data
+                        list: Immutable.List(data),
+                        hotTagList: !!hotTagList ? Immutable.List(hotTagList) : this.state.hotTagList,
+                        trid: trid
                     });
                 } else {
                     alert(data.status.msg);
@@ -96,20 +116,45 @@ class Main extends React.Component {
 // 事件
     eventToggleTab(e) {
         const
-        ix = e.target.getAttribute('data-ix'),
-        hotTagList = this.state.hotTagList,
-        trid = e.target.getAttribute('data-tag');
-        this.initList(trid);
-        for(let i = 0, l = hotTagList.length; i < l; i++) {
-            if(i === Number(ix)) {
-                hotTagList[i].active = 'active';
-            } else {
-                hotTagList[i].active = '';
-            }
+        node = e.target,
+        ix = node.getAttribute('data-ix'),
+        trid = node.getAttribute('data-tag');
+        let 
+        hotTagList = this.state.hotTagList;
+        if(!!trid) {
+            this.initList(trid);
+            hotTagList = hotTagList.map( (v, i) => {
+                if(i === Number(ix)) {
+                    v.active = 'active';
+                } else {
+                    v.active = '';
+                }
+                return v;
+            });
+            this.setState({
+                hotTagList: hotTagList
+            });
         }
-        this.setState({hotTagList: hotTagList});
     }
 
+    scrollLoading() {
+        window.addEventListener('scroll', function(e) {
+            let VTop = document.body.scrollTop,
+                Vheight = window.outerHeight,
+                CHeight = document.querySelector('#hotGroup-list').offsetHeight,
+                COHeight = document.querySelector('#groupTab').offsetHeight,
+                loadingTop = document.querySelector('#hotGroup-loading').offsetTop;
+            console.log(VTop+Vheight-CHeight);
+            // console.log(Vheight);
+            // console.log(VTop);
+            // console.log(CHeight);
+            // console.log(loadingTop);
+            // console.log('----------------------');
+            if(VTop+Vheight-CHeight > -500) {
+                
+            }
+        });
+    }
 
     render() {
         return (
@@ -117,11 +162,12 @@ class Main extends React.Component {
                 <section onTouchTap={ e => { this.eventToggleTab(e)} }>
                     <GroupTab hotTagList={this.state.hotTagList}></GroupTab>
                 </section>
-                <section>
-                    <GroupList data={this.state.list}></GroupList>
-                    <div></div>
+                <section id='hotGroup-list'>
+                    <GroupList data={this.state.list} trid={this.state.trid}></GroupList>
+                    <div id='hotGroup-loading'>eq</div>
                 </section>
-
+                <section>
+                </section>
             </div>
         )
     }

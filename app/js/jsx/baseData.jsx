@@ -5,7 +5,7 @@ import Superagent from 'superagent';
 import $ from 'jquery';
 // import $ from 'webpack-zepto';
 
-
+import Head from '../temp/head.js';
 import autoFont from '../temp/autoFont.js';
 import FormatAjax from '../temp/formatAjax.js';
 import Unicode from '../temp/unicode.js';
@@ -21,6 +21,18 @@ window.jQuery = $;
 
 require('../../sass/baseData.scss');
 require('../temp/ajaxfileupload.js');
+
+Head.init({
+    tit: '我司-设置基本信息',
+    shareName: '我司-设置基本信息',
+    shareUrl: '',
+    shareImg: '',
+    shareDesc: '',
+    keywords: '',
+    desc: '',
+    admins: '',
+    favicon: ''
+});
 
 
 class HeadImg extends React.Component {
@@ -62,12 +74,13 @@ class HeadImg extends React.Component {
 						img: imgData
 					});
 
-					// console.log(Vars.api('fileUpload'));
+					console.log(imgData);
 
 					url = FormatAjax.get(Vars.api('fileUpload'), {
 						key: key,
 						type: 6,
 						local_file_url: fileUrl,
+						// local_file_url: imgData.url,
 						local_file_name: name,
 						thumb_size: '80*80'
 					});
@@ -119,7 +132,7 @@ class HeadImg extends React.Component {
 						}
 					});
 
-				}
+				};
 				reader.readAsDataURL(fileNode.files[0]);
 			}
 		}
