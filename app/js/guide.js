@@ -19,7 +19,7 @@ webpackJsonp([2],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _autoFont = __webpack_require__(167);
+	var _autoFont = __webpack_require__(168);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
@@ -189,7 +189,7 @@ webpackJsonp([2],{
 	var content = __webpack_require__(219);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -210,7 +210,7 @@ webpackJsonp([2],{
 /***/ 219:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 

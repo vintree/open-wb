@@ -27,31 +27,31 @@ webpackJsonp([0],{
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
-	var _head = __webpack_require__(180);
+	var _head = __webpack_require__(167);
 
 	var _head2 = _interopRequireDefault(_head);
 
-	var _autoFont = __webpack_require__(167);
+	var _autoFont = __webpack_require__(168);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
-	var _formatAjax = __webpack_require__(169);
+	var _formatAjax = __webpack_require__(170);
 
 	var _formatAjax2 = _interopRequireDefault(_formatAjax);
 
-	var _unicode = __webpack_require__(170);
+	var _unicode = __webpack_require__(171);
 
 	var _unicode2 = _interopRequireDefault(_unicode);
 
-	var _vars = __webpack_require__(171);
+	var _vars = __webpack_require__(172);
 
 	var _vars2 = _interopRequireDefault(_vars);
 
-	var _storage = __webpack_require__(172);
+	var _storage = __webpack_require__(173);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
-	var _md = __webpack_require__(173);
+	var _md = __webpack_require__(174);
 
 	var _md2 = _interopRequireDefault(_md);
 
@@ -69,8 +69,8 @@ webpackJsonp([0],{
 	window.$ = _jquery2.default;
 	window.jQuery = _jquery2.default;
 
-	__webpack_require__(174);
-	__webpack_require__(178);
+	__webpack_require__(175);
+	__webpack_require__(179);
 
 	_head2.default.init({
 		tit: '我司-设置基本信息',
@@ -11050,7 +11050,74 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 169:
+/***/ 167:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/*
+	var headData = {
+	  //页面title
+	  tit: '',
+	  //分享出去的title
+	  shareName: '',
+	  //分享出去的url
+	  shareUrl: '',
+	  //分享出去的图片
+	  shareImg: '',
+	  //分享出去的描述
+	  shareDesc: '',
+	  //SEO关键字
+	  keywords: '',
+	  //SEO描述
+	  desc: '',
+	  //第二代微信配置
+	  admins: '',
+	  //页面ico
+	  favicon: '',
+	  //自己的扩展配置，支持List，String
+	  // extend: ''
+	}
+	*/
+	var Head = function Head() {};
+
+	Head.init = function (data) {
+	    var head = '',
+	        i,
+	        l,
+	        extend;
+	    extend = data.extend;
+	    head += '<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />';
+	    head += '<meta name="format-detection" content="telephone=no" />';
+	    head += '<meta name="og:url" property="og:url" content="' + data.shareUrl + '" />';
+	    head += '<meta name="og:site_name" property="og:site_name" content="' + (data.shareName || data.tit) + '" />';
+	    head += '<meta name="og:title" property="og:title" content="' + (data.shareName || data.tit) + '" />';
+	    head += '<meta name="og:image" property="og:image" content="' + (data.shareImg || data.defaultImg) + '" />';
+	    head += '<meta name="og:desc" property="og:desc" content="' + data.shareDesc + '" />';
+	    head += '<meta name="keywords" property="keywords" content="' + data.keywords + '" />';
+	    head += '<meta name="description" property="description" content="' + data.desc + '" />';
+	    head += '<meta property="qc:admins" content="' + data.admins + '"/>';
+	    head += '<title>' + data.tit + '</title>';
+	    head += '<link rel="shortcut icon" type="image/x-icon" href="' + data.favicon + '"/>';
+	    // head += '<link type="text/css" rel="stylesheet" href="../font/css/font-awesome.min.css">';
+	    if (!!extend) {
+	        if (Object.prototype.toString.call(extend) === '[object Array]') {
+	            data.extend.map(function (v, i) {
+	                head += v;
+	            });
+	        } else if (Object.prototype.toString.call(extend) === '[object String]') {
+	            head += extend;
+	        }
+	    }
+	    document.head.innerHTML = document.head.innerHTML + head;
+	    document.title = data.tit;
+	};
+
+	module.exports = Head;
+
+/***/ },
+
+/***/ 170:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -11076,7 +11143,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 170:
+/***/ 171:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -11110,12 +11177,12 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 171:
+/***/ 172:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _storage = __webpack_require__(172);
+	var _storage = __webpack_require__(173);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
@@ -11124,16 +11191,24 @@ webpackJsonp([0],{
 	var cf = new _config();
 	var vars = function vars(key) {
 	    var obj = {
-	        userStorage: 'ws'
+	        userStorage: 'ws',
+	        user: 'ws'
 	    };
 	    return obj[key];
 	};
 
 	vars.storage = function (key) {
 	    var obj = {
-	        userStorage: 'ws'
+	        userStorage: 'ws',
+	        user: 'ws'
 	    };
 	    return obj[key];
+	};
+
+	vars.storageValue = function (key1, key2) {
+	    var sobj = _storage2.default.get(vars.storage(key1));
+	    // console.log(sobj);
+	    return key2 ? sobj[key2] : sobj;
 	};
 
 	// 系统参数
@@ -11148,7 +11223,6 @@ webpackJsonp([0],{
 	            obj[o] = sobj[o];
 	        }
 	    }
-	    // console.log(obj);
 	    return obj[key];
 	};
 
@@ -11201,13 +11275,18 @@ webpackJsonp([0],{
 	vars.api = function (key) {
 	    var path = vars.path('apiPath'),
 	        obj = {
-	        fileUpload: path + 'file/post.json',
-	        userInfo: path + 'users/userinfo.json',
-	        city: path + 'zuji/city.json',
-	        hotTagList: path + 'biaoqian/list.json',
-	        hotList: path + 'biaoqian/search.json'
-	    };
-	    return obj[key];
+	        fileUpload: 'file/post.json',
+	        userInfo: 'users/userinfo.json',
+	        city: 'zuji/city.json',
+	        hotTagList: 'biaoqian/list.json',
+	        hotList: 'biaoqian/search.json',
+	        userShow: 'users/show.json', //获取某个用户的个人信息
+	        follow_list: 'users/following/list.json', //获取用户关注的人的列表
+	        tag_list: 'users/tag/list.json', //获取用户加入的群组(标签)
+	        event_list: 'users/event/list.json', //获取用户活动列表
+	        get_my_notes: 'notes/get_my_notes.json' };
+	    //用户的动态
+	    return path + obj[key];
 	};
 
 	module.exports = vars;
@@ -11216,7 +11295,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 172:
+/***/ 173:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -11249,7 +11328,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 173:
+/***/ 174:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -11479,16 +11558,16 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 174:
+/***/ 175:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(175);
+	var content = __webpack_require__(176);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -11506,10 +11585,10 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 175:
+/***/ 176:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 
@@ -11521,7 +11600,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 178:
+/***/ 179:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -11680,73 +11759,6 @@ webpackJsonp([0],{
 	        if (s.global) jQuery.event.trigger("ajaxError", [xml, s, e]);
 	    }
 	});
-
-/***/ },
-
-/***/ 180:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	/*
-	var headData = {
-	  //页面title
-	  tit: '',
-	  //分享出去的title
-	  shareName: '',
-	  //分享出去的url
-	  shareUrl: '',
-	  //分享出去的图片
-	  shareImg: '',
-	  //分享出去的描述
-	  shareDesc: '',
-	  //SEO关键字
-	  keywords: '',
-	  //SEO描述
-	  desc: '',
-	  //第二代微信配置
-	  admins: '',
-	  //页面ico
-	  favicon: '',
-	  //自己的扩展配置，支持List，String
-	  // extend: ''
-	}
-	*/
-	var Head = function Head() {};
-
-	Head.init = function (data) {
-	    var head = '',
-	        i,
-	        l,
-	        extend;
-	    extend = data.extend;
-	    head += '<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, width=device-width" />';
-	    head += '<meta name="format-detection" content="telephone=no" />';
-	    head += '<meta name="og:url" property="og:url" content="' + data.shareUrl + '" />';
-	    head += '<meta name="og:site_name" property="og:site_name" content="' + (data.shareName || data.tit) + '" />';
-	    head += '<meta name="og:title" property="og:title" content="' + (data.shareName || data.tit) + '" />';
-	    head += '<meta name="og:image" property="og:image" content="' + (data.shareImg || data.defaultImg) + '" />';
-	    head += '<meta name="og:desc" property="og:desc" content="' + data.shareDesc + '" />';
-	    head += '<meta name="keywords" property="keywords" content="' + data.keywords + '" />';
-	    head += '<meta name="description" property="description" content="' + data.desc + '" />';
-	    head += '<meta property="qc:admins" content="' + data.admins + '"/>';
-	    head += '<title>' + data.tit + '</title>';
-	    head += '<link rel="shortcut icon" type="image/x-icon" href="' + data.favicon + '"/>';
-	    // head += '<link type="text/css" rel="stylesheet" href="../font/css/font-awesome.min.css">';
-	    if (!!extend) {
-	        if (Object.prototype.toString.call(extend) === '[object Array]') {
-	            data.extend.map(function (v, i) {
-	                head += v;
-	            });
-	        } else if (Object.prototype.toString.call(extend) === '[object String]') {
-	            head += extend;
-	        }
-	    }
-	    document.head.innerHTML = document.head.innerHTML + head;
-	    document.title = data.tit;
-	};
-
-	module.exports = Head;
 
 /***/ }
 

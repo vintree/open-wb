@@ -3,16 +3,25 @@ const cf = new _config;
 const vars = function(key) {
     let obj = {
         userStorage: 'ws',
-    }
+        user: 'ws'
+    };
     return obj[key];
 };
 
 vars.storage = (key) => {
     let obj = {
         userStorage: 'ws',
-    }
+        user: 'ws'
+    };
     return obj[key];
-}
+};
+
+vars.storageValue = (key1, key2) => {
+    let 
+    sobj = Storage.get(vars.storage(key1));
+    // console.log(sobj);
+    return key2 ? sobj[key2] : sobj;
+};
 
 // 系统参数
 vars.sys = (key) => {
@@ -27,9 +36,8 @@ vars.sys = (key) => {
             obj[o] = sobj[o];
         }
     }
-    // console.log(obj);
     return obj[key];
-}
+};
 
 // 基本地址
 vars.path = (key) => {
@@ -37,8 +45,8 @@ vars.path = (key) => {
         port,
         obj;
     port = location.port,
-        // host = 'http://10.2.144.38:8080/';
-        staticPath = 'http://127.0.0.1:8080/';
+    // host = 'http://10.2.144.38:8080/';
+    staticPath = 'http://127.0.0.1:8080/';
     if(port === '8080') {
         staticPath = '../';
     } else {
@@ -58,9 +66,9 @@ vars.err = (key) => {
         nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
         gender: '请选择性别',
         city: '请选择城市'
-    }
+    };
     return obj[key];
-}
+};
 
 // 跳转地址
 vars.href = (key) => {
@@ -75,21 +83,26 @@ vars.href = (key) => {
         guide: path + 'guide.html',
     };
     return obj[key];
-}
+};
 
 // 接口地址
 vars.api = (key) => {
     let
     path = vars.path('apiPath'),
     obj = {
-        fileUpload: path + 'file/post.json',
-        userInfo: path + 'users/userinfo.json',
-        city: path + 'zuji/city.json',
-        hotTagList: path + 'biaoqian/list.json',
-        hotList: path + 'biaoqian/search.json'
+        fileUpload: 'file/post.json',
+        userInfo: 'users/userinfo.json',
+        city: 'zuji/city.json',
+        hotTagList: 'biaoqian/list.json',
+        hotList: 'biaoqian/search.json',
+        userShow: 'users/show.json',//获取某个用户的个人信息
+        follow_list: 'users/following/list.json',//获取用户关注的人的列表
+        tag_list: 'users/tag/list.json',//获取用户加入的群组(标签)
+        event_list: 'users/event/list.json',//获取用户活动列表
+        get_my_notes: 'notes/get_my_notes.json',//用户的动态
     };
-    return obj[key];
-}
+    return path + obj[key];
+};
 
 module.exports = vars;
 

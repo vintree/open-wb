@@ -10,7 +10,7 @@ class Newest_head extends React.Component {
         super(props);
         this.state = {
             vars: props.vars
-        }
+        };
     }
 
     render() {
@@ -22,19 +22,17 @@ class Newest_head extends React.Component {
                 <div className="newest-msg">
                     <div className="newest-msg-pp">
                         <div className="newest-name">{this.props.data.nickName}</div>
-                        <span className="newest-tag">电影导演</span>
-                        <span className="newest-tag">监制</span>
-                        <span className="newest-tag">编剧</span>
+                        <span className="newest-tag">{Unicode.toHex(this.props.data.sign)}</span>
                     </div>
-                    <div className="newest-msg-dt">今天 12:30</div>
+                    <div className="newest-msg-dt">{this.props.data.time}</div>
                 </div>
                 <div className="newest-source">
                     <div className="newest-source-1">
                         <div className="newest-source-1-1">来自</div>
-                        <div className="newest-source-1-2">春光乍泄剧组</div>
+                        <div className="newest-source-1-2">{Unicode.toHex(this.props.data.groupCollection.gname)}</div>
                     </div>
                     <div className="newest-source-2">
-                        <img src={this.state.vars.path + 'img/photo.png'} />
+                        <img src={this.props.data.groupCollection.icon} />
                     </div>
                 </div>
             </div>
@@ -52,14 +50,21 @@ class Newest_body_1 extends React.Component {
         };
     }
     render() {
-        return (
-            <div className="newest-body">
-                <div className="newest-tx">
-                    {this.props.data.content}
-                </div>
+        let imgList = this.props.data.picList;
+        if(imgList.length !== 0) {
+            imgList = (
                 <div className="newest-model1">
                     <img src={this.props.data.picList[0]}></img>
                 </div>
+            );
+        }
+
+        return (
+            <div className="newest-body">
+                <div className="newest-tx">
+                    {Unicode.toHex(this.props.data.content)}
+                </div>
+                {imgList}
             </div>
         )
     }
@@ -73,7 +78,7 @@ class Newest_body_2 extends React.Component {
         return (
             <div className="newest-body">
                 <div className="newest-tx">
-                    {this.props.data.content}
+                    {Unicode.toHex(this.props.data.content)}
                 </div>
                 <div className="newest-model2">
                     <div className="newest-img"><img src={this.props.data.picList[0]}></img></div>
@@ -99,11 +104,11 @@ class Newest_foot extends React.Component {
     }
     render() {
         let address = '';
-        if(this.props.data.address.length !== 0) {
+        if(this.props.data.location) {
             address = (
                 <div className="newest-place">
                     <img src={this.state.imgUrl[3]}></img>
-                    {this.props.data.address}
+                    {Unicode.toHex(this.props.data.location)}
                 </div>
             )
         }
@@ -119,11 +124,11 @@ class Newest_foot extends React.Component {
                         </div>
                         <div className="newest-foot-1">
                             <img src={this.state.imgUrl[1]}></img>
-                            18
+                            {this.props.data.praiseCount} +
                         </div>
                         <div className="newest-foot-1">
                             <img src={this.state.imgUrl[2]}></img>
-                            120 +
+                            {this.props.data.reviewCount} +
                         </div>
                     </div>
                 </div>
@@ -141,50 +146,26 @@ export default class Newest extends React.Component {
     }
 
     componentWillMount() {
-        var url = this.props.vars.apiPath + 'tag/newest.json';
-        url = FormatAjax.get(url, {
-            tid: 1,
-            count: 10
-        });
-        Superagent.get(url).end((err, req) => {
-            if(req.status === 200) {
-                var data = JSON.parse(req.text);
-                if(data.status.code === '0') {
-                    let list = this.state.list;
-                    data = data.data;
-                    data = data.map((v, ix) => {
-                        v.address = Unicode.toHex(v.address);
-                        v.constellation = Unicode.toHex(v.constellation);
-                        v.content = Unicode.toHex(v.content);
-                        v.extension = Unicode.toHex(v.extension);
-                        v.nickName = Unicode.toHex(v.nickName);
-                        v.sign = Unicode.toHex(v.sign);
-                        v.title = Unicode.toHex(v.title);
-                        return v;
-                    });
-                    list = list.concat(list, data);
-                    this.setState({list: list});
-                }
-            }
-        });
+        
     }
 
     render() {
-        const list = this.state.list.map((v, ix) => {
+        const list = this.props.data.map((v, ix) => {
             let newest = '';
-            if(v.picList.length === 1) {
+            if(v.picList.length <= 1) {
                 newest = (<Newest_body_1 data={v} vars={this.props.vars}></Newest_body_1>)
             } else if(v.picList.length > 1) {
                 newest = (<Newest_body_2 data={v} vars={this.props.vars}></Newest_body_2>)
             }
             return (
-                <div key={v.time} className="newest-unit gap">
+                <div key={v.id} className="newest-unit gap">
                     <Newest_head data={v} vars={this.props.vars}></Newest_head>
                     {newest}
                     <Newest_foot data={v} vars={this.props.vars}></Newest_foot>
                 </div>
             );
         });
+
         return (
             <div id="newest">
                 <div id="newest-group">

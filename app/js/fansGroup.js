@@ -18,15 +18,19 @@ webpackJsonp([1],[
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
-	var _autoFont = __webpack_require__(167);
+	var _vars = __webpack_require__(172);
+
+	var _vars2 = _interopRequireDefault(_vars);
+
+	var _autoFont = __webpack_require__(168);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
-	var _addScript = __webpack_require__(179);
+	var _addScript = __webpack_require__(180);
 
 	var _addScript2 = _interopRequireDefault(_addScript);
 
-	var _head = __webpack_require__(180);
+	var _head = __webpack_require__(167);
 
 	var _head2 = _interopRequireDefault(_head);
 
@@ -1774,241 +1778,7 @@ webpackJsonp([1],[
 
 /***/ },
 /* 166 */,
-/* 167 */,
-/* 168 */,
-/* 169 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var formatAjax = function formatAjax() {};
-
-	formatAjax.get = function (url, obj) {
-		var str = '?';
-		if (arguments.length !== 1) {
-			for (var o in obj) {
-				if (obj.hasOwnProperty(o)) {
-					str += o + '=' + obj[o] + '&';
-				}
-			}
-			return url + str.substr(0, str.length - 1);
-		}
-		return url;
-	};
-
-	formatAjax.post = function (url, obj) {};
-
-	module.exports = formatAjax;
-
-/***/ },
-/* 170 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	/*
-		Unicode编码转换
-	*/
-	var unicode = function unicode() {};
-
-	// 加码
-	unicode.toDec = function (str) {
-		if (str) {
-			var res = [];
-			for (var i = 0; i < str.length; i++) {
-				res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
-			}return "\\u" + res.join("\\u");
-		}
-		return '';
-	};
-
-	// 解码
-	unicode.toHex = function (str) {
-		if (str) {
-			str = str.replace(/\\/g, '%');
-			return unescape(str).replace(/%/g, '');
-		}
-		return '';
-	};
-
-	module.exports = unicode;
-
-/***/ },
-/* 171 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _storage = __webpack_require__(172);
-
-	var _storage2 = _interopRequireDefault(_storage);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var cf = new _config();
-	var vars = function vars(key) {
-	    var obj = {
-	        userStorage: 'ws'
-	    };
-	    return obj[key];
-	};
-
-	vars.storage = function (key) {
-	    var obj = {
-	        userStorage: 'ws'
-	    };
-	    return obj[key];
-	};
-
-	// 系统参数
-	vars.sys = function (key) {
-	    var obj = {
-	        cid: 17,
-	        sharekey: 'X-v]4hcK$C'
-	    },
-	        sobj = _storage2.default.get(vars.storage('userStorage'));
-	    for (var o in sobj) {
-	        if (sobj.hasOwnProperty(o)) {
-	            obj[o] = sobj[o];
-	        }
-	    }
-	    // console.log(obj);
-	    return obj[key];
-	};
-
-	// 基本地址
-	vars.path = function (key) {
-	    var staticPath = undefined,
-	        port = undefined,
-	        obj = undefined;
-	    port = location.port,
-	    // host = 'http://10.2.144.38:8080/';
-	    staticPath = 'http://127.0.0.1:8080/';
-	    if (port === '8080') {
-	        staticPath = '../';
-	    } else {
-	        staticPath += 'github/open-wb/app/';
-	    }
-	    obj = {
-	        href: './',
-	        apiPath: '/v1/',
-	        staticPath: staticPath
-	    };
-	    return obj[key];
-	};
-
-	// 错误信息
-	vars.err = function (key) {
-	    var obj = {
-	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
-	        gender: '请选择性别',
-	        city: '请选择城市'
-	    };
-	    return obj[key];
-	};
-
-	// 跳转地址
-	vars.href = function (key) {
-	    var path = vars.path('href'),
-	        obj = {
-	        login: path + 'login.html',
-	        baseData: path + 'baseData.html',
-	        user: path + 'user.html?nav=me',
-	        hotGroup: path + 'hotGroup.html',
-	        fansGroup: path + 'fansGroup.html',
-	        guide: path + 'guide.html'
-	    };
-	    return obj[key];
-	};
-
-	// 接口地址
-	vars.api = function (key) {
-	    var path = vars.path('apiPath'),
-	        obj = {
-	        fileUpload: path + 'file/post.json',
-	        userInfo: path + 'users/userinfo.json',
-	        city: path + 'zuji/city.json',
-	        hotTagList: path + 'biaoqian/list.json',
-	        hotList: path + 'biaoqian/search.json'
-	    };
-	    return obj[key];
-	};
-
-	module.exports = vars;
-
-	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":null,"vip":0,"gender":"m","age":0,"constellation":"","address":"澳门市","sign":"","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ofusername":"7f3304db83383f8624b5eb5a41ea2758","ngroups":null}
-
-/***/ },
-/* 172 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var storage = function storage() {
-	    if ('localStorage' in window && window['localStorage'] != null) {
-	        return true;
-	    }
-	    return false;
-	};
-
-	storage.set = function (name, key) {
-	    if (storage()) {
-	        key = JSON.stringify(key);
-	        localStorage.setItem(name, key);
-	    }
-	};
-
-	storage.get = function (name) {
-	    if (storage()) {
-	        return JSON.parse(localStorage.getItem(name));
-	    }
-	};
-
-	storage.clear = function () {
-	    localStorage.clear();
-	};
-
-	module.exports = storage;
-
-/***/ },
-/* 173 */,
-/* 174 */,
-/* 175 */,
-/* 176 */,
-/* 177 */,
-/* 178 */,
-/* 179 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	/*
-	    动态添加scrit
-	    addScript.init('http://t.m.tv.sohu.com/mb/dist/js/baseLib.min.js?v=1.0.1')
-	*/
-	var addScript = function addScript() {};
-
-	addScript.init = function (data) {
-	    var head = document.getElementsByTagName('head')[0];
-	    var script = document.createElement('script');
-	    script.src = data;
-	    script.type = 'text/javascript';
-	    document.body.appendChild(script);
-	};
-
-	// var addScript = {
-	//     init: function(data) {
-	//         var head = document.getElementsByTagName('head')[0];
-	//         var script = document.createElement('script');
-	//         script.src = data;
-	//         script.type = 'text/javascript';
-	//         document.body.appendChild(script);
-	//     }
-	// }
-	module.exports = addScript;
-
-/***/ },
-/* 180 */
+/* 167 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2074,6 +1844,252 @@ webpackJsonp([1],[
 	module.exports = Head;
 
 /***/ },
+/* 168 */,
+/* 169 */,
+/* 170 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var formatAjax = function formatAjax() {};
+
+	formatAjax.get = function (url, obj) {
+		var str = '?';
+		if (arguments.length !== 1) {
+			for (var o in obj) {
+				if (obj.hasOwnProperty(o)) {
+					str += o + '=' + obj[o] + '&';
+				}
+			}
+			return url + str.substr(0, str.length - 1);
+		}
+		return url;
+	};
+
+	formatAjax.post = function (url, obj) {};
+
+	module.exports = formatAjax;
+
+/***/ },
+/* 171 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	/*
+		Unicode编码转换
+	*/
+	var unicode = function unicode() {};
+
+	// 加码
+	unicode.toDec = function (str) {
+		if (str) {
+			var res = [];
+			for (var i = 0; i < str.length; i++) {
+				res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
+			}return "\\u" + res.join("\\u");
+		}
+		return '';
+	};
+
+	// 解码
+	unicode.toHex = function (str) {
+		if (str) {
+			str = str.replace(/\\/g, '%');
+			return unescape(str).replace(/%/g, '');
+		}
+		return '';
+	};
+
+	module.exports = unicode;
+
+/***/ },
+/* 172 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _storage = __webpack_require__(173);
+
+	var _storage2 = _interopRequireDefault(_storage);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var cf = new _config();
+	var vars = function vars(key) {
+	    var obj = {
+	        userStorage: 'ws',
+	        user: 'ws'
+	    };
+	    return obj[key];
+	};
+
+	vars.storage = function (key) {
+	    var obj = {
+	        userStorage: 'ws',
+	        user: 'ws'
+	    };
+	    return obj[key];
+	};
+
+	vars.storageValue = function (key1, key2) {
+	    var sobj = _storage2.default.get(vars.storage(key1));
+	    // console.log(sobj);
+	    return key2 ? sobj[key2] : sobj;
+	};
+
+	// 系统参数
+	vars.sys = function (key) {
+	    var obj = {
+	        cid: 17,
+	        sharekey: 'X-v]4hcK$C'
+	    },
+	        sobj = _storage2.default.get(vars.storage('userStorage'));
+	    for (var o in sobj) {
+	        if (sobj.hasOwnProperty(o)) {
+	            obj[o] = sobj[o];
+	        }
+	    }
+	    return obj[key];
+	};
+
+	// 基本地址
+	vars.path = function (key) {
+	    var staticPath = undefined,
+	        port = undefined,
+	        obj = undefined;
+	    port = location.port,
+	    // host = 'http://10.2.144.38:8080/';
+	    staticPath = 'http://127.0.0.1:8080/';
+	    if (port === '8080') {
+	        staticPath = '../';
+	    } else {
+	        staticPath += 'github/open-wb/app/';
+	    }
+	    obj = {
+	        href: './',
+	        apiPath: '/v1/',
+	        staticPath: staticPath
+	    };
+	    return obj[key];
+	};
+
+	// 错误信息
+	vars.err = function (key) {
+	    var obj = {
+	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
+	        gender: '请选择性别',
+	        city: '请选择城市'
+	    };
+	    return obj[key];
+	};
+
+	// 跳转地址
+	vars.href = function (key) {
+	    var path = vars.path('href'),
+	        obj = {
+	        login: path + 'login.html',
+	        baseData: path + 'baseData.html',
+	        user: path + 'user.html?nav=me',
+	        hotGroup: path + 'hotGroup.html',
+	        fansGroup: path + 'fansGroup.html',
+	        guide: path + 'guide.html'
+	    };
+	    return obj[key];
+	};
+
+	// 接口地址
+	vars.api = function (key) {
+	    var path = vars.path('apiPath'),
+	        obj = {
+	        fileUpload: 'file/post.json',
+	        userInfo: 'users/userinfo.json',
+	        city: 'zuji/city.json',
+	        hotTagList: 'biaoqian/list.json',
+	        hotList: 'biaoqian/search.json',
+	        userShow: 'users/show.json', //获取某个用户的个人信息
+	        follow_list: 'users/following/list.json', //获取用户关注的人的列表
+	        tag_list: 'users/tag/list.json', //获取用户加入的群组(标签)
+	        event_list: 'users/event/list.json', //获取用户活动列表
+	        get_my_notes: 'notes/get_my_notes.json' };
+	    //用户的动态
+	    return path + obj[key];
+	};
+
+	module.exports = vars;
+
+	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":null,"vip":0,"gender":"m","age":0,"constellation":"","address":"澳门市","sign":"","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ofusername":"7f3304db83383f8624b5eb5a41ea2758","ngroups":null}
+
+/***/ },
+/* 173 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var storage = function storage() {
+	    if ('localStorage' in window && window['localStorage'] != null) {
+	        return true;
+	    }
+	    return false;
+	};
+
+	storage.set = function (name, key) {
+	    if (storage()) {
+	        key = JSON.stringify(key);
+	        localStorage.setItem(name, key);
+	    }
+	};
+
+	storage.get = function (name) {
+	    if (storage()) {
+	        return JSON.parse(localStorage.getItem(name));
+	    }
+	};
+
+	storage.clear = function () {
+	    localStorage.clear();
+	};
+
+	module.exports = storage;
+
+/***/ },
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/*
+	    动态添加scrit
+	    addScript.init('http://t.m.tv.sohu.com/mb/dist/js/baseLib.min.js?v=1.0.1')
+	*/
+	var addScript = function addScript() {};
+
+	addScript.init = function (data) {
+	    var head = document.getElementsByTagName('head')[0];
+	    var script = document.createElement('script');
+	    script.src = data;
+	    script.type = 'text/javascript';
+	    document.body.appendChild(script);
+	};
+
+	// var addScript = {
+	//     init: function(data) {
+	//         var head = document.getElementsByTagName('head')[0];
+	//         var script = document.createElement('script');
+	//         script.src = data;
+	//         script.type = 'text/javascript';
+	//         document.body.appendChild(script);
+	//     }
+	// }
+	module.exports = addScript;
+
+/***/ },
 /* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2088,6 +2104,10 @@ webpackJsonp([1],[
 	var _react = __webpack_require__(1);
 
 	var _react2 = _interopRequireDefault(_react);
+
+	var _vars = __webpack_require__(172);
+
+	var _vars2 = _interopRequireDefault(_vars);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -2107,8 +2127,10 @@ webpackJsonp([1],[
 
 	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(UserMsg).call(this, props));
 
-	        _this.state = {};
-	        console.log(props);
+	        _this.state = {
+	            staticPath: _vars2.default.path('staticPath')
+	        };
+	        // console.log(props);
 	        return _this;
 	    }
 
@@ -2134,7 +2156,7 @@ webpackJsonp([1],[
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'userMsg' },
-	                _react2.default.createElement('img', { id: 'userMsg-kbImg', className: 'blur', src: this.props.vars.path + 'img/bk.png' }),
+	                _react2.default.createElement('img', { id: 'userMsg-kbImg', className: 'blur', src: this.state.staticPath + 'img/bk.png' }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { id: 'userMsg-head-group' },
@@ -2144,23 +2166,23 @@ webpackJsonp([1],[
 	                        _react2.default.createElement(
 	                            'div',
 	                            { id: 'userMsg-left', className: 'userMsg-Menu userMsg-ease' },
-	                            _react2.default.createElement('img', { src: this.props.vars.path + 'img/menu@3x.png' })
+	                            _react2.default.createElement('img', { src: this.state.staticPath + 'img/menu@3x.png' })
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
 	                            { id: 'userMsg-right', className: 'userMsg-ease' },
-	                            _react2.default.createElement('img', { src: this.props.vars.path + 'img/share@1x.png' })
+	                            _react2.default.createElement('img', { src: this.state.staticPath + 'img/share@1x.png' })
 	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { id: 'userMsg-headImg' },
-	                        _react2.default.createElement('img', { src: this.props.vars.path + 'img/headImg@1x.png' })
+	                        _react2.default.createElement('img', { src: this.state.staticPath + 'img/headImg@1x.png' })
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { id: 'userMsg-name' },
-	                        this.props.data.nickname
+	                        _vars2.default.storageValue('userStorage', 'nickname')
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -2201,7 +2223,7 @@ webpackJsonp([1],[
 	var content = __webpack_require__(183);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -2221,7 +2243,7 @@ webpackJsonp([1],[
 /* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 
@@ -2309,7 +2331,7 @@ webpackJsonp([1],[
 	var content = __webpack_require__(186);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -2329,7 +2351,7 @@ webpackJsonp([1],[
 /* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 
@@ -2479,7 +2501,7 @@ webpackJsonp([1],[
 	var content = __webpack_require__(189);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -2499,7 +2521,7 @@ webpackJsonp([1],[
 /* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 
@@ -2624,7 +2646,7 @@ webpackJsonp([1],[
 	var content = __webpack_require__(192);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -2644,7 +2666,7 @@ webpackJsonp([1],[
 /* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 
@@ -2806,7 +2828,7 @@ webpackJsonp([1],[
 	var content = __webpack_require__(195);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -2826,7 +2848,7 @@ webpackJsonp([1],[
 /* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 
@@ -2852,6 +2874,22 @@ webpackJsonp([1],[
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _superagent = __webpack_require__(163);
+
+	var _superagent2 = _interopRequireDefault(_superagent);
+
+	var _vars = __webpack_require__(172);
+
+	var _vars2 = _interopRequireDefault(_vars);
+
+	var _formatAjax = __webpack_require__(170);
+
+	var _formatAjax2 = _interopRequireDefault(_formatAjax);
+
+	var _unicode = __webpack_require__(171);
+
+	var _unicode2 = _interopRequireDefault(_unicode);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2862,20 +2900,66 @@ webpackJsonp([1],[
 
 	__webpack_require__(197);
 
-	//import $ from 'jquery';
-
 	var Tag = (function (_React$Component) {
 	    _inherits(Tag, _React$Component);
 
 	    function Tag(props) {
 	        _classCallCheck(this, Tag);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Tag).call(this));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Tag).call(this));
+
+	        _this.state = {
+	            list: [],
+	            num: 0,
+	            staticPath: _vars2.default.path('staticPath')
+	        };
+	        return _this;
 	    }
 
 	    _createClass(Tag, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+
+	            var url = _formatAjax2.default.get(_vars2.default.api('event_list'), {
+	                mid: _vars2.default.storageValue('user', 'mid'),
+	                offset: 0,
+	                count: 4
+	            });
+	            _superagent2.default.get(url).end(function (err, res) {
+	                if (res.status === 200) {
+	                    var data = JSON.parse(res.text);
+	                    if (data.status.code === '0') {
+	                        var list = _this2.state.list,
+	                            num = data.sum;
+
+	                        data = data.data;
+	                        list.push.apply(list, data);
+	                        _this2.setState({
+	                            list: list,
+	                            num: num
+	                        });
+	                    } else {
+	                        alert(data.status.msg);
+	                    }
+	                }
+	            });
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var List = this.state.list.map(function (v, i) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { className: 'activity-2-label', key: v.eid },
+	                    _react2.default.createElement(
+	                        'span',
+	                        null,
+	                        _unicode2.default.toHex(v.title)
+	                    )
+	                );
+	            });
+
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'activity' },
@@ -2893,7 +2977,7 @@ webpackJsonp([1],[
 	                        _react2.default.createElement(
 	                            'div',
 	                            { id: 'activity-1-num' },
-	                            '6'
+	                            this.state.num
 	                        )
 	                    ),
 	                    _react2.default.createElement(
@@ -2902,38 +2986,12 @@ webpackJsonp([1],[
 	                        _react2.default.createElement(
 	                            'div',
 	                            null,
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'activity-2-label' },
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    null,
-	                                    '要不要在北京举办一次粉丝见面会?'
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'activity-2-label' },
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    null,
-	                                    '智能穿戴二代售价200大家觉得合理吗？'
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'activity-2-label' },
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    null,
-	                                    '新产品中国北京媒体发布会年前举行还是年后？'
-	                                )
-	                            )
+	                            List
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'activity-more' },
-	                            _react2.default.createElement('img', { src: this.props.vars.path + "img/right@1.png" })
+	                            _react2.default.createElement('img', { src: this.state.staticPath + "img/right@1.png" })
 	                        )
 	                    )
 	                )
@@ -2956,7 +3014,7 @@ webpackJsonp([1],[
 	var content = __webpack_require__(198);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -2976,7 +3034,7 @@ webpackJsonp([1],[
 /* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 
@@ -3123,7 +3181,7 @@ webpackJsonp([1],[
 	var content = __webpack_require__(201);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -3143,7 +3201,7 @@ webpackJsonp([1],[
 /* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 
@@ -3221,7 +3279,7 @@ webpackJsonp([1],[
 	var content = __webpack_require__(204);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -3241,7 +3299,7 @@ webpackJsonp([1],[
 /* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 
@@ -3275,7 +3333,7 @@ webpackJsonp([1],[
 
 	var _url2 = _interopRequireDefault(_url);
 
-	var _vars = __webpack_require__(171);
+	var _vars = __webpack_require__(172);
 
 	var _vars2 = _interopRequireDefault(_vars);
 
@@ -3450,7 +3508,7 @@ webpackJsonp([1],[
 	var content = __webpack_require__(208);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -3470,7 +3528,7 @@ webpackJsonp([1],[
 /* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 
@@ -3500,11 +3558,11 @@ webpackJsonp([1],[
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _formatAjax = __webpack_require__(169);
+	var _formatAjax = __webpack_require__(170);
 
 	var _formatAjax2 = _interopRequireDefault(_formatAjax);
 
-	var _unicode = __webpack_require__(170);
+	var _unicode = __webpack_require__(171);
 
 	var _unicode2 = _interopRequireDefault(_unicode);
 
@@ -3557,23 +3615,13 @@ webpackJsonp([1],[
 	                        _react2.default.createElement(
 	                            'span',
 	                            { className: 'newest-tag' },
-	                            '电影导演'
-	                        ),
-	                        _react2.default.createElement(
-	                            'span',
-	                            { className: 'newest-tag' },
-	                            '监制'
-	                        ),
-	                        _react2.default.createElement(
-	                            'span',
-	                            { className: 'newest-tag' },
-	                            '编剧'
+	                            _unicode2.default.toHex(this.props.data.sign)
 	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'newest-msg-dt' },
-	                        '今天 12:30'
+	                        this.props.data.time
 	                    )
 	                ),
 	                _react2.default.createElement(
@@ -3590,13 +3638,13 @@ webpackJsonp([1],[
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'newest-source-1-2' },
-	                            '春光乍泄剧组'
+	                            _unicode2.default.toHex(this.props.data.groupCollection.gname)
 	                        )
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'newest-source-2' },
-	                        _react2.default.createElement('img', { src: this.state.vars.path + 'img/photo.png' })
+	                        _react2.default.createElement('img', { src: this.props.data.groupCollection.icon })
 	                    )
 	                )
 	            );
@@ -3623,19 +3671,24 @@ webpackJsonp([1],[
 	    _createClass(Newest_body_1, [{
 	        key: 'render',
 	        value: function render() {
+	            var imgList = this.props.data.picList;
+	            if (imgList.length !== 0) {
+	                imgList = _react2.default.createElement(
+	                    'div',
+	                    { className: 'newest-model1' },
+	                    _react2.default.createElement('img', { src: this.props.data.picList[0] })
+	                );
+	            }
+
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'newest-body' },
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'newest-tx' },
-	                    this.props.data.content
+	                    _unicode2.default.toHex(this.props.data.content)
 	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'newest-model1' },
-	                    _react2.default.createElement('img', { src: this.props.data.picList[0] })
-	                )
+	                imgList
 	            );
 	        }
 	    }]);
@@ -3661,7 +3714,7 @@ webpackJsonp([1],[
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'newest-tx' },
-	                    this.props.data.content
+	                    _unicode2.default.toHex(this.props.data.content)
 	                ),
 	                _react2.default.createElement(
 	                    'div',
@@ -3707,12 +3760,12 @@ webpackJsonp([1],[
 	        key: 'render',
 	        value: function render() {
 	            var address = '';
-	            if (this.props.data.address.length !== 0) {
+	            if (this.props.data.location) {
 	                address = _react2.default.createElement(
 	                    'div',
 	                    { className: 'newest-place' },
 	                    _react2.default.createElement('img', { src: this.state.imgUrl[3] }),
-	                    this.props.data.address
+	                    _unicode2.default.toHex(this.props.data.location)
 	                );
 	            }
 
@@ -3736,13 +3789,15 @@ webpackJsonp([1],[
 	                            'div',
 	                            { className: 'newest-foot-1' },
 	                            _react2.default.createElement('img', { src: this.state.imgUrl[1] }),
-	                            '18'
+	                            this.props.data.praiseCount,
+	                            ' +'
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'newest-foot-1' },
 	                            _react2.default.createElement('img', { src: this.state.imgUrl[2] }),
-	                            '120 +'
+	                            this.props.data.reviewCount,
+	                            ' +'
 	                        )
 	                    )
 	                )
@@ -3769,56 +3824,28 @@ webpackJsonp([1],[
 
 	    _createClass(Newest, [{
 	        key: 'componentWillMount',
-	        value: function componentWillMount() {
-	            var _this6 = this;
-
-	            var url = this.props.vars.apiPath + 'tag/newest.json';
-	            url = _formatAjax2.default.get(url, {
-	                tid: 1,
-	                count: 10
-	            });
-	            _superagent2.default.get(url).end(function (err, req) {
-	                if (req.status === 200) {
-	                    var data = JSON.parse(req.text);
-	                    if (data.status.code === '0') {
-	                        var list = _this6.state.list;
-	                        data = data.data;
-	                        data = data.map(function (v, ix) {
-	                            v.address = _unicode2.default.toHex(v.address);
-	                            v.constellation = _unicode2.default.toHex(v.constellation);
-	                            v.content = _unicode2.default.toHex(v.content);
-	                            v.extension = _unicode2.default.toHex(v.extension);
-	                            v.nickName = _unicode2.default.toHex(v.nickName);
-	                            v.sign = _unicode2.default.toHex(v.sign);
-	                            v.title = _unicode2.default.toHex(v.title);
-	                            return v;
-	                        });
-	                        list = list.concat(list, data);
-	                        _this6.setState({ list: list });
-	                    }
-	                }
-	            });
-	        }
+	        value: function componentWillMount() {}
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this7 = this;
+	            var _this6 = this;
 
-	            var list = this.state.list.map(function (v, ix) {
+	            var list = this.props.data.map(function (v, ix) {
 	                var newest = '';
-	                if (v.picList.length === 1) {
-	                    newest = _react2.default.createElement(Newest_body_1, { data: v, vars: _this7.props.vars });
+	                if (v.picList.length <= 1) {
+	                    newest = _react2.default.createElement(Newest_body_1, { data: v, vars: _this6.props.vars });
 	                } else if (v.picList.length > 1) {
-	                    newest = _react2.default.createElement(Newest_body_2, { data: v, vars: _this7.props.vars });
+	                    newest = _react2.default.createElement(Newest_body_2, { data: v, vars: _this6.props.vars });
 	                }
 	                return _react2.default.createElement(
 	                    'div',
-	                    { key: v.time, className: 'newest-unit gap' },
-	                    _react2.default.createElement(Newest_head, { data: v, vars: _this7.props.vars }),
+	                    { key: v.id, className: 'newest-unit gap' },
+	                    _react2.default.createElement(Newest_head, { data: v, vars: _this6.props.vars }),
 	                    newest,
-	                    _react2.default.createElement(Newest_foot, { data: v, vars: _this7.props.vars })
+	                    _react2.default.createElement(Newest_foot, { data: v, vars: _this6.props.vars })
 	                );
 	            });
+
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'newest' },
@@ -3846,7 +3873,7 @@ webpackJsonp([1],[
 	var content = __webpack_require__(211);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -3866,7 +3893,7 @@ webpackJsonp([1],[
 /* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 
@@ -3993,7 +4020,7 @@ webpackJsonp([1],[
 	var content = __webpack_require__(214);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -4013,7 +4040,7 @@ webpackJsonp([1],[
 /* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 
@@ -4129,7 +4156,7 @@ webpackJsonp([1],[
 	var content = __webpack_require__(217);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -4149,7 +4176,7 @@ webpackJsonp([1],[
 /* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 

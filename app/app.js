@@ -1,7 +1,10 @@
 var express = require('express');
 var app = express();
-var host = 'http://10.2.144.216:8080/';
-// var host = 'http://192.168.1.141:8080/';
+var ip = require('./node/ip');
+ip = new ip();
+// var host = 'http://192.168.19.89:8080/';
+var host = 'http://'+ ip.address() + ':8080/'; 
+
 app.get('/html/baseData.html', function (req, res) {
     // 使用了superagent来发起请求
     var superagent = require('superagent');

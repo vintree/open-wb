@@ -29,15 +29,24 @@
             width: 5.5rem;
             height: $row-height;
             float: left;
+            white-space: nowrap;
+            // padding-top: .5rem;
             .follow-2-img {
-                float: left;
-                height: $row-height;
                 line-height: $row-height;
-                width: .78rem;
-                text-align: center;
-                img {
-                    width: 90%;
-                }
+                height: $row-height * .6;
+                width: $row-height * .6;
+                margin: .25rem .06rem;
+                border-radius: 100%;
+            }
+            .follow-2-img {
+                // float: left;
+                // height: $row-height;
+                // line-height: $row-height;
+                // width: .78rem;
+                // text-align: center;
+                // img {
+                //     width: 90%;
+                // }
             }
         }
         #follow-3 {

@@ -1,13 +1,16 @@
 require('../../sass/user.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from "jquery";
+import Superagent from 'superagent';
+// import $ from "jquery";
 import InjectTapEventPlugin from "react-tap-event-plugin";
 
 import autoFont from '../temp/autoFont.js';
 import addScript from '../temp/addScript.js';
 import Head from '../temp/head.js';
 import Storage from "../temp/storage.js";
+import FormatAjax from '../temp/formatAjax.js';
+import Vars from '../temp/vars.js';
 
 import Nav from "../common/nav.jsx";
 import UserMsg from '../common/userMsg.jsx';
@@ -49,14 +52,15 @@ class Main extends React.Component {
                     codeName: 'user-personage',
                     active: ''
                 }
-            ]
+            ],
+            noteList: []
         };
     }
 
     componentWillMount() {
         let userData = Storage.get('ws');
         this.state.userData = userData;
-        console.log(this.state);
+        // console.log(this.state);
     }
 
     tapMemu(e) {
@@ -81,6 +85,42 @@ class Main extends React.Component {
         this.setState({tab: tab});
     }
 
+    componentDidMount() {
+        let 
+        url = FormatAjax.get(Vars.api('get_my_notes'), {
+            mid: Vars.storageValue('user', 'mid'),
+            offset: 0,
+            count: 10
+        });
+        Superagent.get(url).end((err, res) => {
+            if(res.status === 200) {
+                let data = JSON.parse(res.text);
+                if(data.status.code === '0') {
+                    let 
+                    list = this.state.noteList,
+                    num = data.sum;
+                    data = data.data;
+                    for(let o in data) {
+                        if(data.hasOwnProperty(o)) {
+                            let tlist = data[o];
+                            tlist = tlist.map((v, i) => {
+                                // console.log(v);
+                                v.time = o;
+                                return v;
+                            });
+                            list.push.apply(list, tlist);
+                        }
+                    }
+                    this.setState({
+                        noteList: list
+                    });
+                } else {
+                    alert(data.status.msg);
+                }
+            }
+        });
+    }
+
     render() {
         return (
             <div>
@@ -95,7 +135,7 @@ class Main extends React.Component {
                         <Tab vars={this.state.vars} data={this.state.tab}></Tab>
                     </section>
                     <section id="user-dynamic" className={'user-md ' + this.state.tab[0].active}>
-                        <Newest vars={this.state.vars}></Newest>
+                        <Newest vars={this.state.vars} data={this.state.noteList}></Newest>
                     </section>
                     <section id="user-personage" className={'user-md ' + this.state.tab[1].active}>
                         <section className="gap">

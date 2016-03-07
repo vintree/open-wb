@@ -15,7 +15,7 @@ webpackJsonp([3],{
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _immutable = __webpack_require__(252);
+	var _immutable = __webpack_require__(220);
 
 	var _immutable2 = _interopRequireDefault(_immutable);
 
@@ -27,39 +27,39 @@ webpackJsonp([3],{
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _formatAjax = __webpack_require__(169);
+	var _formatAjax = __webpack_require__(170);
 
 	var _formatAjax2 = _interopRequireDefault(_formatAjax);
 
-	var _unicode = __webpack_require__(170);
+	var _unicode = __webpack_require__(171);
 
 	var _unicode2 = _interopRequireDefault(_unicode);
 
-	var _autoFont = __webpack_require__(167);
+	var _autoFont = __webpack_require__(168);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
-	var _addScript = __webpack_require__(179);
+	var _addScript = __webpack_require__(180);
 
 	var _addScript2 = _interopRequireDefault(_addScript);
 
-	var _head = __webpack_require__(180);
+	var _head = __webpack_require__(167);
 
 	var _head2 = _interopRequireDefault(_head);
 
-	var _vars = __webpack_require__(171);
+	var _vars = __webpack_require__(172);
 
 	var _vars2 = _interopRequireDefault(_vars);
 
-	var _loading = __webpack_require__(253);
+	var _loading = __webpack_require__(221);
 
 	var _loading2 = _interopRequireDefault(_loading);
 
-	var _groupTab = __webpack_require__(220);
+	var _groupTab = __webpack_require__(224);
 
 	var _groupTab2 = _interopRequireDefault(_groupTab);
 
-	var _groupList = __webpack_require__(223);
+	var _groupList = __webpack_require__(227);
 
 	var _groupList2 = _interopRequireDefault(_groupList);
 
@@ -71,7 +71,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(226);
+	__webpack_require__(230);
 	// let Immutable = require('immutable');
 
 	// import $ from "jquery";
@@ -1660,238 +1660,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 169:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var formatAjax = function formatAjax() {};
-
-	formatAjax.get = function (url, obj) {
-		var str = '?';
-		if (arguments.length !== 1) {
-			for (var o in obj) {
-				if (obj.hasOwnProperty(o)) {
-					str += o + '=' + obj[o] + '&';
-				}
-			}
-			return url + str.substr(0, str.length - 1);
-		}
-		return url;
-	};
-
-	formatAjax.post = function (url, obj) {};
-
-	module.exports = formatAjax;
-
-/***/ },
-
-/***/ 170:
-/***/ function(module, exports) {
-
-	"use strict";
-
-	/*
-		Unicode编码转换
-	*/
-	var unicode = function unicode() {};
-
-	// 加码
-	unicode.toDec = function (str) {
-		if (str) {
-			var res = [];
-			for (var i = 0; i < str.length; i++) {
-				res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
-			}return "\\u" + res.join("\\u");
-		}
-		return '';
-	};
-
-	// 解码
-	unicode.toHex = function (str) {
-		if (str) {
-			str = str.replace(/\\/g, '%');
-			return unescape(str).replace(/%/g, '');
-		}
-		return '';
-	};
-
-	module.exports = unicode;
-
-/***/ },
-
-/***/ 171:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _storage = __webpack_require__(172);
-
-	var _storage2 = _interopRequireDefault(_storage);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var cf = new _config();
-	var vars = function vars(key) {
-	    var obj = {
-	        userStorage: 'ws'
-	    };
-	    return obj[key];
-	};
-
-	vars.storage = function (key) {
-	    var obj = {
-	        userStorage: 'ws'
-	    };
-	    return obj[key];
-	};
-
-	// 系统参数
-	vars.sys = function (key) {
-	    var obj = {
-	        cid: 17,
-	        sharekey: 'X-v]4hcK$C'
-	    },
-	        sobj = _storage2.default.get(vars.storage('userStorage'));
-	    for (var o in sobj) {
-	        if (sobj.hasOwnProperty(o)) {
-	            obj[o] = sobj[o];
-	        }
-	    }
-	    // console.log(obj);
-	    return obj[key];
-	};
-
-	// 基本地址
-	vars.path = function (key) {
-	    var staticPath = undefined,
-	        port = undefined,
-	        obj = undefined;
-	    port = location.port,
-	    // host = 'http://10.2.144.38:8080/';
-	    staticPath = 'http://127.0.0.1:8080/';
-	    if (port === '8080') {
-	        staticPath = '../';
-	    } else {
-	        staticPath += 'github/open-wb/app/';
-	    }
-	    obj = {
-	        href: './',
-	        apiPath: '/v1/',
-	        staticPath: staticPath
-	    };
-	    return obj[key];
-	};
-
-	// 错误信息
-	vars.err = function (key) {
-	    var obj = {
-	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
-	        gender: '请选择性别',
-	        city: '请选择城市'
-	    };
-	    return obj[key];
-	};
-
-	// 跳转地址
-	vars.href = function (key) {
-	    var path = vars.path('href'),
-	        obj = {
-	        login: path + 'login.html',
-	        baseData: path + 'baseData.html',
-	        user: path + 'user.html?nav=me',
-	        hotGroup: path + 'hotGroup.html',
-	        fansGroup: path + 'fansGroup.html',
-	        guide: path + 'guide.html'
-	    };
-	    return obj[key];
-	};
-
-	// 接口地址
-	vars.api = function (key) {
-	    var path = vars.path('apiPath'),
-	        obj = {
-	        fileUpload: path + 'file/post.json',
-	        userInfo: path + 'users/userinfo.json',
-	        city: path + 'zuji/city.json',
-	        hotTagList: path + 'biaoqian/list.json',
-	        hotList: path + 'biaoqian/search.json'
-	    };
-	    return obj[key];
-	};
-
-	module.exports = vars;
-
-	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":null,"vip":0,"gender":"m","age":0,"constellation":"","address":"澳门市","sign":"","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ofusername":"7f3304db83383f8624b5eb5a41ea2758","ngroups":null}
-
-/***/ },
-
-/***/ 172:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var storage = function storage() {
-	    if ('localStorage' in window && window['localStorage'] != null) {
-	        return true;
-	    }
-	    return false;
-	};
-
-	storage.set = function (name, key) {
-	    if (storage()) {
-	        key = JSON.stringify(key);
-	        localStorage.setItem(name, key);
-	    }
-	};
-
-	storage.get = function (name) {
-	    if (storage()) {
-	        return JSON.parse(localStorage.getItem(name));
-	    }
-	};
-
-	storage.clear = function () {
-	    localStorage.clear();
-	};
-
-	module.exports = storage;
-
-/***/ },
-
-/***/ 179:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	/*
-	    动态添加scrit
-	    addScript.init('http://t.m.tv.sohu.com/mb/dist/js/baseLib.min.js?v=1.0.1')
-	*/
-	var addScript = function addScript() {};
-
-	addScript.init = function (data) {
-	    var head = document.getElementsByTagName('head')[0];
-	    var script = document.createElement('script');
-	    script.src = data;
-	    script.type = 'text/javascript';
-	    document.body.appendChild(script);
-	};
-
-	// var addScript = {
-	//     init: function(data) {
-	//         var head = document.getElementsByTagName('head')[0];
-	//         var script = document.createElement('script');
-	//         script.src = data;
-	//         script.type = 'text/javascript';
-	//         document.body.appendChild(script);
-	//     }
-	// }
-	module.exports = addScript;
-
-/***/ },
-
-/***/ 180:
+/***/ 167:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1958,458 +1727,250 @@ webpackJsonp([3],{
 
 /***/ },
 
+/***/ 170:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var formatAjax = function formatAjax() {};
+
+	formatAjax.get = function (url, obj) {
+		var str = '?';
+		if (arguments.length !== 1) {
+			for (var o in obj) {
+				if (obj.hasOwnProperty(o)) {
+					str += o + '=' + obj[o] + '&';
+				}
+			}
+			return url + str.substr(0, str.length - 1);
+		}
+		return url;
+	};
+
+	formatAjax.post = function (url, obj) {};
+
+	module.exports = formatAjax;
+
+/***/ },
+
+/***/ 171:
+/***/ function(module, exports) {
+
+	"use strict";
+
+	/*
+		Unicode编码转换
+	*/
+	var unicode = function unicode() {};
+
+	// 加码
+	unicode.toDec = function (str) {
+		if (str) {
+			var res = [];
+			for (var i = 0; i < str.length; i++) {
+				res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
+			}return "\\u" + res.join("\\u");
+		}
+		return '';
+	};
+
+	// 解码
+	unicode.toHex = function (str) {
+		if (str) {
+			str = str.replace(/\\/g, '%');
+			return unescape(str).replace(/%/g, '');
+		}
+		return '';
+	};
+
+	module.exports = unicode;
+
+/***/ },
+
+/***/ 172:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _storage = __webpack_require__(173);
+
+	var _storage2 = _interopRequireDefault(_storage);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var cf = new _config();
+	var vars = function vars(key) {
+	    var obj = {
+	        userStorage: 'ws',
+	        user: 'ws'
+	    };
+	    return obj[key];
+	};
+
+	vars.storage = function (key) {
+	    var obj = {
+	        userStorage: 'ws',
+	        user: 'ws'
+	    };
+	    return obj[key];
+	};
+
+	vars.storageValue = function (key1, key2) {
+	    var sobj = _storage2.default.get(vars.storage(key1));
+	    // console.log(sobj);
+	    return key2 ? sobj[key2] : sobj;
+	};
+
+	// 系统参数
+	vars.sys = function (key) {
+	    var obj = {
+	        cid: 17,
+	        sharekey: 'X-v]4hcK$C'
+	    },
+	        sobj = _storage2.default.get(vars.storage('userStorage'));
+	    for (var o in sobj) {
+	        if (sobj.hasOwnProperty(o)) {
+	            obj[o] = sobj[o];
+	        }
+	    }
+	    return obj[key];
+	};
+
+	// 基本地址
+	vars.path = function (key) {
+	    var staticPath = undefined,
+	        port = undefined,
+	        obj = undefined;
+	    port = location.port,
+	    // host = 'http://10.2.144.38:8080/';
+	    staticPath = 'http://127.0.0.1:8080/';
+	    if (port === '8080') {
+	        staticPath = '../';
+	    } else {
+	        staticPath += 'github/open-wb/app/';
+	    }
+	    obj = {
+	        href: './',
+	        apiPath: '/v1/',
+	        staticPath: staticPath
+	    };
+	    return obj[key];
+	};
+
+	// 错误信息
+	vars.err = function (key) {
+	    var obj = {
+	        nickName: '请填写1-18个字符，中文占两个字符，英文占一个字符',
+	        gender: '请选择性别',
+	        city: '请选择城市'
+	    };
+	    return obj[key];
+	};
+
+	// 跳转地址
+	vars.href = function (key) {
+	    var path = vars.path('href'),
+	        obj = {
+	        login: path + 'login.html',
+	        baseData: path + 'baseData.html',
+	        user: path + 'user.html?nav=me',
+	        hotGroup: path + 'hotGroup.html',
+	        fansGroup: path + 'fansGroup.html',
+	        guide: path + 'guide.html'
+	    };
+	    return obj[key];
+	};
+
+	// 接口地址
+	vars.api = function (key) {
+	    var path = vars.path('apiPath'),
+	        obj = {
+	        fileUpload: 'file/post.json',
+	        userInfo: 'users/userinfo.json',
+	        city: 'zuji/city.json',
+	        hotTagList: 'biaoqian/list.json',
+	        hotList: 'biaoqian/search.json',
+	        userShow: 'users/show.json', //获取某个用户的个人信息
+	        follow_list: 'users/following/list.json', //获取用户关注的人的列表
+	        tag_list: 'users/tag/list.json', //获取用户加入的群组(标签)
+	        event_list: 'users/event/list.json', //获取用户活动列表
+	        get_my_notes: 'notes/get_my_notes.json' };
+	    //用户的动态
+	    return path + obj[key];
+	};
+
+	module.exports = vars;
+
+	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":null,"vip":0,"gender":"m","age":0,"constellation":"","address":"澳门市","sign":"","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ofusername":"7f3304db83383f8624b5eb5a41ea2758","ngroups":null}
+
+/***/ },
+
+/***/ 173:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var storage = function storage() {
+	    if ('localStorage' in window && window['localStorage'] != null) {
+	        return true;
+	    }
+	    return false;
+	};
+
+	storage.set = function (name, key) {
+	    if (storage()) {
+	        key = JSON.stringify(key);
+	        localStorage.setItem(name, key);
+	    }
+	};
+
+	storage.get = function (name) {
+	    if (storage()) {
+	        return JSON.parse(localStorage.getItem(name));
+	    }
+	};
+
+	storage.clear = function () {
+	    localStorage.clear();
+	};
+
+	module.exports = storage;
+
+/***/ },
+
+/***/ 180:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/*
+	    动态添加scrit
+	    addScript.init('http://t.m.tv.sohu.com/mb/dist/js/baseLib.min.js?v=1.0.1')
+	*/
+	var addScript = function addScript() {};
+
+	addScript.init = function (data) {
+	    var head = document.getElementsByTagName('head')[0];
+	    var script = document.createElement('script');
+	    script.src = data;
+	    script.type = 'text/javascript';
+	    document.body.appendChild(script);
+	};
+
+	// var addScript = {
+	//     init: function(data) {
+	//         var head = document.getElementsByTagName('head')[0];
+	//         var script = document.createElement('script');
+	//         script.src = data;
+	//         script.type = 'text/javascript';
+	//         document.body.appendChild(script);
+	//     }
+	// }
+	module.exports = addScript;
+
+/***/ },
+
 /***/ 220:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _superagent = __webpack_require__(163);
-
-	var _superagent2 = _interopRequireDefault(_superagent);
-
-	var _reactTapEventPlugin = __webpack_require__(159);
-
-	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
-
-	var _immutable = __webpack_require__(252);
-
-	var _immutable2 = _interopRequireDefault(_immutable);
-
-	var _formatAjax = __webpack_require__(169);
-
-	var _formatAjax2 = _interopRequireDefault(_formatAjax);
-
-	var _vars = __webpack_require__(171);
-
-	var _vars2 = _interopRequireDefault(_vars);
-
-	var _unicode = __webpack_require__(170);
-
-	var _unicode2 = _interopRequireDefault(_unicode);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	__webpack_require__(221);
-
-	(0, _reactTapEventPlugin2.default)();
-
-	var GroupTab = (function (_React$Component) {
-	    _inherits(GroupTab, _React$Component);
-
-	    function GroupTab(props) {
-	        _classCallCheck(this, GroupTab);
-
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(GroupTab).call(this, props));
-	    }
-
-	    _createClass(GroupTab, [{
-	        key: 'shouldComponentUpdate',
-	        value: function shouldComponentUpdate(nextProps) {
-	            // console.log(this.props.hotTagList);
-	            // console.log(nextProps.hotTagList);
-	            // console.log(Immutable.is(this.props.hotTagList, nextProps.hotTagList));
-
-	            // if(Immutable.is(this.props.hotTagList, nextProps.hotTagList)) {
-	            //     return false;
-	            // }
-	            // return true;
-	            return true;
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var hotTagList = this.props.hotTagList || [];
-	            hotTagList = hotTagList.map(function (v, ix) {
-	                return _react2.default.createElement(
-	                    'div',
-	                    { key: v.trid, className: 'groupTab-unit ' + v.active, 'data-tag': v.trid, 'data-ix': ix },
-	                    v.name
-	                );
-	            });
-	            return _react2.default.createElement(
-	                'div',
-	                { id: 'groupTab' },
-	                _react2.default.createElement(
-	                    'div',
-	                    { id: 'groupTab-center' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { id: 'groupTab-overflow' },
-	                        hotTagList
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-
-	    return GroupTab;
-	})(_react2.default.Component);
-
-	// <div id="groupTab-left"></div>
-	// <div id="groupTab-right"></div>
-
-	exports.default = GroupTab;
-
-/***/ },
-
-/***/ 221:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(222);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./groupTab.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./groupTab.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 222:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(176)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "#groupTab {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  font-size: .35rem;\n  height: 1rem;\n  line-height: 1rem;\n  white-space: nowrap;\n  background-color: #ffffff;\n  color: #666666;\n  z-index: 999; }\n  #groupTab #groupTab-left {\n    float: left;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-right {\n    float: right;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-center {\n    overflow: hidden;\n    white-space: nowrap;\n    padding: 0 .15rem; }\n    #groupTab #groupTab-center #groupTab-overflow {\n      overflow-y: hidden;\n      overflow-x: auto;\n      -webkit-overflow-scrolling: touch;\n      white-space: nowrap; }\n    #groupTab #groupTab-center .groupTab-unit {\n      display: inline-block;\n      padding: 0 .2rem;\n      white-space: nowrap;\n      height: 1rem;\n      line-height: 1rem; }\n      #groupTab #groupTab-center .groupTab-unit.active {\n        color: #2fa4f6;\n        border-bottom: 2px solid #2fa4f6; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 223:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _immutable = __webpack_require__(252);
-
-	var _immutable2 = _interopRequireDefault(_immutable);
-
-	var _unicode = __webpack_require__(170);
-
-	var _unicode2 = _interopRequireDefault(_unicode);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	__webpack_require__(224);
-
-	var GroupList = (function (_React$Component) {
-	    _inherits(GroupList, _React$Component);
-
-	    function GroupList(props) {
-	        _classCallCheck(this, GroupList);
-
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(GroupList).call(this, props));
-	        // console.log(props);
-	    }
-
-	    _createClass(GroupList, [{
-	        key: 'componentWillMount',
-	        value: function componentWillMount() {}
-	    }, {
-	        key: 'shouldComponentUpdate',
-	        value: function shouldComponentUpdate(nextProps) {
-	            var isList = _immutable2.default.is(this.props.data, nextProps.data);
-	            if (isList) {
-	                return false;
-	            }
-	            return true;
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            var List = this.props.data;
-	            // console.log('11111111');
-	            List = List.map(function (v, i) {
-	                var name = _unicode2.default.toHex(v.name),
-	                    dec = _unicode2.default.toHex(v.description),
-	                    cname = _unicode2.default.toHex(v.cname),
-	                    summary = _unicode2.default.toHex(v.summary),
-	                    icon = 'url(' + v.icon + ')',
-	                    users = v.users,
-	                    usersName = [],
-	                    isMember = v.isMember === 0 ? ['', '+ 加入'] : ['active', '已加入'];
-	                summary = summary || cname;
-	                // console.log(name);
-	                // console.log(dec);
-	                // console.log(cname);
-	                // console.log(summary);
-	                users = users.splice(0, 5);
-	                for (var _i = 0, l = users.length; _i < l; _i++) {
-	                    usersName.push(_unicode2.default.toHex(users[_i].nickname));
-	                }
-	                usersName = usersName.join('、');
-	                // console.log(usersName);
-
-	                return _react2.default.createElement(
-	                    'div',
-	                    { key: v.tid, 'data-tid': v.tid, className: 'groupList-unit' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupList-head' },
-	                        _react2.default.createElement('div', { className: 'groupList-img', style: { backgroundImage: icon } }),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-msg' },
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'groupList-mainInfo' },
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'groupList-name' },
-	                                    name
-	                                ),
-	                                _react2.default.createElement(
-	                                    'span',
-	                                    { className: 'groupList-tag' },
-	                                    summary
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'groupList-info' },
-	                                dec
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupList-px' },
-	                        _react2.default.createElement('div', { className: 'groupList-radius' })
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'groupList-body' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-num' },
-	                            users.length,
-	                            '个成员'
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-member' },
-	                            usersName
-	                        ),
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'groupList-join ' + isMember[0] },
-	                            isMember[1]
-	                        )
-	                    )
-	                );
-	            });
-
-	            return _react2.default.createElement(
-	                'div',
-	                { id: 'groupList' },
-	                List
-	            );
-	        }
-	    }]);
-
-	    return GroupList;
-	})(_react2.default.Component);
-
-	// <div className="groupList-unit">
-	//     <div className="groupList-head">
-	//         <div className="groupList-img"><img src="../img/headImg@1x.png" /></div>
-	//         <div className="groupList-msg">
-	//             <div className="groupList-mainInfo">
-	//                 <div className="groupList-name">谁动了我的奶酪</div>
-	//                 <span className="groupList-tag">我司官方</span>
-	//             </div>
-	//             <div className="groupList-info">
-	//                 发数据库繁华落尽第三方好好发挥拉斯科啊绝色赌妃来看哈三菱电机反悔拉克丝大姐夫
-	//             </div>
-	//         </div>
-	//     </div>
-	//     <div className="groupList-px">
-	//         <div className="groupList-radius"></div>
-	//     </div>
-	//     <div className="groupList-body">
-	//         <div className="groupList-num">1280个成员</div>
-	//         <div className="groupList-member">
-	//             <span>圆圆、</span>
-	//             <span>吹吹、</span>
-	//             <span>小鱼儿、</span>
-	//             <span>杜拉拉、</span>
-	//             <span>鱼刺、</span>
-	//             <span>神奇宝贝、</span>
-	//         </div>
-	//         <div className="groupList-join">+ 加入</div>
-	//     </div>
-	// </div>
-	//
-	// <div className="groupList-unit">
-	//     <div className="groupList-head">
-	//         <div className="groupList-img"><img src="../img/headImg@1x.png" /></div>
-	//         <div className="groupList-msg">
-	//             <div className="groupList-mainInfo">
-	//                 <div className="groupList-name">谁动了我的奶酪</div>
-	//                 <span className="groupList-tag">我司官方</span>
-	//             </div>
-	//             <div className="groupList-info">
-	//                 发数据库繁华落尽第三方好好发挥拉斯科啊绝色赌妃来看哈三菱电机反悔拉克丝大姐夫
-	//             </div>
-	//         </div>
-	//     </div>
-	//     <div className="groupList-px">
-	//         <div className="groupList-radius"></div>
-	//     </div>
-	//     <div className="groupList-body">
-	//         <div className="groupList-num">1280个成员</div>
-	//         <div className="groupList-member">
-	//             <span>圆圆、</span>
-	//             <span>吹吹、</span>
-	//             <span>小鱼儿、</span>
-	//             <span>杜拉拉、</span>
-	//             <span>鱼刺、</span>
-	//             <span>神奇宝贝、</span>
-	//         </div>
-	//         <div className="groupList-join">+ 加入</div>
-	//     </div>
-	// </div>
-
-	exports.default = GroupList;
-
-/***/ },
-
-/***/ 224:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(225);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./groupList.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./groupList.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 225:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(176)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    文字省略\n*/\n#groupList {\n  padding: 0 .2rem;\n  font-size: .35rem;\n  padding-top: 1rem;\n  padding-bottom: .4rem; }\n  #groupList .groupList-unit {\n    margin-top: .2rem;\n    padding: .2rem;\n    border: 1px solid #e2e2e2;\n    border-radius: .2rem;\n    overflow: hidden;\n    background-color: #ffffff; }\n    #groupList .groupList-unit .groupList-head {\n      overflow: hidden;\n      margin-bottom: .2rem; }\n      #groupList .groupList-unit .groupList-head .groupList-img {\n        width: 1.4rem;\n        height: 1.4rem;\n        margin-right: .2rem;\n        float: left;\n        background-size: cover;\n        background-repeat: no-repeat; }\n        #groupList .groupList-unit .groupList-head .groupList-img img {\n          width: 100%;\n          height: 100%;\n          border: 100%; }\n      #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo {\n        line-height: .5rem; }\n        #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo .groupList-name {\n          display: inline-block;\n          padding-right: .2rem;\n          color: #474747; }\n        #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo .groupList-tag {\n          position: relative;\n          top: -.05rem;\n          font-size: 70%;\n          background-color: #ffb541;\n          padding: .06rem .1rem;\n          border-radius: .2rem;\n          color: #ffffff; }\n      #groupList .groupList-unit .groupList-head .groupList-msg .groupList-info {\n        display: -webkit-box;\n        text-overflow: -o-ellipsis-lastline;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        -webkit-line-clamp: 2;\n        -webkit-box-orient: vertical;\n        font-size: 90%;\n        line-height: 1.45;\n        color: #666666; }\n    #groupList .groupList-unit .groupList-px {\n      position: relative;\n      margin-left: .7rem;\n      border-bottom: 1px solid #e2e2e2; }\n      #groupList .groupList-unit .groupList-px .groupList-radius {\n        position: absolute;\n        top: -.04rem;\n        left: 0;\n        width: .12rem;\n        height: .12rem;\n        border-radius: 100%;\n        background-color: #e2e2e2; }\n    #groupList .groupList-unit .groupList-body {\n      font-size: 80%;\n      margin-top: .2rem;\n      height: .5rem;\n      line-height: .5rem;\n      overflow: hidden; }\n      #groupList .groupList-unit .groupList-body .groupList-num {\n        float: left;\n        width: 1.5rem;\n        padding-right: .2rem;\n        color: #999999; }\n      #groupList .groupList-unit .groupList-body .groupList-member {\n        float: left;\n        width: 3.5rem;\n        color: #2fa4f6;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis; }\n      #groupList .groupList-unit .groupList-body .groupList-join {\n        float: right;\n        padding: 0 .2rem;\n        background-color: #a8e1ff;\n        color: #ffffff;\n        border-radius: .3rem; }\n        #groupList .groupList-unit .groupList-body .groupList-join.active {\n          background-color: #999999; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 226:
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(227);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./hotGroup.scss", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./hotGroup.scss");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-
-/***/ 227:
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(176)();
-	// imports
-
-
-	// module
-	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\n#hotGroup-content {\n  background-color: #f6f6f8; }\n", ""]);
-
-	// exports
-
-
-/***/ },
-
-/***/ 252:
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -7397,7 +6958,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 253:
+/***/ 221:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -7412,7 +6973,7 @@ webpackJsonp([3],{
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _vars = __webpack_require__(171);
+	var _vars = __webpack_require__(172);
 
 	var _vars2 = _interopRequireDefault(_vars);
 
@@ -7424,7 +6985,7 @@ webpackJsonp([3],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(254);
+	__webpack_require__(222);
 
 	var Local = (function (_React$Component) {
 		_inherits(Local, _React$Component);
@@ -7484,16 +7045,16 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 254:
+/***/ 222:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(255);
+	var content = __webpack_require__(223);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -7511,15 +7072,466 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 255:
+/***/ 223:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 
 	// module
 	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    弹性布局\n*/\n#loading-body {\n  display: -webkit-box;\n  display: -moz-box;\n  display: -ms-flexbox;\n  display: -webkit-flex;\n  display: flex;\n  -webkit-box-align: center;\n  -moz-box-align: center;\n  -ms-flex-align: center;\n  -webkit-align-items: center;\n  align-items: center;\n  -webkit-box-pack: center;\n  -moz-box-pack: center;\n  -ms-flex-pack: center;\n  -webkit-justify-content: center;\n  justify-content: center;\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%; }\n\n#loading-local {\n  width: 1rem;\n  height: 1rem;\n  background-size: cover;\n  background-repeat: no-repeat;\n  animation: loading 1.5s infinite linear; }\n\n@keyframes loading {\n  0% {\n    transform: rotate(0deg); }\n  100% {\n    transform: rotate(360deg); } }\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 224:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _superagent = __webpack_require__(163);
+
+	var _superagent2 = _interopRequireDefault(_superagent);
+
+	var _reactTapEventPlugin = __webpack_require__(159);
+
+	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
+
+	var _immutable = __webpack_require__(220);
+
+	var _immutable2 = _interopRequireDefault(_immutable);
+
+	var _formatAjax = __webpack_require__(170);
+
+	var _formatAjax2 = _interopRequireDefault(_formatAjax);
+
+	var _vars = __webpack_require__(172);
+
+	var _vars2 = _interopRequireDefault(_vars);
+
+	var _unicode = __webpack_require__(171);
+
+	var _unicode2 = _interopRequireDefault(_unicode);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	__webpack_require__(225);
+
+	(0, _reactTapEventPlugin2.default)();
+
+	var GroupTab = (function (_React$Component) {
+	    _inherits(GroupTab, _React$Component);
+
+	    function GroupTab(props) {
+	        _classCallCheck(this, GroupTab);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(GroupTab).call(this, props));
+	    }
+
+	    _createClass(GroupTab, [{
+	        key: 'shouldComponentUpdate',
+	        value: function shouldComponentUpdate(nextProps) {
+	            // console.log(this.props.hotTagList);
+	            // console.log(nextProps.hotTagList);
+	            // console.log(Immutable.is(this.props.hotTagList, nextProps.hotTagList));
+
+	            // if(Immutable.is(this.props.hotTagList, nextProps.hotTagList)) {
+	            //     return false;
+	            // }
+	            // return true;
+	            return true;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var hotTagList = this.props.hotTagList || [];
+	            hotTagList = hotTagList.map(function (v, ix) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { key: v.trid, className: 'groupTab-unit ' + v.active, 'data-tag': v.trid, 'data-ix': ix },
+	                    v.name
+	                );
+	            });
+	            return _react2.default.createElement(
+	                'div',
+	                { id: 'groupTab' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { id: 'groupTab-center' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { id: 'groupTab-overflow' },
+	                        hotTagList
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+
+	    return GroupTab;
+	})(_react2.default.Component);
+
+	// <div id="groupTab-left"></div>
+	// <div id="groupTab-right"></div>
+
+	exports.default = GroupTab;
+
+/***/ },
+
+/***/ 225:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(226);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(178)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./groupTab.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./groupTab.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 226:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(177)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "#groupTab {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  font-size: .35rem;\n  height: 1rem;\n  line-height: 1rem;\n  white-space: nowrap;\n  background-color: #ffffff;\n  color: #666666;\n  z-index: 999; }\n  #groupTab #groupTab-left {\n    float: left;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-right {\n    float: right;\n    height: 1rem;\n    width: .2rem;\n    border-bottom: 2px solid #e2e2e2; }\n  #groupTab #groupTab-center {\n    overflow: hidden;\n    white-space: nowrap;\n    padding: 0 .15rem; }\n    #groupTab #groupTab-center #groupTab-overflow {\n      overflow-y: hidden;\n      overflow-x: auto;\n      -webkit-overflow-scrolling: touch;\n      white-space: nowrap; }\n    #groupTab #groupTab-center .groupTab-unit {\n      display: inline-block;\n      padding: 0 .2rem;\n      white-space: nowrap;\n      height: 1rem;\n      line-height: 1rem; }\n      #groupTab #groupTab-center .groupTab-unit.active {\n        color: #2fa4f6;\n        border-bottom: 2px solid #2fa4f6; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 227:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _immutable = __webpack_require__(220);
+
+	var _immutable2 = _interopRequireDefault(_immutable);
+
+	var _unicode = __webpack_require__(171);
+
+	var _unicode2 = _interopRequireDefault(_unicode);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	__webpack_require__(228);
+
+	var GroupList = (function (_React$Component) {
+	    _inherits(GroupList, _React$Component);
+
+	    function GroupList(props) {
+	        _classCallCheck(this, GroupList);
+
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(GroupList).call(this, props));
+	        // console.log(props);
+	    }
+
+	    _createClass(GroupList, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {}
+	    }, {
+	        key: 'shouldComponentUpdate',
+	        value: function shouldComponentUpdate(nextProps) {
+	            var isList = _immutable2.default.is(this.props.data, nextProps.data);
+	            if (isList) {
+	                return false;
+	            }
+	            return true;
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var List = this.props.data;
+	            // console.log('11111111');
+	            List = List.map(function (v, i) {
+	                var name = _unicode2.default.toHex(v.name),
+	                    dec = _unicode2.default.toHex(v.description),
+	                    cname = _unicode2.default.toHex(v.cname),
+	                    summary = _unicode2.default.toHex(v.summary),
+	                    icon = 'url(' + v.icon + ')',
+	                    users = v.users,
+	                    usersName = [],
+	                    isMember = v.isMember === 0 ? ['', '+ 加入'] : ['active', '已加入'];
+	                summary = summary || cname;
+	                // console.log(name);
+	                // console.log(dec);
+	                // console.log(cname);
+	                // console.log(summary);
+	                users = users.splice(0, 5);
+	                for (var _i = 0, l = users.length; _i < l; _i++) {
+	                    usersName.push(_unicode2.default.toHex(users[_i].nickname));
+	                }
+	                usersName = usersName.join('、');
+	                // console.log(usersName);
+
+	                return _react2.default.createElement(
+	                    'div',
+	                    { key: v.tid, 'data-tid': v.tid, className: 'groupList-unit' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'groupList-head' },
+	                        _react2.default.createElement('div', { className: 'groupList-img', style: { backgroundImage: icon } }),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupList-msg' },
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'groupList-mainInfo' },
+	                                _react2.default.createElement(
+	                                    'div',
+	                                    { className: 'groupList-name' },
+	                                    name
+	                                ),
+	                                _react2.default.createElement(
+	                                    'span',
+	                                    { className: 'groupList-tag' },
+	                                    summary
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { className: 'groupList-info' },
+	                                dec
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'groupList-px' },
+	                        _react2.default.createElement('div', { className: 'groupList-radius' })
+	                    ),
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'groupList-body' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupList-num' },
+	                            users.length,
+	                            '个成员'
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupList-member' },
+	                            usersName
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'groupList-join ' + isMember[0] },
+	                            isMember[1]
+	                        )
+	                    )
+	                );
+	            });
+
+	            return _react2.default.createElement(
+	                'div',
+	                { id: 'groupList' },
+	                List
+	            );
+	        }
+	    }]);
+
+	    return GroupList;
+	})(_react2.default.Component);
+
+	// <div className="groupList-unit">
+	//     <div className="groupList-head">
+	//         <div className="groupList-img"><img src="../img/headImg@1x.png" /></div>
+	//         <div className="groupList-msg">
+	//             <div className="groupList-mainInfo">
+	//                 <div className="groupList-name">谁动了我的奶酪</div>
+	//                 <span className="groupList-tag">我司官方</span>
+	//             </div>
+	//             <div className="groupList-info">
+	//                 发数据库繁华落尽第三方好好发挥拉斯科啊绝色赌妃来看哈三菱电机反悔拉克丝大姐夫
+	//             </div>
+	//         </div>
+	//     </div>
+	//     <div className="groupList-px">
+	//         <div className="groupList-radius"></div>
+	//     </div>
+	//     <div className="groupList-body">
+	//         <div className="groupList-num">1280个成员</div>
+	//         <div className="groupList-member">
+	//             <span>圆圆、</span>
+	//             <span>吹吹、</span>
+	//             <span>小鱼儿、</span>
+	//             <span>杜拉拉、</span>
+	//             <span>鱼刺、</span>
+	//             <span>神奇宝贝、</span>
+	//         </div>
+	//         <div className="groupList-join">+ 加入</div>
+	//     </div>
+	// </div>
+	//
+	// <div className="groupList-unit">
+	//     <div className="groupList-head">
+	//         <div className="groupList-img"><img src="../img/headImg@1x.png" /></div>
+	//         <div className="groupList-msg">
+	//             <div className="groupList-mainInfo">
+	//                 <div className="groupList-name">谁动了我的奶酪</div>
+	//                 <span className="groupList-tag">我司官方</span>
+	//             </div>
+	//             <div className="groupList-info">
+	//                 发数据库繁华落尽第三方好好发挥拉斯科啊绝色赌妃来看哈三菱电机反悔拉克丝大姐夫
+	//             </div>
+	//         </div>
+	//     </div>
+	//     <div className="groupList-px">
+	//         <div className="groupList-radius"></div>
+	//     </div>
+	//     <div className="groupList-body">
+	//         <div className="groupList-num">1280个成员</div>
+	//         <div className="groupList-member">
+	//             <span>圆圆、</span>
+	//             <span>吹吹、</span>
+	//             <span>小鱼儿、</span>
+	//             <span>杜拉拉、</span>
+	//             <span>鱼刺、</span>
+	//             <span>神奇宝贝、</span>
+	//         </div>
+	//         <div className="groupList-join">+ 加入</div>
+	//     </div>
+	// </div>
+
+	exports.default = GroupList;
+
+/***/ },
+
+/***/ 228:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(229);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(178)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./groupList.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./groupList.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 229:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(177)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    文字省略\n*/\n#groupList {\n  padding: 0 .2rem;\n  font-size: .35rem;\n  padding-top: 1rem;\n  padding-bottom: .4rem; }\n  #groupList .groupList-unit {\n    margin-top: .2rem;\n    padding: .2rem;\n    border: 1px solid #e2e2e2;\n    border-radius: .2rem;\n    overflow: hidden;\n    background-color: #ffffff; }\n    #groupList .groupList-unit .groupList-head {\n      overflow: hidden;\n      margin-bottom: .2rem; }\n      #groupList .groupList-unit .groupList-head .groupList-img {\n        width: 1.4rem;\n        height: 1.4rem;\n        margin-right: .2rem;\n        float: left;\n        background-size: cover;\n        background-repeat: no-repeat; }\n        #groupList .groupList-unit .groupList-head .groupList-img img {\n          width: 100%;\n          height: 100%;\n          border: 100%; }\n      #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo {\n        line-height: .5rem; }\n        #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo .groupList-name {\n          display: inline-block;\n          padding-right: .2rem;\n          color: #474747; }\n        #groupList .groupList-unit .groupList-head .groupList-msg .groupList-mainInfo .groupList-tag {\n          position: relative;\n          top: -.05rem;\n          font-size: 70%;\n          background-color: #ffb541;\n          padding: .06rem .1rem;\n          border-radius: .2rem;\n          color: #ffffff; }\n      #groupList .groupList-unit .groupList-head .groupList-msg .groupList-info {\n        display: -webkit-box;\n        text-overflow: -o-ellipsis-lastline;\n        overflow: hidden;\n        text-overflow: ellipsis;\n        -webkit-line-clamp: 2;\n        -webkit-box-orient: vertical;\n        font-size: 90%;\n        line-height: 1.45;\n        color: #666666; }\n    #groupList .groupList-unit .groupList-px {\n      position: relative;\n      margin-left: .7rem;\n      border-bottom: 1px solid #e2e2e2; }\n      #groupList .groupList-unit .groupList-px .groupList-radius {\n        position: absolute;\n        top: -.04rem;\n        left: 0;\n        width: .12rem;\n        height: .12rem;\n        border-radius: 100%;\n        background-color: #e2e2e2; }\n    #groupList .groupList-unit .groupList-body {\n      font-size: 80%;\n      margin-top: .2rem;\n      height: .5rem;\n      line-height: .5rem;\n      overflow: hidden; }\n      #groupList .groupList-unit .groupList-body .groupList-num {\n        float: left;\n        width: 1.5rem;\n        padding-right: .2rem;\n        color: #999999; }\n      #groupList .groupList-unit .groupList-body .groupList-member {\n        float: left;\n        width: 3.5rem;\n        color: #2fa4f6;\n        overflow: hidden;\n        white-space: nowrap;\n        text-overflow: ellipsis; }\n      #groupList .groupList-unit .groupList-body .groupList-join {\n        float: right;\n        padding: 0 .2rem;\n        background-color: #a8e1ff;\n        color: #ffffff;\n        border-radius: .3rem; }\n        #groupList .groupList-unit .groupList-body .groupList-join.active {\n          background-color: #999999; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+
+/***/ 230:
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(231);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(178)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./hotGroup.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./hotGroup.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+
+/***/ 231:
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(177)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "*, *::before, *::after {\n  -webkit-box-sizing: border-box;\n  -moz-box-sizing: border-box;\n  box-sizing: border-box;\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\nhtml, body {\n  margin: 0;\n  padding: 0; }\n\nul, ol {\n  margin: 0;\n  padding: 0;\n  list-style-type: none; }\n\na {\n  text-decoration: none; }\n\na:-webkit-any-link {\n  color: -webkit-link;\n  text-decoration: underline;\n  cursor: auto; }\n\ndiv[contentEditable], input, textarea, button, a:link {\n  -webkit-tap-highlight-color: rgba(225, 225, 225, 0); }\n\na:hover {\n  text-decoration: underline; }\n\n.blur {\n  -webkit-filter: blur(10px); }\n\n.gap {\n  margin-bottom: 0.2rem; }\n\n.base-body {\n  transition: transform .5s;\n  transform: translate3D(0, 0, 0); }\n  .base-body.active {\n    transition: transform .5s;\n    transform: translate3D(4rem, 0, 0); }\n\n#hotGroup-content {\n  background-color: #f6f6f8; }\n", ""]);
 
 	// exports
 

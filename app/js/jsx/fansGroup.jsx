@@ -3,6 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import InjectTapEventPlugin from "react-tap-event-plugin";
 
+import Vars from '../temp/vars.js';
 import autoFont from '../temp/autoFont.js';
 import addScript from '../temp/addScript.js';
 import Head from '../temp/head.js';
@@ -24,7 +25,6 @@ import Details from "../common/details.jsx";
 
 autoFont.init();
 InjectTapEventPlugin();
-
 
 class FansGroup extends React.Component {
     constructor() {
@@ -86,7 +86,7 @@ class FansGroup extends React.Component {
                 tab[i].active = '';
             }
         }
-        this.setState({tab: tab});    
+        this.setState({tab: tab});
     }
 
     render() {
@@ -96,11 +96,9 @@ class FansGroup extends React.Component {
                     <Nav vars={this.state.vars}></Nav>
                 </div>
                 <div className="base-body">
-                    
                     <section id='fansGroup-head' onTouchTap={ e => {this.tapMemu(e)} }>
                         <UserMsg vars={this.state.vars}></UserMsg>
                     </section>
-
                     <section id="fansGroup-tab" onTouchTap={ e => {this.tapTab(e)} }>
                         <Tab data={this.state.tab}></Tab>
                     </section>

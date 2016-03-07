@@ -23,39 +23,39 @@ webpackJsonp([4],{
 
 	var _superagent2 = _interopRequireDefault(_superagent);
 
-	var _autoFont = __webpack_require__(167);
+	var _autoFont = __webpack_require__(168);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
 
-	var _md = __webpack_require__(173);
+	var _md = __webpack_require__(174);
 
 	var _md2 = _interopRequireDefault(_md);
 
-	var _format = __webpack_require__(228);
+	var _format = __webpack_require__(232);
 
 	var _format2 = _interopRequireDefault(_format);
 
-	var _formatAjax = __webpack_require__(169);
+	var _formatAjax = __webpack_require__(170);
 
 	var _formatAjax2 = _interopRequireDefault(_formatAjax);
 
-	var _unicode = __webpack_require__(170);
+	var _unicode = __webpack_require__(171);
 
 	var _unicode2 = _interopRequireDefault(_unicode);
 
-	var _userAgent = __webpack_require__(168);
+	var _userAgent = __webpack_require__(169);
 
 	var _userAgent2 = _interopRequireDefault(_userAgent);
 
-	var _errorMsg = __webpack_require__(229);
+	var _errorMsg = __webpack_require__(233);
 
 	var _errorMsg2 = _interopRequireDefault(_errorMsg);
 
-	var _storage = __webpack_require__(172);
+	var _storage = __webpack_require__(173);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
-	var _vars = __webpack_require__(171);
+	var _vars = __webpack_require__(172);
 
 	var _vars2 = _interopRequireDefault(_vars);
 
@@ -67,7 +67,7 @@ webpackJsonp([4],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(230);
+	__webpack_require__(234);
 	// import $ from 'jquery';
 
 	// import Ibootstrap from '../temp/lib/ibootstrap.all.min.js';
@@ -1995,7 +1995,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 169:
+/***/ 170:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2021,7 +2021,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 170:
+/***/ 171:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2055,12 +2055,12 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 171:
+/***/ 172:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _storage = __webpack_require__(172);
+	var _storage = __webpack_require__(173);
 
 	var _storage2 = _interopRequireDefault(_storage);
 
@@ -2069,16 +2069,24 @@ webpackJsonp([4],{
 	var cf = new _config();
 	var vars = function vars(key) {
 	    var obj = {
-	        userStorage: 'ws'
+	        userStorage: 'ws',
+	        user: 'ws'
 	    };
 	    return obj[key];
 	};
 
 	vars.storage = function (key) {
 	    var obj = {
-	        userStorage: 'ws'
+	        userStorage: 'ws',
+	        user: 'ws'
 	    };
 	    return obj[key];
+	};
+
+	vars.storageValue = function (key1, key2) {
+	    var sobj = _storage2.default.get(vars.storage(key1));
+	    // console.log(sobj);
+	    return key2 ? sobj[key2] : sobj;
 	};
 
 	// 系统参数
@@ -2093,7 +2101,6 @@ webpackJsonp([4],{
 	            obj[o] = sobj[o];
 	        }
 	    }
-	    // console.log(obj);
 	    return obj[key];
 	};
 
@@ -2146,13 +2153,18 @@ webpackJsonp([4],{
 	vars.api = function (key) {
 	    var path = vars.path('apiPath'),
 	        obj = {
-	        fileUpload: path + 'file/post.json',
-	        userInfo: path + 'users/userinfo.json',
-	        city: path + 'zuji/city.json',
-	        hotTagList: path + 'biaoqian/list.json',
-	        hotList: path + 'biaoqian/search.json'
-	    };
-	    return obj[key];
+	        fileUpload: 'file/post.json',
+	        userInfo: 'users/userinfo.json',
+	        city: 'zuji/city.json',
+	        hotTagList: 'biaoqian/list.json',
+	        hotList: 'biaoqian/search.json',
+	        userShow: 'users/show.json', //获取某个用户的个人信息
+	        follow_list: 'users/following/list.json', //获取用户关注的人的列表
+	        tag_list: 'users/tag/list.json', //获取用户加入的群组(标签)
+	        event_list: 'users/event/list.json', //获取用户活动列表
+	        get_my_notes: 'notes/get_my_notes.json' };
+	    //用户的动态
+	    return path + obj[key];
 	};
 
 	module.exports = vars;
@@ -2161,7 +2173,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 172:
+/***/ 173:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2194,7 +2206,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 173:
+/***/ 174:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2424,7 +2436,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 228:
+/***/ 232:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2444,7 +2456,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 229:
+/***/ 233:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -2462,16 +2474,16 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 230:
+/***/ 234:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(231);
+	var content = __webpack_require__(235);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(177)(content, {});
+	var update = __webpack_require__(178)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -2489,10 +2501,10 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 231:
+/***/ 235:
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(176)();
+	exports = module.exports = __webpack_require__(177)();
 	// imports
 
 

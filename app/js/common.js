@@ -19958,7 +19958,8 @@
 /* 164 */,
 /* 165 */,
 /* 166 */,
-/* 167 */
+/* 167 */,
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -19968,7 +19969,7 @@
 	 autoFont.init(); //自动执行
 	 */
 
-	var userAgent = __webpack_require__(168);
+	var userAgent = __webpack_require__(169);
 	var autoFont = function autoFont() {};
 
 	autoFont.init = function () {
@@ -20048,7 +20049,7 @@
 	module.exports = autoFont;
 
 /***/ },
-/* 168 */
+/* 169 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -20080,14 +20081,14 @@
 	module.exports = userAgent;
 
 /***/ },
-/* 169 */,
 /* 170 */,
 /* 171 */,
 /* 172 */,
 /* 173 */,
 /* 174 */,
 /* 175 */,
-/* 176 */
+/* 176 */,
+/* 177 */
 /***/ function(module, exports) {
 
 	/*
@@ -20143,7 +20144,7 @@
 
 
 /***/ },
-/* 177 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
