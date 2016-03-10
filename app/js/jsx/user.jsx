@@ -2,8 +2,9 @@ require('../../sass/user.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Superagent from 'superagent';
-// import $ from "jquery";
 import InjectTapEventPlugin from "react-tap-event-plugin";
+
+import CORE from '../temp/core/app.js';
 
 import autoFont from '../temp/autoFont.js';
 import addScript from '../temp/addScript.js';
@@ -19,8 +20,9 @@ import Follow from "../common/follow.jsx";
 import Group from "../common/group.jsx";
 import Activity from "../common/activity.jsx";
 import Msg from "../common/msg.jsx";
-
 import Newest from "../common/newest.jsx";
+
+
 
 autoFont.init();
 InjectTapEventPlugin();
@@ -60,7 +62,8 @@ class Main extends React.Component {
     componentWillMount() {
         let userData = Storage.get('ws');
         this.state.userData = userData;
-        // console.log(this.state);
+
+        this.getUserMsg(userData);
     }
 
     tapMemu(e) {
@@ -83,6 +86,20 @@ class Main extends React.Component {
             }
         }
         this.setState({tab: tab});
+    }
+
+    getUserMsg(userData) {
+        const 
+        mid = userData['mid'],
+        requester = userData['ofusername'];
+        console.log(mid, requester);
+        CORE.ajax.user.show(mid, requester, (data) => {
+            console.log('su');
+            console.log(data);
+        }, (data) => {
+            console.log('er');
+            console.log(data);
+        });
     }
 
     componentDidMount() {

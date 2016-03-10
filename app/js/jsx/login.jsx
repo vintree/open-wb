@@ -11,7 +11,7 @@ import Format from '../temp/format.js';
 import FormatAjax from '../temp/formatAjax.js';
 import Unicode from '../temp/unicode.js';
 import UserAgent from '../temp/userAgent.js';
-import ErrorMsg from '../temp/errorMsg.js';
+import Errs from '../temp/errs.js';
 import Storage from '../temp/storage.js';
 import Vars from '../temp/vars.js';
 // import Ibootstrap from '../temp/lib/ibootstrap.all.min.js';
@@ -174,7 +174,7 @@ class Input extends React.Component {
 			// });
 // 临时注释，短信验证失败！
 		if(Format.mobile(mobile)) {
-			AV.Cloud.verifySmsCode(code, mobile).then(function() {
+			// AV.Cloud.verifySmsCode(code, mobile).then(function() {
    			//验证成功
 				let
 					timestamp = (new Date()).getTime(),
@@ -192,21 +192,29 @@ class Input extends React.Component {
 				});
 				Superagent.get(url).end(function(err, res) {
 					if(res.status === 200) {
-						var data = JSON.parse(Unicode.toHex(res.text));
+						var data = JSON.parse(res.text);
 						if(data.status.code === '0') {
 							Storage.set(Vars('userStorage'), data.data)
 							//  	alert('注册成功！');
+							// console.log(data.data.nickname);
+							if(data.data.nickname) {
+								// console.log(Vars.href('user'));
+								location.href = Vars.href('user');
+							} else {
+								// console.log(Vars.href('baseData'));
+								location.href = Vars.href('baseData');
+							}
 						} else {
 						  	alert(data.status.msg);
 						}
 					}
 				});
-			}, function(err) {
-			   //验证失败
-			   alert(err.message);
-			});
+			// }, function(err) {
+			//    //验证失败
+			//    alert(err.message);
+			// });
 		} else {
-			alert(ErrorMsg.err('mobileFormat'));
+			alert(errs.err('format', mobile));
 		}
 	}
 

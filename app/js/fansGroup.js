@@ -2011,14 +2011,15 @@ webpackJsonp([1],[
 	        follow_list: 'users/following/list.json', //获取用户关注的人的列表
 	        tag_list: 'users/tag/list.json', //获取用户加入的群组(标签)
 	        event_list: 'users/event/list.json', //获取用户活动列表
-	        get_my_notes: 'notes/get_my_notes.json' };
-	    //用户的动态
+	        get_my_notes: 'notes/get_my_notes.json', //用户的动态
+	        user_show: 'users/show.json' };
+	    //获取用户信息
 	    return path + obj[key];
 	};
 
 	module.exports = vars;
 
-	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":null,"vip":0,"gender":"m","age":0,"constellation":"","address":"澳门市","sign":"","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ofusername":"7f3304db83383f8624b5eb5a41ea2758","ngroups":null}
+	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":"http://image.useastore.com/user/avatar/ADCAC15A-677B-4DC5-BBA2-9ED1FD4516BE1456735556333.jpg","vip":0,"gender":"m","age":1,"constellation":"\\u53cc\\u9c7c\\u5ea7","address":"\\u6fb3\\u95e8\\u5e02","sign":"\\u6211\\u662f\\u5c0f\\u6d4b","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"{\"school\":\"& #40;null& #41;\",\"position\":\"\\u5348\\u591c\\u5de5\\u4f5c\\u8005\",\"Mylabel\":\"& #40;null& #41;\",\"company\":\"& #40;null& #41;\",\"experience\":\"& #40;null& #41;\",\"project\":\"& #40;null& #41;\",\"industry\":\"& #40;null& #41;\",\"interest\":\"\\u5c0f\\u9017\\u9752\\u5e74\"}","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ngroups":null,"ofusername":"7f3304db83383f8624b5eb5a41ea2758"}
 
 /***/ },
 /* 173 */
@@ -2109,6 +2110,10 @@ webpackJsonp([1],[
 
 	var _vars2 = _interopRequireDefault(_vars);
 
+	var _unicode = __webpack_require__(171);
+
+	var _unicode2 = _interopRequireDefault(_unicode);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2182,7 +2187,7 @@ webpackJsonp([1],[
 	                    _react2.default.createElement(
 	                        'div',
 	                        { id: 'userMsg-name' },
-	                        _vars2.default.storageValue('userStorage', 'nickname')
+	                        _unicode2.default.toHex(_vars2.default.storageValue('userStorage', 'nickname'))
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -2201,7 +2206,7 @@ webpackJsonp([1],[
 	                    _react2.default.createElement(
 	                        'div',
 	                        { id: 'userMsg-des' },
-	                        '有趣味的开源机器人，游戏骨粉级玩总动员尽在粉丝群~'
+	                        _unicode2.default.toHex(_vars2.default.storageValue('userStorage', 'sign')) || '还没有填写哦！'
 	                    )
 	                )
 	            );
@@ -3748,15 +3753,48 @@ webpackJsonp([1],[
 	    function Newest_foot(props) {
 	        _classCallCheck(this, Newest_foot);
 
+	        // console.log(props);
+
 	        var _this4 = _possibleConstructorReturn(this, Object.getPrototypeOf(Newest_foot).call(this, props));
 
 	        _this4.state = {
-	            imgUrl: [props.vars.path + 'img/collect.png', props.vars.path + 'img/good.png', props.vars.path + 'img/review.png', props.vars.path + 'img/map@3x.png']
+	            favorite: {
+	                imgUrl: props.vars.path + 'img/collect.png',
+	                imgActiveUrl: props.vars.path + 'img/collect-ed.png',
+	                num: _this4.props.data.favoriteNum + ' +'
+	            },
+	            praise: {
+	                imgUrl: props.vars.path + 'img/good.png',
+	                imgActiveUrl: props.vars.path + 'img/good-ed.png',
+	                num: _this4.props.data.praiseCount + ' +'
+	            },
+	            review: {
+	                imgUrl: props.vars.path + 'img/review.png',
+	                imgActiveUrl: props.vars.path + 'img/review-ed.png',
+	                num: _this4.props.data.reviewCount + ' +'
+	            },
+	            imgAddrUrl: props.vars.path + 'img/map@3x.png'
 	        };
 	        return _this4;
 	    }
 
 	    _createClass(Newest_foot, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var favorite = this.state.favorite,
+	                praise = this.state.praise,
+	                review = this.state.review;
+	            // console.log(this.state);
+	            if (this.props.data.isFavorite) {
+	                favorite.imgUrl = favorite.imgActiveUrl;
+	                favorite.num = this.props.data.favoriteNum;
+	            }
+	            if (this.props.data.isFaved) {
+	                praise.imgUrl = praise.imgActiveUrl;
+	                praise.num = this.props.data.praiseCount;
+	            }
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var address = '';
@@ -3764,11 +3802,10 @@ webpackJsonp([1],[
 	                address = _react2.default.createElement(
 	                    'div',
 	                    { className: 'newest-place' },
-	                    _react2.default.createElement('img', { src: this.state.imgUrl[3] }),
+	                    _react2.default.createElement('img', { src: this.state.imgAddrUrl }),
 	                    _unicode2.default.toHex(this.props.data.location)
 	                );
 	            }
-
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'newest-foot' },
@@ -3782,22 +3819,20 @@ webpackJsonp([1],[
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'newest-foot-1' },
-	                            _react2.default.createElement('img', { src: this.state.imgUrl[0] }),
-	                            '20'
+	                            _react2.default.createElement('img', { src: this.state.favorite.imgUrl }),
+	                            this.state.favorite.num
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'newest-foot-1' },
-	                            _react2.default.createElement('img', { src: this.state.imgUrl[1] }),
-	                            this.props.data.praiseCount,
-	                            ' +'
+	                            _react2.default.createElement('img', { src: this.state.review.imgUrl }),
+	                            this.state.review.num
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'newest-foot-1' },
-	                            _react2.default.createElement('img', { src: this.state.imgUrl[2] }),
-	                            this.props.data.reviewCount,
-	                            ' +'
+	                            _react2.default.createElement('img', { src: this.state.praise.imgUrl }),
+	                            this.state.praise.num
 	                        )
 	                    )
 	                )

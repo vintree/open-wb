@@ -2,6 +2,7 @@ require('../../sass/userMsg.scss');
 import React from 'react';
 
 import Vars from '../temp/vars.js';
+import Unicode from '../temp/unicode.js';
 
 export default class UserMsg extends React.Component {
     constructor(props) {
@@ -40,12 +41,12 @@ export default class UserMsg extends React.Component {
                     <div id="userMsg-headImg">
                         <img src={this.state.staticPath + 'img/headImg@1x.png'} />
                     </div>
-                    <div id="userMsg-name">{Vars.storageValue('userStorage', 'nickname')}</div>
+                    <div id="userMsg-name">{Unicode.toHex(Vars.storageValue('userStorage', 'nickname'))}</div>
                     <div id="userMsg-info">
                         <div id="userMsg-peaple" className="userMsg-info-group">123人</div>
                         <div id="userMsg-focus" className="userMsg-info-group">+ 加入</div>
                     </div>
-                    <div id="userMsg-des">有趣味的开源机器人，游戏骨粉级玩总动员尽在粉丝群~</div>
+                    <div id="userMsg-des">{Unicode.toHex(Vars.storageValue('userStorage', 'sign')) || '还没有填写哦！'}</div>
                 </div>
             </div>
         );

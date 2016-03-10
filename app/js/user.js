@@ -23,6 +23,10 @@ webpackJsonp([5],{
 
 	var _reactTapEventPlugin2 = _interopRequireDefault(_reactTapEventPlugin);
 
+	var _app = __webpack_require__(236);
+
+	var _app2 = _interopRequireDefault(_app);
+
 	var _autoFont = __webpack_require__(168);
 
 	var _autoFont2 = _interopRequireDefault(_autoFont);
@@ -59,11 +63,11 @@ webpackJsonp([5],{
 
 	var _tab2 = _interopRequireDefault(_tab);
 
-	var _follow = __webpack_require__(236);
+	var _follow = __webpack_require__(240);
 
 	var _follow2 = _interopRequireDefault(_follow);
 
-	var _group = __webpack_require__(239);
+	var _group = __webpack_require__(243);
 
 	var _group2 = _interopRequireDefault(_group);
 
@@ -71,7 +75,7 @@ webpackJsonp([5],{
 
 	var _activity2 = _interopRequireDefault(_activity);
 
-	var _msg = __webpack_require__(242);
+	var _msg = __webpack_require__(246);
 
 	var _msg2 = _interopRequireDefault(_msg);
 
@@ -87,8 +91,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(245);
-	// import $ from "jquery";
+	__webpack_require__(249);
 
 	_autoFont2.default.init();
 	(0, _reactTapEventPlugin2.default)();
@@ -133,7 +136,8 @@ webpackJsonp([5],{
 	        value: function componentWillMount() {
 	            var userData = _storage2.default.get('ws');
 	            this.state.userData = userData;
-	            // console.log(this.state);
+
+	            this.getUserMsg(userData);
 	        }
 	    }, {
 	        key: 'tapMemu',
@@ -158,6 +162,20 @@ webpackJsonp([5],{
 	                }
 	            }
 	            this.setState({ tab: tab });
+	        }
+	    }, {
+	        key: 'getUserMsg',
+	        value: function getUserMsg(userData) {
+	            var mid = userData['mid'],
+	                requester = userData['ofusername'];
+	            console.log(mid, requester);
+	            _app2.default.ajax.user.show(mid, requester, function (data) {
+	                console.log('su');
+	                console.log(data);
+	            }, function (data) {
+	                console.log('er');
+	                console.log(data);
+	            });
 	        }
 	    }, {
 	        key: 'componentDidMount',
@@ -1902,14 +1920,15 @@ webpackJsonp([5],{
 	        follow_list: 'users/following/list.json', //获取用户关注的人的列表
 	        tag_list: 'users/tag/list.json', //获取用户加入的群组(标签)
 	        event_list: 'users/event/list.json', //获取用户活动列表
-	        get_my_notes: 'notes/get_my_notes.json' };
-	    //用户的动态
+	        get_my_notes: 'notes/get_my_notes.json', //用户的动态
+	        user_show: 'users/show.json' };
+	    //获取用户信息
 	    return path + obj[key];
 	};
 
 	module.exports = vars;
 
-	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":null,"vip":0,"gender":"m","age":0,"constellation":"","address":"澳门市","sign":"","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ofusername":"7f3304db83383f8624b5eb5a41ea2758","ngroups":null}
+	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":"http://image.useastore.com/user/avatar/ADCAC15A-677B-4DC5-BBA2-9ED1FD4516BE1456735556333.jpg","vip":0,"gender":"m","age":1,"constellation":"\\u53cc\\u9c7c\\u5ea7","address":"\\u6fb3\\u95e8\\u5e02","sign":"\\u6211\\u662f\\u5c0f\\u6d4b","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"{\"school\":\"& #40;null& #41;\",\"position\":\"\\u5348\\u591c\\u5de5\\u4f5c\\u8005\",\"Mylabel\":\"& #40;null& #41;\",\"company\":\"& #40;null& #41;\",\"experience\":\"& #40;null& #41;\",\"project\":\"& #40;null& #41;\",\"industry\":\"& #40;null& #41;\",\"interest\":\"\\u5c0f\\u9017\\u9752\\u5e74\"}","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ngroups":null,"ofusername":"7f3304db83383f8624b5eb5a41ea2758"}
 
 /***/ },
 
@@ -1997,6 +2016,10 @@ webpackJsonp([5],{
 
 	var _vars2 = _interopRequireDefault(_vars);
 
+	var _unicode = __webpack_require__(171);
+
+	var _unicode2 = _interopRequireDefault(_unicode);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -2070,7 +2093,7 @@ webpackJsonp([5],{
 	                    _react2.default.createElement(
 	                        'div',
 	                        { id: 'userMsg-name' },
-	                        _vars2.default.storageValue('userStorage', 'nickname')
+	                        _unicode2.default.toHex(_vars2.default.storageValue('userStorage', 'nickname'))
 	                    ),
 	                    _react2.default.createElement(
 	                        'div',
@@ -2089,7 +2112,7 @@ webpackJsonp([5],{
 	                    _react2.default.createElement(
 	                        'div',
 	                        { id: 'userMsg-des' },
-	                        '有趣味的开源机器人，游戏骨粉级玩总动员尽在粉丝群~'
+	                        _unicode2.default.toHex(_vars2.default.storageValue('userStorage', 'sign')) || '还没有填写哦！'
 	                    )
 	                )
 	            );
@@ -2887,15 +2910,48 @@ webpackJsonp([5],{
 	    function Newest_foot(props) {
 	        _classCallCheck(this, Newest_foot);
 
+	        // console.log(props);
+
 	        var _this4 = _possibleConstructorReturn(this, Object.getPrototypeOf(Newest_foot).call(this, props));
 
 	        _this4.state = {
-	            imgUrl: [props.vars.path + 'img/collect.png', props.vars.path + 'img/good.png', props.vars.path + 'img/review.png', props.vars.path + 'img/map@3x.png']
+	            favorite: {
+	                imgUrl: props.vars.path + 'img/collect.png',
+	                imgActiveUrl: props.vars.path + 'img/collect-ed.png',
+	                num: _this4.props.data.favoriteNum + ' +'
+	            },
+	            praise: {
+	                imgUrl: props.vars.path + 'img/good.png',
+	                imgActiveUrl: props.vars.path + 'img/good-ed.png',
+	                num: _this4.props.data.praiseCount + ' +'
+	            },
+	            review: {
+	                imgUrl: props.vars.path + 'img/review.png',
+	                imgActiveUrl: props.vars.path + 'img/review-ed.png',
+	                num: _this4.props.data.reviewCount + ' +'
+	            },
+	            imgAddrUrl: props.vars.path + 'img/map@3x.png'
 	        };
 	        return _this4;
 	    }
 
 	    _createClass(Newest_foot, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var favorite = this.state.favorite,
+	                praise = this.state.praise,
+	                review = this.state.review;
+	            // console.log(this.state);
+	            if (this.props.data.isFavorite) {
+	                favorite.imgUrl = favorite.imgActiveUrl;
+	                favorite.num = this.props.data.favoriteNum;
+	            }
+	            if (this.props.data.isFaved) {
+	                praise.imgUrl = praise.imgActiveUrl;
+	                praise.num = this.props.data.praiseCount;
+	            }
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            var address = '';
@@ -2903,11 +2959,10 @@ webpackJsonp([5],{
 	                address = _react2.default.createElement(
 	                    'div',
 	                    { className: 'newest-place' },
-	                    _react2.default.createElement('img', { src: this.state.imgUrl[3] }),
+	                    _react2.default.createElement('img', { src: this.state.imgAddrUrl }),
 	                    _unicode2.default.toHex(this.props.data.location)
 	                );
 	            }
-
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'newest-foot' },
@@ -2921,22 +2976,20 @@ webpackJsonp([5],{
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'newest-foot-1' },
-	                            _react2.default.createElement('img', { src: this.state.imgUrl[0] }),
-	                            '20'
+	                            _react2.default.createElement('img', { src: this.state.favorite.imgUrl }),
+	                            this.state.favorite.num
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'newest-foot-1' },
-	                            _react2.default.createElement('img', { src: this.state.imgUrl[1] }),
-	                            this.props.data.praiseCount,
-	                            ' +'
+	                            _react2.default.createElement('img', { src: this.state.review.imgUrl }),
+	                            this.state.review.num
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'newest-foot-1' },
-	                            _react2.default.createElement('img', { src: this.state.imgUrl[2] }),
-	                            this.props.data.reviewCount,
-	                            ' +'
+	                            _react2.default.createElement('img', { src: this.state.praise.imgUrl }),
+	                            this.state.praise.num
 	                        )
 	                    )
 	                )
@@ -3046,7 +3099,144 @@ webpackJsonp([5],{
 
 /***/ },
 
+/***/ 233:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var errs = function errs() {};
+
+	/*
+		@author
+			abel
+		@des
+			前缀术语：
+				un: 未放置，空参数
+				unfully: 不完全，不完整，没有传递所有参数
+				format: 格式不正确
+	 */
+
+	errs.err = function () {
+		var key = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+		var name = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+
+		var obj = {
+			format: '格式不正确! ' + name,
+			un: '没有找到! ' + name,
+			unMethod: '未提供该方法支持! ' + name,
+			unFully: '未提供完善数据！' + name
+		};
+		if (key) {
+			return obj[key];
+		}
+		console.err(obj['un'] + 'key');
+	};
+
+	errs.warn = function (key, name) {};
+
+	errs.log = function (key, name) {};
+
+	module.exports = errs;
+
+/***/ },
+
 /***/ 236:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _app = __webpack_require__(237);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var core = {};
+	core.ajax = _app2.default;
+
+	module.exports = core;
+
+/***/ },
+
+/***/ 237:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _user = __webpack_require__(238);
+
+	var _user2 = _interopRequireDefault(_user);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ajax = {};
+	ajax.user = _user2.default;
+
+	module.exports = ajax;
+
+/***/ },
+
+/***/ 238:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _roots = __webpack_require__(239);
+
+	var _roots2 = _interopRequireDefault(_roots);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var user = function user() {};
+	/*
+		@author
+			abel
+		@to
+			abel || abel
+		@des
+			1. 处理关于user接口
+		@api 
+			show
+				* mid: int 用户ID=原始用户ID+md5(原始用户ID+sharekey)
+				* requester: string 发起请求用户的Openfire ID
+		@version
+			2016-03-09
+	 */
+
+	user.show = function (mid, requester, success, err) {
+		if (mid && requester) {
+			var url = _roots2.default.ajax.get('user_show', {
+				mid: mid,
+				requester: requester
+			}, success, err);
+		} else {
+			console.err(_roots2.default.errs.err('unFully'), 'mid && requester');
+		}
+	};
+
+	module.exports = user;
+
+/***/ },
+
+/***/ 239:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _ajax = __webpack_require__(251);
+
+	var _ajax2 = _interopRequireDefault(_ajax);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var roots = function roots() {};
+	roots.ajax = _ajax2.default;
+
+	module.exports = roots;
+
+/***/ },
+
+/***/ 240:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3085,7 +3275,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(237);
+	__webpack_require__(241);
 
 	var Follow = (function (_React$Component) {
 	    _inherits(Follow, _React$Component);
@@ -3183,13 +3373,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 237:
+/***/ 241:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(238);
+	var content = __webpack_require__(242);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(178)(content, {});
@@ -3210,7 +3400,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 238:
+/***/ 242:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(177)();
@@ -3225,7 +3415,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 239:
+/***/ 243:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3264,7 +3454,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(240);
+	__webpack_require__(244);
 
 	var Group = (function (_React$Component) {
 	    _inherits(Group, _React$Component);
@@ -3372,13 +3562,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 240:
+/***/ 244:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(241);
+	var content = __webpack_require__(245);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(178)(content, {});
@@ -3399,7 +3589,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 241:
+/***/ 245:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(177)();
@@ -3414,7 +3604,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 242:
+/***/ 246:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3433,6 +3623,10 @@ webpackJsonp([5],{
 
 	var _vars2 = _interopRequireDefault(_vars);
 
+	var _unicode = __webpack_require__(171);
+
+	var _unicode2 = _interopRequireDefault(_unicode);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3441,9 +3635,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(243);
-
-	// import $ from 'jquery';
+	__webpack_require__(247);
 
 	var Msg = (function (_React$Component) {
 	    _inherits(Msg, _React$Component);
@@ -3456,11 +3648,49 @@ webpackJsonp([5],{
 	        _this.state = {
 	            msg: _vars2.default.storageValue('user')
 	        };
-	        // console.log(this.state);
+	        console.log(_this.state.msg);
 	        return _this;
 	    }
 
 	    _createClass(Msg, [{
+	        key: 'componentWillMount',
+	        value: function componentWillMount() {
+	            var msg = _vars2.default.storageValue('user');
+	            if (msg) {
+	                msg.gender = this.initSex(msg.gender);
+	                msg.extension = JSON.parse(msg.extension);
+	            }
+	            this.state = {
+	                msg: msg
+	            };
+	        }
+
+	        /*
+	            转换成可看的性别代号
+	         */
+
+	    }, {
+	        key: 'initSex',
+	        value: function initSex(sex) {
+	            // if(sex === 'm') {
+	            //     return '男'
+	            // } else if(sex === 'f') {
+	            //     return '女'
+	            // } else {
+	            //     return '未知'
+	            // }
+	            switch (sex) {
+	                case 'm':
+	                    return '男';
+	                    break;
+	                case 'f':
+	                    return '女';
+	                    break;
+	                default:
+	                    return '未知';
+	            }
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -3514,7 +3744,7 @@ webpackJsonp([5],{
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'msg-tx' },
-	                            this.state.msg.nickname
+	                            _unicode2.default.toHex(this.state.msg.nickname)
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
@@ -3529,22 +3759,22 @@ webpackJsonp([5],{
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'msg-tx' },
-	                            this.state.msg.address
+	                            _unicode2.default.toHex(this.state.msg.address)
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'msg-tx' },
-	                            this.state.msg.address
+	                            _unicode2.default.toHex(this.state.msg.extension.position)
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'msg-tx' },
-	                            this.state.msg.address
+	                            _unicode2.default.toHex(this.state.msg.sign)
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'msg-tx' },
-	                            this.state.msg.address
+	                            _unicode2.default.toHex(this.state.msg.extension.interest)
 	                        )
 	                    )
 	                )
@@ -3559,13 +3789,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 243:
+/***/ 247:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(244);
+	var content = __webpack_require__(248);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(178)(content, {});
@@ -3586,7 +3816,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 244:
+/***/ 248:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(177)();
@@ -3601,13 +3831,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 245:
+/***/ 249:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(246);
+	var content = __webpack_require__(250);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(178)(content, {});
@@ -3628,7 +3858,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 246:
+/***/ 250:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(177)();
@@ -3640,6 +3870,117 @@ webpackJsonp([5],{
 
 	// exports
 
+
+/***/ },
+
+/***/ 251:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _superagent = __webpack_require__(163);
+
+	var _superagent2 = _interopRequireDefault(_superagent);
+
+	var _vars = __webpack_require__(172);
+
+	var _vars2 = _interopRequireDefault(_vars);
+
+	var _formatAjax = __webpack_require__(170);
+
+	var _formatAjax2 = _interopRequireDefault(_formatAjax);
+
+	var _errs = __webpack_require__(233);
+
+	var _errs2 = _interopRequireDefault(_errs);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/*
+		@structure
+			
+			底层  - 中间层
+				 / ajax_common 公共部分：请求结束后的执行结构
+				/
+			ajax - get 对外提供get方法
+				 - post 对外提供post方法
+
+		@author
+			abel
+		@des
+			1. 代理请求
+			2. 处理请求中间过程
+		@api
+			ajax || post || get
+			ajax:
+				* method: String 请求方法
+				* name: String 接口名称
+				* params: Object 接口需要参数
+				* success: Function 成功方法
+				* error: Function 失败方法
+			post:
+				* name
+				* params
+				* success
+				* error
+			get: 
+				* name
+				* params
+				* success
+				* error
+		@version
+			2016-03-10
+	 */
+
+	var ajax = function ajax() {};
+	ajax.ajax = function () {
+		var method = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+		var name = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+		var params = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+		var success = arguments.length <= 3 || arguments[3] === undefined ? function () {} : arguments[3];
+		var error = arguments.length <= 4 || arguments[4] === undefined ? function (data) {
+			alert(data.status.msg);
+		} : arguments[4];
+
+		var url = _vars2.default.api(name);
+		if (url) {
+			if (method === 'get' || method === undefined) {
+				url = _formatAjax2.default.get(_vars2.default.api(name), params);
+				_superagent2.default.get(url).end(function (err, res) {
+					roots.ajax_common(res, success, error);
+				});
+			} else if (method === 'post') {
+				_superagent2.default.post(url).send(params).end(function (err, res) {
+					roots.ajax_common(res, success, error);
+				});
+			} else {
+				console.err(_errs2.default.err('unMethod', method));
+			}
+		} else {
+			console.err(_errs2.default.err('un', name));
+		}
+	};
+
+	ajax.ajax_common = function (res, success, error) {
+		if (res.status === 200) {
+			var data = JSON.parse(res.text);
+			if (data.status.code === '0') {
+				success(data);
+			} else {
+				error(data);
+			}
+		}
+	};
+
+	ajax.get = function (name, params, success, error) {
+		roots.ajax('get', name, params, success, error);
+	};
+
+	ajax.post = function (name, params, success, error) {
+		roots.ajax('post', name, params, success, error);
+	};
+
+	module.exports = ajax;
 
 /***/ }
 

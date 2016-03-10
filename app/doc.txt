@@ -16,3 +16,53 @@ sass
 4.
 css
 用于icon配置,放在Module公用模块调用
+
+JS规范
+* 必须项
+
+1. 全局组件标识
+	  @structure
+	  	(内容上下空1行)
+	* @author 作者
+	  @to 谁在调用
+	* @des 描述
+	* @api
+	* @version
+EP:
+	/*
+		@structure
+			// 注意空行
+			底层  - 中间层
+				 / ajax_common 公共部分：请求结束后的执行结构
+				/
+			ajax - post 对外提供post方法
+			// 注意空行
+		@author
+			abel
+		@des
+			1. 代理请求
+		@api
+			ajax || post
+			ajax:
+				* name: String 接口名称
+			post:
+				* name
+		@version
+			2016-03-10
+	 */
+	
+2. 局部组件标识
+	  @author 作者(如果和 全局组件标识 作者一致可不填写)
+	* @des 描述
+	* @params 参数
+	/*
+		@author 小明
+		@des
+			前缀术语:
+				un: 未放置，空参数
+				unfully: 不完全，不完整，没有传递所有参数
+				format: 格式不正确
+		@params
+			* uid 用户id
+			  name 用户名称
+	 */
