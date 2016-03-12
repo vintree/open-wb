@@ -74,8 +74,6 @@ webpackJsonp([3],{
 	__webpack_require__(230);
 	// let Immutable = require('immutable');
 
-	// import $ from "jquery";
-
 	(0, _reactTapEventPlugin2.default)();
 	_autoFont2.default.init();
 
@@ -1895,8 +1893,10 @@ webpackJsonp([3],{
 	        tag_list: 'users/tag/list.json', //获取用户加入的群组(标签)
 	        event_list: 'users/event/list.json', //获取用户活动列表
 	        get_my_notes: 'notes/get_my_notes.json', //用户的动态
-	        user_show: 'users/show.json' };
-	    //获取用户信息
+	        user_show: 'users/show.json', //获取用户信息
+	        user_register: 'users/register.json' };
+	    //用户注册
+
 	    return path + obj[key];
 	};
 

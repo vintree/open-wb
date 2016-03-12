@@ -46,11 +46,11 @@ ajax.ajax = (method = '', name = '', params = {}, success = ()=>{}, error = (dat
 		if(method === 'get' || method === undefined) {
 			url = FormatAjax.get(Vars.api(name), params);
 			Superagent.get(url).end((err, res) => {
-				roots.ajax_common(res, success, error);
+				ajax.ajax_common(res, success, error);
 			});
 		} else if(method === 'post') {
 			Superagent.post(url).send(params).end((err, res) => {
-				roots.ajax_common(res, success, error);
+				ajax.ajax_common(res, success, error);
 			});
 		} else {
 			console.err(Errs.err('unMethod', method))
@@ -72,11 +72,11 @@ ajax.ajax_common = (res, success, error) => {
 }
 
 ajax.get = (name, params, success, error) => {
-	roots.ajax('get', name, params, success, error);
+	ajax.ajax('get', name, params, success, error);
 }
 
 ajax.post = (name, params, success, error) => {
-	roots.ajax('post', name, params, success, error);
+	ajax.ajax('post', name, params, success, error);
 }
 
 module.exports = ajax;

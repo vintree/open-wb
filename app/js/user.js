@@ -51,6 +51,14 @@ webpackJsonp([5],{
 
 	var _vars2 = _interopRequireDefault(_vars);
 
+	var _unicode = __webpack_require__(171);
+
+	var _unicode2 = _interopRequireDefault(_unicode);
+
+	var _md = __webpack_require__(174);
+
+	var _md2 = _interopRequireDefault(_md);
+
 	var _nav = __webpack_require__(205);
 
 	var _nav2 = _interopRequireDefault(_nav);
@@ -63,11 +71,11 @@ webpackJsonp([5],{
 
 	var _tab2 = _interopRequireDefault(_tab);
 
-	var _follow = __webpack_require__(240);
+	var _follow = __webpack_require__(241);
 
 	var _follow2 = _interopRequireDefault(_follow);
 
-	var _group = __webpack_require__(243);
+	var _group = __webpack_require__(244);
 
 	var _group2 = _interopRequireDefault(_group);
 
@@ -75,7 +83,7 @@ webpackJsonp([5],{
 
 	var _activity2 = _interopRequireDefault(_activity);
 
-	var _msg = __webpack_require__(246);
+	var _msg = __webpack_require__(247);
 
 	var _msg2 = _interopRequireDefault(_msg);
 
@@ -91,7 +99,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(249);
+	__webpack_require__(250);
 
 	_autoFont2.default.init();
 	(0, _reactTapEventPlugin2.default)();
@@ -126,7 +134,8 @@ webpackJsonp([5],{
 	                codeName: 'user-personage',
 	                active: ''
 	            }],
-	            noteList: []
+	            noteList: [],
+	            userData: {}
 	        };
 	        return _this;
 	    }
@@ -136,7 +145,6 @@ webpackJsonp([5],{
 	        value: function componentWillMount() {
 	            var userData = _storage2.default.get('ws');
 	            this.state.userData = userData;
-
 	            this.getUserMsg(userData);
 	        }
 	    }, {
@@ -166,24 +174,32 @@ webpackJsonp([5],{
 	    }, {
 	        key: 'getUserMsg',
 	        value: function getUserMsg(userData) {
+	            var _this2 = this;
+
 	            var mid = userData['mid'],
 	                requester = userData['ofusername'];
+
+	            mid = mid + _md2.default.init(mid + _vars2.default.sys('sharekey'));
 	            console.log(mid, requester);
 	            _app2.default.ajax.user.show(mid, requester, function (data) {
-	                console.log('su');
-	                console.log(data);
+	                _storage2.default.set(_vars2.default.storage('user'), data.data);
+	                _this2.setState({
+	                    userData: data.data
+	                });
+	                // console.log(Storage.get(Vars.storage('user')));
 	            }, function (data) {
 	                console.log('er');
-	                console.log(data);
+	                alert(_unicode2.default.toHex(data.status.msg));
 	            });
 	        }
 	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	            var _this2 = this;
+	            var _this3 = this;
 
-	            var url = _formatAjax2.default.get(_vars2.default.api('get_my_notes'), {
-	                mid: _vars2.default.storageValue('user', 'mid'),
+	            var mid = _vars2.default.storageValue('user', 'mid'),
+	                url = _formatAjax2.default.get(_vars2.default.api('get_my_notes'), {
+	                mid: mid,
 	                offset: 0,
 	                count: 10
 	            });
@@ -191,7 +207,7 @@ webpackJsonp([5],{
 	                if (res.status === 200) {
 	                    var data = JSON.parse(res.text);
 	                    if (data.status.code === '0') {
-	                        var list = _this2.state.noteList,
+	                        var list = _this3.state.noteList,
 	                            num = data.sum;
 	                        data = data.data;
 
@@ -210,7 +226,7 @@ webpackJsonp([5],{
 	                        for (var o in data) {
 	                            _loop(o);
 	                        }
-	                        _this2.setState({
+	                        _this3.setState({
 	                            noteList: list
 	                        });
 	                    } else {
@@ -222,7 +238,7 @@ webpackJsonp([5],{
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            var _this3 = this;
+	            var _this4 = this;
 
 	            return _react2.default.createElement(
 	                'div',
@@ -238,14 +254,14 @@ webpackJsonp([5],{
 	                    _react2.default.createElement(
 	                        'section',
 	                        { id: 'user-head', onTouchTap: function onTouchTap(e) {
-	                                _this3.tapMemu(e);
+	                                _this4.tapMemu(e);
 	                            } },
 	                        _react2.default.createElement(_userMsg2.default, { vars: this.state.vars, data: this.state.userData })
 	                    ),
 	                    _react2.default.createElement(
 	                        'section',
 	                        { id: 'user-tab', onTouchTap: function onTouchTap(e) {
-	                                _this3.tapTab(e);
+	                                _this4.tapTab(e);
 	                            } },
 	                        _react2.default.createElement(_tab2.default, { vars: this.state.vars, data: this.state.tab })
 	                    ),
@@ -1921,8 +1937,10 @@ webpackJsonp([5],{
 	        tag_list: 'users/tag/list.json', //获取用户加入的群组(标签)
 	        event_list: 'users/event/list.json', //获取用户活动列表
 	        get_my_notes: 'notes/get_my_notes.json', //用户的动态
-	        user_show: 'users/show.json' };
-	    //获取用户信息
+	        user_show: 'users/show.json', //获取用户信息
+	        user_register: 'users/register.json' };
+	    //用户注册
+
 	    return path + obj[key];
 	};
 
@@ -1962,6 +1980,236 @@ webpackJsonp([5],{
 	};
 
 	module.exports = storage;
+
+/***/ },
+
+/***/ 174:
+/***/ function(module, exports) {
+
+	"use strict";
+
+	var md5 = function md5() {};
+
+	md5.init = function (string) {
+
+	    function RotateLeft(lValue, iShiftBits) {
+	        return lValue << iShiftBits | lValue >>> 32 - iShiftBits;
+	    }
+
+	    function AddUnsigned(lX, lY) {
+	        var lX4, lY4, lX8, lY8, lResult;
+	        lX8 = lX & 0x80000000;
+	        lY8 = lY & 0x80000000;
+	        lX4 = lX & 0x40000000;
+	        lY4 = lY & 0x40000000;
+	        lResult = (lX & 0x3FFFFFFF) + (lY & 0x3FFFFFFF);
+	        if (lX4 & lY4) {
+	            return lResult ^ 0x80000000 ^ lX8 ^ lY8;
+	        }
+	        if (lX4 | lY4) {
+	            if (lResult & 0x40000000) {
+	                return lResult ^ 0xC0000000 ^ lX8 ^ lY8;
+	            } else {
+	                return lResult ^ 0x40000000 ^ lX8 ^ lY8;
+	            }
+	        } else {
+	            return lResult ^ lX8 ^ lY8;
+	        }
+	    }
+
+	    function F(x, y, z) {
+	        return x & y | ~x & z;
+	    }
+	    function G(x, y, z) {
+	        return x & z | y & ~z;
+	    }
+	    function H(x, y, z) {
+	        return x ^ y ^ z;
+	    }
+	    function I(x, y, z) {
+	        return y ^ (x | ~z);
+	    }
+
+	    function FF(a, b, c, d, x, s, ac) {
+	        a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
+	        return AddUnsigned(RotateLeft(a, s), b);
+	    };
+
+	    function GG(a, b, c, d, x, s, ac) {
+	        a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
+	        return AddUnsigned(RotateLeft(a, s), b);
+	    };
+
+	    function HH(a, b, c, d, x, s, ac) {
+	        a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
+	        return AddUnsigned(RotateLeft(a, s), b);
+	    };
+
+	    function II(a, b, c, d, x, s, ac) {
+	        a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
+	        return AddUnsigned(RotateLeft(a, s), b);
+	    };
+
+	    function ConvertToWordArray(string) {
+	        var lWordCount;
+	        var lMessageLength = string.length;
+	        var lNumberOfWords_temp1 = lMessageLength + 8;
+	        var lNumberOfWords_temp2 = (lNumberOfWords_temp1 - lNumberOfWords_temp1 % 64) / 64;
+	        var lNumberOfWords = (lNumberOfWords_temp2 + 1) * 16;
+	        var lWordArray = Array(lNumberOfWords - 1);
+	        var lBytePosition = 0;
+	        var lByteCount = 0;
+	        while (lByteCount < lMessageLength) {
+	            lWordCount = (lByteCount - lByteCount % 4) / 4;
+	            lBytePosition = lByteCount % 4 * 8;
+	            lWordArray[lWordCount] = lWordArray[lWordCount] | string.charCodeAt(lByteCount) << lBytePosition;
+	            lByteCount++;
+	        }
+	        lWordCount = (lByteCount - lByteCount % 4) / 4;
+	        lBytePosition = lByteCount % 4 * 8;
+	        lWordArray[lWordCount] = lWordArray[lWordCount] | 0x80 << lBytePosition;
+	        lWordArray[lNumberOfWords - 2] = lMessageLength << 3;
+	        lWordArray[lNumberOfWords - 1] = lMessageLength >>> 29;
+	        return lWordArray;
+	    };
+
+	    function WordToHex(lValue) {
+	        var WordToHexValue = "",
+	            WordToHexValue_temp = "",
+	            lByte,
+	            lCount;
+	        for (lCount = 0; lCount <= 3; lCount++) {
+	            lByte = lValue >>> lCount * 8 & 255;
+	            WordToHexValue_temp = "0" + lByte.toString(16);
+	            WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length - 2, 2);
+	        }
+	        return WordToHexValue;
+	    };
+
+	    function Utf8Encode(string) {
+	        string = string.replace(/\r\n/g, "\n");
+	        var utftext = "";
+
+	        for (var n = 0; n < string.length; n++) {
+
+	            var c = string.charCodeAt(n);
+
+	            if (c < 128) {
+	                utftext += String.fromCharCode(c);
+	            } else if (c > 127 && c < 2048) {
+	                utftext += String.fromCharCode(c >> 6 | 192);
+	                utftext += String.fromCharCode(c & 63 | 128);
+	            } else {
+	                utftext += String.fromCharCode(c >> 12 | 224);
+	                utftext += String.fromCharCode(c >> 6 & 63 | 128);
+	                utftext += String.fromCharCode(c & 63 | 128);
+	            }
+	        }
+
+	        return utftext;
+	    };
+
+	    var x = Array();
+	    var k, AA, BB, CC, DD, a, b, c, d;
+	    var S11 = 7,
+	        S12 = 12,
+	        S13 = 17,
+	        S14 = 22;
+	    var S21 = 5,
+	        S22 = 9,
+	        S23 = 14,
+	        S24 = 20;
+	    var S31 = 4,
+	        S32 = 11,
+	        S33 = 16,
+	        S34 = 23;
+	    var S41 = 6,
+	        S42 = 10,
+	        S43 = 15,
+	        S44 = 21;
+
+	    string = Utf8Encode(string);
+
+	    x = ConvertToWordArray(string);
+
+	    a = 0x67452301;b = 0xEFCDAB89;c = 0x98BADCFE;d = 0x10325476;
+
+	    for (k = 0; k < x.length; k += 16) {
+	        AA = a;BB = b;CC = c;DD = d;
+	        a = FF(a, b, c, d, x[k + 0], S11, 0xD76AA478);
+	        d = FF(d, a, b, c, x[k + 1], S12, 0xE8C7B756);
+	        c = FF(c, d, a, b, x[k + 2], S13, 0x242070DB);
+	        b = FF(b, c, d, a, x[k + 3], S14, 0xC1BDCEEE);
+	        a = FF(a, b, c, d, x[k + 4], S11, 0xF57C0FAF);
+	        d = FF(d, a, b, c, x[k + 5], S12, 0x4787C62A);
+	        c = FF(c, d, a, b, x[k + 6], S13, 0xA8304613);
+	        b = FF(b, c, d, a, x[k + 7], S14, 0xFD469501);
+	        a = FF(a, b, c, d, x[k + 8], S11, 0x698098D8);
+	        d = FF(d, a, b, c, x[k + 9], S12, 0x8B44F7AF);
+	        c = FF(c, d, a, b, x[k + 10], S13, 0xFFFF5BB1);
+	        b = FF(b, c, d, a, x[k + 11], S14, 0x895CD7BE);
+	        a = FF(a, b, c, d, x[k + 12], S11, 0x6B901122);
+	        d = FF(d, a, b, c, x[k + 13], S12, 0xFD987193);
+	        c = FF(c, d, a, b, x[k + 14], S13, 0xA679438E);
+	        b = FF(b, c, d, a, x[k + 15], S14, 0x49B40821);
+	        a = GG(a, b, c, d, x[k + 1], S21, 0xF61E2562);
+	        d = GG(d, a, b, c, x[k + 6], S22, 0xC040B340);
+	        c = GG(c, d, a, b, x[k + 11], S23, 0x265E5A51);
+	        b = GG(b, c, d, a, x[k + 0], S24, 0xE9B6C7AA);
+	        a = GG(a, b, c, d, x[k + 5], S21, 0xD62F105D);
+	        d = GG(d, a, b, c, x[k + 10], S22, 0x2441453);
+	        c = GG(c, d, a, b, x[k + 15], S23, 0xD8A1E681);
+	        b = GG(b, c, d, a, x[k + 4], S24, 0xE7D3FBC8);
+	        a = GG(a, b, c, d, x[k + 9], S21, 0x21E1CDE6);
+	        d = GG(d, a, b, c, x[k + 14], S22, 0xC33707D6);
+	        c = GG(c, d, a, b, x[k + 3], S23, 0xF4D50D87);
+	        b = GG(b, c, d, a, x[k + 8], S24, 0x455A14ED);
+	        a = GG(a, b, c, d, x[k + 13], S21, 0xA9E3E905);
+	        d = GG(d, a, b, c, x[k + 2], S22, 0xFCEFA3F8);
+	        c = GG(c, d, a, b, x[k + 7], S23, 0x676F02D9);
+	        b = GG(b, c, d, a, x[k + 12], S24, 0x8D2A4C8A);
+	        a = HH(a, b, c, d, x[k + 5], S31, 0xFFFA3942);
+	        d = HH(d, a, b, c, x[k + 8], S32, 0x8771F681);
+	        c = HH(c, d, a, b, x[k + 11], S33, 0x6D9D6122);
+	        b = HH(b, c, d, a, x[k + 14], S34, 0xFDE5380C);
+	        a = HH(a, b, c, d, x[k + 1], S31, 0xA4BEEA44);
+	        d = HH(d, a, b, c, x[k + 4], S32, 0x4BDECFA9);
+	        c = HH(c, d, a, b, x[k + 7], S33, 0xF6BB4B60);
+	        b = HH(b, c, d, a, x[k + 10], S34, 0xBEBFBC70);
+	        a = HH(a, b, c, d, x[k + 13], S31, 0x289B7EC6);
+	        d = HH(d, a, b, c, x[k + 0], S32, 0xEAA127FA);
+	        c = HH(c, d, a, b, x[k + 3], S33, 0xD4EF3085);
+	        b = HH(b, c, d, a, x[k + 6], S34, 0x4881D05);
+	        a = HH(a, b, c, d, x[k + 9], S31, 0xD9D4D039);
+	        d = HH(d, a, b, c, x[k + 12], S32, 0xE6DB99E5);
+	        c = HH(c, d, a, b, x[k + 15], S33, 0x1FA27CF8);
+	        b = HH(b, c, d, a, x[k + 2], S34, 0xC4AC5665);
+	        a = II(a, b, c, d, x[k + 0], S41, 0xF4292244);
+	        d = II(d, a, b, c, x[k + 7], S42, 0x432AFF97);
+	        c = II(c, d, a, b, x[k + 14], S43, 0xAB9423A7);
+	        b = II(b, c, d, a, x[k + 5], S44, 0xFC93A039);
+	        a = II(a, b, c, d, x[k + 12], S41, 0x655B59C3);
+	        d = II(d, a, b, c, x[k + 3], S42, 0x8F0CCC92);
+	        c = II(c, d, a, b, x[k + 10], S43, 0xFFEFF47D);
+	        b = II(b, c, d, a, x[k + 1], S44, 0x85845DD1);
+	        a = II(a, b, c, d, x[k + 8], S41, 0x6FA87E4F);
+	        d = II(d, a, b, c, x[k + 15], S42, 0xFE2CE6E0);
+	        c = II(c, d, a, b, x[k + 6], S43, 0xA3014314);
+	        b = II(b, c, d, a, x[k + 13], S44, 0x4E0811A1);
+	        a = II(a, b, c, d, x[k + 4], S41, 0xF7537E82);
+	        d = II(d, a, b, c, x[k + 11], S42, 0xBD3AF235);
+	        c = II(c, d, a, b, x[k + 2], S43, 0x2AD7D2BB);
+	        b = II(b, c, d, a, x[k + 9], S44, 0xEB86D391);
+	        a = AddUnsigned(a, AA);
+	        b = AddUnsigned(b, BB);
+	        c = AddUnsigned(c, CC);
+	        d = AddUnsigned(d, DD);
+	    }
+	    var temp = WordToHex(a) + WordToHex(b) + WordToHex(c) + WordToHex(d);
+	    return temp.toLowerCase();
+	};
+
+	module.exports = md5;
 
 /***/ },
 
@@ -2062,6 +2310,9 @@ webpackJsonp([5],{
 	            $('#zh-top-search-input').focus();
 	        }
 	    }, {
+	        key: 'isSelf',
+	        value: function isSelf() {}
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -2101,7 +2352,8 @@ webpackJsonp([5],{
 	                        _react2.default.createElement(
 	                            'div',
 	                            { id: 'userMsg-peaple', className: 'userMsg-info-group' },
-	                            '123人'
+	                            _unicode2.default.toHex(_vars2.default.storageValue('userStorage', 'followerSum')) || 0,
+	                            ' 人'
 	                        ),
 	                        _react2.default.createElement(
 	                            'div',
@@ -2161,7 +2413,7 @@ webpackJsonp([5],{
 
 
 	// module
-	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    弹性布局\n*/\n/*\n    文字省略\n*/\n#userMsg {\n  position: relative;\n  top: 0;\n  left: 0;\n  height: 5rem;\n  color: #FFFFFF;\n  overflow: hidden; }\n  #userMsg #userMsg-kbImg {\n    position: absolute;\n    top: -6%;\n    left: -3%;\n    width: 106%;\n    height: 112%; }\n  #userMsg #userMsg-head-group {\n    position: relative; }\n    #userMsg #userMsg-head-group #userMsg-head {\n      height: .7rem;\n      overflow: hidden; }\n      #userMsg #userMsg-head-group #userMsg-head .userMsg-ease {\n        width: 1rem;\n        line-height: .6rem;\n        text-align: center;\n        height: 100%; }\n      #userMsg #userMsg-head-group #userMsg-head #userMsg-left {\n        float: left; }\n        #userMsg #userMsg-head-group #userMsg-head #userMsg-left img {\n          width: 0.55rem; }\n      #userMsg #userMsg-head-group #userMsg-head #userMsg-right {\n        float: right; }\n        #userMsg #userMsg-head-group #userMsg-head #userMsg-right img {\n          width: 0.5rem; }\n    #userMsg #userMsg-head-group #userMsg-headImg {\n      margin: 0 auto 0.2rem;\n      width: 1.5rem;\n      height: 1.5rem;\n      border: .05rem solid #FFFFFF;\n      -webkit-border-radius: 100%;\n      border-radius: 100%; }\n      #userMsg #userMsg-head-group #userMsg-headImg img {\n        width: 100%;\n        height: 100%;\n        -webkit-border-radius: 100%;\n        border-radius: 100%; }\n    #userMsg #userMsg-head-group #userMsg-name {\n      margin-bottom: 0.15rem;\n      text-align: center;\n      font-size: .4rem; }\n    #userMsg #userMsg-head-group #userMsg-info {\n      width: 2.8rem;\n      height: .6rem;\n      line-height: .6rem;\n      -webkit-border-radius: 2rem;\n      border-radius: 2rem;\n      margin: 0 auto 0.3rem;\n      font-size: .3rem;\n      border: .03rem solid #FFFFFF;\n      display: -webkit-box;\n      display: -moz-box;\n      display: -ms-flexbox;\n      display: -webkit-flex;\n      display: flex;\n      flex-flow: row; }\n      #userMsg #userMsg-head-group #userMsg-info .userMsg-info-group {\n        flex: 1;\n        text-align: center; }\n        #userMsg #userMsg-head-group #userMsg-info .userMsg-info-group:first-child {\n          border-right: 1px solid #FFFFFF; }\n    #userMsg #userMsg-head-group #userMsg-des {\n      width: 90%;\n      text-align: center;\n      margin: auto;\n      font-size: .27rem;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis; }\n", ""]);
+	exports.push([module.id, "@charset \"UTF-8\";\n/*\n    弹性布局\n*/\n/*\n    文字省略\n*/\n#userMsg {\n  position: relative;\n  top: 0;\n  left: 0;\n  height: 5rem;\n  color: #FFFFFF;\n  overflow: hidden; }\n  #userMsg #userMsg-kbImg {\n    position: absolute;\n    top: -6%;\n    left: -3%;\n    width: 106%;\n    height: 112%; }\n  #userMsg #userMsg-head-group {\n    position: relative; }\n    #userMsg #userMsg-head-group #userMsg-head {\n      height: .7rem;\n      overflow: hidden; }\n      #userMsg #userMsg-head-group #userMsg-head .userMsg-ease {\n        width: 1rem;\n        line-height: .6rem;\n        text-align: center;\n        height: 100%; }\n      #userMsg #userMsg-head-group #userMsg-head #userMsg-left {\n        float: left; }\n        #userMsg #userMsg-head-group #userMsg-head #userMsg-left img {\n          width: 0.55rem; }\n      #userMsg #userMsg-head-group #userMsg-head #userMsg-right {\n        float: right; }\n        #userMsg #userMsg-head-group #userMsg-head #userMsg-right img {\n          width: 0.5rem; }\n    #userMsg #userMsg-head-group #userMsg-headImg {\n      margin: 0 auto 0.2rem;\n      width: 1.5rem;\n      height: 1.5rem;\n      border: .05rem solid #FFFFFF;\n      -webkit-border-radius: 100%;\n      border-radius: 100%; }\n      #userMsg #userMsg-head-group #userMsg-headImg img {\n        width: 100%;\n        height: 100%;\n        -webkit-border-radius: 100%;\n        border-radius: 100%; }\n    #userMsg #userMsg-head-group #userMsg-name {\n      margin-bottom: 0.15rem;\n      text-align: center;\n      font-size: .4rem; }\n    #userMsg #userMsg-head-group #userMsg-info {\n      width: 2.8rem;\n      height: .6rem;\n      line-height: .6rem;\n      -webkit-border-radius: 2rem;\n      border-radius: 2rem;\n      margin: 0 auto 0.3rem;\n      font-size: .3rem;\n      border: .03rem solid #FFFFFF;\n      display: -webkit-box;\n      display: -moz-box;\n      display: -ms-flexbox;\n      display: -webkit-flex;\n      display: flex;\n      flex-flow: row; }\n      #userMsg #userMsg-head-group #userMsg-info .userMsg-info-group {\n        flex: 1;\n        text-align: center; }\n        #userMsg #userMsg-head-group #userMsg-info .userMsg-info-group:nth-child(2) {\n          border-left: 1px solid #FFFFFF; }\n    #userMsg #userMsg-head-group #userMsg-des {\n      width: 90%;\n      text-align: center;\n      margin: auto;\n      font-size: .27rem;\n      overflow: hidden;\n      white-space: nowrap;\n      text-overflow: ellipsis; }\n", ""]);
 
 	// exports
 
@@ -3181,13 +3433,14 @@ webpackJsonp([5],{
 
 	'use strict';
 
-	var _roots = __webpack_require__(239);
+	var _common = __webpack_require__(252);
 
-	var _roots2 = _interopRequireDefault(_roots);
+	var _common2 = _interopRequireDefault(_common);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var user = function user() {};
+
 	/*
 		@author
 			abel
@@ -3202,15 +3455,45 @@ webpackJsonp([5],{
 		@version
 			2016-03-09
 	 */
-
-	user.show = function (mid, requester, success, err) {
-		if (mid && requester) {
-			var url = _roots2.default.ajax.get('user_show', {
-				mid: mid,
-				requester: requester
-			}, success, err);
+	user.show = function (params, success, err) {
+		var isFullParams = _common2.default.isFullParams(params, {
+			mid: 0,
+			requester: 0
+		});
+		if (isFullParams) {
+			var url = _common2.default.ajax.get('user_show', params, success, err);
 		} else {
-			console.err(_roots2.default.errs.err('unFully'), 'mid && requester');
+			console.err(_common2.default.errs.err('unFully'), 'mid && requester');
+		}
+	};
+
+	/*
+		@author
+			abel
+		@to
+			abel || abel
+		@des
+			1. 处理关于user接口
+		@api 
+			show
+				* timestamp: string、时间戳、~ + md5(~ + sharekey)
+				* username: string、用户名
+				* mobile: string、手机号
+				* device: string、移动端标识
+				* deviceuuid: string、开发版本
+				* source: string、标识
+				* type: string、类型
+		@version
+			2016-03-12
+
+	 */
+	user.register = function (params, success, err) {
+		for (var o in params) {
+			if (params.hasOwnProperty(o)) {
+				if (params[o]) {} else {
+					console.err(_common2.default.errs.err('unFully'), o);
+				}
+			}
 		}
 	};
 
@@ -3218,25 +3501,118 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 239:
+/***/ 240:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _ajax = __webpack_require__(251);
+	var _superagent = __webpack_require__(163);
 
-	var _ajax2 = _interopRequireDefault(_ajax);
+	var _superagent2 = _interopRequireDefault(_superagent);
+
+	var _vars = __webpack_require__(172);
+
+	var _vars2 = _interopRequireDefault(_vars);
+
+	var _formatAjax = __webpack_require__(170);
+
+	var _formatAjax2 = _interopRequireDefault(_formatAjax);
+
+	var _errs = __webpack_require__(233);
+
+	var _errs2 = _interopRequireDefault(_errs);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var roots = function roots() {};
-	roots.ajax = _ajax2.default;
+	/*
+		@structure
+			
+			底层  - 中间层
+				 / ajax_common 公共部分：请求结束后的执行结构
+				/
+			ajax - get 对外提供get方法
+				 - post 对外提供post方法
 
-	module.exports = roots;
+		@author
+			abel
+		@des
+			1. 代理请求
+			2. 处理请求中间过程
+		@api
+			ajax || post || get
+			ajax:
+				* method: String 请求方法
+				* name: String 接口名称
+				* params: Object 接口需要参数
+				* success: Function 成功方法
+				* error: Function 失败方法
+			post:
+				* name
+				* params
+				* success
+				* error
+			get: 
+				* name
+				* params
+				* success
+				* error
+		@version
+			2016-03-10
+	 */
+
+	var ajax = function ajax() {};
+	ajax.ajax = function () {
+		var method = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+		var name = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+		var params = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+		var success = arguments.length <= 3 || arguments[3] === undefined ? function () {} : arguments[3];
+		var error = arguments.length <= 4 || arguments[4] === undefined ? function (data) {
+			alert(data.status.msg);
+		} : arguments[4];
+
+		var url = _vars2.default.api(name);
+		if (url) {
+			if (method === 'get' || method === undefined) {
+				url = _formatAjax2.default.get(_vars2.default.api(name), params);
+				_superagent2.default.get(url).end(function (err, res) {
+					ajax.ajax_common(res, success, error);
+				});
+			} else if (method === 'post') {
+				_superagent2.default.post(url).send(params).end(function (err, res) {
+					ajax.ajax_common(res, success, error);
+				});
+			} else {
+				console.err(_errs2.default.err('unMethod', method));
+			}
+		} else {
+			console.err(_errs2.default.err('un', name));
+		}
+	};
+
+	ajax.ajax_common = function (res, success, error) {
+		if (res.status === 200) {
+			var data = JSON.parse(res.text);
+			if (data.status.code === '0') {
+				success(data);
+			} else {
+				error(data);
+			}
+		}
+	};
+
+	ajax.get = function (name, params, success, error) {
+		ajax.ajax('get', name, params, success, error);
+	};
+
+	ajax.post = function (name, params, success, error) {
+		ajax.ajax('post', name, params, success, error);
+	};
+
+	module.exports = ajax;
 
 /***/ },
 
-/***/ 240:
+/***/ 241:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3275,7 +3651,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(241);
+	__webpack_require__(242);
 
 	var Follow = (function (_React$Component) {
 	    _inherits(Follow, _React$Component);
@@ -3373,13 +3749,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 241:
+/***/ 242:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(242);
+	var content = __webpack_require__(243);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(178)(content, {});
@@ -3400,7 +3776,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 242:
+/***/ 243:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(177)();
@@ -3415,7 +3791,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 243:
+/***/ 244:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3454,7 +3830,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(244);
+	__webpack_require__(245);
 
 	var Group = (function (_React$Component) {
 	    _inherits(Group, _React$Component);
@@ -3562,13 +3938,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 244:
+/***/ 245:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(245);
+	var content = __webpack_require__(246);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(178)(content, {});
@@ -3589,7 +3965,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 245:
+/***/ 246:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(177)();
@@ -3604,7 +3980,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 246:
+/***/ 247:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3635,7 +4011,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(247);
+	__webpack_require__(248);
 
 	var Msg = (function (_React$Component) {
 	    _inherits(Msg, _React$Component);
@@ -3789,13 +4165,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 247:
+/***/ 248:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(248);
+	var content = __webpack_require__(249);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(178)(content, {});
@@ -3816,7 +4192,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 248:
+/***/ 249:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(177)();
@@ -3831,13 +4207,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 249:
+/***/ 250:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(250);
+	var content = __webpack_require__(251);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(178)(content, {});
@@ -3858,7 +4234,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 250:
+/***/ 251:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(177)();
@@ -3873,22 +4249,14 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 251:
+/***/ 252:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _superagent = __webpack_require__(163);
+	var _ajax = __webpack_require__(240);
 
-	var _superagent2 = _interopRequireDefault(_superagent);
-
-	var _vars = __webpack_require__(172);
-
-	var _vars2 = _interopRequireDefault(_vars);
-
-	var _formatAjax = __webpack_require__(170);
-
-	var _formatAjax2 = _interopRequireDefault(_formatAjax);
+	var _ajax2 = _interopRequireDefault(_ajax);
 
 	var _errs = __webpack_require__(233);
 
@@ -3896,91 +4264,26 @@ webpackJsonp([5],{
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	/*
-		@structure
-			
-			底层  - 中间层
-				 / ajax_common 公共部分：请求结束后的执行结构
-				/
-			ajax - get 对外提供get方法
-				 - post 对外提供post方法
+	var common = function common() {};
 
-		@author
-			abel
-		@des
-			1. 代理请求
-			2. 处理请求中间过程
-		@api
-			ajax || post || get
-			ajax:
-				* method: String 请求方法
-				* name: String 接口名称
-				* params: Object 接口需要参数
-				* success: Function 成功方法
-				* error: Function 失败方法
-			post:
-				* name
-				* params
-				* success
-				* error
-			get: 
-				* name
-				* params
-				* success
-				* error
-		@version
-			2016-03-10
-	 */
+	common.ajax = _ajax2.default;
+	common.errs = _errs2.default;
 
-	var ajax = function ajax() {};
-	ajax.ajax = function () {
-		var method = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
-		var name = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
-		var params = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
-		var success = arguments.length <= 3 || arguments[3] === undefined ? function () {} : arguments[3];
-		var error = arguments.length <= 4 || arguments[4] === undefined ? function (data) {
-			alert(data.status.msg);
-		} : arguments[4];
-
-		var url = _vars2.default.api(name);
-		if (url) {
-			if (method === 'get' || method === undefined) {
-				url = _formatAjax2.default.get(_vars2.default.api(name), params);
-				_superagent2.default.get(url).end(function (err, res) {
-					roots.ajax_common(res, success, error);
-				});
-			} else if (method === 'post') {
-				_superagent2.default.post(url).send(params).end(function (err, res) {
-					roots.ajax_common(res, success, error);
-				});
-			} else {
-				console.err(_errs2.default.err('unMethod', method));
-			}
-		} else {
-			console.err(_errs2.default.err('un', name));
-		}
-	};
-
-	ajax.ajax_common = function (res, success, error) {
-		if (res.status === 200) {
-			var data = JSON.parse(res.text);
-			if (data.status.code === '0') {
-				success(data);
-			} else {
-				error(data);
+	common.isFullParams = function (allParams, needParams) {
+		for (var o in needParams) {
+			// 遍历全部参数
+			if (needParams.hasOwnProperty(o)) {
+				if (!allParams.hasOwnProperty(o)) {
+					// 是否有必要参数
+					console.err(_errs2.default.err('unFully'), o);
+					return false;
+				}
 			}
 		}
+		return true;
 	};
 
-	ajax.get = function (name, params, success, error) {
-		roots.ajax('get', name, params, success, error);
-	};
-
-	ajax.post = function (name, params, success, error) {
-		roots.ajax('post', name, params, success, error);
-	};
-
-	module.exports = ajax;
+	module.exports = common;
 
 /***/ }
 

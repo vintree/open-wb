@@ -3,8 +3,6 @@ require('../../sass/hotGroup.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Immutable from 'immutable';
-// import $ from "jquery";
-
 
 import InjectTapEventPlugin from "react-tap-event-plugin";
 import Superagent from 'superagent';

@@ -25,6 +25,10 @@ export default class UserMsg extends React.Component {
         $('#zh-top-search-input').focus();
     }
 
+    isSelf() {
+        
+    }
+
     render() {
         return (
             <div id="userMsg">
@@ -43,7 +47,7 @@ export default class UserMsg extends React.Component {
                     </div>
                     <div id="userMsg-name">{Unicode.toHex(Vars.storageValue('userStorage', 'nickname'))}</div>
                     <div id="userMsg-info">
-                        <div id="userMsg-peaple" className="userMsg-info-group">123人</div>
+                        <div id="userMsg-peaple" className="userMsg-info-group">{Unicode.toHex(Vars.storageValue('userStorage', 'followerSum')) || 0} 人</div>
                         <div id="userMsg-focus" className="userMsg-info-group">+ 加入</div>
                     </div>
                     <div id="userMsg-des">{Unicode.toHex(Vars.storageValue('userStorage', 'sign')) || '还没有填写哦！'}</div>
