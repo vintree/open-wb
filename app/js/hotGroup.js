@@ -1815,7 +1815,6 @@ webpackJsonp([3],{
 
 	vars.storageValue = function (key1, key2) {
 	    var sobj = _storage2.default.get(vars.storage(key1));
-	    // console.log(sobj);
 	    return key2 ? sobj[key2] : sobj;
 	};
 
@@ -1884,8 +1883,7 @@ webpackJsonp([3],{
 	    var path = vars.path('apiPath'),
 	        obj = {
 	        fileUpload: 'file/post.json',
-	        userInfo: 'users/userinfo.json',
-	        city: 'zuji/city.json',
+
 	        hotTagList: 'biaoqian/list.json',
 	        hotList: 'biaoqian/search.json',
 	        userShow: 'users/show.json', //获取某个用户的个人信息
@@ -1893,6 +1891,9 @@ webpackJsonp([3],{
 	        tag_list: 'users/tag/list.json', //获取用户加入的群组(标签)
 	        event_list: 'users/event/list.json', //获取用户活动列表
 	        get_my_notes: 'notes/get_my_notes.json', //用户的动态
+
+	        city: 'zuji/city.json', //获取城市
+	        user_info: 'users/userinfo.json', //设置
 	        user_show: 'users/show.json', //获取用户信息
 	        user_register: 'users/register.json' };
 	    //用户注册

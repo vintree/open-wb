@@ -10,7 +10,6 @@ export default class Msg extends React.Component {
         this.state = {
             msg: Vars.storageValue('user')
         };
-        console.log(this.state.msg);
     }
 
     componentWillMount() {
@@ -23,18 +22,10 @@ export default class Msg extends React.Component {
             msg: msg
         };
     }
-
     /*
         转换成可看的性别代号
      */
     initSex(sex) {
-        // if(sex === 'm') {
-        //     return '男'
-        // } else if(sex === 'f') {
-        //     return '女'
-        // } else {
-        //     return '未知'
-        // }
         switch(sex) {
             case 'm': 
                 return '男';
@@ -45,7 +36,6 @@ export default class Msg extends React.Component {
             default:
                 return '未知';
         }
-
     }
 
     render() {

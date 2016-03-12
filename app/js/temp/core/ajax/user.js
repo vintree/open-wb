@@ -16,24 +16,19 @@ const user = () => {};
 		2016-03-09
  */
 user.show = (params, success, err) => {
-	let isFullParams = Common.isFullParams(params, {
+	let needParams = {
 		mid: 0,
 		requester: 0
-	});
-	if(isFullParams) {
-		const url = Common.ajax.get('user_show', params, success, err);
-	} else {
-		console.err(Common.errs.err('unFully'), 'mid && requester');
-	}
-}
-
+	};
+	Common(params, needParams, 'get', 'user_show', success, err);
+};
 /*
 	@author
 		abel
 	@to
-		abel || abel
+		abel
 	@des
-		1. 处理关于user接口
+		登录，注册接口
 	@api 
 		show
 			* timestamp: string、时间戳、~ + md5(~ + sharekey)
@@ -45,18 +40,30 @@ user.show = (params, success, err) => {
 			* type: string、类型
 	@version
 		2016-03-12
-
  */
 user.register = (params, success, err) => {
-	for(let o in params) {
-		if(params.hasOwnProperty(o)) {
-			if(params[o]) {}
-			else {
-				console.err(Common.errs.err('unFully'), o);
-			}
+	let needParams = {
+		timestamp: 0,
+		username: 0,
+		mobile: 0,
+		device: 0,
+		deviceuuid: 0,
+		source: 0,
+		type: 0
+	};
+	Common(params, needParams, 'get', 'user_register', success, err);
+};
 
-		}
-	}
-}
-
+user.info = (params, success, err) => {
+	let needParams = {
+		timestamp: 0,
+		username: 0,
+		mobile: 0,
+		device: 0,
+		deviceuuid: 0,
+		source: 0,
+		type: 0
+	};
+	Common(params, needParams, 'get', 'user_info', success, err);
+};
 module.exports = user;

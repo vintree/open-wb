@@ -10,7 +10,6 @@ export default class UserMsg extends React.Component {
         this.state = {
             staticPath: Vars.path('staticPath')
         };
-        // console.log(props);
     }
     handleFocus(e) {
         $('#header-rsBox').addClass('active');
@@ -24,11 +23,7 @@ export default class UserMsg extends React.Component {
         e.preventDefault();
         $('#zh-top-search-input').focus();
     }
-
-    isSelf() {
-        
-    }
-
+    
     render() {
         return (
             <div id="userMsg">

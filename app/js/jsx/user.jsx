@@ -75,9 +75,9 @@ class Main extends React.Component {
     }
 
     tapTab(e) {
-        const node = ReactDOM.findDOMNode(e.target);
-        const tab = this.state.tab;
-        const ix = Number(node.getAttribute('data-ix'));
+        const   node = ReactDOM.findDOMNode(e.target),
+                tab = this.state.tab,
+                ix = Number(node.getAttribute('data-ix'));
         for(var i = 0, l = tab.length; i < l; i++) {
             if(i === ix) {
                 tab[i].active = 'active';
@@ -91,16 +91,18 @@ class Main extends React.Component {
     getUserMsg(userData) {
         let
         mid = userData['mid'],
-        requester = userData['ofusername'];
-
+        requester = userData['ofusername'],
+        params = {};
         mid = mid + Md5.init(mid + Vars.sys('sharekey'));
-        console.log(mid, requester);
-        CORE.ajax.user.show(mid, requester, (data) => {
+        params = {
+            mid: mid,
+            requester: requester
+        };
+        CORE.ajax.user.show(params, (data) => {
             Storage.set(Vars.storage('user'), data.data);
             this.setState({
                 userData: data.data
             });
-            // console.log(Storage.get(Vars.storage('user')));
         }, (data) => {
             console.log('er');
             alert(Unicode.toHex(data.status.msg));
@@ -127,7 +129,6 @@ class Main extends React.Component {
                         if(data.hasOwnProperty(o)) {
                             let tlist = data[o];
                             tlist = tlist.map((v, i) => {
-                                // console.log(v);
                                 v.time = o;
                                 return v;
                             });

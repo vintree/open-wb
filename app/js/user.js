@@ -159,9 +159,9 @@ webpackJsonp([5],{
 	    }, {
 	        key: 'tapTab',
 	        value: function tapTab(e) {
-	            var node = _reactDom2.default.findDOMNode(e.target);
-	            var tab = this.state.tab;
-	            var ix = Number(node.getAttribute('data-ix'));
+	            var node = _reactDom2.default.findDOMNode(e.target),
+	                tab = this.state.tab,
+	                ix = Number(node.getAttribute('data-ix'));
 	            for (var i = 0, l = tab.length; i < l; i++) {
 	                if (i === ix) {
 	                    tab[i].active = 'active';
@@ -177,16 +177,18 @@ webpackJsonp([5],{
 	            var _this2 = this;
 
 	            var mid = userData['mid'],
-	                requester = userData['ofusername'];
-
+	                requester = userData['ofusername'],
+	                params = {};
 	            mid = mid + _md2.default.init(mid + _vars2.default.sys('sharekey'));
-	            console.log(mid, requester);
-	            _app2.default.ajax.user.show(mid, requester, function (data) {
+	            params = {
+	                mid: mid,
+	                requester: requester
+	            };
+	            _app2.default.ajax.user.show(params, function (data) {
 	                _storage2.default.set(_vars2.default.storage('user'), data.data);
 	                _this2.setState({
 	                    userData: data.data
 	                });
-	                // console.log(Storage.get(Vars.storage('user')));
 	            }, function (data) {
 	                console.log('er');
 	                alert(_unicode2.default.toHex(data.status.msg));
@@ -215,7 +217,6 @@ webpackJsonp([5],{
 	                            if (data.hasOwnProperty(o)) {
 	                                var tlist = data[o];
 	                                tlist = tlist.map(function (v, i) {
-	                                    // console.log(v);
 	                                    v.time = o;
 	                                    return v;
 	                                });
@@ -1859,7 +1860,6 @@ webpackJsonp([5],{
 
 	vars.storageValue = function (key1, key2) {
 	    var sobj = _storage2.default.get(vars.storage(key1));
-	    // console.log(sobj);
 	    return key2 ? sobj[key2] : sobj;
 	};
 
@@ -1928,8 +1928,7 @@ webpackJsonp([5],{
 	    var path = vars.path('apiPath'),
 	        obj = {
 	        fileUpload: 'file/post.json',
-	        userInfo: 'users/userinfo.json',
-	        city: 'zuji/city.json',
+
 	        hotTagList: 'biaoqian/list.json',
 	        hotList: 'biaoqian/search.json',
 	        userShow: 'users/show.json', //获取某个用户的个人信息
@@ -1937,6 +1936,9 @@ webpackJsonp([5],{
 	        tag_list: 'users/tag/list.json', //获取用户加入的群组(标签)
 	        event_list: 'users/event/list.json', //获取用户活动列表
 	        get_my_notes: 'notes/get_my_notes.json', //用户的动态
+
+	        city: 'zuji/city.json', //获取城市
+	        user_info: 'users/userinfo.json', //设置
 	        user_show: 'users/show.json', //获取用户信息
 	        user_register: 'users/register.json' };
 	    //用户注册
@@ -2289,7 +2291,6 @@ webpackJsonp([5],{
 	        _this.state = {
 	            staticPath: _vars2.default.path('staticPath')
 	        };
-	        // console.log(props);
 	        return _this;
 	    }
 
@@ -2309,9 +2310,6 @@ webpackJsonp([5],{
 	            e.preventDefault();
 	            $('#zh-top-search-input').focus();
 	        }
-	    }, {
-	        key: 'isSelf',
-	        value: function isSelf() {}
 	    }, {
 	        key: 'render',
 	        value: function render() {
@@ -3419,11 +3417,16 @@ webpackJsonp([5],{
 
 	var _user2 = _interopRequireDefault(_user);
 
+	var _own = __webpack_require__(253);
+
+	var _own2 = _interopRequireDefault(_own);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ajax = {};
-	ajax.user = _user2.default;
 
+	ajax.user = _user2.default;
+	ajax.own = _own2.default;
 	module.exports = ajax;
 
 /***/ },
@@ -3433,7 +3436,7 @@ webpackJsonp([5],{
 
 	'use strict';
 
-	var _common = __webpack_require__(252);
+	var _common = __webpack_require__(239);
 
 	var _common2 = _interopRequireDefault(_common);
 
@@ -3456,24 +3459,19 @@ webpackJsonp([5],{
 			2016-03-09
 	 */
 	user.show = function (params, success, err) {
-		var isFullParams = _common2.default.isFullParams(params, {
+		var needParams = {
 			mid: 0,
 			requester: 0
-		});
-		if (isFullParams) {
-			var url = _common2.default.ajax.get('user_show', params, success, err);
-		} else {
-			console.err(_common2.default.errs.err('unFully'), 'mid && requester');
-		}
+		};
+		(0, _common2.default)(params, needParams, 'get', 'user_show', success, err);
 	};
-
 	/*
 		@author
 			abel
 		@to
-			abel || abel
+			abel
 		@des
-			1. 处理关于user接口
+			登录，注册接口
 		@api 
 			show
 				* timestamp: string、时间戳、~ + md5(~ + sharekey)
@@ -3485,19 +3483,77 @@ webpackJsonp([5],{
 				* type: string、类型
 		@version
 			2016-03-12
-
 	 */
 	user.register = function (params, success, err) {
-		for (var o in params) {
-			if (params.hasOwnProperty(o)) {
-				if (params[o]) {} else {
-					console.err(_common2.default.errs.err('unFully'), o);
-				}
+		var needParams = {
+			timestamp: 0,
+			username: 0,
+			mobile: 0,
+			device: 0,
+			deviceuuid: 0,
+			source: 0,
+			type: 0
+		};
+		(0, _common2.default)(params, needParams, 'get', 'user_register', success, err);
+	};
+
+	user.info = function (params, success, err) {
+		var needParams = {
+			timestamp: 0,
+			username: 0,
+			mobile: 0,
+			device: 0,
+			deviceuuid: 0,
+			source: 0,
+			type: 0
+		};
+		(0, _common2.default)(params, needParams, 'get', 'user_info', success, err);
+	};
+	module.exports = user;
+
+/***/ },
+
+/***/ 239:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _ajax = __webpack_require__(240);
+
+	var _ajax2 = _interopRequireDefault(_ajax);
+
+	var _errs = __webpack_require__(233);
+
+	var _errs2 = _interopRequireDefault(_errs);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var common = function common(allParams, needParams, method, name, success, err) {
+		var isFullParams = common.isFullParams(allParams, needParams);
+		if (isFullParams) {
+			if (method === 'get') {
+				_ajax2.default.get(name, allParams, success, err);
+			} else if (method === 'post') {
+				_ajax2.default.post(name, allParams, success, err);
 			}
 		}
 	};
 
-	module.exports = user;
+	common.isFullParams = function (allParams, needParams) {
+		for (var o in needParams) {
+			if (needParams.hasOwnProperty(o)) {
+				if (!allParams.hasOwnProperty(o)) {
+					console.error(_errs2.default.err('unFully'), o);
+					return false;
+				}
+			}
+		}
+		return true;
+	};
+
+	common.ajax = _ajax2.default;
+	common.errs = _errs2.default;
+	module.exports = common;
 
 /***/ },
 
@@ -4024,7 +4080,6 @@ webpackJsonp([5],{
 	        _this.state = {
 	            msg: _vars2.default.storageValue('user')
 	        };
-	        console.log(_this.state.msg);
 	        return _this;
 	    }
 
@@ -4040,7 +4095,6 @@ webpackJsonp([5],{
 	                msg: msg
 	            };
 	        }
-
 	        /*
 	            转换成可看的性别代号
 	         */
@@ -4048,13 +4102,6 @@ webpackJsonp([5],{
 	    }, {
 	        key: 'initSex',
 	        value: function initSex(sex) {
-	            // if(sex === 'm') {
-	            //     return '男'
-	            // } else if(sex === 'f') {
-	            //     return '女'
-	            // } else {
-	            //     return '未知'
-	            // }
 	            switch (sex) {
 	                case 'm':
 	                    return '男';
@@ -4249,41 +4296,23 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 252:
+/***/ 253:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _ajax = __webpack_require__(240);
+	var _common = __webpack_require__(239);
 
-	var _ajax2 = _interopRequireDefault(_ajax);
-
-	var _errs = __webpack_require__(233);
-
-	var _errs2 = _interopRequireDefault(_errs);
+	var _common2 = _interopRequireDefault(_common);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var common = function common() {};
-
-	common.ajax = _ajax2.default;
-	common.errs = _errs2.default;
-
-	common.isFullParams = function (allParams, needParams) {
-		for (var o in needParams) {
-			// 遍历全部参数
-			if (needParams.hasOwnProperty(o)) {
-				if (!allParams.hasOwnProperty(o)) {
-					// 是否有必要参数
-					console.err(_errs2.default.err('unFully'), o);
-					return false;
-				}
-			}
-		}
-		return true;
+	var own = function own() {};
+	own.city = function (params, success, err) {
+		(0, _common2.default)(params, {}, 'get', 'city', success, err);
 	};
 
-	module.exports = common;
+	module.exports = own;
 
 /***/ }
 
