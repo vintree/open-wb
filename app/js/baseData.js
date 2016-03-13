@@ -334,6 +334,7 @@ webpackJsonp([0],{
 					// 	gender: gender,
 					// 	address: address
 					// });
+
 					var params = {
 						user: user,
 						nickname: nickName,

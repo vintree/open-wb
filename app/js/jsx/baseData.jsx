@@ -249,6 +249,7 @@ class Main extends React.Component {
 			// 	gender: gender,
 			// 	address: address
 			// });
+			
 			let params = {
 				user: user,
 				nickname: nickName,
