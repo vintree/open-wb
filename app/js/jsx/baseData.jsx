@@ -249,8 +249,6 @@ class Main extends React.Component {
 			// 	gender: gender,
 			// 	address: address
 			// });
-
-
 			let params = {
 				user: user,
 				nickname: nickName,
@@ -262,7 +260,6 @@ class Main extends React.Component {
 			}, (data)=> {
 				console.log(data);
 			})
-
 			// Superagent.get(url).end((err, res) => {
 			// 	if(res.status === 200) {
 			// 		var data = JSON.parse(Unicode.toHex(res.text));

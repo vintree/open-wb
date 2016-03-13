@@ -334,7 +334,6 @@ webpackJsonp([0],{
 					// 	gender: gender,
 					// 	address: address
 					// });
-
 					var params = {
 						user: user,
 						nickname: nickName,
@@ -346,7 +345,6 @@ webpackJsonp([0],{
 					}, function (data) {
 						console.log(data);
 					});
-
 					// Superagent.get(url).end((err, res) => {
 					// 	if(res.status === 200) {
 					// 		var data = JSON.parse(Unicode.toHex(res.text));
@@ -11298,7 +11296,6 @@ webpackJsonp([0],{
 	    var path = vars.path('apiPath'),
 	        obj = {
 	        fileUpload: 'file/post.json',
-
 	        hotTagList: 'biaoqian/list.json',
 	        hotList: 'biaoqian/search.json',
 	        userShow: 'users/show.json', //获取某个用户的个人信息

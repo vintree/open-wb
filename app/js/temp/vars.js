@@ -86,7 +86,6 @@ vars.api = (key) => {
     let path = vars.path('apiPath'),
         obj = {
             fileUpload: 'file/post.json',
-            
             hotTagList: 'biaoqian/list.json',
             hotList: 'biaoqian/search.json',
             userShow: 'users/show.json',//获取某个用户的个人信息
