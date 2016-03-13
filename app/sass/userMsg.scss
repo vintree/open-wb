@@ -71,8 +71,8 @@
             .userMsg-info-group {
                 flex: 1;
                 text-align: center;
-                &:first-child {
-                    border-right: 1px solid #FFFFFF;
+                &:nth-child(2) {
+                    border-left: 1px solid #FFFFFF;
                 }
             }
         }

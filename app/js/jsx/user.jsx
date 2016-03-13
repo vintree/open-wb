@@ -2,8 +2,9 @@ require('../../sass/user.scss');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Superagent from 'superagent';
-// import $ from "jquery";
 import InjectTapEventPlugin from "react-tap-event-plugin";
+
+import CORE from '../temp/core/app.js';
 
 import autoFont from '../temp/autoFont.js';
 import addScript from '../temp/addScript.js';
@@ -11,6 +12,8 @@ import Head from '../temp/head.js';
 import Storage from "../temp/storage.js";
 import FormatAjax from '../temp/formatAjax.js';
 import Vars from '../temp/vars.js';
+import Unicode from '../temp/unicode.js';
+import Md5 from '../temp/md5.js';
 
 import Nav from "../common/nav.jsx";
 import UserMsg from '../common/userMsg.jsx';
@@ -19,7 +22,6 @@ import Follow from "../common/follow.jsx";
 import Group from "../common/group.jsx";
 import Activity from "../common/activity.jsx";
 import Msg from "../common/msg.jsx";
-
 import Newest from "../common/newest.jsx";
 
 autoFont.init();
@@ -53,14 +55,15 @@ class Main extends React.Component {
                     active: ''
                 }
             ],
-            noteList: []
+            noteList: [],
+            userData: {}
         };
     }
 
     componentWillMount() {
         let userData = Storage.get('ws');
         this.state.userData = userData;
-        // console.log(this.state);
+        this.getUserMsg(userData);
     }
 
     tapMemu(e) {
@@ -72,9 +75,9 @@ class Main extends React.Component {
     }
 
     tapTab(e) {
-        const node = ReactDOM.findDOMNode(e.target);
-        const tab = this.state.tab;
-        const ix = Number(node.getAttribute('data-ix'));
+        const   node = ReactDOM.findDOMNode(e.target),
+                tab = this.state.tab,
+                ix = Number(node.getAttribute('data-ix'));
         for(var i = 0, l = tab.length; i < l; i++) {
             if(i === ix) {
                 tab[i].active = 'active';
@@ -85,10 +88,32 @@ class Main extends React.Component {
         this.setState({tab: tab});
     }
 
+    getUserMsg(userData) {
+        let
+        mid = userData['mid'],
+        requester = userData['ofusername'],
+        params = {};
+        mid = mid + Md5.init(mid + Vars.sys('sharekey'));
+        params = {
+            mid: mid,
+            requester: requester
+        };
+        CORE.ajax.user.show(params, (data) => {
+            Storage.set(Vars.storage('user'), data.data);
+            this.setState({
+                userData: data.data
+            });
+        }, (data) => {
+            console.log('er');
+            alert(Unicode.toHex(data.status.msg));
+        });
+    }
+
     componentDidMount() {
         let 
+        mid = Vars.storageValue('user', 'mid'),
         url = FormatAjax.get(Vars.api('get_my_notes'), {
-            mid: Vars.storageValue('user', 'mid'),
+            mid: mid,
             offset: 0,
             count: 10
         });
@@ -104,7 +129,6 @@ class Main extends React.Component {
                         if(data.hasOwnProperty(o)) {
                             let tlist = data[o];
                             tlist = tlist.map((v, i) => {
-                                // console.log(v);
                                 v.time = o;
                                 return v;
                             });
