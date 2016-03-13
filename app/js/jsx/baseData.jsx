@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import InjectTapEventPlugin from "react-tap-event-plugin";
 import Superagent from 'superagent';
 import $ from 'jquery';
-// import $ from 'webpack-zepto';
+
+import CORE from '../temp/core/app.js';
 
 import Head from '../temp/head.js';
 import autoFont from '../temp/autoFont.js';
@@ -33,7 +34,6 @@ Head.init({
     admins: '',
     favicon: ''
 });
-
 
 class HeadImg extends React.Component {
 	constructor(props) {
@@ -85,7 +85,6 @@ class HeadImg extends React.Component {
 						thumb_size: '80*80'
 					});
 
-					console.log($(document.body));
 
 					// require('../temp/zepto.ajaxfileupload.js');
 					// $.ajaxFileUpload({
@@ -164,25 +163,33 @@ class Main extends React.Component {
 			},
 			cityList: []
 		}
-		this.initCity();
+		this.getCity();
 	}
 
-	initCity() {
-		const apiPath = this.state.vars.apiPath;
-		var url =  Vars.api('city');
-		// url = FormatAjax.get(url);
-		Superagent.get(url).end((err, res) => {
-			if(res.status === 200) {
-				var data = JSON.parse(Unicode.toHex(res.text));
-				if(data.status.code === '0') {
-					this.setState({
-						cityList: data.data.china
-					});
-				} else {
-					alert(data.status.msg);
-				}
-			}
-		});
+	getCity() {
+		// const apiPath = this.state.vars.apiPath;
+		// var url =  Vars.api('city');
+		// // url = FormatAjax.get(url);
+		// Superagent.get(url).end((err, res) => {
+		// 	if(res.status === 200) {
+		// 		var data = JSON.parse(Unicode.toHex(res.text));
+		// 		if(data.status.code === '0') {
+		// 			this.setState({
+		// 				cityList: data.data.china
+		// 			});
+		// 		} else {
+		// 			alert(data.status.msg);
+		// 		}
+		// 	}
+		// });
+		
+		CORE.ajax.own.city({}, (data)=> {
+			this.setState({
+				cityList: data.data.china
+			});
+		}, (data)=> {
+			alert(Unicode.toHex(data.status.msg));
+		})
 	}
 
 	resultEn(value) {
@@ -236,18 +243,30 @@ class Main extends React.Component {
 		if(nickName.length >= this.state.nick.scope[0] && nickName.length <= this.state.nick.scope[1]) {
 			gender = gender.options[gender.selectedIndex].getAttribute('data-code');
 			address = address.value;
-			url = FormatAjax.get(Vars.api('userInfo'), {
+			// url = FormatAjax.get(Vars.api('user_info'), {
+			// 	user: user,
+			// 	nickname: nickName,
+			// 	gender: gender,
+			// 	address: address
+			// });
+			
+			let params = {
 				user: user,
 				nickname: nickName,
 				gender: gender,
 				address: address
-			});
-			Superagent.get(url).end((err, res) => {
-				if(res.status === 200) {
-					var data = JSON.parse(Unicode.toHex(res.text));
-					console.log(data);
-				}
-			});
+			}
+			CORE.ajax.user.info(params, (data)=> {
+				console.log(data);
+			}, (data)=> {
+				console.log(data);
+			})
+			// Superagent.get(url).end((err, res) => {
+			// 	if(res.status === 200) {
+			// 		var data = JSON.parse(Unicode.toHex(res.text));
+			// 		console.log(data);
+			// 	}
+			// });
 		} else {
 			alert(Vars.err('nickName'));
 			return false;
@@ -256,8 +275,9 @@ class Main extends React.Component {
 
 	render() {
 		const cityList = this.state.cityList.map( (v, ix) => {
+			const city = Unicode.toHex(v.city);
 			return (
-				<option key={v.id} value={v.city}>{v.city}</option>
+				<option key={v.id} value={city}>{city}</option>
 			);
 		});
 		return (

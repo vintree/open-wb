@@ -93,42 +93,69 @@ class Newest_body_2 extends React.Component {
 class Newest_foot extends React.Component {
     constructor(props) {
         super(props);
+        // console.log(props);
         this.state = {
-            imgUrl: [
-                props.vars.path + 'img/collect.png',
-                props.vars.path + 'img/good.png',
-                props.vars.path + 'img/review.png',
-                props.vars.path + 'img/map@3x.png'
-            ]
+            favorite: {
+                imgUrl: props.vars.path + 'img/collect.png',
+                imgActiveUrl: props.vars.path + 'img/collect-ed.png',
+                num: this.props.data.favoriteNum + ' +'
+            },
+            praise: {
+                imgUrl: props.vars.path + 'img/good.png',
+                imgActiveUrl: props.vars.path + 'img/good-ed.png',
+                num: this.props.data.praiseCount + ' +'
+            },
+            review: {
+                imgUrl: props.vars.path + 'img/review.png', 
+                imgActiveUrl: props.vars.path + 'img/review-ed.png',
+                num: this.props.data.reviewCount + ' +'
+            },
+            imgAddrUrl: props.vars.path + 'img/map@3x.png'
         };
     }
+
+    componentWillMount() {
+        let 
+        favorite = this.state.favorite, 
+        praise = this.state.praise, 
+        review = this.state.review;
+        // console.log(this.state);
+        if(this.props.data.isFavorite) {
+            favorite.imgUrl = favorite.imgActiveUrl;
+            favorite.num = this.props.data.favoriteNum;
+        }
+        if(this.props.data.isFaved) {
+            praise.imgUrl = praise.imgActiveUrl;
+            praise.num = this.props.data.praiseCount;
+        }
+    }
+
     render() {
         let address = '';
         if(this.props.data.location) {
             address = (
                 <div className="newest-place">
-                    <img src={this.state.imgUrl[3]}></img>
+                    <img src={this.state.imgAddrUrl}></img>
                     {Unicode.toHex(this.props.data.location)}
                 </div>
             )
         }
-
         return (
             <div className="newest-foot">
                 {address}
                 <div className="newest-tfoot">
                     <div className="newest-tfoot-content">
                         <div className="newest-foot-1">
-                            <img src={this.state.imgUrl[0]}></img>
-                            20
+                            <img src={this.state.favorite.imgUrl}></img>
+                            {this.state.favorite.num}
                         </div>
                         <div className="newest-foot-1">
-                            <img src={this.state.imgUrl[1]}></img>
-                            {this.props.data.praiseCount} +
+                            <img src={this.state.review.imgUrl}></img>
+                            {this.state.review.num}
                         </div>
                         <div className="newest-foot-1">
-                            <img src={this.state.imgUrl[2]}></img>
-                            {this.props.data.reviewCount} +
+                            <img src={this.state.praise.imgUrl}></img>
+                            {this.state.praise.num}
                         </div>
                     </div>
                 </div>

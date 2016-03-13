@@ -27,6 +27,10 @@ webpackJsonp([0],{
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
+	var _app = __webpack_require__(236);
+
+	var _app2 = _interopRequireDefault(_app);
+
 	var _head = __webpack_require__(167);
 
 	var _head2 = _interopRequireDefault(_head);
@@ -62,7 +66,6 @@ webpackJsonp([0],{
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import $ from 'webpack-zepto';
 
 	_autoFont2.default.init();
 	(0, _reactTapEventPlugin2.default)();
@@ -143,8 +146,6 @@ webpackJsonp([0],{
 									local_file_name: name,
 									thumb_size: '80*80'
 								});
-
-								console.log((0, _jquery2.default)(document.body));
 
 								// require('../temp/zepto.ajaxfileupload.js');
 								// $.ajaxFileUpload({
@@ -237,29 +238,37 @@ webpackJsonp([0],{
 				},
 				cityList: []
 			};
-			_this4.initCity();
+			_this4.getCity();
 			return _this4;
 		}
 
 		_createClass(Main, [{
-			key: 'initCity',
-			value: function initCity() {
+			key: 'getCity',
+			value: function getCity() {
 				var _this5 = this;
 
-				var apiPath = this.state.vars.apiPath;
-				var url = _vars2.default.api('city');
-				// url = FormatAjax.get(url);
-				_superagent2.default.get(url).end(function (err, res) {
-					if (res.status === 200) {
-						var data = JSON.parse(_unicode2.default.toHex(res.text));
-						if (data.status.code === '0') {
-							_this5.setState({
-								cityList: data.data.china
-							});
-						} else {
-							alert(data.status.msg);
-						}
-					}
+				// const apiPath = this.state.vars.apiPath;
+				// var url =  Vars.api('city');
+				// // url = FormatAjax.get(url);
+				// Superagent.get(url).end((err, res) => {
+				// 	if(res.status === 200) {
+				// 		var data = JSON.parse(Unicode.toHex(res.text));
+				// 		if(data.status.code === '0') {
+				// 			this.setState({
+				// 				cityList: data.data.china
+				// 			});
+				// 		} else {
+				// 			alert(data.status.msg);
+				// 		}
+				// 	}
+				// });
+
+				_app2.default.ajax.own.city({}, function (data) {
+					_this5.setState({
+						cityList: data.data.china
+					});
+				}, function (data) {
+					alert(_unicode2.default.toHex(data.status.msg));
 				});
 			}
 		}, {
@@ -319,22 +328,34 @@ webpackJsonp([0],{
 				if (nickName.length >= this.state.nick.scope[0] && nickName.length <= this.state.nick.scope[1]) {
 					gender = gender.options[gender.selectedIndex].getAttribute('data-code');
 					address = address.value;
-					url = _formatAjax2.default.get(_vars2.default.api('userInfo'), {
+					// url = FormatAjax.get(Vars.api('user_info'), {
+					// 	user: user,
+					// 	nickname: nickName,
+					// 	gender: gender,
+					// 	address: address
+					// });
+
+					var params = {
 						user: user,
 						nickname: nickName,
 						gender: gender,
 						address: address
+					};
+					_app2.default.ajax.user.info(params, function (data) {
+						console.log(data);
+					}, function (data) {
+						console.log(data);
 					});
-					_superagent2.default.get(url).end(function (err, res) {
-						if (res.status === 200) {
-							var data = JSON.parse(_unicode2.default.toHex(res.text));
-							console.log(data);
-						}
-					});
+					// Superagent.get(url).end((err, res) => {
+					// 	if(res.status === 200) {
+					// 		var data = JSON.parse(Unicode.toHex(res.text));
+					// 		console.log(data);
+					// 	}
+					// });
 				} else {
-					alert(_vars2.default.err('nickName'));
-					return false;
-				}
+						alert(_vars2.default.err('nickName'));
+						return false;
+					}
 			}
 		}, {
 			key: 'render',
@@ -342,10 +363,11 @@ webpackJsonp([0],{
 				var _this6 = this;
 
 				var cityList = this.state.cityList.map(function (v, ix) {
+					var city = _unicode2.default.toHex(v.city);
 					return _react2.default.createElement(
 						'option',
-						{ key: v.id, value: v.city },
-						v.city
+						{ key: v.id, value: city },
+						city
 					);
 				});
 				return _react2.default.createElement(
@@ -11207,7 +11229,6 @@ webpackJsonp([0],{
 
 	vars.storageValue = function (key1, key2) {
 	    var sobj = _storage2.default.get(vars.storage(key1));
-	    // console.log(sobj);
 	    return key2 ? sobj[key2] : sobj;
 	};
 
@@ -11276,22 +11297,26 @@ webpackJsonp([0],{
 	    var path = vars.path('apiPath'),
 	        obj = {
 	        fileUpload: 'file/post.json',
-	        userInfo: 'users/userinfo.json',
-	        city: 'zuji/city.json',
 	        hotTagList: 'biaoqian/list.json',
 	        hotList: 'biaoqian/search.json',
 	        userShow: 'users/show.json', //获取某个用户的个人信息
 	        follow_list: 'users/following/list.json', //获取用户关注的人的列表
 	        tag_list: 'users/tag/list.json', //获取用户加入的群组(标签)
 	        event_list: 'users/event/list.json', //获取用户活动列表
-	        get_my_notes: 'notes/get_my_notes.json' };
-	    //用户的动态
+	        get_my_notes: 'notes/get_my_notes.json', //用户的动态
+
+	        city: 'zuji/city.json', //获取城市
+	        user_info: 'users/userinfo.json', //设置
+	        user_show: 'users/show.json', //获取用户信息
+	        user_register: 'users/register.json' };
+	    //用户注册
+
 	    return path + obj[key];
 	};
 
 	module.exports = vars;
 
-	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":null,"vip":0,"gender":"m","age":0,"constellation":"","address":"澳门市","sign":"","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ofusername":"7f3304db83383f8624b5eb5a41ea2758","ngroups":null}
+	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":"http://image.useastore.com/user/avatar/ADCAC15A-677B-4DC5-BBA2-9ED1FD4516BE1456735556333.jpg","vip":0,"gender":"m","age":1,"constellation":"\\u53cc\\u9c7c\\u5ea7","address":"\\u6fb3\\u95e8\\u5e02","sign":"\\u6211\\u662f\\u5c0f\\u6d4b","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"{\"school\":\"& #40;null& #41;\",\"position\":\"\\u5348\\u591c\\u5de5\\u4f5c\\u8005\",\"Mylabel\":\"& #40;null& #41;\",\"company\":\"& #40;null& #41;\",\"experience\":\"& #40;null& #41;\",\"project\":\"& #40;null& #41;\",\"industry\":\"& #40;null& #41;\",\"interest\":\"\\u5c0f\\u9017\\u9752\\u5e74\"}","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ngroups":null,"ofusername":"7f3304db83383f8624b5eb5a41ea2758"}
 
 /***/ },
 
@@ -11759,6 +11784,345 @@ webpackJsonp([0],{
 	        if (s.global) jQuery.event.trigger("ajaxError", [xml, s, e]);
 	    }
 	});
+
+/***/ },
+
+/***/ 233:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var errs = function errs() {};
+
+	/*
+		@author
+			abel
+		@des
+			前缀术语：
+				un: 未放置，空参数
+				unfully: 不完全，不完整，没有传递所有参数
+				format: 格式不正确
+	 */
+
+	errs.err = function () {
+		var key = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+		var name = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+
+		var obj = {
+			format: '格式不正确! ' + name,
+			un: '没有找到! ' + name,
+			unMethod: '未提供该方法支持! ' + name,
+			unFully: '未提供完善数据！' + name
+		};
+		if (key) {
+			return obj[key];
+		}
+		console.err(obj['un'] + 'key');
+	};
+
+	errs.warn = function (key, name) {};
+
+	errs.log = function (key, name) {};
+
+	module.exports = errs;
+
+/***/ },
+
+/***/ 236:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _app = __webpack_require__(237);
+
+	var _app2 = _interopRequireDefault(_app);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var core = {};
+	core.ajax = _app2.default;
+
+	module.exports = core;
+
+/***/ },
+
+/***/ 237:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _user = __webpack_require__(238);
+
+	var _user2 = _interopRequireDefault(_user);
+
+	var _own = __webpack_require__(253);
+
+	var _own2 = _interopRequireDefault(_own);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ajax = {};
+
+	ajax.user = _user2.default;
+	ajax.own = _own2.default;
+	module.exports = ajax;
+
+/***/ },
+
+/***/ 238:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _common = __webpack_require__(252);
+
+	var _common2 = _interopRequireDefault(_common);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var user = function user() {};
+
+	/*
+		@author
+			abel
+		@to
+			abel || abel
+		@des
+			1. 处理关于user接口
+		@api 
+			show
+				* mid: int 用户ID=原始用户ID+md5(原始用户ID+sharekey)
+				* requester: string 发起请求用户的Openfire ID
+		@version
+			2016-03-09
+	 */
+	user.show = function (params, success, err) {
+		var needParams = {
+			mid: 0,
+			requester: 0
+		};
+		(0, _common2.default)(params, needParams, 'get', 'user_show', success, err);
+	};
+	/*
+		@author
+			abel
+		@to
+			abel
+		@des
+			登录，注册接口
+		@api 
+			show
+				* timestamp: string、时间戳、~ + md5(~ + sharekey)
+				* username: string、用户名
+				* mobile: string、手机号
+				* device: string、移动端标识
+				* deviceuuid: string、开发版本
+				* source: string、标识
+				* type: string、类型
+		@version
+			2016-03-12
+	 */
+	user.register = function (params, success, err) {
+		var needParams = {
+			timestamp: 0,
+			username: 0,
+			mobile: 0,
+			device: 0,
+			deviceuuid: 0,
+			source: 0,
+			type: 0
+		};
+		(0, _common2.default)(params, needParams, 'get', 'user_register', success, err);
+	};
+
+	user.info = function (params, success, err) {
+		var needParams = {
+			timestamp: 0,
+			username: 0,
+			mobile: 0,
+			device: 0,
+			deviceuuid: 0,
+			source: 0,
+			type: 0
+		};
+		(0, _common2.default)(params, needParams, 'get', 'user_info', success, err);
+	};
+	module.exports = user;
+
+/***/ },
+
+/***/ 240:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _superagent = __webpack_require__(163);
+
+	var _superagent2 = _interopRequireDefault(_superagent);
+
+	var _vars = __webpack_require__(172);
+
+	var _vars2 = _interopRequireDefault(_vars);
+
+	var _formatAjax = __webpack_require__(170);
+
+	var _formatAjax2 = _interopRequireDefault(_formatAjax);
+
+	var _errs = __webpack_require__(233);
+
+	var _errs2 = _interopRequireDefault(_errs);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/*
+		@structure
+			
+			底层  - 中间层
+				 / ajax_common 公共部分：请求结束后的执行结构
+				/
+			ajax - get 对外提供get方法
+				 - post 对外提供post方法
+
+		@author
+			abel
+		@des
+			1. 代理请求
+			2. 处理请求中间过程
+		@api
+			ajax || post || get
+			ajax:
+				* method: String 请求方法
+				* name: String 接口名称
+				* params: Object 接口需要参数
+				* success: Function 成功方法
+				* error: Function 失败方法
+			post:
+				* name
+				* params
+				* success
+				* error
+			get: 
+				* name
+				* params
+				* success
+				* error
+		@version
+			2016-03-10
+	 */
+
+	var ajax = function ajax() {};
+	ajax.ajax = function () {
+		var method = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
+		var name = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+		var params = arguments.length <= 2 || arguments[2] === undefined ? {} : arguments[2];
+		var success = arguments.length <= 3 || arguments[3] === undefined ? function () {} : arguments[3];
+		var error = arguments.length <= 4 || arguments[4] === undefined ? function (data) {
+			alert(data.status.msg);
+		} : arguments[4];
+
+		var url = _vars2.default.api(name);
+		if (url) {
+			if (method === 'get' || method === undefined) {
+				url = _formatAjax2.default.get(_vars2.default.api(name), params);
+				_superagent2.default.get(url).end(function (err, res) {
+					ajax.ajax_common(res, success, error);
+				});
+			} else if (method === 'post') {
+				_superagent2.default.post(url).send(params).end(function (err, res) {
+					ajax.ajax_common(res, success, error);
+				});
+			} else {
+				console.err(_errs2.default.err('unMethod', method));
+			}
+		} else {
+			console.err(_errs2.default.err('un', name));
+		}
+	};
+
+	ajax.ajax_common = function (res, success, error) {
+		if (res.status === 200) {
+			var data = JSON.parse(res.text);
+			if (data.status.code === '0') {
+				success(data);
+			} else {
+				error(data);
+			}
+		}
+	};
+
+	ajax.get = function (name, params, success, error) {
+		ajax.ajax('get', name, params, success, error);
+	};
+
+	ajax.post = function (name, params, success, error) {
+		ajax.ajax('post', name, params, success, error);
+	};
+
+	module.exports = ajax;
+
+/***/ },
+
+/***/ 252:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _ajax = __webpack_require__(240);
+
+	var _ajax2 = _interopRequireDefault(_ajax);
+
+	var _errs = __webpack_require__(233);
+
+	var _errs2 = _interopRequireDefault(_errs);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var common = function common(allParams, needParams, method, name, success, err) {
+		var isFullParams = common.isFullParams(allParams, needParams);
+		if (isFullParams) {
+			if (method === 'get') {
+				_ajax2.default.get(name, allParams, success, err);
+			} else if (method === 'post') {
+				_ajax2.default.post(name, allParams, success, err);
+			}
+		}
+	};
+
+	common.isFullParams = function (allParams, needParams) {
+		for (var o in needParams) {
+			if (needParams.hasOwnProperty(o)) {
+				if (!allParams.hasOwnProperty(o)) {
+					console.error(_errs2.default.err('unFully'), o);
+					return false;
+				}
+			}
+		}
+		return true;
+	};
+
+	common.ajax = _ajax2.default;
+	common.errs = _errs2.default;
+	module.exports = common;
+
+/***/ },
+
+/***/ 253:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _common = __webpack_require__(252);
+
+	var _common2 = _interopRequireDefault(_common);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var own = function own() {};
+	own.city = function (params, success, err) {
+		(0, _common2.default)(params, {}, 'get', 'city', success, err);
+	};
+
+	module.exports = own;
 
 /***/ }
 

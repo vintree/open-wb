@@ -5,13 +5,15 @@ import ReactDOM from 'react-dom';
 import InjectTapEventPlugin from "react-tap-event-plugin";
 import Superagent from 'superagent';
 
+import CORE from '../temp/core/app.js';
+
 import AutoFont from '../temp/autoFont.js';
 import Md5 from '../temp/md5.js';
 import Format from '../temp/format.js';
 import FormatAjax from '../temp/formatAjax.js';
 import Unicode from '../temp/unicode.js';
 import UserAgent from '../temp/userAgent.js';
-import ErrorMsg from '../temp/errorMsg.js';
+import Errs from '../temp/errs.js';
 import Storage from '../temp/storage.js';
 import Vars from '../temp/vars.js';
 // import Ibootstrap from '../temp/lib/ibootstrap.all.min.js';
@@ -21,7 +23,6 @@ InjectTapEventPlugin();
 class Tab extends React.Component {
 	constructor(props) {
 		super(props);
-		// console.log(this.props);
 	}
 	render() {
 		return (
@@ -174,39 +175,76 @@ class Input extends React.Component {
 			// });
 // 临时注释，短信验证失败！
 		if(Format.mobile(mobile)) {
-			AV.Cloud.verifySmsCode(code, mobile).then(function() {
+			// AV.Cloud.verifySmsCode(code, mobile).then(function() {
    			//验证成功
 				let
 					timestamp = (new Date()).getTime(),
-				  	url;
+				  	url,
+				  	params = {};
 				timestamp += Md5.init(timestamp + sharekey);
 				username += Md5.init(username + sharekey);
-				url = FormatAjax.get(vars.apiPath + 'users/register.json', {
-				  	timestamp: timestamp,
+				params = {
+					timestamp: timestamp,
 				  	username: username,
 				  	mobile: mobile,
 					device: UserAgent.identify(),
 					deviceuuid: 'web',
 					source: 'useastore',
 					type: 'nopassword'
-				});
-				Superagent.get(url).end(function(err, res) {
-					if(res.status === 200) {
-						var data = JSON.parse(Unicode.toHex(res.text));
-						if(data.status.code === '0') {
-							Storage.set(Vars('userStorage'), data.data)
-							//  	alert('注册成功！');
-						} else {
-						  	alert(data.status.msg);
-						}
+				};
+
+				
+				CORE.ajax.user.register(params, (data) => {
+					Storage.set(Vars('userStorage'), data.data)
+					if(data.data.nickname) {
+						// alert(data.data.nickname);
+						location.href = Vars.href('user');
+					} else {
+						// alert(data.data.nickname);
+						location.href = Vars.href('baseData');
 					}
+				}, (data) => {
+					alert(Unicode.toHex(data.status.msg));
 				});
-			}, function(err) {
-			   //验证失败
-			   alert(err.message);
-			});
+
+
+				// url = FormatAjax.get(vars.apiPath + 'users/register.json', {
+				//   	timestamp: timestamp,
+				//   	username: username,
+				//   	mobile: mobile,
+				// 	device: UserAgent.identify(),
+				// 	deviceuuid: 'web',
+				// 	source: 'useastore',
+				// 	type: 'nopassword'
+				// });
+				// Superagent.get(url).end(function(err, res) {
+				// 	if(res.status === 200) {
+				// 		var data = JSON.parse(res.text);
+				// 		if(data.status.code === '0') {
+				// 			Storage.set(Vars('userStorage'), data.data)
+				// 			//  	alert('注册成功！');
+				// 			// console.log(data.data.nickname);
+				// 			if(data.data.nickname) {
+				// 				// console.log(Vars.href('user'));
+				// 				location.href = Vars.href('user');
+				// 			} else {
+				// 				// console.log(Vars.href('baseData'));
+				// 				location.href = Vars.href('baseData');
+				// 			}
+				// 		} else {
+				// 		  	alert(data.status.msg);
+				// 		}
+				// 	}
+				// });
+
+
+
+			// }, function(err) {
+			//    //验证失败
+			//    alert(err.message);
+			// });
 		} else {
-			alert(ErrorMsg.err('mobileFormat'));
+			alert(errs.err('format', mobile));
 		}
 	}
 

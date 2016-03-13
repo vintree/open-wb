@@ -74,8 +74,6 @@ webpackJsonp([3],{
 	__webpack_require__(230);
 	// let Immutable = require('immutable');
 
-	// import $ from "jquery";
-
 	(0, _reactTapEventPlugin2.default)();
 	_autoFont2.default.init();
 
@@ -1817,7 +1815,6 @@ webpackJsonp([3],{
 
 	vars.storageValue = function (key1, key2) {
 	    var sobj = _storage2.default.get(vars.storage(key1));
-	    // console.log(sobj);
 	    return key2 ? sobj[key2] : sobj;
 	};
 
@@ -1886,22 +1883,26 @@ webpackJsonp([3],{
 	    var path = vars.path('apiPath'),
 	        obj = {
 	        fileUpload: 'file/post.json',
-	        userInfo: 'users/userinfo.json',
-	        city: 'zuji/city.json',
 	        hotTagList: 'biaoqian/list.json',
 	        hotList: 'biaoqian/search.json',
 	        userShow: 'users/show.json', //获取某个用户的个人信息
 	        follow_list: 'users/following/list.json', //获取用户关注的人的列表
 	        tag_list: 'users/tag/list.json', //获取用户加入的群组(标签)
 	        event_list: 'users/event/list.json', //获取用户活动列表
-	        get_my_notes: 'notes/get_my_notes.json' };
-	    //用户的动态
+	        get_my_notes: 'notes/get_my_notes.json', //用户的动态
+
+	        city: 'zuji/city.json', //获取城市
+	        user_info: 'users/userinfo.json', //设置
+	        user_show: 'users/show.json', //获取用户信息
+	        user_register: 'users/register.json' };
+	    //用户注册
+
 	    return path + obj[key];
 	};
 
 	module.exports = vars;
 
-	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":null,"vip":0,"gender":"m","age":0,"constellation":"","address":"澳门市","sign":"","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ofusername":"7f3304db83383f8624b5eb5a41ea2758","ngroups":null}
+	// {"mid":76350,"username":"18810373055","nickname":"eqwe","pinyin":"eqwe","avatar":"http://image.useastore.com/user/avatar/ADCAC15A-677B-4DC5-BBA2-9ED1FD4516BE1456735556333.jpg","vip":0,"gender":"m","age":1,"constellation":"\\u53cc\\u9c7c\\u5ea7","address":"\\u6fb3\\u95e8\\u5e02","sign":"\\u6211\\u662f\\u5c0f\\u6d4b","xingming":"","background":null,"leagues":null,"groups":null,"height":0,"mobile":"18810373055","extension":"{\"school\":\"& #40;null& #41;\",\"position\":\"\\u5348\\u591c\\u5de5\\u4f5c\\u8005\",\"Mylabel\":\"& #40;null& #41;\",\"company\":\"& #40;null& #41;\",\"experience\":\"& #40;null& #41;\",\"project\":\"& #40;null& #41;\",\"industry\":\"& #40;null& #41;\",\"interest\":\"\\u5c0f\\u9017\\u9752\\u5e74\"}","isRegister":0,"ofpassword":"b942077d406d5d069a3c71ae3d332811","ngroups":null,"ofusername":"7f3304db83383f8624b5eb5a41ea2758"}
 
 /***/ },
 
@@ -7298,7 +7299,6 @@ webpackJsonp([3],{
 	        key: 'render',
 	        value: function render() {
 	            var List = this.props.data;
-	            // console.log('11111111');
 	            List = List.map(function (v, i) {
 	                var name = _unicode2.default.toHex(v.name),
 	                    dec = _unicode2.default.toHex(v.description),
@@ -7309,17 +7309,11 @@ webpackJsonp([3],{
 	                    usersName = [],
 	                    isMember = v.isMember === 0 ? ['', '+ 加入'] : ['active', '已加入'];
 	                summary = summary || cname;
-	                // console.log(name);
-	                // console.log(dec);
-	                // console.log(cname);
-	                // console.log(summary);
 	                users = users.splice(0, 5);
 	                for (var _i = 0, l = users.length; _i < l; _i++) {
 	                    usersName.push(_unicode2.default.toHex(users[_i].nickname));
 	                }
 	                usersName = usersName.join('、');
-	                // console.log(usersName);
-
 	                return _react2.default.createElement(
 	                    'div',
 	                    { key: v.tid, 'data-tid': v.tid, className: 'groupList-unit' },
@@ -7389,66 +7383,6 @@ webpackJsonp([3],{
 
 	    return GroupList;
 	})(_react2.default.Component);
-
-	// <div className="groupList-unit">
-	//     <div className="groupList-head">
-	//         <div className="groupList-img"><img src="../img/headImg@1x.png" /></div>
-	//         <div className="groupList-msg">
-	//             <div className="groupList-mainInfo">
-	//                 <div className="groupList-name">谁动了我的奶酪</div>
-	//                 <span className="groupList-tag">我司官方</span>
-	//             </div>
-	//             <div className="groupList-info">
-	//                 发数据库繁华落尽第三方好好发挥拉斯科啊绝色赌妃来看哈三菱电机反悔拉克丝大姐夫
-	//             </div>
-	//         </div>
-	//     </div>
-	//     <div className="groupList-px">
-	//         <div className="groupList-radius"></div>
-	//     </div>
-	//     <div className="groupList-body">
-	//         <div className="groupList-num">1280个成员</div>
-	//         <div className="groupList-member">
-	//             <span>圆圆、</span>
-	//             <span>吹吹、</span>
-	//             <span>小鱼儿、</span>
-	//             <span>杜拉拉、</span>
-	//             <span>鱼刺、</span>
-	//             <span>神奇宝贝、</span>
-	//         </div>
-	//         <div className="groupList-join">+ 加入</div>
-	//     </div>
-	// </div>
-	//
-	// <div className="groupList-unit">
-	//     <div className="groupList-head">
-	//         <div className="groupList-img"><img src="../img/headImg@1x.png" /></div>
-	//         <div className="groupList-msg">
-	//             <div className="groupList-mainInfo">
-	//                 <div className="groupList-name">谁动了我的奶酪</div>
-	//                 <span className="groupList-tag">我司官方</span>
-	//             </div>
-	//             <div className="groupList-info">
-	//                 发数据库繁华落尽第三方好好发挥拉斯科啊绝色赌妃来看哈三菱电机反悔拉克丝大姐夫
-	//             </div>
-	//         </div>
-	//     </div>
-	//     <div className="groupList-px">
-	//         <div className="groupList-radius"></div>
-	//     </div>
-	//     <div className="groupList-body">
-	//         <div className="groupList-num">1280个成员</div>
-	//         <div className="groupList-member">
-	//             <span>圆圆、</span>
-	//             <span>吹吹、</span>
-	//             <span>小鱼儿、</span>
-	//             <span>杜拉拉、</span>
-	//             <span>鱼刺、</span>
-	//             <span>神奇宝贝、</span>
-	//         </div>
-	//         <div className="groupList-join">+ 加入</div>
-	//     </div>
-	// </div>
 
 	exports.default = GroupList;
 
