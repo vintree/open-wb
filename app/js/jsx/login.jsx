@@ -1,5 +1,4 @@
 require('../../sass/login.scss');
-// import $ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import InjectTapEventPlugin from "react-tap-event-plugin";
@@ -194,7 +193,7 @@ class Input extends React.Component {
 					type: 'nopassword'
 				};
 
-				
+
 				CORE.ajax.user.register(params, (data) => {
 					Storage.set(Vars('userStorage'), data.data)
 					if(data.data.nickname) {
