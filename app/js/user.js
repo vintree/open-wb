@@ -59,11 +59,11 @@ webpackJsonp([5],{
 
 	var _tab2 = _interopRequireDefault(_tab);
 
-	var _follow = __webpack_require__(236);
+	var _follow = __webpack_require__(241);
 
 	var _follow2 = _interopRequireDefault(_follow);
 
-	var _group = __webpack_require__(239);
+	var _group = __webpack_require__(244);
 
 	var _group2 = _interopRequireDefault(_group);
 
@@ -71,7 +71,7 @@ webpackJsonp([5],{
 
 	var _activity2 = _interopRequireDefault(_activity);
 
-	var _msg = __webpack_require__(242);
+	var _msg = __webpack_require__(247);
 
 	var _msg2 = _interopRequireDefault(_msg);
 
@@ -87,7 +87,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(245);
+	__webpack_require__(250);
 	// import $ from "jquery";
 
 	_autoFont2.default.init();
@@ -3046,7 +3046,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 236:
+/***/ 241:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3085,7 +3085,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(237);
+	__webpack_require__(242);
 
 	var Follow = (function (_React$Component) {
 	    _inherits(Follow, _React$Component);
@@ -3183,13 +3183,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 237:
+/***/ 242:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(238);
+	var content = __webpack_require__(243);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(178)(content, {});
@@ -3210,7 +3210,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 238:
+/***/ 243:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(177)();
@@ -3225,7 +3225,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 239:
+/***/ 244:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3264,7 +3264,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(240);
+	__webpack_require__(245);
 
 	var Group = (function (_React$Component) {
 	    _inherits(Group, _React$Component);
@@ -3372,13 +3372,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 240:
+/***/ 245:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(241);
+	var content = __webpack_require__(246);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(178)(content, {});
@@ -3399,7 +3399,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 241:
+/***/ 246:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(177)();
@@ -3414,7 +3414,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 242:
+/***/ 247:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -3441,7 +3441,7 @@ webpackJsonp([5],{
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	__webpack_require__(243);
+	__webpack_require__(248);
 
 	// import $ from 'jquery';
 
@@ -3559,13 +3559,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 243:
+/***/ 248:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(244);
+	var content = __webpack_require__(249);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(178)(content, {});
@@ -3586,7 +3586,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 244:
+/***/ 249:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(177)();
@@ -3601,13 +3601,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 245:
+/***/ 250:
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(246);
+	var content = __webpack_require__(251);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(178)(content, {});
@@ -3628,7 +3628,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 246:
+/***/ 251:
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(177)();

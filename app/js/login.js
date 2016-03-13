@@ -47,7 +47,7 @@ webpackJsonp([4],{
 
 	var _userAgent2 = _interopRequireDefault(_userAgent);
 
-	var _errorMsg = __webpack_require__(233);
+	var _errorMsg = __webpack_require__(254);
 
 	var _errorMsg2 = _interopRequireDefault(_errorMsg);
 
@@ -81,7 +81,6 @@ webpackJsonp([4],{
 			_classCallCheck(this, Tab);
 
 			return _possibleConstructorReturn(this, Object.getPrototypeOf(Tab).call(this, props));
-			// console.log(this.props);
 		}
 
 		_createClass(Tab, [{
@@ -2456,24 +2455,6 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 233:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var errorMsg = function errorMsg() {};
-
-	errorMsg.err = function (key) {
-		var obj = {
-			mobileFormat: '手机号格式不正确！'
-		};
-		return obj[key];
-	};
-
-	module.exports = errorMsg;
-
-/***/ },
-
 /***/ 234:
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2513,6 +2494,24 @@ webpackJsonp([4],{
 
 	// exports
 
+
+/***/ },
+
+/***/ 254:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var errorMsg = function errorMsg() {};
+
+	errorMsg.err = function (key) {
+		var obj = {
+			mobileFormat: '手机号格式不正确！'
+		};
+		return obj[key];
+	};
+
+	module.exports = errorMsg;
 
 /***/ }
 
