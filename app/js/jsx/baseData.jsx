@@ -260,7 +260,7 @@ class Main extends React.Component {
 			CORE.ajax.user.info(params, (data)=> {
 				console.log(data);
 			}, (data)=> {
-
+				console.log(data);
 			})
 
 			// Superagent.get(url).end((err, res) => {
