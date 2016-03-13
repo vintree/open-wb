@@ -118,7 +118,8 @@ webpackJsonp([1],[
 	                name: '详情',
 	                codeName: 'fansGroup-details',
 	                active: ''
-	            }]
+	            }],
+	            nodeList: []
 	        };
 	        // console.log(this.state.vars);
 	        return _this;

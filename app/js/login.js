@@ -2626,7 +2626,7 @@ webpackJsonp([4],{
 
 	'use strict';
 
-	var _common = __webpack_require__(239);
+	var _common = __webpack_require__(252);
 
 	var _common2 = _interopRequireDefault(_common);
 
@@ -2700,50 +2700,6 @@ webpackJsonp([4],{
 		(0, _common2.default)(params, needParams, 'get', 'user_info', success, err);
 	};
 	module.exports = user;
-
-/***/ },
-
-/***/ 239:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _ajax = __webpack_require__(240);
-
-	var _ajax2 = _interopRequireDefault(_ajax);
-
-	var _errs = __webpack_require__(233);
-
-	var _errs2 = _interopRequireDefault(_errs);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var common = function common(allParams, needParams, method, name, success, err) {
-		var isFullParams = common.isFullParams(allParams, needParams);
-		if (isFullParams) {
-			if (method === 'get') {
-				_ajax2.default.get(name, allParams, success, err);
-			} else if (method === 'post') {
-				_ajax2.default.post(name, allParams, success, err);
-			}
-		}
-	};
-
-	common.isFullParams = function (allParams, needParams) {
-		for (var o in needParams) {
-			if (needParams.hasOwnProperty(o)) {
-				if (!allParams.hasOwnProperty(o)) {
-					console.error(_errs2.default.err('unFully'), o);
-					return false;
-				}
-			}
-		}
-		return true;
-	};
-
-	common.ajax = _ajax2.default;
-	common.errs = _errs2.default;
-	module.exports = common;
 
 /***/ },
 
@@ -2858,12 +2814,56 @@ webpackJsonp([4],{
 
 /***/ },
 
+/***/ 252:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _ajax = __webpack_require__(240);
+
+	var _ajax2 = _interopRequireDefault(_ajax);
+
+	var _errs = __webpack_require__(233);
+
+	var _errs2 = _interopRequireDefault(_errs);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var common = function common(allParams, needParams, method, name, success, err) {
+		var isFullParams = common.isFullParams(allParams, needParams);
+		if (isFullParams) {
+			if (method === 'get') {
+				_ajax2.default.get(name, allParams, success, err);
+			} else if (method === 'post') {
+				_ajax2.default.post(name, allParams, success, err);
+			}
+		}
+	};
+
+	common.isFullParams = function (allParams, needParams) {
+		for (var o in needParams) {
+			if (needParams.hasOwnProperty(o)) {
+				if (!allParams.hasOwnProperty(o)) {
+					console.error(_errs2.default.err('unFully'), o);
+					return false;
+				}
+			}
+		}
+		return true;
+	};
+
+	common.ajax = _ajax2.default;
+	common.errs = _errs2.default;
+	module.exports = common;
+
+/***/ },
+
 /***/ 253:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _common = __webpack_require__(239);
+	var _common = __webpack_require__(252);
 
 	var _common2 = _interopRequireDefault(_common);
 
